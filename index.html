@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的网页</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f6fa;
+            color: #333;
+        }
+        header {
+            background: #2f3640;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 40px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+        button {
+            background: #0984e3;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #74b9ff;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>欢迎来到我的网页</h1>
+</header>
+
+<main>
+    <div class="card">
+        <h2>关于我</h2>
+        <p>这里可以写你的介绍。</p>
+    </div>
+
+    <div class="card">
+        <h2>功能示例</h2>
+        <button onclick="showMessage()">点击我</button>
+    </div>
+</main>
+
+<footer>
+    © 2026 我的网页
+</footer>
+
+<script>
+    function showMessage() {
+        alert("你好！欢迎访问我的网页！");
+    }
+</script>
+
+</body>
+</html>
