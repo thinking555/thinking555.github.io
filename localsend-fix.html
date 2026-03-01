@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>LocalSend Mac 无法搜索到设备解决办法</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        h1 {
+            margin-top: 0;
+            font-size: 28px;
+            color: #111;
+        }
+        h2 {
+            margin-top: 30px;
+            color: #222;
+        }
+        a {
+            color: #007aff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .image {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .image img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .note {
+            background: #f0f7ff;
+            border-left: 4px solid #007aff;
+            padding: 12px 16px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        .steps {
+            background: #fafafa;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+        footer {
+            margin-top: 40px;
+            font-size: 13px;
+            color: #888;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>LocalSend Mac 无法搜索到设备解决办法</h1>
+
+    <p>
+        官方说明参考：
+        <a href="https://support.apple.com/zh-cn/guide/mac-help/mchla4f49138/mac" target="_blank">
+            Apple 官方文档：控制 Mac 上 App 访问本地网络
+        </a>
+    </p>
+
+    <h2>问题原因</h2>
+    <p>在第一次开启 LocalSend 时，macOS 会弹出提示：</p>
+
+    <div class="image">
+        <img src="https://i.imgur.com/mLzpwD2.png">
+    </div>
+
+    <div class="note">
+        如果点击了「不允许」，LocalSend 将无法搜索到局域网设备。
+    </div>
+
+    <h2>解决办法</h2>
+
+    <div class="steps">
+        <p><strong>系统设置 → 隐私与安全性 → 本地网络</strong></p>
+        <p>找到 LocalSend 并开启权限。</p>
+    </div>
+
+    <div class="image">
+        <img src="https://i.mji.rip/2026/03/01/25dbbf42117cf7094a767e5d7ce46e17.png">
+    </div>
+
+    <div class="image">
+        <img src="https://i.mji.rip/2026/03/01/06c7b2c6e00164cd0667c85a473c458f.png">
+    </div>
+
+    <h2>完成</h2>
+    <p>重新打开 LocalSend，即可正常搜索设备。</p>
+
+    <footer>
+        LocalSend 权限问题解决指南
+    </footer>
+
+</div>
+</body>
+</html>
