@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Xinshoucpu</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+}
+
+body{
+    background:#ffffff;
+    color:#000000;
+}
+
+/* 顶部 */
+.topbar{
+    position:relative;
+    height:90px;
+    padding:25px 60px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:600;
+}
+
+/* 搜索 */
+.search-wrap{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:520px;
+}
+
+.search-box{
+    display:flex;
+    background:#ebe9e9;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid #e8e6e6;
+}
+
+.search-box input{
+    flex:1;
+    padding:14px 16px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:#ffffff;
+    color:#fff;
+}
+
+.search-box button{
+    width:60px;
+    border:none;
+    background:#ffffff;
+    cursor:pointer;
+    color:#fff;
+}
+
+/* ===== 固定 5 列 ===== */
+.container{
+    column-count:5;
+    column-gap:10px;
+    padding:20px 60px 60px 60px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.section{
+    margin-bottom:10px;
+    break-inside:avoid;
+}
+
+.section h3{
+    font-size:14px;
+    margin-bottom:14px;
+    color:#888;
+    font-weight:500;
+    text-align:center;   /* 👈 居中 */
+}
+
+/* 链接（无背景） */
+.link-item{
+    display:flex;
+    align-items:center;
+    margin-bottom:10px;
+    text-decoration:none;
+    color:#000000;
+    font-size:16px;
+    transition:.2s;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.link-item:hover{
+    color:rgb(0, 158, 32);
+   
+}
+
+/* 网站图标 */
+.link-item img{
+    width:16px;
+    height:16px;
+    margin-right:8px;
+    border-radius:3px;
+     flex-shrink:0;   /* 防止图标被压缩 */
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="logo">图片</div>
+
+    <div class="search-wrap">
+        <form class="search-box" action="https://www.google.com/search" method="GET">
+            <input type="text" name="q">
+            <button type="submit">🔍</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 第一列 -->
+    <div class="section">
+        <h3>图片工具</h3>
+
+         <a class="link-item" href="https://revizepic.toolooz.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=revizepic.toolooz.com/">
+            图片工具集
+        </a>
+
+       <a class="link-item" href="https://phototool.cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=phototool.cn/">
+            图片工具集2
+        </a>
+
+        <a class="link-item" href="https://imagestool.com/zh_CN/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=imagestool.com">
+            图片工具集3
+        </a>
+
+        <a class="link-item" href="https://www.iloveimg.com/zh-cn" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=iloveimg.com/">
+            图片工具集4-模糊面部
+        </a>
+
+        <a class="link-item" href="https://www.ciyunwenzi.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ciyunwenzi.com/">
+            文字云词-需要登录
+        </a>
+
+       <a class="link-item" href="https://www.yciyun.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yciyun.com/">
+            易词云3.0-需要登录
+        </a>
+
+        <a class="link-item" href="https://restoreoldphotos.io/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=restoreoldphotos.io/">
+            老照片修复
+        </a>
+
+        <a class="link-item" href="https://unblurimage.ai/zh/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=unblurimage.ai">
+            图片去模糊
+        </a>
+
+        <a class="link-item" href="https://huggingface.co/spaces/fffiloni/InstantIR" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=huggingface.co">
+            修复照片
+        </a>
+
+        <a class="link-item" href="https://picma.magictiger.ai/zh/picma_web/enhance_pro" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=picma.magictiger.ai">
+            画质增强
+        </a>
+
+       <a class="link-item" href="https://aiimageeditor.me/zh/ai-image-enhancement" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=aiimageeditor.me">
+            变清晰
+        </a>
+
+        <a class="link-item" href="https://remove.photos/zh-cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=remove.photos">
+            去除背景
+        </a>
+
+        <a class="link-item" href="https://imgtopixel.art/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=imgtopixel.art/">
+            图片像素化
+        </a>
+
+        <a class="link-item" href="https://pixel-asurance.vercel.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=pixel-asurance.vercel.app/">
+            图片像素化2
+        </a>
+
+        <a class="link-item" href="https://magicstudio.com/zh/magiceraser/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=magicstudio.com/">
+            去除水印
+        </a>
+
+       <a class="link-item" href="https://inpaintweb.lxfater.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=inpaintweb.lxfater.com/">
+            去除水印2
+        </a>
+
+        <a class="link-item" href="https://slimpic.toolooz.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=slimpic.toolooz.com/"">
+            图片批量压缩
+        </a>
+
+        <a class="link-item" href="https://picsresizer.com/zh-CN" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=picsresizer.com/">
+            图片批量压缩2
+        </a>
+
+        <a class="link-item" href="https://tinify.cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tinify.cn/">
+            图片批量压缩3
+        </a>
+
+    </div>
+
+    <!-- 第二列 -->
+    <div class="section">
+        <h3>识图网站</h3>
+
+        <a class="link-item" href="https://pimeyes.com/en" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=pimeyes.com">
+            pimeyes 💰
+        </a>
+
+        <a class="link-item" href="https://yandex.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            yandex
+        </a>
+
+        <a class="link-item" href="https://graph.baidu.com/pcpage/index?tpl_from=pc" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=graph.baidu.com">
+            baidu
+        </a>
+
+        <a class="link-item" href="https://www.google.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+            google
+        </a>
+
+        <a class="link-item" href="https://www.reversely.ai/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=reversely.ai">
+            reversely 💰
+        </a>
+
+       <a class="link-item" href="https://tineye.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tineye.com">
+            tineye
+        </a>
+
+        <a class="link-item" href="https://pic.sogou.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=pic.sogou.com">
+            sogou
+        </a>
+
+        <a class="link-item" href="https://lenso.ai/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=lenso.ai">
+            反向圖像搜尋
+        </a>
+
+        <a class="link-item" href="https://github.com/ageitgey/face_recognition" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            人脸辨识
+        </a>
+
+        <a class="link-item" href="https://iqdb.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=iqdb.org">
+            动漫、动漫壁纸、漫画、游戏
+        </a>
+
+        <a class="link-item" href="https://saucenao.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=saucenao.com">
+            Pixiv （pixiv.net）图片搜索
+        </a>
+
+        <a class="link-item" href="https://ascii2d.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ascii2d.net">
+            二次元图片搜索
+        </a>
+
+        <a class="link-item" href="https://trace.moe/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=trace.moe/">
+            动漫视频截图搜索
+        </a>
+
+        <a class="link-item" href="https://geospy.ai/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=geospy.ai">
+            用图片识别真实地点 政府才可用
+        </a>
+
+       <a class="link-item" href="https://facecheck.id/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=facecheck.id">
+            通过照片在线查找人员 💰
+        </a>
+    </div>
+
+    <!-- 第三列 -->
+    <div class="section">
+        <h3>截图</h3>
+
+        <a class="link-item" href="https://moocup.jaydip.me/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=moocup.jaydip.me/">
+            截图美化工具 ·
+        </a>
+
+       <a class="link-item" href="https://socialscreenshots.com/editor" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=socialscreenshots.com">
+            截图美化工具2 ·
+        </a>
+
+        <a class="link-item" href="https://postspark.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=postspark.app/">
+            截图美化工具3 ·
+        </a>
+
+        <a class="link-item" href="https://qr.windliang.wang/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=qr.windliang.wang/">
+            链接转换成图片
+        </a>
+
+        <a class="link-item" href="https://www.bookmark.style/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=bookmark.style/">
+            链接转换成图片2
+        </a>
+
+        <a class="link-item" href="https://screen.guru/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=screen.guru/">
+            链接转换成图片3
+        </a>
+
+       <a class="link-item" href="https://screenshot.onionai.so/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=screenshot.onionai.so/">
+            截图美化工具4 ·
+        </a>
+
+        <a class="link-item" href="https://www.mock.club/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mock.club/">
+            加背景
+        </a>
+
+        <a class="link-item" href="https://shots.so/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=shots.so/">
+            截图美化工具5 ·
+        </a>
+
+        <a class="link-item" href="https://mockuphone.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mockuphone.com/">
+            截图美化工具6
+        </a>
+
+        <a class="link-item" href="https://mockuuups.studio/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mockuuups.studio/">
+            截图美化工具7 💰
+        </a>
+
+       <a class="link-item" href="https://deviceshots.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=deviceshots.com/">
+            截图美化工具8
+        </a>
+
+        <a class="link-item" href="https://purple-photo.web.app/editor" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=purple-photo.web.app">
+            截图美化工具9
+        </a>
+
+        <a class="link-item" href="https://md2card.com/zh/editor" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=md2card.com">
+            文字卡片
+        </a>
+
+        <a class="link-item" href="https://fireflycard.shushiai.com/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=fireflycard.shushiai.com/">
+            流光卡片
+        </a>
+
+        <a class="link-item" href="https://mono.cards/zh-CN?ds=light&template=weather" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mono.cards/">
+            万能图片卡片
+        </a>
+
+    </div>
+
+    <!-- 第四列 -->
+    <div class="section">
+        <h3>封面</h3>
+
+       <a class="link-item" href="https://chalk.ist/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=chalk.ist/">
+            代码转图片
+        </a>
+
+       <a class="link-item" href="https://ray.so/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ray.so/">
+            代码转图片2
+        </a>
+
+        <a class="link-item" href="https://codeimg.io/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=codeimg.io/">
+            代码转图片3
+        </a>
+
+        <a class="link-item" href="https://showcode.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=showcode.app/">
+            代码转图片4
+        </a>
+
+        <a class="link-item" href="https://codetoimg.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=codetoimg.com">
+            代码转图片5
+        </a>
+
+        <a class="link-item" href="https://devshots.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=devshots.app/">
+            代码转图片6
+        </a>
+
+       <a class="link-item" href="https://poet.so/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=poet.so/">
+            推文转图片
+        </a>
+
+        <a class="link-item" href="https://vividshare.io/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=vividshare.io/">
+            推文转图片2
+        </a>
+
+        <a class="link-item" href="https://cover.zippic.cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=cover.zippic.cn/">
+            封面生成器 ·
+        </a>
+
+        <a class="link-item" href="https://app.haikei.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=app.haikei.app">
+            封面生成器2 ·
+        </a>
+
+        <a class="link-item" href="https://coverview.vercel.app/editor" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=coverview.vercel.app">
+            封面生成器3 Web
+        </a>
+
+       <a class="link-item" href="https://socialify.git.ci/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=socialify.git.ci">
+            封面生成器4 GitHub
+        </a>
+
+        <a class="link-item" href="https://picprose.pixpark.net/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=picprose.pixpark.net/">
+            封面生成器5 部落格
+        </a>
+
+        <a class="link-item" href="https://colorflow.ls.graphics/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=colorflow.ls.graphics">
+            渐变图片
+        </a>
+
+        <a class="link-item" href="https://webgradients.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=webgradients.com/">
+            渐变图片2
+        </a>
+
+        <a class="link-item" href="https://www.mshr.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mshr.app/">
+            渐变图片3
+        </a>
+
+       <a class="link-item" href="https://www.uigradients.com/#BurningOrange" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=uigradients.com">
+            渐变图片4
+        </a>
+
+        <a class="link-item" href="https://webkul.github.io/coolhue/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=webkul.github.io">
+            渐变图片5
+        </a>
+
+        <a class="link-item" href="https://www.color4bg.com/zh-hans" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=color4bg.com/">
+            渐变图片6 ·
+        </a>
+
+        <a class="link-item" href="https://www.color4bg.com/zh-hans/generators/blur-dot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=color4bg.com/">
+            渐变图片7
+        </a>
+    </div>
+
+    <!-- 第五列 -->
+    <div class="section">
+        <h3>壁纸</h3>
+
+       <a class="link-item" href="https://www.nuantang.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=nuantang.net">
+            暖糖壁纸
+        </a>
+
+       <a class="link-item" href="https://chiikawawallpaper.com/zh-Hans" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=chiikawawallpaper.com">
+            Chiikawa
+        </a>
+
+        <a class="link-item" href="https://gallery.timeline.ink/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=gallery.timeline.ink/">
+            拾光
+        </a>
+
+        <a class="link-item" href="https://wallroom.io/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=wallroom.io/">
+            wallroom
+        </a>
+
+        <a class="link-item" href="https://wallhaven.cc/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=wallhaven.cc/">
+            wallhaven
+        </a>
+
+        <a class="link-item" href="https://librestock.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=librestock.com/">
+            librestock
+        </a>
+
+       <a class="link-item" href="https://www.screensaver.top/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=screensaver.top">
+            screensaver
+        </a>
+
+        <a class="link-item" href="https://shineroll.toolooz.com/editor" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=shineroll.toolooz.com/">
+            LED
+        </a>
+
+        <a class="link-item" href="https://weather-pattern.vercel.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=weather-pattern.vercel.app/">
+            天气
+        </a>
+
+        <a class="link-item" href="https://wangyasai.github.io/TheMatrix/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=wangyasai.github.io">
+            TheMatrix
+        </a>
+
+        <a class="link-item" href="https://headers.club/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=headers.club/">
+            X背景图片收集
+        </a>
+
+       <a class="link-item" href="https://emoji.supply/wallpaper/?pattern=foam&order=random&emoji=%25F0%259F%258D%258C%25F0%259F%258D%2593%25F0%259F%258D%258A%25F0%259F%258D%2587&texture=gradient&color=%23ffe7bd&scale=1.0" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=emoji.supply">
+            随机生成
+        </a>
+
+        <a class="link-item" href="https://colorfu.bairui.dev/#/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=colorfu.bairui.dev">
+            colorfu
+        </a>
+
+        <a class="link-item" href="https://trianglify.io/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=trianglify.io">
+            trianglify
+        </a>
+
+        <a class="link-item" href="https://hubweb.cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=hubweb.cn">
+            Apple 壁纸
+        </a>
+
+        <a class="link-item" href="https://ppbc.iplant.cn/wallpaper" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ppbc.iplant.cn">
+            中国植物图像库
+        </a>
+
+       <a class="link-item" href="https://www.socwall.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=socwall.com/">
+            socwall
+        </a>
+
+        <a class="link-item" href="https://justinmaller.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=justinmaller.com/">
+            justinmaller AI
+        </a>
+
+        <a class="link-item" href="https://www.eso.org/public/unitedkingdom/images/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=eso.org">
+            Space
+        </a>
+
+        <a class="link-item" href="https://www.nasa.gov/image-of-the-day/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=nasa.gov">
+            Nasa
+        </a>
+
+         <a class="link-item" href="https://www.applewalls.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=applewalls.com">
+            Apple Wallpapers
+        </a>
+
+         <a class="link-item" href="https://unsplash.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=unsplash.com">
+            unsplash
+        </a>
+
+    </div>
+
+    
+    <div class="section">
+        <h3>图片工具2</h3>
+
+        <a class="link-item" href="https://www.logoly.pro/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=logoly.pro/">
+            logo
+        </a>
+
+       <a class="link-item" href="https://ray.so/icon" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ray.so/icon">
+            logo2
+        </a>
+
+        <a class="link-item" href="https://logofast.app/logo" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=logofast.app/">
+            logo3
+        </a>
+
+        <a class="link-item" href="https://brat-generator.top/zh/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=brat-generator.top">
+            logo4
+        </a>
+
+        <a class="link-item" href="https://disksing.com/fake-screenshot/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=disksing.com/">
+            字幕拼接截图
+        </a>
+
+        <a class="link-item" href="https://fake-screenshot-tau.vercel.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=fake-screenshot-tau.vercel.app/">
+            字幕拼接截图2
+        </a>
+
+       <a class="link-item" href="https://styleai.art/zh/ghibli-generator" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=styleai.art/">
+            Free Ghibli AI Generator
+        </a>
+
+        <a class="link-item" href="https://www.pic.net/tu/zh/app/index.html" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=pic.net">
+            拼图工具
+        </a>
+
+        <a class="link-item" href="https://text-to-handwriting.org/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=text-to-handwriting.org">
+            文字转手写
+        </a>
+
+        <a class="link-item" href="https://vtool.pro/handwriting/index.html" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=vtool.pro/">
+            手写体文稿
+        </a>
+
+        <a class="link-item" href="https://meatfighter.com/ascii-silhouettify/spa/index.html#/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=meatfighter.com">
+            图片转ASCII码
+        </a>
+
+    </div>
+
+</body>
+
+</html>

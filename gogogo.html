@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Xinshoucpu</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+}
+
+body{
+    background:#ffffff;
+    color:#000000;
+}
+
+/* 顶部 */
+.topbar{
+    position:relative;
+    height:90px;
+    padding:25px 60px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:600;
+}
+
+/* 搜索 */
+.search-wrap{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:520px;
+}
+
+.search-box{
+    display:flex;
+    background:#ebe9e9;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid #e8e6e6;
+}
+
+.search-box input{
+    flex:1;
+    padding:14px 16px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:#ffffff;
+    color:#fff;
+}
+
+.search-box button{
+    width:60px;
+    border:none;
+    background:#ffffff;
+    cursor:pointer;
+    color:#fff;
+}
+
+/* ===== 固定 5 列 ===== */
+.container{
+    column-count:5;
+    column-gap:10px;
+    padding:20px 60px 60px 60px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.section{
+    margin-bottom:10px;
+    break-inside:avoid;
+}
+
+.section h3{
+    font-size:14px;
+    margin-bottom:14px;
+    color:#888;
+    font-weight:500;
+    text-align:center;   /* 👈 居中 */
+}
+
+/* 链接（无背景） */
+.link-item{
+    display:flex;
+    align-items:center;
+    margin-bottom:10px;
+    text-decoration:none;
+    color:#000000;
+    font-size:16px;
+    transition:.2s;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.link-item:hover{
+    color:rgb(0, 158, 32);
+   
+}
+
+/* 网站图标 */
+.link-item img{
+    width:16px;
+    height:16px;
+    margin-right:8px;
+    border-radius:3px;
+     flex-shrink:0;   /* 防止图标被压缩 */
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="logo">翻墙直通</div>
+
+    <div class="search-wrap">
+        <form class="search-box" action="https://www.google.com/search" method="GET">
+            <input type="text" name="q">
+            <button type="submit">🔍</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 第一列 -->
+    <div class="section">
+        <h3>Windows Mac Linux</h3>
+
+        <a class="link-item" href="https://github.com/clash-verge-rev/clash-verge-rev/releases" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            Clash Verge Rev
+        </a>
+
+       <a class="link-item" href="https://github.com/mihomo-party-org/clash-party/releases/tag/v1.9.2" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            Clash-party
+        </a>
+
+        <a class="link-item" href="https://github.com/2dust/v2rayN/releases" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            v2rayN
+        </a>
+
+        <a class="link-item" href="https://github.com/xishang0128/sparkle/releases/tag/1.26.2" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            sparkle
+        </a>
+
+    </div>
+
+    
+    <!-- 第四列 -->
+    <div class="section">
+        <h3>Android</h3>
+
+         <a class="link-item" href="https://github.com/MetaCubeX/ClashMetaForAndroid" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            ClashMetaForAndroid
+        </a>
+
+        <a class="link-item" href="https://github.com/MatsuriDayo/NekoBoxForAndroid/releases" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            NekoBoxForAndroid
+        </a>
+
+         <a class="link-item" href="https://github.com/2dust/v2rayNG/releases" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            v2rayNG
+        </a>
+
+        <a class="link-item" href="https://github.com/getsurfboard/surfboard/releases/tag/mobile-2.28.0" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            surfboard
+        </a>
+       
+    </div>
+
+    <!-- 第五列 -->
+    <div class="section">
+        <h3>Mac IOS</h3>
+
+        <a class="link-item" href="https://apps.apple.com/us/app/shadowrocket/id932747118" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=apps.apple.com">
+            shadowrocket 2.99$
+        </a>
+
+        <a class="link-item" href="https://apps.apple.com/us/app/quantumult-x/id1443988620" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=apps.apple.com">
+            quantumult X 9.9$
+        </a> 
+       
+    </div>
+
+    <div class="section">
+        <h3>IOS</h3>
+
+        <a class="link-item" href="https://apps.apple.com/us/app/stash-rule-based-proxy/id1596063349" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=apps.apple.com">
+            stash 5.99$
+        </a>
+
+        <a class="link-item" href="https://apps.apple.com/us/app/surge-5/id1442620678" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=apps.apple.com">
+            Surge 5 49.99$
+        </a>
+
+        <a class="link-item" href="https://apps.apple.com/us/app/loon/id1373567447" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=apps.apple.com">
+            Loon 7.99$
+        </a>
+
+    </div>
+
+    
+    <div class="section">
+        <h3>Windows Mac Linux Android IOS</h3>
+
+        <a class="link-item" href="https://github.com/KaringX/clashmi" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            clashmi
+        </a>
+
+        <a class="link-item" href="https://github.com/KaringX/karing/releases" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            karing
+        </a>
+
+        <a class="link-item" href="https://github.com/SagerNet/sing-box/releases" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com/">
+             sing-box
+        </a>
+
+    </div>
+
+    <!-- 第二列 -->
+    <div class="section">
+        <h3>Windows Mac Linux Android</h3>
+
+        <a class="link-item" href="https://github.com/chen08209/FlClash/releases" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            FlClash
+        </a>
+
+    </div>
+
+    <!-- 第三列 -->
+    <div class="section">
+        <h3>Mac</h3>
+
+        <a class="link-item" href="https://github.com/MetaCubeX/ClashX.Meta" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            ClashX.Meta
+        </a>
+       
+    </div>
+
+
+    <div class="section">
+        <h3>备用VPN</h3>
+
+        <a class="link-item" href="https://geph.io/zhs" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=geph.io/">
+            迷雾通 150KB/s
+        </a>
+
+        <a class="link-item" href="https://s3.amazonaws.com/psiphon/web/mmqu-p8qj-sgdq/zh/download-store.html" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=s3.amazonaws.com/">
+            赛风
+        </a>
+
+    </div>
+
+    
+    <div class="section">
+        <h3>了解翻墙</h3>
+
+        <a class="link-item" href="https://github.com/KeiKinn/ShadowsocksBio" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            Shadowsocks的前世今生
+        </a>
+
+    </div>
+
+    <div class="section">
+        <h3>网盘下载所有翻墙软件</h3>
+
+        <a class="link-item" href="https://1drv.ms/u/c/18e85b34bec56990/IQCFtzRqTnc-QJPg7k3Y5ewDAcxa1JmrUWqQO_hzhFfbiTg?e=DBpSwb" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=1drv.ms">
+            onedrive
+        </a>
+    </div>
+
+    <div class="section">
+        <h3>小火箭（Shadowrocket）美区共享ID </h3>
+
+        <a class="link-item" href="https://ids.ailiao.eu/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ids.ailiao.eu">
+            ids.ailiao.eu
+        </a>
+
+        <a class="link-item" href="https://stymei.github.io/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=stymei.github.io">
+            stymei.github.io
+        </a>
+
+        <a class="link-item" href="https://id.bocchi.vip/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=id.bocchi.vip">
+            id.bocchi.vip
+        </a>
+
+        <a class="link-item" href="https://ccbaohe.com/appleID/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ccbaohe.com/appleID">
+            ccbaohe.com/appleID
+        </a>
+
+        <a class="link-item" href="https://free.iosapp.icu/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=free.iosapp.icu">
+            free.iosapp.icu
+        </a>
+
+        <a class="link-item" href="https://idfree.top/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=idfree.top">
+            idfree.top
+        </a>
+
+        <a class="link-item" href="https://idshare001.me/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=idshare001.me">
+            idshare001.me
+        </a>
+
+        <a class="link-item" href="https://maddy.id/share/sCEmXMOanQ" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=maddy.id/share/sCEmXMOanQ">
+            maddy.id/share
+        </a>
+
+        <a class="link-item" href="https://appid.naitu.cc/share/nice" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=appid.naitu.cc/share/nice">
+            appid.naitu.cc
+        </a>
+
+        <a class="link-item" href="https://id.jincaii.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=id.jincaii.com">
+            id.jincaii.com
+        </a>
+
+        <a class="link-item" href="https://ids.hongqu.site/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ids.hongqu.site">
+            ids.hongqu.site
+        </a>
+
+        <a class="link-item" href="https://fanqiangnan.com/appleid.html" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=fanqiangnan.com">
+            fanqiangnan.com
+        </a>
+
+        <a class="link-item" href="https://t.me/idlezu_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=t.me">
+            电报机器人-签到免费
+        </a>
+        
+    </div>
+    
+    <div class="section">
+        <h3>加密货币机场</h3>
+
+        <a class="link-item" href="https://www.ctc.run/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ctc.run">
+            CTC-02：直连机场 10元100G
+        </a>
+    </div>
+
+    <div class="section">
+        <h3>性价比机场</h3>
+
+        <a class="link-item" href="https://www.cocoduck.live/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=cocoduck.live">
+            cocoduck: 中转机场 15元150G
+        </a>
+
+        <a class="link-item" href="https://www.nicecloud.co/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=nicecloud.co">
+            NICECLOUD：专线 23元200G
+        </a>
+    </div>
+
+    <div class="section">
+        <h3>注册美国区Apple id</h3>
+
+        <a class="link-item" href="https://thinking555.github.io/id.html" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+            Apple ID注册和使用
+        </a>
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Xinshoucpu</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+}
+
+body{
+    background:#ffffff;
+    color:#000000;
+}
+
+/* 顶部 */
+.topbar{
+    position:relative;
+    height:90px;
+    padding:25px 60px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:600;
+}
+
+/* 搜索 */
+.search-wrap{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:520px;
+}
+
+.search-box{
+    display:flex;
+    background:#ebe9e9;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid #e8e6e6;
+}
+
+.search-box input{
+    flex:1;
+    padding:14px 16px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:#ffffff;
+    color:#fff;
+}
+
+.search-box button{
+    width:60px;
+    border:none;
+    background:#ffffff;
+    cursor:pointer;
+    color:#fff;
+}
+
+/* ===== 固定 5 列 ===== */
+.container{
+    column-count:5;
+    column-gap:10px;
+    padding:20px 60px 60px 60px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.section{
+    margin-bottom:10px;
+    break-inside:avoid;
+}
+
+.section h3{
+    font-size:14px;
+    margin-bottom:14px;
+    color:#888;
+    font-weight:500;
+    text-align:center;   /* 👈 居中 */
+}
+
+/* 链接（无背景） */
+.link-item{
+    display:flex;
+    align-items:center;
+    margin-bottom:10px;
+    text-decoration:none;
+    color:#000000;
+    font-size:16px;
+    transition:.2s;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.link-item:hover{
+    color:rgb(0, 158, 32);
+   
+}
+
+/* 网站图标 */
+.link-item img{
+    width:16px;
+    height:16px;
+    margin-right:8px;
+    border-radius:3px;
+     flex-shrink:0;   /* 防止图标被压缩 */
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="logo">网盘</div>
+
+    <div class="search-wrap">
+        <form class="search-box" action="https://www.google.com/search" method="GET">
+            <input type="text" name="q">
+            <button type="submit">🔍</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 第一列 -->
+    <div class="section">
+        <h3>安全网盘</h3>
+
+        <a class="link-item" href="https://mega.io/zh-hans/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mega.io">
+            MEGA 20G
+        </a>
+
+       <a class="link-item" href="https://drive.google.com/drive/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=drive.google.com/">
+            谷歌云端硬盘 15G
+        </a>
+
+        <a class="link-item" href="https://my.pcloud.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=my.pcloud.com">
+            pcloud 3G
+        </a>
+
+        <a class="link-item" href="https://onedrive.live.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=onedrive.live.com">
+            onedrive 5G
+        </a>
+
+        <a class="link-item" href="https://www.dropbox.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=dropbox.com/">
+            dropbox 2G
+        </a>
+    </div>
+
+    <!-- 第二列 -->
+    <div class="section">
+        <h3>临时发送网盘</h3>
+
+        <a class="link-item" href="https://transfer.it/start" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=transfer.it">
+            transfer.it 最高90天过期
+        </a>
+
+       <a class="link-item" href="https://send.cyberjake.xyz/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=send.cyberjake.xyz">
+            send 30天过期
+        </a>
+
+        <a class="link-item" href="https://send.bitiful.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=send.bitiful.com">
+            缤纷快传 30分钟过期
+        </a>
+
+        <a class="link-item" href="https://streamshare.wireway.ch/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=streamshare.wireway.ch">
+            streamshare
+        </a>
+
+        <a class="link-item" href="https://d.kuku.lu/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=d.kuku.lu">
+            FILE NOW
+        </a>
+
+        <a class="link-item" href="https://send.now/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=send.now/">
+            send.now 15天过期
+        </a>
+
+       <a class="link-item" href="https://file.kiwi/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=file.kiwi">
+            file.kiwi 90小时过期
+        </a>
+
+        <a class="link-item" href="https://wormhole.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=wormhole.app">
+            wormhole.app 1天过期
+        </a>
+
+        <a class="link-item" href="https://transfer.52python.cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=transfer.52python.cn">
+            临时取件码网盘
+        </a>
+
+        <a class="link-item" href="https://quwenjian.cc/#/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=quwenjian.cc">
+            临时取件码网盘2 永久保存
+        </a>
+
+        <a class="link-item" href="https://share.lanol.cn/#/send" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=share.lanol.cn">
+            临时取件码网盘3 7天过期
+        </a>
+    </div>
+
+    <!-- 第三列 -->
+    <div class="section">
+        <h3>临时文本发送</h3>
+
+        <a class="link-item" href="https://xyue.515188.xyz/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=xyue.515188.xyz">
+            想曰 文本加密
+        </a>
+
+       <a class="link-item" href="https://abra.halu.ca/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=abra.halu.ca/">
+            魔曰 文本加密
+        </a>
+
+        <a class="link-item" href="https://cntshare.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=cntshare.com">
+            TextSharing 30天过期
+        </a>
+
+        <a class="link-item" href="https://webnote.cc/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=webnote.cc">
+            云便签 3年过期固定链接
+        </a>
+
+        <a class="link-item" href="https://privnote.com/#" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=privnote.com/">
+            privnote 阅读自动销毁
+        </a>
+
+        <a class="link-item" href="https://send.fudaoyuan.icu/?type=text" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=send.fudaoyuan.icu">
+            文本分享
+        </a>
+
+        <a class="link-item" href="https://enclosed.cc/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=enclosed.cc">
+            enclosed.cc 30天过期
+        </a>
+
+        <a class="link-item" href="https://safenote.co/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=safenote.co">
+            safenote
+        </a>
+
+        <a class="link-item" href="https://n.showmsg.cn/create" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=n.showmsg.cn">
+            纸条
+        </a>
+    </div>
+
+
+</body>
+
+</html>

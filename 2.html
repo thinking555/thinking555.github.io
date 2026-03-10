@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Xinshoucpu</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+}
+
+body{
+    background:#ffffff;
+    color:#000000;
+}
+
+/* 顶部 */
+.topbar{
+    position:relative;
+    height:90px;
+    padding:25px 60px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:600;
+}
+
+/* 搜索 */
+.search-wrap{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:520px;
+}
+
+.search-box{
+    display:flex;
+    background:#ebe9e9;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid #e8e6e6;
+}
+
+.search-box input{
+    flex:1;
+    padding:14px 16px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:#ffffff;
+    color:#fff;
+}
+
+.search-box button{
+    width:60px;
+    border:none;
+    background:#ffffff;
+    cursor:pointer;
+    color:#fff;
+}
+
+/* ===== 固定 5 列 ===== */
+.container{
+    column-count:5;
+    column-gap:10px;
+    padding:20px 60px 60px 60px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.section{
+    margin-bottom:10px;
+    break-inside:avoid;
+}
+
+.section h3{
+    font-size:14px;
+    margin-bottom:14px;
+    color:#888;
+    font-weight:500;
+    text-align:center;   /* 👈 居中 */
+}
+
+/* 链接（无背景） */
+.link-item{
+    display:flex;
+    align-items:center;
+    margin-bottom:10px;
+    text-decoration:none;
+    color:#000000;
+    font-size:16px;
+    transition:.2s;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.link-item:hover{
+    color:rgb(0, 158, 32);
+   
+}
+
+/* 网站图标 */
+.link-item img{
+    width:16px;
+    height:16px;
+    margin-right:8px;
+    border-radius:3px;
+     flex-shrink:0;   /* 防止图标被压缩 */
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="logo">视频</div>
+
+    <div class="search-wrap">
+        <form class="search-box" action="https://www.google.com/search" method="GET">
+            <input type="text" name="q">
+            <button type="submit">🔍</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 第一列 -->
+    <div class="section">
+        <h3>看电影</h3>
+
+        <a class="link-item" href="https://cupfox.love/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=cupfox.love">
+            茶杯狐
+        </a>
+
+        <a class="link-item" href="https://www.imdb.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=imdb.com/">
+            IMDb
+        </a>
+
+        <a class="link-item" href="https://www.justwatch.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=justwatch.com">
+            JustWatch
+        </a>
+
+        <a class="link-item" href="https://www.gying.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=gying.net/">
+            观影
+        </a>
+
+        <a class="link-item" href="https://archive.org/details/moviesandfilms" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=archive.org">
+            电影
+        </a>
+
+        <a class="link-item" href="https://www.1lou.pro/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=1lou.pro/">
+            1lou BT
+        </a>
+
+        <a class="link-item" href="https://www.btbtla.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=btbtla.com/">
+            BT影视
+        </a>
+
+        <a class="link-item" href="https://www.qwnull.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=qwnull.com/">
+            七味
+        </a>
+
+        <a class="link-item" href="https://4kzn.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=4kzn.com/">
+            4K指南
+        </a>
+
+        <a class="link-item" href="https://github.com/ngo5/IPTV" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            电视直播
+        </a>
+
+        <a class="link-item" href="https://www.cilixiong.cc/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=cilixiong.cc/">
+            磁力熊
+        </a>
+
+        <a class="link-item" href="https://anybt.eth.link/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=anybt.eth.link/">
+            BT搜索
+        </a>
+
+        <a class="link-item" href="https://unblockit.pages.dev/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=unblockit.pages.dev">
+            导航探索
+        </a>
+
+        <a class="link-item" href="https://www.netflix.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=netflix.com/">
+            Netflix
+        </a>
+
+        <a class="link-item" href="https://www.disneyplus.com" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=disneyplus.com">
+            Disney
+        </a>
+
+        <a class="link-item" href="https://www.primevideo.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=primevideo.com/">
+            Amazon
+        </a>
+
+        <a class="link-item" href="https://www.hbomax.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=hbomax.com/">
+            HBO Max
+        </a>
+
+        <a class="link-item" href="https://video.unext.jp/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=video.unext.jp">
+            U-NEXT
+        </a>
+
+        <a class="link-item" href="https://www.hulu.com/welcome" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=hulu.com">
+            Hulu
+        </a>
+
+        <a class="link-item" href="https://gdpr.tubi.tv/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=gdpr.tubi.tv/">
+            Tubi 美国ip免费
+        </a>
+
+        <a class="link-item" href="https://watch.plex.tv/zh/on-demand/category/action" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=watch.plex.tv/">
+            Plex
+        </a>
+
+        <a class="link-item" href="https://tver.jp/episodes/epcelwuszv" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tver.jp">
+            TVer 日本ip免费
+        </a>
+    </div>
+
+    <!-- 第二列 -->
+    <div class="section">
+        <h3>博主和播放列表</h3>
+
+        <a class="link-item" href="https://www.youtube.com/@youhuojun" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            不吐不快的有货君
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/@anzhengming" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            安争鸣（Stella An）
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/@JFBooks%E5%AD%A3%E9%A2%A8%E6%9B%B8%E5%9C%92" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            季風書園
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/@xiaomingtalk" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            小鸣说
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/@wuleizhibo" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            伍雷看中国
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/@xiao_lin_shuo" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            小Lin说
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/@13lande/videos" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            十三兰德
+        </a>
+        
+        <a class="link-item" href="https://www.youtube.com/watch?v=_l8Rn6tPs6o&list=PLNEGQlCPzlkJVzbjuQOu0CZGKyn29CnT3" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            英语学习方法系列
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=kdmqd4ATPQw&list=PLp_CVzvlDOfPVbWcIuVRcFsmMUH8AqU8z" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            科幻小说
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=KexF2-UFiAQ&list=PLlmnPhsOrj9Af4D5md1wS2N71lvSy508u" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            血十字：正傳
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=I0zTq_6he1o&list=PL1678paJlDXN0mBo1ThAGjga5DnKTnIdM" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            失踪者探迷
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=H47gJ2h8ezI&list=PL2Nnm_bV_RQimvIJtb2mjDJr4P6cWUiCB" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            启蒙思想系列
+        </a>
+    </div>
+
+    <!-- 第三列 -->
+    <div class="section">
+        <h3>人性影片</h3>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=HTDdIO74BuA" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            少数人的晚餐
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=Jm0MLlE4x0U" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            The Fox and the Bird
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=ztpcMUH44jk" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            Wedding Cake
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=C_nJJHaNmnY" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            The Present
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=3Bs4LOtIuxg" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            Wire Cutters
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=iFUFFUb5W4w" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            "Crunch" 
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=ouqi2ZIhbjg" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            You never smoke alone again
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=4p51Jj2kyh0" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            人类的崛起
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=gNVqRC4mcSI" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            THE BOX
+        </a>
+
+        <a class="link-item" href="https://movie.douban.com/review/12295082/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=douban.com">
+            HELIO 昱尘
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=VPAfay8hmAs" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            何日花再来
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=1BFelQYpfSk" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            行屍走肉
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=OzfsqCqc3JA" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            动物人间
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=FM5yNgs7vaA" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            Yellow Cake
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=e9dZQelULDk" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            Happiness
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=cxUuU1jwMgM" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            EL EMPLEO 
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=Pq2hPgSzIwg" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            Jeremy Clapin
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=l89fv5aoUjo" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            Danny Boy | FUTURE 
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=mBZBPptSneM" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            Timber
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=BE4oz2u6OHY" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            CHILDREN
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=Wlf1T5nrO50" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            The Bread
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=THmHFHBWQZc" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            the ugly duckling
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=CUapPhdM7nc" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            PUSHEEN'S VALENTINE
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=5wqVhuAWyxc" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            We Can't Live Without Cosmos
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=cAXbIHREKt8" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            BLACK EYED DOG
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=elKZMzHDw3I" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            冤家：原生家庭说恩怨
+        </a>
+
+    </div>
+
+    <!-- 第四列 -->
+    <div class="section">
+        <h3>视频与字幕下载</h3>
+
+        <a class="link-item" href="https://f-loat.github.io/caption2text/ target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.io">
+            字幕转换文本
+        </a>
+
+        <a class="link-item" href="https://zm.i8k.tv/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=i8k.tv">
+            字幕工具箱
+        </a>
+
+        <a class="link-item" href="https://downsub.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=downsub.com">
+            下载Youtube字幕
+        </a>
+
+        <a class="link-item" href="https://tools.newzone.top/zh/subtitle-translator" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=newzone.top">
+            字幕翻译工具
+        </a>
+
+        <a class="link-item" href="https://zm.i8k.tv/stc" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=zm.i8k.tv/">
+            简繁字幕互转
+        </a>
+
+        <a class="link-item" href="https://zm.i8k.tv/sub2txt" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=zm.i8k.tv/">
+            字幕转文本
+        </a>
+
+        <a class="link-item" href="https://zm.i8k.tv/sub2txt/batch" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=zm.i8k.tv/">
+            批量字幕转文本
+        </a>
+
+        <a class="link-item" href="https://zm.i8k.tv/lrc2srt" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=zm.i8k.tv/">
+            歌词字幕互转
+        </a>
+
+        <a class="link-item" href="https://zm.i8k.tv/lrc2srt/batch" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=zm.i8k.tv/">
+            批量歌词字幕互转
+        </a>
+
+        <a class="link-item" href="https://tern.1c7.me/#/app" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tern.1c7.me">
+            字幕翻译器
+        </a>
+
+        <a class="link-item" href="https://yt1s.com.co/en191/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yt1s.com.co">
+            YT1s Video Downloader
+        </a>
+
+        <a class="link-item" href="https://www.bestvideow.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=bestvideow.com">
+            Best Video
+        </a>
+
+        <a class="link-item" href="https://dy.kukutool.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=dy.kukutool.com/">
+            快手小红书
+        </a>
+
+        <a class="link-item" href="https://greenvideo.cc/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=greenvideo.cc/">
+            GreenVideo
+        </a>
+
+        <a class="link-item" href="https://downr.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=downr.org/">
+            Media Downloader
+        </a>
+
+        <a class="link-item" href="https://www.idaohang123.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=idaohang123.com">
+            i导航解析器
+        </a>
+
+        <a class="link-item" href="https://www.xiaolvfang.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=xiaolvfang.com/">
+            效率坊解析工具
+        </a>
+
+        <a class="link-item" href="https://cobalt.tools/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=cobalt.tools">
+            cobalt
+        </a>
+
+        <a class="link-item" href="https://xdown.app/zh-cn" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=xdown.app">
+            Twitter 下载器
+        </a>
+
+        <a class="link-item" href="https://catchv.fooish.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=catchv.fooish.com">
+            CatchV
+        </a>
+
+        <a class="link-item" href="https://xiaohongshu.day/zh/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=xiaohongshu.day">
+            小红书在线解析下载
+        </a>
+
+        <a class="link-item" href="https://www.xhs-download.org/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=xhs-download.org">
+            小红书下载器
+        </a>
+
+        <a class="link-item" href="https://rednote-downloader.online/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=rednote-downloader.online">
+            小红书视频下载
+        </a>
+
+        <a class="link-item" href="https://github.com/deniscerri/ytdlnis" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            ytdlnis A
+        </a>
+
+        <a class="link-item" href="https://github.com/JunkFood02/Seal" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            Seal A
+        </a>
+
+        <a class="link-item" href="https://github.com/nexmoe/VidBee" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            VidBee M W
+        </a>
+
+    </div>
+
+    <!-- 第五列 -->
+    <div class="section">
+        <h3>效率视频</h3>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=kFUNU61IFQk" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            Mac 十個設定
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=fPMkUQoYgKI" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            Mac 觸控板操作
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=1ku3RCK7ROg" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            客製化自己的檔案夾圖片
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=vpRDRrgOr8M" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            Mac 檔案跟 Windows
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=FVgglFfD2x8" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            Mac 快捷鍵
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=_DFpjYt1UFQ" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            第一次购买加密货币
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=pPQu_af6_Fo" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            偶～
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=hkq6wY7CowY" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            为什么顶级大佬都在抢你的耳朵？
+        </a>
+
+        <a class="link-item" href="https://www.youtube.com/watch?v=mH9DcPleBR4" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
+            读书，几乎是唯一有用的事情！
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

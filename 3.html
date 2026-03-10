@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Xinshoucpu</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+}
+
+body{
+    background:#ffffff;
+    color:#000000;
+}
+
+/* 顶部 */
+.topbar{
+    position:relative;
+    height:90px;
+    padding:25px 60px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:600;
+}
+
+/* 搜索 */
+.search-wrap{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:520px;
+}
+
+.search-box{
+    display:flex;
+    background:#ebe9e9;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid #e8e6e6;
+}
+
+.search-box input{
+    flex:1;
+    padding:14px 16px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:#ffffff;
+    color:#fff;
+}
+
+.search-box button{
+    width:60px;
+    border:none;
+    background:#ffffff;
+    cursor:pointer;
+    color:#fff;
+}
+
+/* ===== 固定 5 列 ===== */
+.container{
+    column-count:5;
+    column-gap:10px;
+    padding:20px 60px 60px 60px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.section{
+    margin-bottom:10px;
+    break-inside:avoid;
+}
+
+.section h3{
+    font-size:14px;
+    margin-bottom:14px;
+    color:#888;
+    font-weight:500;
+    text-align:center;   /* 👈 居中 */
+}
+
+/* 链接（无背景） */
+.link-item{
+    display:flex;
+    align-items:center;
+    margin-bottom:10px;
+    text-decoration:none;
+    color:#000000;
+    font-size:16px;
+    transition:.2s;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.link-item:hover{
+    color:rgb(0, 158, 32);
+   
+}
+
+/* 网站图标 */
+.link-item img{
+    width:16px;
+    height:16px;
+    margin-right:8px;
+    border-radius:3px;
+     flex-shrink:0;   /* 防止图标被压缩 */
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="logo">软件</div>
+
+    <div class="search-wrap">
+        <form class="search-box" action="https://www.google.com/search" method="GET">
+            <input type="text" name="q">
+            <button type="submit">🔍</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 第一列 -->
+    <div class="section">
+        <h3>安卓应用商店</h3>
+
+        <a class="link-item" href="https://apkpure.com/cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=apkpure.com">
+            APKPure
+        </a>
+
+       <a class="link-item" href="https://apkcombo.com/zh/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=apkcombo.com">
+            APKCombo
+        </a>
+
+        <a class="link-item" href="https://f-droid.org/zh_Hans/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=f-droid.org">
+            F-Droid
+        </a>
+
+        <a class="link-item" href="https://cn.aptoide.com/group/applications" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=cn.aptoide.com">
+            Aptoide
+        </a>
+
+        <a class="link-item" href="https://auroraoss.com/files" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=auroraoss.com">
+            AuroraStore
+        </a>
+
+         <a class="link-item" href="https://mi9.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mi9.com/">
+            MI9
+        </a>
+
+       <a class="link-item" href="https://www.openapk.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=openapk.net/">
+            OpenAPK
+        </a>
+
+        <a class="link-item" href="https://github-store.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github-store.org/">
+            GitHub Store
+        </a>
+
+        <a class="link-item" href="https://apt.izzysoft.de/fdroid/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=apt.izzysoft.de">
+            IzzyOnDroid
+        </a>
+
+        <a class="link-item" href="https://droidify.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=droidify.app/">
+            Droid-ify
+        </a>
+    </div>
+
+    <!-- 第二列 -->
+    <div class="section">
+        <h3>电脑应用商店</h3>
+
+        <a class="link-item" href="https://www.fosshub.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=fosshub.com/">
+            FossHub W M L
+        </a>
+
+       <a class="link-item" href="https://www.fileeagle.com/software" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=fileeagle.com">
+            FileEagle W M L I A
+        </a>
+
+        <a class="link-item" href="https://portableapps.com/apps" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=portableapps.com">
+            Portable App W
+        </a>
+
+        <a class="link-item" href="https://aerolite.dev/applite#screenshots" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=aerolite.dev">
+            Applite M
+        </a>
+
+        <a class="link-item" href="https://github.com/jaywcjlove/awesome-swift-macos-apps?tab=readme-ov-file" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=wangchujiang.com">
+            open Swift macOS Apps
+        </a>
+
+         <a class="link-item" href="https://github.com/jaywcjlove/awesome-mac" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=wangchujiang.com/">
+            Mac各种类优质软件
+        </a>
+
+       <a class="link-item" href="https://github.com/zhiiwg/Awesome-Linux-Software-zh_CN" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com/">
+            Linux 应用集中地
+        </a>
+
+        <a class="link-item" href="https://www.machub.cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=machub.cn/">
+            麦禾软件 M
+        </a>
+
+        <a class="link-item" href="https://amazing-apps.gitbook.io/windows-apps-that-amaze-us/zh-cn" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=amazing-apps.gitbook.io">
+            Windows开源软件
+        </a>
+
+        <a class="link-item" href="https://lizhi.shop/category/macos" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=lizhi.shop">
+            数码荔枝 发现软件
+        </a>
+
+        <a class="link-item" href="https://setapp.com/apps" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=setapp.com/apps">
+            会员制应用商店
+        </a>
+
+       <a class="link-item" href="https://appstoreprice.org/zh/apps" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=appstoreprice.org/zh/apps">
+            发现 App Store 最低价
+        </a>
+
+        <a class="link-item" href="https://buyoncesoftware.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=buyoncesoftware.com/">
+            一次购买即可永久拥有的软件
+        </a>
+
+        <a class="link-item" href="https://www.findcheapsubs.com/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=findcheapsubs.com">
+            发现 App 全球最低订阅价格
+        </a>
+
+    </div>
+
+    <!-- 第三列 -->
+    <div class="section">
+        <h3>安卓软件</h3>
+
+        <a class="link-item" href="https://github.com/organicmaps/organicmaps" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            Organic Maps：离线地图
+        </a>
+
+       <a class="link-item" href="https://qianjiapp.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=qianjiapp.com/">
+            钱迹：记账分析
+        </a>
+
+        <a class="link-item" href="https://github.com/TeamNewPipe/NewPipe/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            NewPipe：轻量油管
+        </a>
+
+        <a class="link-item" href="https://play.google.com/store/apps/details?id=com.google.android.inputmethod.latin&hl=zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=play.google.com/">
+            Gboard - Google 键盘
+        </a>
+
+        <a class="link-item" href="https://fcitx5-android.github.io/installation/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=fcitx5-android.github.io">
+            Fcitx5 - 小企鹅输入法
+        </a>
+
+        <a class="link-item" href="https://github.com/maltaisn/another-notes-app" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            笔记
+        </a>
+
+        <a class="link-item" href="https://github.com/ZhuJHua/moodiary" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=docs.moodiary.net/">
+            Moodiary：日记软件
+        </a>
+
+       <a class="link-item" href="https://www.resilio.com/sync/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=resilio.com">
+            Resilio Sync：P2P共享文件
+        </a>
+
+        <a class="link-item" href="https://www.videolan.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=videolan.org/">
+            VLC：本地视频播放
+        </a>
+
+        <a class="link-item" href="https://github.com/Anxcye/anx-reader" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            Anx-Reader：阅读
+        </a>
+
+        <a class="link-item" href="https://antennapod.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=antennapod.org/">
+            AntennaPod：苹果播客-全球
+        </a>
+
+        <a class="link-item" href="https://github.com/T8RIN/ImageToolbox" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            mage Toolbox：图像处理应用
+        </a>
+
+        <a class="link-item" href="https://github.com/YangDai2003/Multi-Calculator-Android" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            多功能计算器
+        </a>
+
+       <a class="link-item" href="https://github.com/TeamAmaze/AmazeFileManager" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com/">
+            Amaze：文件管理器
+        </a>
+
+        <a class="link-item" href="https://github.com/FossifyOrg/Gallery" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            gallery：图库
+        </a>
+
+        <a class="link-item" href="https://github.com/Moriafly/SaltPlayerSource" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            Salt Player：本地音乐播放 
+        </a>
+
+    </div>
+
+    <!-- 第四列 -->
+    <div class="section">
+        <h3>电脑软件</h3>
+
+       <a class="link-item" href="https://netnewswire.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=netnewswire.com">
+            NetNewsWire：RSS阅读器 M I
+        </a>
+
+       <a class="link-item" href="https://github.com/timqian/chinese-independent-blogs" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            Feed收集 站在巨人肩上
+        </a>
+
+        <a class="link-item" href="https://www.mindnode.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mindnode.com">
+            MindNode：思考工具 M I
+        </a>
+
+        <a class="link-item" href="https://obsidian.md/download" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=obsidian.md">
+            Obsidian：markdown笔记 ALL
+        </a>
+
+        <a class="link-item" href="https://github.com/p0deje/Maccy" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            Maccy：剪贴板管理器 M
+        </a>
+
+        <a class="link-item" href="https://miaoyan.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=miaoyan.app/">
+            妙言：markdown笔记 M
+        </a>
+
+        <a class="link-item" href="https://gpgtools.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=gpgtools.org/">
+            GPGTools：非对称加密文本软件 M
+        </a>
+
+       <a class="link-item" href="https://notesstartup.com/macwhisper-tutorial/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=notesstartup.com">
+            MacWhisper：自动生成字幕 M
+        </a>
+
+        <a class="link-item" href="https://iina.io/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=iina.io/">
+            IINA：视频播放-本地、m3u M
+        </a>
+
+        <a class="link-item" href="https://bobtranslate.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=bobtranslate.com/">
+            Bob翻译 M
+        </a>
+
+        <a class="link-item" href="https://www.popclip.app/extensions/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=popclip.app">
+            PopClip 扩展
+        </a>
+
+        <a class="link-item" href="https://bobplugin.ripperhe.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=bobplugin.ripperhe.com/">
+            Bob翻译插件
+        </a>
+
+        <a class="link-item" href="https://github.com/Anze/KeyCluCask" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            KeyClu：软件快捷键查看 M
+        </a>
+
+       <a class="link-item" href="https://github.com/runjuu/InputSourcePro" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            Input Source Pro：切换软件自动切换输入法 M
+        </a>
+
+        <a class="link-item" href="https://flowvision.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=flowvision.app/">
+            FlowVision：瀑布流图片阅读器 M
+        </a>
+
+        <a class="link-item" href="https://sniffnet.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=sniffnet.net/">
+            Sniffnet：实时监控网络流量 W M L
+        </a>
+
+        <a class="link-item" href="http://x.photoscape.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=x.photoscape.org/">
+            图片处理 W M
+        </a>
+
+        <a class="link-item" href="https://github.com/qarmin/czkawka" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            Krokiet：查找重复文件 W
+        </a>
+
+        <a class="link-item" href="https://github.com/baihengaead/wifi-crack-tool" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            WiFi暴力破解工具 W M
+        </a>
+
+       <a class="link-item" href="https://www.sublimetext.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=sublimetext.com/">
+            Sublime Text：文本编辑 W M L
+        </a>
+
+        <a class="link-item" href="https://github.com/ihmily/StreamCap" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            StreamCap：直播自动录制 W M
+        </a>
+
+        <a class="link-item" href="https://koodoreader.com/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=koodoreader.com/">
+            Koodo Reader：阅读 ALL
+        </a>
+
+        <a class="link-item" href="https://github.com/DmytroVasin/DrawPen" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            DrawPen：屏幕注释工具 W M L
+        </a>
+
+        <a class="link-item" href="https://bitwarden.com/download/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=bitwarden.com">
+            bitwarden：密码管理 ALl
+        </a>
+
+        <a class="link-item" href="https://localsend.org/zh-CN#/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=localsend.org/">
+            LocalSend ：文件传输 ALL
+        </a>
+
+        <a class="link-item" href="https://www.popclip.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=popclip.app/">
+            popclip：搜索工具 M
+        </a>
+    </div>
+
+    <!-- 第五列 -->
+    <div class="section">
+        <h3>浏览器扩展</h3>
+
+       <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/adaptive-tab-bar-colour/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            变色标签栏
+        </a>
+
+       <a class="link-item" href="https://mass-block-twitter.rxliuli.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            Mass Block Twitter - 20$
+        </a>
+
+        <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/image-downloader-for-firefox/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            图片下载器
+        </a>
+
+        <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/bitwarden-password-manager/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            Bitwarden – 免费密码管理器
+        </a>
+
+        <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/cpy-as-md/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            复制图片markdown链接
+        </a>
+
+        <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/downie-extension/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            Downie Extension
+        </a>
+
+        <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/private-relay/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            Firefox Relay：邮箱转发快捷
+        </a>
+
+       <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/offline-qr-code-generator/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            快速生成二维码 
+        </a>
+
+        <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/search_by_image/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            快速谷歌识图
+        </a>
+
+        <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/single-file/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            SingleFile：保存网页到本地
+        </a>
+
+        <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/ublacklist/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            uBlacklist：拉黑谷歌搜索出的网站
+        </a>
+
+        <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/ublock-origin/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            uBlock Origin 
+        </a>
+
+        <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/youtube-screenshot-button/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            YouTube截图
+        </a>
+
+        <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/youtube-shorts-block/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            Youtube-shorts block
+        </a>
+
+        <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/darkreader/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            Dark Reader 
+        </a>
+
+        <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/noscript/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            NoScript 安全套件：禁止脚本
+        </a>
+
+        <a class="link-item" href="https://addons.mozilla.org/zh-CN/firefox/addon/traduzir-paginas-web/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addons.mozilla.org/">
+            网页翻译
+        </a>
+
+       <a class="link-item" href="https://chromewebstore.google.com/detail/image-downloader/cnpniohnfphhjihaiiggeabnkjhpaldj" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=chromewebstore.google.com/">
+            Image Downloader
+        </a>
+
+        <a class="link-item" href="https://chromewebstore.google.com/detail/octotree-github-code-tree/bkhaagjahfmjljalopjnoealnfndnagc" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=chromewebstore.google.com/">
+            Octotree - GitHub code tree 
+        </a>
+
+        <a class="link-item" href="https://chromewebstore.google.com/detail/qr-code/cbimgpnbgalffiohilfglgkkhpegpjlo" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=chromewebstore.google.com/">
+            QR码生成与识别
+        </a>
+
+        <a class="link-item" href="https://chromewebstore.google.com/detail/extension-manager/gjldcdngmdknpinoemndlidpcabkggco" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=chromewebstore.google.com/">
+            扩展管理器
+        </a>
+
+        <a class="link-item" href="https://chromewebstore.google.com/detail/maple-bookmarks/lgncmpklmepncbjpiebhdoejhmbcnjad" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=chromewebstore.google.com/">
+            书签管理器
+        </a>
+
+        <a class="link-item" href="https://aixdownloader.com/zh/install-guide" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=chromewebstore.google.com/">
+            AixDownloader：图片音频视频下载
+        </a>
+
+       <a class="link-item" href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=chromewebstore.google.com/">
+            篡改猴
+        </a>
+
+        <a class="link-item" href="https://github.com/maboloshi/github-chinese?tab=readme-ov-file" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=greasyfork.org">
+            GitHub 中文化界面
+        </a>
+
+        <a class="link-item" href="https://greasyfork.org/zh-CN/scripts/11915-anti-redirect" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=greasyfork.org">
+            去除重定向支持知乎
+        </a>
+
+        <a class="link-item" href="https://github.com/zhaoolee/ChromeAppHeroes" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com/">
+            谷粒-Chrome插件英雄榜
+        </a>
+
+        <a class="link-item" href="https://github.com/ChinaGodMan/UserScripts" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com/">
+            浏览器油猴脚本合集整合仓库
+        </a>
+    </div>
+
+</div>
+
+</body>
+
+</html>

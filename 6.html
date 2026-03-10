@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Xinshoucpu</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+}
+
+body{
+    background:#ffffff;
+    color:#000000;
+}
+
+/* 顶部 */
+.topbar{
+    position:relative;
+    height:90px;
+    padding:25px 60px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:600;
+}
+
+/* 搜索 */
+.search-wrap{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:520px;
+}
+
+.search-box{
+    display:flex;
+    background:#ebe9e9;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid #e8e6e6;
+}
+
+.search-box input{
+    flex:1;
+    padding:14px 16px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:#ffffff;
+    color:#fff;
+}
+
+.search-box button{
+    width:60px;
+    border:none;
+    background:#ffffff;
+    cursor:pointer;
+    color:#fff;
+}
+
+/* ===== 固定 5 列 ===== */
+.container{
+    column-count:5;
+    column-gap:10px;
+    padding:20px 60px 60px 60px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.section{
+    margin-bottom:10px;
+    break-inside:avoid;
+}
+
+.section h3{
+    font-size:14px;
+    margin-bottom:14px;
+    color:#888;
+    font-weight:500;
+    text-align:center;   /* 👈 居中 */
+}
+
+/* 链接（无背景） */
+.link-item{
+    display:flex;
+    align-items:center;
+    margin-bottom:10px;
+    text-decoration:none;
+    color:#000000;
+    font-size:16px;
+    transition:.2s;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.link-item:hover{
+    color:rgb(0, 158, 32);
+   
+}
+
+/* 网站图标 */
+.link-item img{
+    width:16px;
+    height:16px;
+    margin-right:8px;
+    border-radius:3px;
+     flex-shrink:0;   /* 防止图标被压缩 */
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="logo">邮箱和接码</div>
+
+    <div class="search-wrap">
+        <form class="search-box" action="https://www.google.com/search" method="GET">
+            <input type="text" name="q">
+            <button type="submit">🔍</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 第一列 -->
+    <div class="section">
+        <h3>临时邮箱</h3>
+
+        <a class="link-item" href="https://zemail.me/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=zemail.me/">
+            Zemail
+        </a>
+
+        <a class="link-item" href="https://linshiyouxiang.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=linshiyouxiang.net">
+            临时邮箱
+        </a>
+
+        <a class="link-item" href="https://www.linshi-email.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=linshi-email.com/">
+            10分钟邮箱
+        </a>
+
+        <a class="link-item" href="https://temp-mail.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=temp-mail.org/">
+            Temp Mail
+        </a>
+
+        <a class="link-item" href="https://mail.tm/zh/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mail.tm/zh/">
+            mail.tm
+        </a>
+
+        <a class="link-item" href="https://10minemail.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=10minemail.com/">
+            10MinMail
+        </a>
+
+        <a class="link-item" href="https://maildrop.cc/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=maildrop.cc/">
+            maildrop
+        </a>
+
+        <a class="link-item" href="https://smailpro.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=smailpro.com/">
+            SMAILPRO
+        </a>
+
+        <a class="link-item" href="https://cryptogmail.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=cryptogmail.com/">
+            CryptoGmail
+        </a>
+
+        <a class="link-item" href="https://www.fakemail.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=fakemail.net/">
+            FakeMail
+        </a>
+
+        <a class="link-item" href="https://tempmail.best/zh-cn" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tempmail.best">
+            TempMail.Best
+        </a>
+
+        <a class="link-item" href="https://smail.pw/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=smail.pw/">
+            smail.pw
+        </a>
+
+        <a class="link-item" href="https://vmail.dev/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=vmail.dev/">
+            VMAIL.DEV ·
+        </a>
+
+        <a class="link-item" href="https://tempmail100.com/zh-cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tempmail100.com">
+            TEMPMAIL100
+        </a>
+
+        <a class="link-item" href="https://mail.sunls.de/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mail.sunls.de/">
+            临时邮箱 ·
+        </a>
+
+        <a class="link-item" href="https://edumail.su/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=edumail.su/">
+            EDUMAIL
+        </a>
+
+        <a class="link-item" href="https://etempmail.com/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=etempmail.com">
+            eTempMail
+        </a>
+
+        <a class="link-item" href="https://temp-mail.io/en" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=temp-mail.io">
+            tempmail
+        </a>
+
+        <a class="link-item" href="https://internxt.com/temporary-email" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=internxt.com">
+            internxt
+        </a>
+
+        <a class="link-item" href="https://ihotmails.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ihotmails.com/">
+            ihotmails
+        </a>
+
+        <a class="link-item" href="https://edumailfree.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=edumailfree.com/">
+            EduMail
+        </a>
+
+        <a class="link-item" href="https://tempmailbox.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tempmailbox.net/">
+            TempMailbox
+        </a>
+
+        <a class="link-item" href="https://tempmail.altmails.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tempmail.altmails.com">
+            TempMail.altmails
+        </a>
+
+        <a class="link-item" href="https://linshiyou.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=linshiyou.com/">
+            临时邮箱
+        </a>
+
+         <a class="link-item" href="https://10minutemail.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=10minutemail.com/">
+            10MinuteMail
+        </a>
+
+        <a class="link-item" href="https://email-once.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=email-once.com/">
+            Email Once
+        </a>
+
+        <a class="link-item" href="https://www.emailnator.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=emailnator.com/">
+            临时Gmail
+        </a>
+
+        <a class="link-item" href="https://smailpro.com/temporary-email" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=smailpro.com/temporary-email">
+            临时Gmail
+        </a>
+
+        <a class="link-item" href="https://moemail.app/zh-CN" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=moemail.app">
+            萌萌哒临时邮箱服务·可永久
+        </a>
+
+        <a class="link-item" href="https://thinking555.github.io/tg.html" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org/">
+            电报机器人
+        </a>
+
+    </div>
+
+    <!-- 第二列 -->
+    <div class="section">
+        <h3>临时接码</h3>
+
+        <a class="link-item" href="https://zh.mytrashmobile.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=zh.mytrashmobile.com/">
+            MYTRASHMOBILE
+        </a>
+
+        <a class="link-item" href="https://7sim.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=7sim.net">
+            7SIM.NET
+        </a>
+
+        <a class="link-item" href="https://www.receiveasms.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=receiveasms.com/">
+            RecelveasMS
+        </a>
+
+        <a class="link-item" href="https://www.receivesmsonline.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=receivesmsonline.net/">
+            Receive SMS Online
+        </a>
+
+        <a class="link-item" href="https://yunduanxin.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yunduanxin.net/">
+            在线接收短信验证码
+        </a>
+
+        <a class="link-item" href="https://www.jiemadi.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=jiemadi.com/">
+            接码帝
+        </a>
+
+        <a class="link-item" href="https://www.bfsms.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=bfsms.com/">
+            在线短信接收
+        </a>
+
+        <a class="link-item" href="https://yunjiema.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yunjiema.net/">
+            云接码
+        </a>
+
+        <a class="link-item" href="https://mianfeijiema.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mianfeijiema.com/">
+            免费接码
+        </a>
+
+        <a class="link-item" href="https://www.xnsms.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=xnsms.com">
+            小鸟接码
+        </a>
+
+        <a class="link-item" href="https://xinghai.party/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=xinghai.party/">
+            萤火虫 +86
+        </a>
+
+        <a class="link-item" href="https://www.lothelper.com/cn/shownumber" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=lothelper.com">
+            LotHelper
+        </a>
+
+        <a class="link-item" href="https://www.zsrq.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=zsrq.net">
+            在线短信接收
+        </a>
+
+        <a class="link-item" href="https://sms-online.co/receive-free-sms" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=sms-online.co">
+            SMS Online
+        </a>
+
+        <a class="link-item" href="https://www.groovl.com/numbers" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=groovl.com">
+            Groovl
+        </a>
+
+        <a class="link-item" href="https://receivesmsonline.me/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=receivesmsonline.me/">
+            Receive SMS Online
+        </a>
+
+        <a class="link-item" href="https://receivefreesms.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=receivefreesms.net/">
+            Receive Free SMS
+        </a>
+
+        <a class="link-item" href="https://receivesmsonline.in/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=receivesmsonline.in/">
+            Receive SMS Online
+        </a>
+
+        <a class="link-item" href="https://www.freeonlinephone.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=freeonlinephone.org/">
+            Free Online Phone
+        </a>
+
+        <a class="link-item" href="https://getfreesmsnumber.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=getfreesmsnumber.com/">
+            GetFreeSMSNumber
+        </a>
+
+        <a class="link-item" href="https://www.goinsms.xyz" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=goinsms.xyz">
+            免费接码 +86
+        </a>
+
+        <a class="link-item" href="https://smser.net/advanced" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=smser.net">
+            smser
+        </a>
+
+    </div>
+
+    <!-- 第三列 -->
+    <div class="section">
+        <h3>安全邮箱和邮件转发</h3>
+
+        <a class="link-item" href="https://proton.me/mail" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=proton.me">
+            Proton
+        </a>
+
+        <a class="link-item" href="https://mail.google.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mail.google.com/">
+            Gmail
+        </a>
+
+        <a class="link-item" href="https://outlook.live.com/mail/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=outlook.live.com/">
+            Outlook
+        </a>
+
+        <a class="link-item" href="https://tuta.com/zh-hans" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tuta.com/">
+            Turn 
+        </a>
+
+        <a class="link-item" href="https://relay.firefox.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=relay.firefox.com">
+            Firefox Relay 邮件转发
+        </a>
+
+        <a class="link-item" href="https://duckduckgo.com/email/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=duckduckgo.com/">
+            Email Protection 邮件转发
+        </a>
+
+        <a class="link-item" href="https://addy.io/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=addy.io/">
+            addy.io
+        </a>
+
+        <a class="link-item" href="https://33mail.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=33mail.com/">
+            33Mail
+        </a>
+
+        <a class="link-item" href="https://improvmx.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=improvmx.com/">
+            ImprovMX
+        </a>
+
+        <a class="link-item" href="https://simplelogin.io/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=simplelogin.io/">
+             SimpleLogin
+        </a>
+
+    </div>
+
+    <!-- 第四列 -->
+    <div class="section">
+        <h3>付费接码</h3>
+
+        <a class="link-item" href="https://hero-sms.com/cn" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=hero-sms.com">
+            HeroSMS（最低充值）
+        </a>
+
+        <a class="link-item" href="https://sms-bus.com/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=sms-bus.com">
+            SMS-BUS（3$）支付宝
+        </a>
+
+        <a class="link-item" href="https://www.luchibb.cc/user/dashboard" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=luchibb.cc">
+            Luchibb（10$）
+        </a>
+
+        <a class="link-item" href="https://onlinesim.io/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=onlinesim.io">
+            onlinesim（10$）支付宝微信
+        </a>
+
+        <a class="link-item" href="https://autofications.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=autofications.com/">
+            Autofications（5$）支付宝
+        </a>
+
+        <a class="link-item" href="https://smspva.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=smspva.com/">
+            smspva（1$）支付宝
+        </a>
+
+         <a class="link-item" href="https://sms-man.com/cn" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=sms-man.com">
+            sms-man（10$）支付宝
+        </a>
+
+        <a class="link-item" href="https://www.smspool.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=smspool.net/">
+            smspool（3$）
+        </a>
+
+        <a class="link-item" href="https://tiger-sms.com/cn" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tiger-sms.com">
+            老虎接码（1$）
+        </a>
+
+        <a class="link-item" href="https://sms.qisms.com/index" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=sms.qisms.com/">
+            北美号码接码（11¥）支付宝微信
+        </a>
+
+        <a class="link-item" href="https://5sim.net/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=5sim.net">
+            5SIM接码（1$）支付宝
+        </a>
+
+        <a class="link-item" href="https://web.duanxin-jiema.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=web.duanxin-jiema.com/">
+            JieMa（2$）支付宝
+        </a>
+
+        <a class="link-item" href="https://www.ejiema.com/appweb/signUp.html?inviter=2tns7fkp" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ejiema.com">
+            ejiema (29¥)支付宝微信
+        </a>
+
+        <a class="link-item" href="https://web.tqsms.xyz/#/register?inviter=243616" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=web.tqsms.xyz">
+            白鲸数据共享(10¥)支付宝微信
+        </a>
+
+        <a class="link-item" href="https://www.jichisms.com/index/index/reg?invite_code=1RX3Z27W" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=5sim.net">
+            疾驰短信（10¥）支付宝微信
+        </a>
+    </div>
+
+    <!-- 第五列 -->
+    <div class="section">
+        <h3>文章</h3>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

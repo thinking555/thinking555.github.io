@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Xinshoucpu</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+}
+
+body{
+    background:#ffffff;
+    color:#000000;
+}
+
+/* 顶部 */
+.topbar{
+    position:relative;
+    height:90px;
+    padding:25px 60px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:600;
+}
+
+/* 搜索 */
+.search-wrap{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:520px;
+}
+
+.search-box{
+    display:flex;
+    background:#ebe9e9;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid #e8e6e6;
+}
+
+.search-box input{
+    flex:1;
+    padding:14px 16px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:#ffffff;
+    color:#fff;
+}
+
+.search-box button{
+    width:60px;
+    border:none;
+    background:#ffffff;
+    cursor:pointer;
+    color:#fff;
+}
+
+/* ===== 固定 5 列 ===== */
+.container{
+    column-count:5;
+    column-gap:10px;
+    padding:20px 60px 60px 60px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.section{
+    margin-bottom:10px;
+    break-inside:avoid;
+}
+
+.section h3{
+    font-size:14px;
+    margin-bottom:14px;
+    color:#888;
+    font-weight:500;
+    text-align:center;   /* 👈 居中 */
+}
+
+/* 链接（无背景） */
+.link-item{
+    display:flex;
+    align-items:center;
+    margin-bottom:10px;
+    text-decoration:none;
+    color:#000000;
+    font-size:16px;
+    transition:.2s;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.link-item:hover{
+    color:rgb(0, 158, 32);
+   
+}
+
+/* 网站图标 */
+.link-item img{
+    width:16px;
+    height:16px;
+    margin-right:8px;
+    border-radius:3px;
+     flex-shrink:0;   /* 防止图标被压缩 */
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="logo">电报教程</div>
+
+    <div class="search-wrap">
+        <form class="search-box" action="https://www.google.com/search" method="GET">
+            <input type="text" name="q">
+            <button type="submit">🔍</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 第一列 -->
+    <div class="section">
+        <h3>识图Bot</h3>
+
+        <a class="link-item" href="https://t.me/TexifyBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            图像文字识别(OCR) 
+        </a>
+
+         <a class="link-item" href="https://t.me/bacakubot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            图像文字识别(OCR) 2
+        </a>
+
+         <a class="link-item" href="https://t.me/TranslateIDrobot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            图像文字识别(OCR) 3
+        </a>
+
+         <a class="link-item" href="https://t.me/imageToText_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            图像文字识别(OCR) 4
+        </a>
+
+         <a class="link-item" href="https://t.me/WhatAnimeBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            动画识图机器人
+        </a>
+
+        <a class="link-item" href="https://t.me/reverse_image_search_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            谷歌识图
+        </a>
+    </div>
+
+    <!-- 第二列 -->
+    <div class="section">
+        <h3>转发限制解除Bot</h3>
+
+        <a class="link-item" href="https://t.me/msg_get_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            转发限制解除
+        </a>
+
+         <a class="link-item" href="https://t.me/AnyDLBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            转发限制解除2
+        </a>
+
+         <a class="link-item" href="https://t.me/GetAnyMessageRobot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            转发限制解除3
+        </a>
+
+         <a class="link-item" href="https://t.me/save_restrict_contentnrbot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            转发限制解除4
+        </a>
+
+         <a class="link-item" href="https://t.me/Z1MRestrictedContentDLbot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            转发限制解除5
+        </a>
+
+        <a class="link-item" href="https://t.me/WangPanBOT" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            网盘机器人
+        </a>
+
+         <a class="link-item" href="https://t.me/FileBridgeBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            网盘机器人2
+        </a>
+    </div>
+
+    <!-- 第三列 -->
+    <div class="section">
+        <h3>视频下载</h3>
+
+       <a class="link-item" href="https://t.me/DouYintg_bot " target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            TikTok、Twitter、小红书
+        </a>
+
+         <a class="link-item" href="https://t.me/twittervid_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Twitter
+        </a>
+
+         <a class="link-item" href="https://t.me/twitterdlrobot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Twitter
+        </a>
+
+         <a class="link-item" href="https://t.me/DownloadsMasterBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Youtube, Spotify, Instagram, TikTok, Threads, Twitter
+        </a>
+
+         <a class="link-item" href="https://t.me/InstantMediaBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Youtube, Instagram, TikTok, Facebook, SoundCloud, Vimeo, VK, Twitter
+        </a>
+
+        <a class="link-item" href="https://t.me/xx_video_download_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Twitter
+        </a>
+
+         <a class="link-item" href="https://t.me/CatdlBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Youtube
+        </a>
+    </div>
+
+    <!-- 第四列 -->
+    <div class="section">
+        <h3>获取图片直链Bot</h3>
+
+       <a class="link-item" href="https://t.me/imgbbpicbot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            获取图片直链
+        </a>
+
+         <a class="link-item" href="https://t.me/urluploadxbot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            获取图片直链2
+        </a>
+
+         <a class="link-item" href="https://t.me/GetPublicLinkBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            获取图片直链3
+        </a>
+
+         <a class="link-item" href="https://t.me/TG_FileurlBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            获取图片直链4
+        </a>
+
+         <a class="link-item" href="https://t.me/keephere_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            获取图片直链5
+        </a>
+
+        <a class="link-item" href="https://t.me/photo_enchase_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            图片画质改善
+         </a>
+       
+    </div>
+
+    <!-- 第五列 -->
+    <div class="section">
+        <h3>私聊Bot</h3>
+
+       <a class="link-item" href="https://t.me/ModularBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            ModularBot
+        </a>
+
+         <a class="link-item" href="https://t.me/TgKeLongBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            机器人克隆工厂
+        </a>
+
+         <a class="link-item" href="https://t.me/ConnectThisBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Connector
+        </a>
+
+         <a class="link-item" href="https://t.me/sxBot " target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            双向机器人
+        </a>
+
+         <a class="link-item" href="https://t.me/NodeForwardBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            NodeForwardBot
+        </a>
+
+        <a class="link-item" href="https://t.me/BotFather" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            创建机器人
+        </a>
+    </div>
+
+    <div class="section">
+        <h3>转换工具</h3>
+
+         <a class="link-item" href="https://t.me/wabarc_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            网页转图片
+        </a>
+
+         <a class="link-item" href="https://t.me/urlpdfbot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            网页转图片2
+        </a>
+
+         <a class="link-item" href="https://t.me/HTMLtoPDF_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            网页转图片3
+        </a>
+
+         <a class="link-item" href="https://t.me/TextTSBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            文字转语音 ·
+        </a>
+
+         <a class="link-item" href="https://t.me/Amazing_VoiceBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            文字转语音2
+        </a>
+
+         <a class="link-item" href="https://t.me/GoogleTextToSpeechBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            文字转语音3
+        </a>
+
+         <a class="link-item" href="https://t.me/betterttsbot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            文字转语音4
+        </a>
+
+         <a class="link-item" href="https://t.me/msspeechbot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            文字转语音5
+        </a>
+
+         <a class="link-item" href="https://t.me/voicetranscriberobot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            语音转文字
+        </a>
+
+         <a class="link-item" href="https://t.me/Txt2Filebot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            文字转文档-txt、html
+        </a>
+
+         <a class="link-item" href="https://t.me/VideoToGifConverterBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            视频转gif 
+        </a>
+    </div>
+
+    <div class="section">
+        <h3>ID工具</h3>
+
+         <a class="link-item" href="https://t.me/my_id_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            查自己和别人ID
+        </a>
+
+         <a class="link-item" href="https://t.me/getidsbot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            查自己和别人ID2
+        </a>
+
+         <a class="link-item" href="https://t.me/userinfobot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            查自己和别人ID3
+        </a>
+
+         <a class="link-item" href="https://t.me/creationdatebot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            查自己和别人ID4
+        </a>
+
+         <a class="link-item" href="https://t.me/GetChatID_IL_BOT" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            查自己和别人ID5
+        </a>
+
+         <a class="link-item" href="https://t.me/myidbot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            查自己和别人ID6
+        </a>
+
+         <a class="link-item" href="https://t.me/CheckID_AIDbot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            查自己和别人ID7
+        </a>
+
+         <a class="link-item" href="https://t.me/JsonDumpBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            查自己和别人ID8
+        </a>
+
+         <a class="link-item" href="https://t.me/nminfobot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            查自己和别人ID9
+        </a>
+
+         <a class="link-item" href="https://t.me/where_is_my_dc_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            查询DC区
+        </a>
+
+        <a class="link-item" href="https://t.me/TanceqiBot?start=xqd03kq9lk" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            查询曾经进的群
+        </a>
+
+         <a class="link-item" href="https://t.me/ixdbot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            查询公开群的管理
+        </a>
+
+         <a class="link-item" href="https://t.me/KyAnalysisBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            监控频道人数
+        </a>
+
+         <a class="link-item" href="https://t.me/VIP_hejibot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            USDT钱包监控
+        </a>
+
+         <a class="link-item" href="https://t.me/nengse_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            USDT钱包监控2
+        </a>
+
+         <a class="link-item" href="https://t.me/ChaUSDT_Bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            USDT钱包监控3
+        </a>
+    </div>
+
+    <div class="section">
+        <h3>新手指南</h3>
+
+        <a class="link-item" href="https://t.me/xinshoucpu/151" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            我的频道推荐
+        </a>
+
+        <a class="link-item" href="https://t.me/xinshoucpu/42" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Telegram 汉化包
+        </a>
+
+         <a class="link-item" href="https://www.tingtalk.me/telegram" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tingtalk.me">
+            Telegram（电报）：新手指南、使用教程
+        </a>
+
+         <a class="link-item" href="https://limits.tginfo.me/zh-CN" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=limits.tginfo.me">
+            Telegram 限制
+        </a>
+
+         <a class="link-item" href="https://wiki.tgnav.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=wiki.tgnav.org/">
+            Telegram知识库
+        </a>
+
+         <a class="link-item" href="https://t.me/TGgeek" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            TG极客
+        </a>
+
+         <a class="link-item" href="https://t.me/tgcnxz" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Telegram 知识库
+        </a>
+
+         <a class="link-item" href="https://dbzdk.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=dbzdk.com/">
+            电报值得看 频道推荐
+        </a>
+
+         <a class="link-item" href="https://tgnav.github.io/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tgnav.github.io/">
+            TGNAV
+        </a>
+
+         <a class="link-item" href="https://www.rectg.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=rectg.com/">
+            rectg
+        </a>
+
+         <a class="link-item" href="https://tgdriver.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tgdriver.com/">
+            电报老司机
+        </a>
+
+         <a class="link-item" href="https://t.me/AChansp" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Naruto 频道推荐
+        </a>
+
+         <a class="link-item" href="https://t.me/tl_gc" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            电报群组&频道
+        </a>
+    </div>
+
+    
+    <div class="section">
+        <h3>音乐Bot</h3>
+
+         <a class="link-item" href="https://t.me/haoyybot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            好音乐搜索
+        </a>
+
+         <a class="link-item" href="https://t.me/vkm_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            VKM Bot
+        </a>
+
+         <a class="link-item" href="https://t.me/vkmusic_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            VK Music Bot
+        </a>
+
+         <a class="link-item" href="https://t.me/vkmusbot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            vkmbot
+        </a>
+
+         <a class="link-item" href="https://t.me/VoiceShazamBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Shazam
+        </a>
+
+         <a class="link-item" href="https://t.me/BooDLsbot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Boo Shazam Bot
+        </a>
+
+         <a class="link-item" href="https://t.me/MusicDLYBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Mᴜsɪᴄ Bᴏᴛ
+        </a>
+
+         <a class="link-item" href="https://t.me/VmomoVBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Let's Music
+        </a>
+
+         <a class="link-item" href="https://t.me/music_v1bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Music Download Bot
+        </a>
+
+         <a class="link-item" href="https://t.me/LyBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            YouTube Music
+        </a>
+
+         <a class="link-item" href="https://t.me/Gaano_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            听歌识曲
+        </a>
+
+         <a class="link-item" href="https://t.me/SongIDbot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            听歌识曲2
+        </a>
+
+         <a class="link-item" href="https://t.me/voice_remover_bot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            人声剥离
+        </a>
+    </div>
+
+    <div class="section">
+        <h3>电报官方频道和机器人</h3>
+
+         <a class="link-item" href="https://t.me/telegram" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            电报官方新闻频道
+        </a>
+
+         <a class="link-item" href="https://t.me/durov" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            杜罗夫
+        </a>
+
+         <a class="link-item" href="https://t.me/TelegramTips" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            有新功能都会在这里通知
+        </a>
+
+         <a class="link-item" href="https://t.me/TAndroidAPK" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Telegram 安卓 APK 的官方频道
+        </a>
+
+         <a class="link-item" href="https://t.me/macos_stable_updates_files" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Telegram macOS 的正式版
+        </a>
+
+         <a class="link-item" href="https://t.me/designers" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            向电报提你想要的功能
+        </a>
+
+         <a class="link-item" href="https://t.me/BotNews" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Telegram Bot API 的官方新闻来源
+        </a>
+
+         <a class="link-item" href="https://t.me/contest" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            编程竞赛
+        </a>
+
+         <a class="link-item" href="https://t.me/themes" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            电脑客户端主题
+        </a>
+
+         <a class="link-item" href="https://t.me/AndroidThemes" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            安卓客户端主题
+        </a>
+
+         <a class="link-item" href="https://t.me/telegraph" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Telegraph 文章管理 Bot
+        </a>
+
+         <a class="link-item" href="https://t.me/PremiumBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            Telegram Premium 订阅
+        </a>
+
+         <a class="link-item" href="https://t.me/PremiumJoinBot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            入群审核只能Premium进群
+        </a>
+
+         <a class="link-item" href="https://t.me/Stickers" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            贴纸制作
+        </a>
+
+         <a class="link-item" href="https://t.me/BotFather" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegram.org">
+            创建机器人
+        </a>
+    </div>
+    
+</div>
+
+</body>
+
+</html>

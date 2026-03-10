@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Xinshoucpu</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+}
+
+body{
+    background:#ffffff;
+    color:#000000;
+}
+
+/* 顶部 */
+.topbar{
+    position:relative;
+    height:90px;
+    padding:25px 60px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:600;
+}
+
+/* 搜索 */
+.search-wrap{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:520px;
+}
+
+.search-box{
+    display:flex;
+    background:#ebe9e9;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid #e8e6e6;
+}
+
+.search-box input{
+    flex:1;
+    padding:14px 16px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:#ffffff;
+    color:#fff;
+}
+
+.search-box button{
+    width:60px;
+    border:none;
+    background:#ffffff;
+    cursor:pointer;
+    color:#fff;
+}
+
+/* ===== 固定 5 列 ===== */
+.container{
+    column-count:5;
+    column-gap:10px;
+    padding:20px 60px 60px 60px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.section{
+    margin-bottom:10px;
+    break-inside:avoid;
+}
+
+.section h3{
+    font-size:14px;
+    margin-bottom:14px;
+    color:#888;
+    font-weight:500;
+    text-align:center;   /* 👈 居中 */
+}
+
+/* 链接（无背景） */
+.link-item{
+    display:flex;
+    align-items:center;
+    margin-bottom:10px;
+    text-decoration:none;
+    color:#000000;
+    font-size:16px;
+    transition:.2s;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.link-item:hover{
+    color:rgb(0, 158, 32);
+   
+}
+
+/* 网站图标 */
+.link-item img{
+    width:16px;
+    height:16px;
+    margin-right:8px;
+    border-radius:3px;
+     flex-shrink:0;   /* 防止图标被压缩 */
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="logo">工具</div>
+
+    <div class="search-wrap">
+        <form class="search-box" action="https://www.google.com/search" method="GET">
+            <input type="text" name="q">
+            <button type="submit">🔍</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 第一列 -->
+    <div class="section">
+        <h3>工具箱</h3>
+
+        <a class="link-item" href="https://tools.rmv.fyi/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tools.rmv.fyi">
+            工具箱
+        </a>
+
+       <a class="link-item" href="https://tools.miku.ac/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tools.miku.ac/">
+            工具箱2
+        </a>
+
+        <a class="link-item" href="https://www.iamwawa.cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=iamwawa.cn/">
+            工具箱3
+        </a>
+
+        <a class="link-item" href="https://www.qijishow.com/down/index.html" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=qijishow.com/">
+            工具箱4
+        </a>
+
+        <a class="link-item" href="https://123apps.com/cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=123apps.com/">
+            工具箱5
+        </a>
+
+        <a class="link-item" href="https://www.67tool.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=67tool.com/">
+            工具箱6
+        </a>
+
+        <a class="link-item" href="https://ol.woobx.cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ol.woobx.cn/">
+            工具箱7
+        </a>
+
+        <a class="link-item" href="https://www.toolbon.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=toolbon.com/">
+            工具箱8
+        </a>
+
+        <a class="link-item" href="https://qxtool.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=qxtool.com/">
+            工具箱9
+        </a>
+
+        <a class="link-item" href="https://www.jisuxiang.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=jisuxiang.com/">
+            工具箱10
+        </a>
+
+        <a class="link-item" href="https://ccbaohe.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ccbaohe.com/">
+            工具箱11
+        </a>
+
+        <a class="link-item" href="https://www.convry.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=convry.com/">
+            工具箱12
+        </a>
+
+        <a class="link-item" href="https://sinqi.tools/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=sinqi.tools">
+            工具箱13
+        </a>
+
+        <a class="link-item" href="https://tool.tanpok.com/#/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tool.tanpok.com">
+            工具箱14
+        </a>
+
+        <a class="link-item" href="https://allinone.tools/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=allinone.tools/">
+            工具箱15
+        </a>
+
+        <a class="link-item" href="https://www.deadlinkchecker.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=deadlinkchecker.com/">
+            死链接检查
+        </a>
+
+        <a class="link-item" href="https://link-checker.itea.dev/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=link-checker.itea.dev">
+            死链接检查2
+        </a>
+
+        <a class="link-item" href="https://www.similarsites.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=similarsites.com">
+            相似网站
+        </a>
+
+        <a class="link-item" href="https://www.iamwawa.cn/textreplace.html" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=iamwawa.cn">
+            文本替换工具
+        </a>
+
+        <a class="link-item" href="https://drawnix.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=drawnix.com/">
+            思维导图
+        </a>
+
+        <a class="link-item" href="https://wanglin2.github.io/mind-map/#/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=wanglin2.github.io">
+            思维导图2
+        </a>
+
+        <a class="link-item" href="https://app.diagrams.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=app.diagrams.net">
+            思维导图3
+        </a>
+
+        <a class="link-item" href="https://www.uwarp.design/uchart" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=uwarp.design/">
+            数据图表
+        </a>
+
+    </div>
+
+    <!-- 第二列 -->
+    <div class="section">
+        <h3>外泄查询</h3>
+
+        <a class="link-item" href="https://monitor.mozilla.org/zh-CN" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=monitor.mozilla.org">
+            邮箱地址
+        </a>
+
+       <a class="link-item" href="https://haveibeenpwned.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=haveibeenpwned.com/">
+            邮箱地址2
+        </a>
+
+        <a class="link-item" href="https://github.com/sherlock-project/sherlock" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            用户名
+        </a>
+
+        <a class="link-item" href="https://whatsmyname.wiki/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=whatsmyname.wiki">
+            用户名2
+        </a>
+
+        <a class="link-item" href="https://github.com/soxoj/maigret" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            用户名3
+        </a>
+
+         <a class="link-item" href="https://osintframework.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=osintframework.com">
+            邮箱地址、用户名
+        </a>
+
+        <a class="link-item" href="https://whatsmynameapp.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=whatsmynameapp.net">
+            邮箱地址、用户名2
+        </a>
+
+        <a class="link-item" href="https://privacy.aiuys.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=privacy.aiuys.com">
+            QQ/ 手机号/身份证号/邮箱/微博
+        </a>
+
+        <a class="link-item" href="https://ipcheck.ing/#/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ipcheck.ing">
+            你的真实IP
+        </a>
+
+        <a class="link-item" href="https://www.ip111.cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ip111.cn">
+            你的真实IP2
+        </a>
+
+        <a class="link-item" href="https://ip.skk.moe/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ip.skk.moe/">
+            你的真实IP3
+        </a>
+
+        <a class="link-item" href="https://ip233.cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ip233.cn/">
+            你的真实IP4
+        </a>
+
+        <a class="link-item" href="https://browserleaks.com/dns" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=browserleaks.com/">
+            你的真实IP5
+        </a>
+
+        <a class="link-item" href="https://ipw.cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ipw.cn">
+            你的真实IP6
+        </a>
+
+        <a class="link-item" href="https://testipv6.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=testipv6.com">
+            你的真实IP7
+        </a>
+
+        <a class="link-item" href="https://zh-hans.ipshu.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=zh-hans.ipshu.com/">
+            你的真实IP8
+        </a>
+
+        <a class="link-item" href="https://www.astrill.com/zh/dns-leak-test" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=astrill.com/">
+            你的真实IP9
+        </a>
+
+       <a class="link-item" href="https://zhale.me/http/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=zhale.me">
+            检测网站能否打开
+        </a>
+
+        <a class="link-item" href="https://www.itdog.cn/ping/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=itdog.cn">
+            检测网站能否打开2
+        </a>
+
+        <a class="link-item" href="https://www.boce.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=boce.com/">
+            检测网站能否打开3
+        </a>
+
+    </div>
+
+    <!-- 第三列 -->
+    <div class="section">
+        <h3>IP</h3>
+
+        <a class="link-item" href="https://ping0.cc/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ping0.cc">
+            IP查询
+        </a>
+
+       <a class="link-item" href="https://www.ipaddress.my/?lang=zh_CN" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ipaddress.my">
+            IP查询2
+        </a>
+
+        <a class="link-item" href="https://pixelscan.net/ip" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=pixelscan.net">
+            IP查询3
+        </a>
+
+        <a class="link-item" href="https://whoer.net/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=whoer.net">
+            IP查询4
+        </a>
+
+        <a class="link-item" href="https://scamalytics.com/ip" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=scamalytics.com/">
+            IP查询5
+        </a>
+
+         <a class="link-item" href="https://whatismyipaddress.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=whatismyipaddress.com/">
+            IP查询6
+        </a>
+
+        <a class="link-item" href="https://ip.im/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ip.im/">
+            IP查询7
+        </a>
+
+        <a class="link-item" href="https://ip.sy/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ip.sy/">
+            IP查询8
+        </a>
+
+        <a class="link-item" href="https://tcp.mk/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tcp.mk/">
+            IP查询9
+        </a>
+
+        <a class="link-item" href="https://who.zmh.me/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=who.zmh.me">
+            IP查询10
+        </a>
+
+        <a class="link-item" href="https://ipjiance.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ipjiance.com/">
+            IP查询11
+        </a>
+
+        <a class="link-item" href="https://ipleak.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ipleak.net">
+            IP查询12
+        </a>
+
+         <a class="link-item" href="https://ipdata.co/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ipdata.co">
+            IP查询13
+        </a>
+
+        <a class="link-item" href="https://www.ip2location.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ip2location.com/">
+            IP查询14
+        </a>
+
+        <a class="link-item" href="https://scamalytics.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+            IP查询15
+        </a>
+
+        <a class="link-item" href="https://www.abuseipdb.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=abuseipdb.com/">
+            IP查询16
+        </a>
+
+        <a class="link-item" href="https://www.browserscan.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=browserscan.net/">
+            IP查询17
+        </a>
+
+        <a class="link-item" href="https://myip.ms/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=myip.ms/">
+            IP查询18
+        </a>
+
+        <a class="link-item" href="https://ippure.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ippure.com/">
+            IP查询19
+        </a>
+
+        <a class="link-item" href="https://ipconfig.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ipconfig.com/">
+            IP查询20
+        </a>
+
+        <a class="link-item" href="https://ip.dog/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ip.dog/">
+            IP查询21
+        </a>
+
+        <a class="link-item" href="https://www.ipaddress.my/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ipaddress.my">
+            IP查询22
+        </a>
+
+        <a class="link-item" href="https://2ip.io/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=2ip.io">
+            IP查询23
+        </a>
+
+        <a class="link-item" href="https://dnsleaktest.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=dnsleaktest.com">
+            IP查询24
+        </a>
+
+        <a class="link-item" href="https://ip.kkcat.blog/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ip.kkcat.blog">
+            IP查询25
+        </a>
+
+        <a class="link-item" href="https://ipip0.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ipip0.net/">
+            IP查询26
+        </a>
+
+        <a class="link-item" href="https://ip8.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ip8.com/">
+            IP查询27
+        </a>
+
+    </div>
+
+    <!-- 第四列 -->
+    <div class="section">
+        <h3>密码管理软件和加密压缩软件</h3>
+
+       <a class="link-item" href="https://keepass.info/download.html" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=keepass.info">
+            keepass W
+        </a>
+
+       <a class="link-item" href="https://github.com/OneKeePass/desktop" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            OneKeePass W M L
+        </a>
+
+        <a class="link-item" href="https://github.com/OneKeePass/mobile" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            OneKeePass I A
+        </a>
+
+        <a class="link-item" href="https://f-droid.org/zh_Hans/packages/com.android.keepass/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=f-droid.org">
+            KeePassDroid A
+        </a>
+
+        <a class="link-item" href="https://github.com/PhilippC/keepass2android/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            Keepass2Android A
+        </a>
+
+        <a class="link-item" href="https://www.keepassdx.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=keepassdx.com/">
+            keepassdx A
+        </a>
+
+        <a class="link-item" href="https://keepassium.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=keepassium.com/">
+            KeePassium M I
+        </a>
+
+        <a class="link-item" href="https://keepassxc.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=keepassxc.org">
+            keepassxc W M L
+        </a>
+
+        <a class="link-item" href="https://github.com/keeweb/keeweb" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            KeeWeb W M L
+        </a>
+
+        <a class="link-item" href="https://macpassapp.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=macpassapp.org">
+            MacPass M
+        </a>
+
+        <a class="link-item" href="https://www.openkeychain.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=openkeychain.org/">
+            OpenKeychain A
+        </a>
+
+        <a class="link-item" href="https://github.com/AChep/keyguard-app" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com/">
+            Keyguard W M L A
+        </a>
+
+        <a class="link-item" href="https://bitwarden.com/download/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=vault.bitwarden.eu/">
+            bitwarden ALL
+        </a>
+
+        <a class="link-item" href="https://www.7-zip.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=7-zip.org">
+            7-zip 加密压缩软件
+        </a>
+
+        <a class="link-item" href="https://peazip.github.io/peazip-macos.html" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=peazip.github.io">
+            PeaZip W M L
+        </a>
+
+       <a class="link-item" href="https://www.keka.io/zh-cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=keka.io">
+            keka M
+        </a>
+
+        <a class="link-item" href="https://github.com/WirelessAlien/ZipXtract" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            ZipXtract A
+        </a>
+
+        <a class="link-item" href="https://apkpure.com/zarchiver-2025/ru.zdevs.zarchiver" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=apkpure.com">
+            ZArchiver A
+        </a>
+
+    </div>
+
+    <!-- 第五列 -->
+    <div class="section">
+        <h3>其他工具</h3>
+
+       <a class="link-item" href="https://www.huilvbiao.com/gold" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=huilvbiao.com">
+            黄金价格
+        </a>
+
+       <a class="link-item" href="www.bitget.com/zh-CN/price" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=bitget.com/">
+            加密货币价格
+        </a>
+
+        <a class="link-item" href="https://www.marketcapwatch.com/zh/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=marketcapwatch.com">
+            市值最高的公司
+        </a>
+
+        <a class="link-item" href="https://dapanyuntu.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=dapanyuntu.com">
+            A股
+        </a>
+
+        <a class="link-item" href="https://cn.investing.com/commodities/crude-oil" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=investing.com">
+            原油价格
+        </a>
+
+        <a class="link-item" href="https://compound-interest-calculator.net/zh" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=compound-interest-calculator.net">
+            复利计算器
+        </a>
+
+        <a class="link-item" href="https://www.speedtest.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=speedtest.net">
+            speedtest 网络测速
+        </a>
+
+        <a class="link-item" href="https://fast.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=fast.com/">
+            fast    
+        </a>
+
+        <a class="link-item" href="https://speed.cloudflare.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=speed.cloudflare.com/">
+            speed
+        </a>
+
+        <a class="link-item" href="https://fiber.google.com/speedtest/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=fiber.google.com">
+            speedtest
+        </a>
+
+        <a class="link-item" href="" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+            
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
