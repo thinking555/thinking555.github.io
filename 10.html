@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>节点收集贴</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 30px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        p {
+            line-height: 1.6;
+        }
+        .link-box {
+            background: #f1f1f1;
+            padding: 12px;
+            border-radius: 6px;
+            word-break: break-all;
+            margin-top: 10px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            border: none;
+            background: #007BFF;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .success {
+            color: green;
+            margin-top: 8px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>节点收集贴</h1>
+
+    <p>主要来源油管、网站，遇到能用的就收藏进来。</p>
+
+    <p><strong>订阅链接（有效期至 2026年3月31日）：工具大师i</strong></p>
+
+    <div class="link-box" id="link">
+        https://freev2ray.top/V2rayg32452.txt
+    </div>
+
+    <button onclick="copyLink()">一键复制链接</button>
+
+    <div class="success" id="msg">✔ 已复制到剪贴板</div>
+</div>
+
+<script>
+function copyLink() {
+    const text = document.getElementById("link").innerText;
+    navigator.clipboard.writeText(text).then(function() {
+        document.getElementById("msg").style.display = "block";
+    });
+}
+</script>
+
+</body>
+</html>
