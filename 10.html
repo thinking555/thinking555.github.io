@@ -7,21 +7,18 @@
         body {
             font-family: Arial, sans-serif;
             background: #f4f6f8;
-            padding: 30px;
+            padding: 20px;
         }
         .container {
-            max-width: 800px;
+            max-width: 700px;
             margin: auto;
             background: #fff;
-            padding: 25px;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         h1 {
             text-align: center;
-        }
-        p {
-            line-height: 1.6;
         }
         .link-box {
             background: #f1f1f1;
@@ -31,13 +28,14 @@
             margin-top: 10px;
         }
         button {
-            margin-top: 10px;
+            margin-top: 12px;
             padding: 10px 15px;
             border: none;
             background: #007BFF;
             color: white;
             border-radius: 6px;
             cursor: pointer;
+            width: auto;
         }
         button:hover {
             background: #0056b3;
@@ -47,6 +45,12 @@
             margin-top: 8px;
             display: none;
         }
+        textarea {
+            width: 100%;
+            margin-top: 10px;
+            padding: 10px;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -54,7 +58,7 @@
 <div class="container">
     <h1>节点收集贴</h1>
 
-    <p>主要来源油管、网站，遇到能用的就收藏进来。</p>
+    <p>主要来源油管、网站，遇到能用的就收藏进来</p>
 
     <p><strong>订阅链接（有效期至 2026年3月31日）：工具大师i</strong></p>
 
@@ -64,15 +68,50 @@
 
     <button onclick="copyLink()">一键复制链接</button>
 
-    <div class="success" id="msg">✔ 已复制到剪贴板</div>
+    <div class="success" id="msg">✔ 已复制</div>
+
+    <!-- 兼容 iOS 手动复制 -->
+    <textarea id="fallback"></textarea>
 </div>
 
 <script>
 function copyLink() {
     const text = document.getElementById("link").innerText;
-    navigator.clipboard.writeText(text).then(function() {
-        document.getElementById("msg").style.display = "block";
-    });
+
+    // 方案1：现代浏览器
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+            showSuccess();
+        }).catch(() => {
+            fallbackCopy(text);
+        });
+    } else {
+        fallbackCopy(text);
+    }
+}
+
+// 方案2：兼容所有设备（包括 iPhone）
+function fallbackCopy(text) {
+    const textarea = document.getElementById("fallback");
+    textarea.value = text;
+    textarea.style.display = "block";
+    textarea.select();
+    textarea.setSelectionRange(0, 99999);
+
+    try {
+        document.execCommand("copy");
+        showSuccess();
+    } catch (err) {
+        alert("复制失败，请手动长按复制");
+    }
+}
+
+function showSuccess() {
+    const msg = document.getElementById("msg");
+    msg.style.display = "block";
+    setTimeout(() => {
+        msg.style.display = "none";
+    }, 2000);
 }
 </script>
 
