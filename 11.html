@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Yandex 高级搜索｜Xinshoucpu</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+}
+
+body{
+    background:#ffffff;
+    color:#000000;
+}
+
+/* 顶部 */
+.topbar{
+    position:relative;
+    height:90px;
+    padding:25px 60px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:600;
+}
+
+/* 搜索 */
+.search-wrap{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:520px;
+}
+
+.search-box{
+    display:flex;
+    background:#ebe9e9;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid #e8e6e6;
+}
+
+.search-box input{
+    flex:1;
+    padding:14px 16px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:#ffffff;
+    color:#fff;
+}
+
+.search-box button{
+    width:60px;
+    border:none;
+    background:#ffffff;
+    cursor:pointer;
+    color:#fff;
+}
+
+/* ===== 固定 5 列 ===== */
+.container{
+    column-count:5;
+    column-gap:10px;
+    padding:20px 60px 60px 60px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.section{
+    margin-bottom:10px;
+    break-inside:avoid;
+}
+
+.section h3{
+    font-size:14px;
+    margin-bottom:14px;
+    color:#888;
+    font-weight:500;
+    text-align:center;   /* 👈 居中 */
+}
+
+/* 链接（无背景） */
+.link-item{
+    display:flex;
+    align-items:center;
+    margin-bottom:10px;
+    text-decoration:none;
+    color:#000000;
+    font-size:16px;
+    transition:.2s;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.link-item:hover{
+    color:rgb(0, 158, 32);
+   
+}
+
+/* 网站图标 */
+.link-item img{
+    width:16px;
+    height:16px;
+    margin-right:8px;
+    border-radius:3px;
+     flex-shrink:0;   /* 防止图标被压缩 */
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="logo">Yandex</div>
+
+    <div class="search-wrap">
+        <form class="search-box" action="https://www.google.com/search" method="GET">
+            <input type="text" name="q">
+            <button type="submit">🔍</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 第一列 -->
+    <div class="section">
+        <h3>Yandex高级搜索</h3>
+
+        <a class="link-item" href="https://yandex.com/search/?text=%22%E5%8C%97%E4%BA%AC%E5%A4%A9%E5%AE%89%E9%97%A8%22&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            “” -限定关键词
+        </a>
+
+       <a class="link-item" href="https://yandex.com/search?text=apple+-fruit&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            - -排除关键词
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search/?text=%E5%8C%97%E4%BA%AC*&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            * -代表任何未知的词或短语
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search/?text=%E5%8C%97%E4%BA%AC+%7C+%E4%B8%8A%E6%B5%B7&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            | 或：包含关键词A或B
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3A&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site: -限定网址来源
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AF%BC%E8%AE%BA+mime%3Apdf&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            mime:  - 限定文件格式
+        </a>
+
+       <a class="link-item" href="https://yandex.com/search?text=title%3AResilio+Sync&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            title: - 限定标题
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=%2Bbeijing&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            +：搜索结果中必须包含该词
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=visa+%26+photo&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            &：同一个句子中包含两个
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=visa+%26%26+photo&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            &&：同一个网页中包含两个
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=!dog&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            ！固定词形
+        </a>
+
+    </div>
+
+    <!-- 第二列 -->
+    <div class="section">
+        <h3>视频平台</h3>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Anetflix.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:netflix.com
+        </a>
+
+       <a class="link-item" href="https://yandex.com/search?text=site%3Ated.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:ted.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Atwitch.tv&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:twitch.tv
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Adisneyplus.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:disneyplus.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Abilibili.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:bilibili.com
+        </a>
+
+       <a class="link-item" href="https://yandex.com/search?text=site%3Ayouku.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youku.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Adouyin.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:douyin.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Aimdb.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:imdb.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Adouban.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:douban.com
+        </a>
+    </div>
+
+    <!-- 第三列 -->
+    <div class="section">
+        <h3>常用平台</h3>
+
+       <a class="link-item" href="https://yandex.com/search?text=site%3Azhihu.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:zhihu.com
+        </a>
+
+       <a class="link-item" href="https://yandex.com/search?text=site%3Agithub.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:github.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ax.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:x.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Atelegra.ph&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:telegra.ph
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Areddit.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:reddit.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Aarchive.org&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:archive.org
+        </a>
+
+       <a class="link-item" href="https://yandex.com/search?text=site%3Awikihow.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:wikihow.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Aquora.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:quora.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Awikipedia.org&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:wikipedia.org
+        </a>
+
+    </div>
+
+    <!-- 第四列 -->
+    <div class="section">
+        <h3>文章博客</h3>
+
+       <a class="link-item" href="https://yandex.com/search?text=site%3Ablogspot.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:blogspot.com
+        </a>
+
+       <a class="link-item" href="https://yandex.com/search?text=site%3Asubstack.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:substack.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Apagecord.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:pagecord.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Atumblr.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:tumblr.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Awordpress.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:wordpress.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Amedium.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:medium.com
+        </a>
+
+       <a class="link-item" href="https://yandex.com/search?text=site%3Ajianshu.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:jianshu.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Acnblogs.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:cnblogs.com
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Alinkedin.com&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:linkedin.com
+        </a>
+
+    </div>
+
+    <!-- 第五列 -->
+    <div class="section">
+        <h3>人物</h3>
+
+      <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E8%A2%81%E8%85%BE%E9%A3%9E&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 袁腾飞
+        </a>
+
+       <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E7%A7%A6%E6%99%96&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 秦晖
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E5%90%B4%E5%9B%BD%E5%85%89&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 吴国光
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E8%AE%B8%E6%88%90%E9%92%A2&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 许成钢
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E9%BB%84%E4%BA%9A%E7%94%9F&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 黄亚生
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E4%BD%99%E8%8C%82%E6%98%A5&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 余茂春
+        </a>
+
+       <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E5%93%88%E9%87%91&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 哈金
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E8%A3%B4%E6%95%8F%E6%AC%A3&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 裴敏欣
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E6%9E%97%E5%9F%B9%E7%91%9E&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 林培瑞
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E9%99%88%E7%BB%B4%E6%98%8E&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 陈维明
+        </a>
+    </div>
+
+    <div class="section">
+        <h3>人物2</h3>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E6%AF%9B%E6%B3%BD%E6%B0%91&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 毛泽民
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E6%AF%9B%E6%B3%BD%E4%B8%9C&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 毛泽东
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E5%91%A8%E6%81%A9%E6%9D%A5&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 周恩来
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E6%9D%8E%E9%94%90&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 李锐
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E6%9D%8E%E5%BF%97%E7%BB%A5&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 李志绥
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E8%BF%9C%E8%97%A4%E8%AA%89&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 远藤誉
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E9%82%93%E5%B0%8F%E5%B9%B3&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 邓小平
+        </a>
+
+         <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E6%9D%8E%E9%B9%8F&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 李鹏
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E9%99%88%E4%BA%91&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 陈云
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E8%83%A1%E8%80%80%E9%82%A6&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 胡耀邦
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E8%B5%B5%E7%B4%AB%E9%98%B3&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 赵紫阳
+        </a>
+       
+    </div>
+
+    <div class="section">
+        <h3>事件</h3>
+
+        <a class="link-item" href="https://www.google.com/search?q=site%3Ayoutube.com+%E8%B5%A4%E7%99%BD%E8%B4%B8%E6%98%93&client=firefox-b-d&hs=XvtU&sca_esv=2ddfd4a28ffdbe96&biw=1391&bih=713&sxsrf=ANbL-n4Y1ItsxljxYZQrsKsIAjXvdLD_bA%3A1774181432794&ei=ONy_aaeVMJSp2roP55vJgQk&ved=0ahUKEwinkcbwvLOTAxWUlFYBHedNMpAQ4dUDCBE&uact=5&oq=site%3Ayoutube.com+%E8%B5%A4%E7%99%BD%E8%B4%B8%E6%98%93&gs_lp=Egxnd3Mtd2l6LXNlcnAiHXNpdGU6eW91dHViZS5jb20g6LWk55m96LS45piTSJAKUPgCWNYIcAB4AJABAJgBwwKgAcsJqgEFMi0xLjO4AQPIAQD4AQH4AQKYAgCgAgCYAwCIBgGSBwCgB8wBsgcAuAcAwgcAyAcAgAgA&sclient=gws-wiz-serp" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+            site:youtube.com 赤白贸易
+        </a>
+
+         <a class="link-item" href="https://yandex.com/search?text=site%3Awikipedia.org+%E8%96%84%E5%A4%8D%E7%A4%BC&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:wikipedia.org 绑架薄复礼
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E5%8D%97%E6%B3%A5%E6%B9%BE+%E9%B8%A6%E7%89%87&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 南泥湾 鸦片
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E9%95%BF%E6%98%A5%E5%9B%B4%E5%9F%8E&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 长春围城
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E4%B8%89%E5%B9%B4%E5%9B%B0%E9%9A%BE%E6%97%B6%E6%9C%9F&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 三年困难时期
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E6%96%87%E5%8C%96%E5%A4%A7%E9%9D%A9%E5%91%BD&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 文化大革命
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E5%A4%A9%E5%AE%89%E9%97%A8%E4%BA%8B%E4%BB%B6&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 天安门事件
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Awikipedia.org+GFW&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:wikipedia.org GFW
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Awikipedia.org+%E5%86%8D%E6%95%99%E8%82%B2%E8%90%A5&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:wikipedia.org 再教育营
+        </a>
+
+        
+        
+    </div>
+
+    <div class="section">
+        <h3>访问问题</h3>
+
+        <a class="link-item" href="https://thinking555.github.io/8.html" target="_blank">
+            <img src="">
+            视频无法播放解决方法
+        </a>
+
+        <a class="link-item" href="https://thinking555.github.io/gogogo.html" target="_blank">
+            <img src="">
+            翻墙直通
+        </a>
+
+    </div>
+
+    <div class="section">
+        <h3>民国人物</h3>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E9%99%B6%E6%88%90%E7%AB%A0&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 陶成章
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E7%AB%A0%E5%A4%AA%E7%82%8E&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 章太炎
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E5%AD%99%E4%B8%AD%E5%B1%B1&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 孙中山
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E9%99%88%E7%82%AF%E6%98%8E&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 陈炯明
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E9%83%91%E5%AD%9D%E8%83%A5&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 郑孝胥
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E8%B0%AD%E5%97%A3%E5%90%8C&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 谭嗣同
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E6%B1%AA%E7%B2%BE%E5%8D%AB&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 汪精卫
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E5%BA%B7%E6%9C%89%E4%B8%BA&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 康有为
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E6%A2%81%E5%90%AF%E8%B6%85&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 梁启超
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E5%AE%8B%E6%95%99%E4%BB%81&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 宋教仁
+        </a>
+    </div>
+
+    <div class="section">
+        <h3>民国人物2</h3>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E6%9D%8E%E5%A4%A7%E9%92%8A&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 李大钊
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E5%86%AF%E7%8E%89%E7%A5%A5&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 冯玉祥
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E6%AE%B5%E7%A5%BA%E7%91%9E&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 段祺瑞
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E5%BC%A0%E4%BD%9C%E9%9C%96&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 张作霖
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E6%B1%AA%E7%B2%BE%E5%8D%AB&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 汪精卫
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E9%BB%84%E5%A4%8D%E7%94%9F&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 黄复生
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E9%99%88%E7%92%A7%E5%90%9B&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 陈璧君
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E8%A2%81%E4%B8%96%E5%87%AF&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 袁世凯
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E9%BB%84%E5%85%B4&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 黄兴
+        </a>
+
+        <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E8%92%8B%E4%BB%8B%E7%9F%B3&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 蒋介石
+        </a>
+
+         <a class="link-item" href="https://yandex.com/search?text=site%3Ayoutube.com+%E5%BC%A0%E5%AD%A6%E8%89%AF&lr=10636" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+            site:youtube.com 张学良
+        </a>
+    </div>
+    
+</div>
+
+</body>
+
+</html>
