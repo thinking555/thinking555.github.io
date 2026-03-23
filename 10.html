@@ -1,119 +1,319 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <title>节点收集贴</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            padding: 20px;
-        }
-        .container {
-            max-width: 700px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-        }
-        .link-box {
-            background: #f1f1f1;
-            padding: 12px;
-            border-radius: 6px;
-            word-break: break-all;
-            margin-top: 10px;
-        }
-        button {
-            margin-top: 12px;
-            padding: 10px 15px;
-            border: none;
-            background: #007BFF;
-            color: white;
-            border-radius: 6px;
-            cursor: pointer;
-            width: auto;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-        .success {
-            color: green;
-            margin-top: 8px;
-            display: none;
-        }
-        textarea {
-            width: 100%;
-            margin-top: 10px;
-            padding: 10px;
-            display: none;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>节点收集中心</title>
+
+<style>
+body {
+    background: #0f1117;
+    color: #e5e7eb;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.desc {
+    font-size: 16px;
+    color: #9ca3af;
+    margin-bottom: 22px;
+}
+
+.card {
+    background: #1a1d24;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.title {
+    font-size: 15px;
+    color: #9ca3af;
+    margin-bottom: 12px;
+}
+
+.copy-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0f1117;
+    padding: 12px;
+    border-radius: 8px;
+    word-break: break-all;
+}
+
+.text {
+    font-size: 15px;
+}
+
+.copy-btn {
+    cursor: pointer;
+    padding: 6px;
+    opacity: 0.7;
+}
+
+.copy-btn:hover {
+    opacity: 1;
+}
+
+.copy-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: #e5e7eb;
+}
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #22c55e;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    display: none;
+}
+
+.copied {
+    color: #4ade80;
+}
+</style>
 </head>
+
 <body>
 
 <div class="container">
-    <h1>节点收集贴</h1>
-
-    <p>主要来源油管、网站，遇到能用的就收藏进来</p>
-
-    <p><strong>订阅链接（有效期至 2026年3月31日）：工具大师i</strong></p>
-
-    <div class="link-box" id="link">
-        https://freev2ray.top/V2rayg32452.txt
+    <h1>节点收集中心</h1>
+    <div class="desc">
+        节点来源于网络，收集于此，方便大家一键翻墙。
     </div>
 
-    <button onclick="copyLink()">一键复制链接</button>
+    <div class="desc">
+        使用方法：打开代理软件-配置-点加号-从URL导入。
+    </div>
 
-    <div class="success" id="msg">✔ 已复制</div>
+    <div class="desc">
+        上面是surfboard的导入方法，代理软件功能都差不多举一反三。
+    </div>
+    <!-- 卡片1 -->
+    <div class="card">
+        <div class="title">
+            订阅链接节点持续30天有效（截至2026年3月31日）｜来源工具大师i
+        </div>
 
-    <!-- 兼容 iOS 手动复制 -->
-    <textarea id="fallback"></textarea>
+        <div class="copy-box">
+            <div class="text" id="link1">
+                https://freev2ray.top/V2rayg32452.txt
+            </div>
+
+            <div class="copy-btn" onclick="copyText('link1')">
+                <svg viewBox="0 0 24 24">
+                    <path d="M16 1H4C2.9 1 2 1.9 2 3V15H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5Z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- 卡片2 -->
+    <div class="card">
+        <div class="title">
+            来源github.com/snakem982
+        </div>
+
+        <div class="copy-box">
+            <div class="text" id="link2">
+                https://raw.githubusercontent.com/snakem982/proxypool/main/source/clash-meta.yaml
+            </div>
+
+            <div class="copy-btn" onclick="copyText('link2')">
+                <svg viewBox="0 0 24 24">
+                    <path d="M16 1H4C2.9 1 2 1.9 2 3V15H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5Z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+     <!-- 卡片3 -->
+    <div class="card">
+        <div class="title">
+            来源github.com/PuddinCat
+        </div>
+
+        <div class="copy-box">
+            <div class="text" id="link3">
+                https://ghfile.geekertao.top/https://github.com/PuddinCat/BestClash/blob/main/proxies.yaml
+            </div>
+
+            <div class="copy-btn" onclick="copyText('link3')">
+                <svg viewBox="0 0 24 24">
+                    <path d="M16 1H4C2.9 1 2 1.9 2 3V15H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5Z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+     <!-- 卡片4 -->
+    <div class="card">
+        <div class="title">
+            来源电报频道 免费节点VPN
+        </div>
+
+        <div class="copy-box">
+            <div class="text" id="link4">
+                https://rs6.r6r6.xyz/c/WRAidT9
+            </div>
+
+            <div class="copy-btn" onclick="copyText('link4')">
+                <svg viewBox="0 0 24 24">
+                    <path d="M16 1H4C2.9 1 2 1.9 2 3V15H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5Z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+     <!-- 卡片5 -->
+    <div class="card">
+        <div class="title">
+            来源电报频道 橘子TG代理白嫖频道
+        </div>
+
+        <div class="copy-box">
+            <div class="text" id="link5">
+                https://x.v50.lat/view.php?id=28bc8fdd22f39e83
+            </div>
+
+            <div class="copy-btn" onclick="copyText('link5')">
+                <svg viewBox="0 0 24 24">
+                    <path d="M16 1H4C2.9 1 2 1.9 2 3V15H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5Z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+     <!-- 卡片6 -->
+    <div class="card">
+        <div class="title">
+            来源电报频道 公益机场免费节点订阅分享
+        </div>
+
+        <div class="copy-box">
+            <div class="text" id="link6">
+                https://raw.githubusercontent.com/go4sharing/sub/main/sub.yaml
+            </div>
+
+            <div class="copy-btn" onclick="copyText('link6')">
+                <svg viewBox="0 0 24 24">
+                    <path d="M16 1H4C2.9 1 2 1.9 2 3V15H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5Z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+     <!-- 卡片7 -->
+    <div class="card">
+        <div class="title">
+            来源电报频道 订阅分享中心
+        </div>
+
+        <div class="copy-box">
+            <div class="text" id="link7">
+                https://sni.111000.dynv6.net/sub
+            </div>
+
+            <div class="copy-btn" onclick="copyText('link7')">
+                <svg viewBox="0 0 24 24">
+                    <path d="M16 1H4C2.9 1 2 1.9 2 3V15H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5Z"/>
+                </svg>
+            </div>
+        </div>
+
+        <br>
+        <div class="copy-box">
+            <div class="text" id="link8">
+                https://igdux.top/GdTz
+            </div>
+
+            <div class="copy-btn" onclick="copyText('link8')">
+                <svg viewBox="0 0 24 24">
+                    <path d="M16 1H4C2.9 1 2 1.9 2 3V15H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5Z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <div class="desc">
+        全失效，返回 <a href="https://thinking555.github.io/gogogo.html" target="_blank">翻墙直通</a> 下载迷雾通使用。
+    </div>
 </div>
 
-<script>
-function copyLink() {
-    const text = document.getElementById("link").innerText;
+ 
 
-    // 方案1：现代浏览器
-    if (navigator.clipboard) {
+<div class="toast" id="toast">已复制</div>
+
+<script>
+function copyText(id) {
+    const el = document.getElementById(id);
+    const text = el.innerText;
+
+    // 方法1：现代浏览器
+    if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text).then(() => {
-            showSuccess();
+            showCopied(el, text);
         }).catch(() => {
-            fallbackCopy(text);
+            fallbackCopy(text, el);
         });
     } else {
-        fallbackCopy(text);
+        // 方法2：兼容旧手机
+        fallbackCopy(text, el);
     }
 }
 
-// 方案2：兼容所有设备（包括 iPhone）
-function fallbackCopy(text) {
-    const textarea = document.getElementById("fallback");
+// 兼容复制（关键）
+function fallbackCopy(text, el) {
+    const textarea = document.createElement("textarea");
     textarea.value = text;
-    textarea.style.display = "block";
+
+    // 防止页面跳动
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+
+    document.body.appendChild(textarea);
+    textarea.focus();
     textarea.select();
-    textarea.setSelectionRange(0, 99999);
 
     try {
         document.execCommand("copy");
-        showSuccess();
+        showCopied(el, text);
     } catch (err) {
-        alert("复制失败，请手动长按复制");
+        alert("复制失败，请手动复制");
     }
+
+    document.body.removeChild(textarea);
 }
 
-function showSuccess() {
-    const msg = document.getElementById("msg");
-    msg.style.display = "block";
+// 显示“已复制!”
+function showCopied(el, originalText) {
+    el.classList.add("copied");
+    el.innerText = "已复制!";
+
     setTimeout(() => {
-        msg.style.display = "none";
-    }, 2000);
+        el.innerText = originalText;
+        el.classList.remove("copied");
+    }, 1200);
 }
 </script>
-
 </body>
 </html>
