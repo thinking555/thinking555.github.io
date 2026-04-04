@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>使用 v2rayNG 给 Switch 加速下载</title>
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --sub: #6b7280;
+      --line: #e5e7eb;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.25;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--sub);
+      font-size: 16px;
+    }
+
+    .section {
+      margin-top: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 22px;
+    }
+
+    p { margin: 0 0 14px; }
+
+    ol, ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    li { margin: 10px 0; }
+
+    .tip, .note {
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-top: 16px;
+    }
+
+    .tip {
+      background: var(--accent-soft);
+      border: 1px solid #bfdbfe;
+    }
+
+    .note {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+    }
+
+    .image-wrap {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .image-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .image-caption {
+      padding: 12px 14px;
+      font-size: 14px;
+      color: var(--sub);
+      border-top: 1px solid var(--line);
+      background: #fafafa;
+    }
+
+    code {
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-size: 0.95em;
+    }
+
+    .footer {
+      margin-top: 24px;
+      color: var(--sub);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 20px 14px 40px; }
+      .hero, .section { padding: 18px; }
+      h1 { font-size: 26px; }
+      h2 { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <h1>使用 v2rayNG 给 Switch 加速下载</h1>
+      <p class="lead">
+        具体操作和主机游戏加速器的热点加速差不多。
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>方案说明</h2>
+      <p>
+        这个方法的核心是：先在手机上开启 v2rayNG 代理，再把手机热点或 Wi-Fi 中继共享给 Switch，最后在 Switch 里手动填写代理服务器地址和端口。
+      </p>
+
+      <p>
+       需要的东西：安卓手机、switch、<a href="https://thinking555.github.io/gogogo.html" target="_blank">v2rayNG软件</a>
+      </p>
+
+    </section>
+
+    <section class="section">
+      <h2>操作步骤</h2>
+      <ol>
+        <li>打开 <strong>v2rayNG</strong>，导入节点并开启代理。</li>
+        <li>
+          进入设置，把 <strong>“允许来自局域网连接”</strong> 打开。
+        </li>
+        <li>
+          记录 <strong>“本地代理端口”</strong>，后面在 Switch 上要用到。
+        </li>
+        <li>开启手机热点，或者使用 Wi-Fi 中继。</li>
+        <li>让 Switch 连接到这个热点网络。</li>
+        <li>
+          在 Switch 的网络设置中，进入当前热点的详细设置，把 <strong>“代理服务器设置”</strong> 改为启用。
+        </li>
+        <li>
+          在 <strong>服务器</strong> 一栏填写手机的本地 IP 地址，一般是 <code>192.168.x.x</code> 这种格式。
+        </li>
+        <li>
+          在 <strong>端口</strong> 一栏填写前面在 v2rayNG 里记录的本地代理端口。
+        </li>
+        <li>保存设置后，Switch 就会通过手机代理翻墙。</li>
+      </ol>
+
+      <div class="tip">
+        <strong>小提示：</strong> 只要代理服务正常运行，理论上连接这个热点的其他设备也可以连接使用。无法使用YouTube。
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>v2rayNG 设置：</h2>
+      <div class="image-wrap">
+        <img src="https://i.mji.rip/2026/04/04/667b43c0b1aee47f8bd834cbb5621ca2.png" alt="v2rayNG 设置界面截图" />
+        <div class="image-caption">在设置中开启“允许来自局域网连接”，并记下“本地代理端口”。</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>怎么查看手机本地 IP：</h2>
+      <p>
+        可以安装 <strong><a href="https://thinking555.github.io/gogogo.html" target="_blank">LocalSend</a></strong>。打开应用后，在首页点击 <strong>“¡”</strong>，就能看到手机当前的本地 IP 地址。
+      </p>
+      <div class="image-wrap">
+        <img src="https://i.mji.rip/2026/04/04/7f4ac690de88df9f7d2396fbc5f4bf33.png" alt="LocalSend 查看本地 IP 截图" />
+        <div class="image-caption">通过 LocalSend 查看手机的局域网 IP 地址。</div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
