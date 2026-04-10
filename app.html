@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub 选安装包指南</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.8;
+      color: #222;
+      max-width: 980px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background: #f8f9fb;
+    }
+    .container {
+      background: #fff;
+      padding: 32px;
+      border-radius: 14px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+    }
+    h1, h2, h3 {
+      color: #111827;
+    }
+    h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 12px;
+    }
+    h2 {
+      margin-top: 32px;
+      font-size: 24px;
+      border-left: 5px solid #3b82f6;
+      padding-left: 12px;
+    }
+    h3 {
+      margin-top: 24px;
+      font-size: 19px;
+    }
+    p, li {
+      font-size: 16px;
+    }
+    code {
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: Consolas, Monaco, monospace;
+      color: #3ddc84;
+    }
+    .example {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 16px;
+      border-radius: 10px;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #e5e7eb;
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f3f4f6;
+      font-weight: 700;
+    }
+    ul {
+      padding-left: 22px;
+    }
+    .note {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 14px 16px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>GitHub 选安装包指南：软件名称后缀解释</h1>
+
+    <div class="example">
+      <p><strong>示例：</strong><code>Clash Verge-2.4.7-1.aarch64.rpm</code></p>
+      <p><strong>命名规则：</strong>软件名称 - 版本号 - 系统架构 - 安装包格式</p>
+    </div>
+
+    <h2>一、系统架构</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>架构名称</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>aarch64</code></td>
+          <td>aarch64 是 ARM 64 位架构的正式名称。Mac 端也叫 Apple Silicon，例如 M1、M2、M3、M4、M5 芯片。</td>
+        </tr>
+        <tr>
+          <td><code>armhfp</code></td>
+          <td>ARM32、ARMv7。</td>
+        </tr>
+        <tr>
+          <td><code>x86_64</code></td>
+          <td>代表 64 位 CPU 架构，也称为 AMD64 或 Intel 64。</td>
+        </tr>
+        <tr>
+          <td><code>ia32</code></td>
+          <td>代表英特尔 32 位架构（Intel Architecture 32-bit），通常也称为 x86。</td>
+        </tr>
+        <tr>
+          <td><code>arm64-v8a.apk</code></td>
+          <td>arm64-v8a 是现代手机（约 2015 年后）的主流 64 位架构。</td>
+        </tr>
+        <tr>
+          <td><code>armeabi-v7a.apk</code></td>
+          <td>这是 32 位的 ARM 架构，广泛用于较旧的 Android 设备或低端手机。</td>
+        </tr>
+        <tr>
+          <td><code>Universal（通用）</code></td>
+          <td>指该 APK 包含支持所有主流 CPU 架构（如 arm64-v8a、armeabi-v7a、x86、x86_64）的库文件。相比针对特定手机优化的版本，它体积更大，但可以在任何 Android 设备上安装。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>二、安装包格式</h2>
+
+    <h3>Linux 端</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>格式</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>.rpm</code></td>
+          <td>代表 RPM Package Manager，是 Fedora、CentOS、RHEL、Oracle Linux 和 OpenSUSE 等发行版使用的标准安装包格式。</td>
+        </tr>
+        <tr>
+          <td><code>.deb</code></td>
+          <td>是 Debian 及其衍生系统（如 Ubuntu、Linux Mint、Kali Linux、Tails、Parrot OS、Raspberry Pi OS 等）使用的软件包格式。</td>
+        </tr>
+        <tr>
+          <td><code>.AppImage</code></td>
+          <td>是一种“无需安装”的软件包格式。它将应用程序及其所有依赖项打包成一个单一文件，可以在大多数 Linux 发行版（如 Ubuntu、Debian、Fedora、CentOS 等）上直接运行。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Mac 端</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>格式</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>aarch64.app.tar.gz</code></td>
+          <td>在 macOS 上，这通常代表一个应用束（Application Bundle）。包含此后缀的 <code>.tar.gz</code> 往往是专为 Mac 设计的便携软件。</td>
+        </tr>
+        <tr>
+          <td><code>.pkg</code></td>
+          <td>是 macOS 的标准安装包格式，双击即可通过系统自带的“安装器”程序运行。</td>
+        </tr>
+        <tr>
+          <td><code>.dmg</code></td>
+          <td>DMG（Apple Disk Image）是 macOS 操作系统中用于分发软件和数据的专用磁盘映像文件格式。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Windows 端</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>格式</th>
+          <th>说明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>portable（便携版）.zip</code></td>
+          <td>该软件无需安装。你可以直接将其解压到任意文件夹，甚至 U 盘中运行，不会在系统注册表中留下冗余信息。</td>
+        </tr>
+        <tr>
+          <td><code>setup（安装版）.exe</code></td>
+          <td>Windows 系统的标准安装程序扩展名。</td>
+        </tr>
+        <tr>
+          <td><code>.msix</code></td>
+          <td>微软推出的一种现代 Windows 应用打包格式。它结合了传统安装程序（如 MSI 和 EXE）的优点，旨在提供更可靠的安装体验和更干净的卸载过程。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>三、各平台常见芯片架构</h2>
+    <ul>
+      <li><strong>Mac 端：</strong>主要芯片是 <code>x64</code>（Intel）和 <code>arm64</code>（Apple Silicon）。</li>
+      <li><strong>Windows 端：</strong>主要芯片是 <code>x64</code>、<code>x32</code> 和 <code>arm64</code>。</li>
+      <li><strong>Linux 端：</strong>主要芯片是 <code>x64</code> 和 <code>arm64</code>。</li>
+    </ul>
+
+    <div style="text-align: center; margin: 24px 0;">
+  <img 
+    src="https://i.postimg.cc/Hx8hWf6b/jie-ping2026-04-10-20-08-27.png" 
+    alt="各平台安装包示意图"
+    style="max-width: 100%; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"
+  >
+</div>
+
+    <div class="note">
+      <strong>小提示：</strong>在 GitHub 下载软件时，通常先看自己的操作系统，再看 CPU 架构，最后再选对应的安装包格式。
+    </div>
+  </div>
+</body>
+</html>
