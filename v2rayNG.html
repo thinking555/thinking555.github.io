@@ -180,28 +180,99 @@
       </ol>
 
       <div class="tip">
-        <strong>小提示：</strong> 在可以使用软件的系统，没必要用这个方法，无需必要不要去做“奥卡姆剃刀原理”。无法使用YouTube。
+        <strong>小提示：</strong> 在可以使用软件的系统，没必要用这个方法，无需必要不要去做“奥卡姆剃刀原理”。这个方法无法使用YouTube。
       </div>
     </section>
 
     <section class="section">
       <h2>v2rayNG 设置：</h2>
       <div class="image-wrap">
-        <img src="https://i.mji.rip/2026/04/04/667b43c0b1aee47f8bd834cbb5621ca2.png" alt="v2rayNG 设置界面截图" />
+        <img src="https://i.imgs.ovh/2026/04/10/Z43t5C.png" alt="v2rayNG 设置界面截图" />
         <div class="image-caption">在设置中开启“允许来自局域网连接”，并记下“本地代理端口”。</div>
       </div>
     </section>
 
     <section class="section">
-      <h2>怎么查看手机本地 IP：</h2>
-      <p>
-        可以安装 <strong><a href="https://thinking555.github.io/gogogo.html" target="_blank">LocalSend</a></strong>。打开应用后，在首页点击 <strong>“¡”</strong>，就能看到手机当前的本地 IP 地址。
-      </p>
-      <div class="image-wrap">
-        <img src="https://i.mji.rip/2026/04/04/7f4ac690de88df9f7d2396fbc5f4bf33.png" alt="LocalSend 查看本地 IP 截图" />
-        <div class="image-caption">通过 LocalSend 查看手机的局域网 IP 地址。</div>
-      </div>
-    </section>
+  <h2>怎么查看手机本地 IP：</h2>
+
+  <p>
+    不同设备查看方式略有不同。通常你需要记录热点网络里的 <strong>路由器地址</strong> 或 <strong>DNS 地址</strong>，
+    再把它填到代理设置里作为服务器地址使用。
+  </p>
+
+  <h3>Switch</h3>
+  <p><strong>IP 地址查看方法：</strong>连接热点后 → 设置 → 互联网 → 把<strong>首选 DNS</strong>记录下来。</p>
+
+  <div class="image-wrap">
+    <img src="https://i.imgs.ovh/2026/04/11/Z4ibYp.jpeg" alt="Switch 查看首选 DNS 截图" />
+    <div class="image-caption">连接热点后，在 Switch 的互联网设置中记录“首选 DNS”。</div>
+  </div>
+
+  <h3>Mac</h3>
+  <p><strong>IP 地址查看方法：</strong>连接热点后 → 设置 → Wi-Fi → 详细信息 → 拷贝下<strong>路由器地址</strong>。</p>
+  <p><strong>代理设置：</strong>设置 → Wi-Fi → 详细信息 → 代理 → 开启 <strong>SOCKS 代理</strong> → 把路由器地址填入<strong>服务器</strong>栏 → 把 NG 设置的端口填入<strong>端口</strong>栏 → 保存。</p>
+  <br />
+  <h3>iOS</h3>
+  <p><strong>IP 地址查看方法：</strong>连接热点后 → 设置 → 无线局域网 → 点击当前网络右侧的 <strong>i</strong> → 拷贝下<strong>路由器地址</strong>。</p>
+  <p><strong>代理设置：</strong>设置 → 无线局域网 → 点击当前网络右侧的 <strong>i</strong> → 配置代理 → 手动 → 把路由器地址填入<strong>服务器</strong>栏 → 把 NG 设置的端口填入<strong>端口</strong>栏 → 保存。</p>
+  <br />
+  <h3>Windows</h3>
+  <p><strong>IP 地址查看方法：</strong>查看当前 Wi-Fi 属性 → 复制 <strong>IPv4 DNS 服务器</strong>。</p>
+  <p><strong>代理设置：</strong>连接热点后 → 网络设置 → 代理 → 开启<strong>手动设置代理</strong> → 把 DNS 服务器填入<strong>地址</strong>栏 → 把 NG 设置的端口填入<strong>端口</strong>栏 → 保存。</p>
+  <br />
+  <h3>Android（小米）</h3>
+  <p><strong>IP 地址查看方法：</strong>连接热点后 → 设置 → 网络详情 → 拷贝下<strong>路由器地址</strong>。</p>
+  <p><strong>代理设置：</strong>设置 → 网络详情 → 代理 → 手动 → 把路由器地址填入<strong>主机名</strong>栏 → 把 NG 设置的端口填入<strong>端口</strong>栏 → 保存。</p>
+
+  <div class="tip">
+    <strong>补充说明：</strong>不同系统显示名称可能略有区别，例如“路由器”“网关”“DNS”或“IPv4 DNS 服务器”，只要按对应步骤填写即可。
+  </div>
+
+  <p style="margin-top:16px;">
+    <a href="https://www.youtube.com/watch?v=HbGqLWVO2ZU" target="_blank" rel="noopener noreferrer">视频操作演示</a>
+  </p>
+</section>
+
+<section class="section">
+  <h2>其他代理软件</h2>
+
+  <p>
+    如果你不用 v2rayNG，也可以使用其他支持<strong>局域网共享</strong>的代理软件。
+    核心思路一样：开启局域网访问，并记下对应端口，然后在设备里手动填写代理地址和端口。
+  </p>
+
+  <h3>Clash Meta</h3>
+  <p>
+    设置 → 覆写 → 将 <strong>HTTP 端口</strong> 设置为 <code>10808</code> →
+    开启 <strong>允许来自局域网的连接</strong>。
+  </p>
+
+  <h3>Hiddify</h3>
+  <p>
+    设置 → 入站 → 开启 <strong>允许来自局域网的连接</strong> →
+    将 <strong>混合端口</strong> 设置为 <code>10808</code>。
+  </p>
+
+  <h3>Shadowrocket</h3>
+  <p>
+    设置 → 代理共享 → 启用共享。
+  </p>
+  <div class="tip">
+    <strong>说明：</strong>Shadowrocket 和上面的方式略有不同，只要设备连接到<strong>同一个 Wi-Fi</strong> 即可使用共享代理。
+  </div>
+
+  <h3>NekoBox / Surfboard / FlClash</h3>
+  <p>
+    这几个安卓代理软件也可以。只要找到
+    <strong>“局域网共享”</strong>、<strong>“允许局域网连接”</strong>
+    或类似选项并开启即可。
+  </p>
+
+  <div class="tip">
+    <strong>补充说明：</strong>不同软件显示的端口类型可能是 HTTP、SOCKS 或混合端口。
+    实际填写时，以软件当前开启的共享端口为准。
+  </div>
+</section>
 
   </div>
 </body>
