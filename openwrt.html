@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OpenWrt 路由器翻墙</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                   "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+    }
+    .hero {
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      color: #fff;
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: 32px;
+    }
+    .hero p {
+      margin: 0;
+      opacity: 0.92;
+      font-size: 16px;
+    }
+    .section-title {
+      font-size: 22px;
+      margin: 26px 0 14px;
+      color: #111827;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+    }
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      color: #1d4ed8;
+      background: #e8f0ff;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      color: #111827;
+    }
+    .card p {
+      margin: 0 0 14px;
+      color: #4b5563;
+      font-size: 14px;
+      min-height: 42px;
+    }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #2563eb;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .btn:hover {
+      background: #1d4ed8;
+    }
+
+    .bottom-image {
+      margin-top: 36px;
+      text-align: center;
+      background: #fff;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+    }
+    .bottom-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 14px;
+      display: block;
+      margin: 0 auto;
+    }
+    .bottom-image p {
+      margin: 0 0 12px;
+      color: #374151;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .footer {
+      margin-top: 34px;
+      padding-top: 16px;
+      border-top: 1px solid #dbe2ea;
+      color: #6b7280;
+      font-size: 13px;
+    }
+    code {
+      background: #eef2ff;
+      color: #3730a3;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="hero">
+      <h1>专业事，给专业人</h1>
+      <p>OpenWrt 固件是系统，OpenWrt 插件等于手机上的软件。路由器上配置好以后，通常重启后也会自动生效，不需要像手机或电脑那样每次都手动打开客户端。因为相关功能是跑在路由器系统里的，通常会随着系统启动一起启动。</p>
+    </div>
+
+    <h2 class="section-title">插件推荐</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="tag">插件</div>
+        <h3>OpenClash</h3>
+        <p>基于 OpenWrt 的代理管理插件，适合规则分流与订阅管理。</p>
+        <a class="btn" href="https://github.com/vernesong/OpenClash" target="_blank" rel="noopener noreferrer">打开项目</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">插件</div>
+        <h3>Passwall2</h3>
+        <p>OpenWrt 常用科学上网插件之一，支持多种代理协议与节点管理。</p>
+        <a class="btn" href="https://github.com/Openwrt-Passwall/openwrt-passwall2" target="_blank" rel="noopener noreferrer">打开项目</a>
+      </div>
+    </div>
+
+    <h2 class="section-title">了解 OpenWrt</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="tag">官方文档</div>
+        <h3>OpenWrt 支持设备列表</h3>
+        <p>查看官方支持的设备信息，确认路由器是否兼容 OpenWrt。</p>
+        <a class="btn" href="https://openwrt.org/supported_devices" target="_blank" rel="noopener noreferrer">查看列表</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">设备查询</div>
+        <h3>Table of Hardware</h3>
+        <p>通过型号搜索支持 OpenWrt 的路由器，适合购机前筛选与对比。</p>
+        <a class="btn" href="https://toh.openwrt.org/?view=normal" target="_blank" rel="noopener noreferrer">搜索路由器</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">固件下载</div>
+        <h3>Firmware Selector</h3>
+        <p>下载适用于您路由器的 OpenWrt 固件，并可自定义镜像内容。</p>
+        <a class="btn" href="https://firmware-selector.openwrt.org/" target="_blank" rel="noopener noreferrer">进入下载</a>
+      </div>
+    </div>
+
+<h2 class="section-title">视频教程</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="tag">不良林</div>
+        <h3>新手入门软路由指南</h3>
+        <p>家庭全设备科学上网。</p>
+        <a class="btn" href="https://www.youtube.com/watch?v=JfSJmPFiL_s&t=6s" target="_blank" rel="noopener noreferrer">去看看</a>
+      </div>
+
+      <div class="card">
+        <div class="tag">E百分出海服务</div>
+        <h3>passwall 科学上网</h3>
+        <p>快速简单配置openwrt基础操作。</p>
+        <a class="btn" href="https://www.youtube.com/watch?v=uwF-as12Y8w" target="_blank" rel="noopener noreferrer">去看看</a>
+      </div>
+
+    </div>
+
+    <div class="bottom-image">
+      <p>主路由、旁路由、软路由关系图</p>
+      <img src="https://i.imgs.ovh/2026/04/20/ZX7e7C.png" alt="OpenWrt 图片展示" />
+    </div>
+
+  </div>
+</body>
+</html>
