@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wi-Fi探针与IMSI捕捉器</title>
+  <style>
+    body {
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
+      line-height: 1.8;
+      color: #222;
+      background: #f7f8fa;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 960px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 36px;
+      border-radius: 12px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+    }
+    h1, h2, h3 {
+      color: #111;
+      margin-top: 1.4em;
+      margin-bottom: 0.6em;
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 32px;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 12px;
+    }
+    h2 {
+      font-size: 24px;
+      border-left: 4px solid #2563eb;
+      padding-left: 12px;
+    }
+    h3 {
+      font-size: 20px;
+    }
+    p {
+      margin: 1em 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 15px;
+    }
+    th, td {
+      border: 1px solid #d1d5db;
+      padding: 12px 14px;
+      text-align: center;
+    }
+    th {
+      background: #f3f4f6;
+      font-weight: 600;
+    }
+    td:first-child, th:first-child {
+      text-align: left;
+      white-space: nowrap;
+    }
+    ul {
+      padding-left: 24px;
+      margin: 12px 0;
+    }
+    li {
+      margin: 8px 0;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+      margin: 28px 0;
+    }
+    .note {
+      background: #f9fafb;
+      border-left: 4px solid #10b981;
+      padding: 14px 16px;
+      border-radius: 6px;
+      margin: 18px 0;
+    }
+    .code {
+      font-family: Consolas, Monaco, monospace;
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    strong {
+      color: #111827;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>IMEI（国际移动设备识别码）手机串号</th>
+          <th>IMSI（国际移动用户识别码）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>嵌入位置</td>
+          <td>手机内</td>
+          <td>SIM电话卡内</td>
+        </tr>
+        <tr>
+          <td>查询方法</td>
+          <td>在拨号键盘输入 <span class="code">*#06#</span></td>
+          <td>手机拨号键盘输入 <span class="code">*#*#4636#*#*</span></td>
+        </tr>
+        <tr>
+          <td>关联性</td>
+          <td>绑定手机硬件</td>
+          <td>绑定运营商账号</td>
+        </tr>
+        <tr>
+          <td>比喻</td>
+          <td>手机的身份证号</td>
+          <td>SIM的身份证号</td>
+        </tr>
+        <tr>
+          <td>政府能做</td>
+          <td>被盗手机库、被运营商和卡绑定、实时定位（无卡手机可以打急救电话）</td>
+          <td>什么时候出现、出现范围、通信记录、这卡的实名信息</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <strong>IMSI 15位：</strong>
+      MCC（移动国家码，固定3位） + MNC（移动网络码，2位或3位） + MSIN（移动用户识别码，9位或10位）
+    </div>
+
+    <h1>Wi-Fi探针与IMSI捕捉器</h1>
+
+    <p>
+      手机即使没有主动打电话、发短信或连接网络，只要无线功能处于开启状态，仍可能被周围设备“感知”到。
+      常见方式主要有两种：<strong>Wi-Fi 探针</strong> 和 <strong>IMSI 捕捉器</strong>。
+    </p>
+
+    <h2>一、什么是 IMSI 捕捉器</h2>
+
+    <p>
+      IMSI 捕捉器通常被称为“伪基站”，本质上是一种伪装成运营商基站的无线设备。
+      手机在搜索和连接蜂窝网络时，可能会与附近的这类设备发生交互，从而暴露自身的移动用户身份信息。
+    </p>
+
+    <p>它主要可以做到以下几件事：</p>
+    <ul>
+      <li>记录附近出现过哪些手机</li>
+      <li>判断某个特定目标是否到过现场</li>
+      <li>粗略判断目标是否在某一片区域内</li>
+    </ul>
+
+    <p>
+      这里的核心标识是 <strong>IMSI</strong>。<br />
+      IMSI 是“国际移动用户识别码”，存储在 <strong>SIM 卡</strong> 中，与运营商账号绑定。
+      它不是手机硬件编号，而是用户通信身份编号。
+    </p>
+
+    <h3>IMSI 捕捉器的特点</h3>
+
+    <p>
+      它关注的是<strong>蜂窝网络侧的身份信息</strong>，重点不是“这是什么手机”，而是“这是哪个移动用户”。
+    </p>
+
+    <p>
+      不同网络制式下，捕捉和利用的难度并不一样。一般来说，网络越新，难度越高，大致可理解为：
+    </p>
+
+    <p><strong>5G &gt; 4G &gt; 3G &gt; 2G</strong></p>
+
+    <h3>基本防范方式</h3>
+
+    <p>最直接的方法是：</p>
+    <p><strong>开启飞行模式</strong></p>
+
+    <p>
+      因为飞行模式会关闭蜂窝通信，手机就不会继续与周围基站进行正常交互，
+      从而降低被伪基站感知到的机会。
+    </p>
+
+    <hr />
+
+    <h2>二、什么是 Wi-Fi 探针</h2>
+
+    <p>
+      Wi-Fi 探针是一种通过 Wi-Fi 信号感知周边设备的方式。只要手机开启了 Wi-Fi，
+      即使没有连接某个热点，也可能在扫描周围网络时被探针设备记录到。
+    </p>
+
+    <p>它通常记录的是：</p>
+
+    <p><strong>开启 Wi-Fi 的手机所暴露出的 MAC 地址等无线特征</strong></p>
+
+    <p>
+      过去，很多手机的 MAC 地址是固定的，因此探针设备可以通过多次记录，
+      把同一台设备在不同时间、不同地点的出现轨迹串联起来。
+    </p>
+
+    <h3>随机 MAC 地址带来的变化</h3>
+
+    <p>现在情况已经发生了明显变化：</p>
+    <ul>
+      <li><strong>安卓 10 以上</strong></li>
+      <li><strong>苹果近年的系统设备</strong></li>
+    </ul>
+
+    <p>普遍启用了<strong>随机 MAC 地址</strong>机制。</p>
+
+    <p>
+      这意味着探针设备很多时候只能知道“有一台手机路过了”，
+      但不容易长期稳定地认出“还是同一个人”。
+    </p>
+
+    <p>
+      相比之下，<strong>安卓 10 以下的一些老设备</strong>保护较弱，更容易被持续识别。
+    </p>
+
+    <h3>基本防范方式</h3>
+
+    <p>最直接的方法是：</p>
+    <p><strong>关闭 Wi-Fi</strong></p>
+
+    <p>
+      只要 Wi-Fi 不开启，探针设备就无法通过 Wi-Fi 扫描记录到这台手机。
+    </p>
+
+    <hr />
+
+    <h2>三、两者的区别</h2>
+
+    <p>
+      虽然 Wi-Fi 探针和 IMSI 捕捉器都能“感知”手机是否出现过，但它们并不是一回事。
+    </p>
+
+    <h3>1. 工作对象不同</h3>
+    <ul>
+      <li><strong>IMSI 捕捉器</strong>：针对蜂窝网络，关注的是 <strong>SIM 卡身份</strong></li>
+      <li><strong>Wi-Fi 探针</strong>：针对 Wi-Fi 无线接口，关注的是 <strong>MAC 地址等设备特征</strong></li>
+    </ul>
+
+    <h3>2. 依赖条件不同</h3>
+    <ul>
+      <li><strong>IMSI 捕捉器</strong>：要求手机的蜂窝通信处于开启状态</li>
+      <li><strong>Wi-Fi 探针</strong>：要求手机的 Wi-Fi 处于开启状态</li>
+    </ul>
+
+    <h3>3. 可关联能力不同</h3>
+    <ul>
+      <li><strong>IMSI</strong> 与运营商账号绑定，关联能力通常更强</li>
+      <li><strong>MAC 地址</strong> 在随机化普及后，长期稳定识别能力已下降很多</li>
+    </ul>
+
+    <h3>4. 防范方式不同</h3>
+    <ul>
+      <li>防 IMSI 捕捉器：<strong>开飞行模式</strong></li>
+      <li>防 Wi-Fi 探针：<strong>关 Wi-Fi</strong></li>
+    </ul>
+
+    <hr />
+
+    <h2>四、总结</h2>
+
+    <p>
+      <strong>IMSI 捕捉器</strong> 通过伪装成基站，感知附近手机的蜂窝通信身份信息；<br />
+      <strong>Wi-Fi 探针</strong> 通过监听 Wi-Fi 扫描行为，记录路过设备的无线特征。
+    </p>
+
+    <p>
+      它们都更适合做“某设备是否出现过、是否在附近”的判断，而不等于高精度定位。
+    </p>
+
+    <p>从个人防护角度看，原则很简单：</p>
+
+    <p><strong>不用的无线功能就关闭。</strong><br />
+      不需要蜂窝通信时，开启飞行模式；<br />
+      不需要 Wi-Fi 时，关闭 Wi-Fi。
+    </p>
+
+    <p>
+      <a href="https://www.youtube.com/watch?v=Oo_FM3mjBCY">体貌识别、好友显示、声纹收集、DNA采集、指纹采集、虹膜视网膜记录、摄像头记录人脸。</a>和上面的技术组合起来，这就是天眼，人的欲望无穷总想着占有一切而且要永远。
+    </p>
+  </div>
+</body>
+</html>
