@@ -458,37 +458,33 @@ body {
 
 
 
-/* ===== 放大规格、含糖、热量文字 ===== */
+/* ===== 更大版：规格、含糖、热量文字 ===== */
 
-/* 常见规格 */
 .spec {
-  font-size: clamp(13px, 0.85vw, 16px);
-  font-weight: 900;
+  font-size: clamp(14px, 0.95vw, 18px);
+  font-weight: 950;
 }
 
-/* 含糖约 45g */
 .sugar-meta {
-  font-size: clamp(13px, 0.85vw, 16px);
-  font-weight: 900;
+  font-size: clamp(14px, 0.95vw, 18px);
+  font-weight: 950;
 }
 
-/* 热量约 180kcal */
 .calorie {
-  font-size: clamp(12px, 0.78vw, 15px);
-  font-weight: 900;
+  font-size: clamp(13px, 0.85vw, 16px);
+  font-weight: 950;
 }
 
-/* 手机端也同步放大一点 */
 @media (max-width: 700px) {
   .spec {
-    font-size: clamp(10px, 2.8vw, 12px);
+    font-size: clamp(11px, 3vw, 13px);
   }
 
   .sugar-meta {
-    font-size: clamp(10px, 2.8vw, 12px);
+    font-size: clamp(11px, 3vw, 13px);
   }
 
   .calorie {
-    font-size: clamp(9px, 2.6vw, 11px);
+    font-size: clamp(10px, 2.8vw, 12px);
   }
 }
