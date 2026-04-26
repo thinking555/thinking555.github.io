@@ -3,6 +3,11 @@ const SUGAR_CUBE_GRAMS = 5;
 
 const cardGrid = document.getElementById("cardGrid");
 
+const searchInput = document.getElementById("searchInput");
+
+let allDrinks = [];
+let keyword = "";
+
 function escapeHtml(value) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -160,6 +165,27 @@ async function loadDrinks() {
     return [];
   }
 }
+
+function getFilteredDrinks() {
+  if (!keyword) {
+    return allDrinks;
+  }
+
+  return allDrinks.filter(drink => {
+    const searchText = [
+      drink.brand,
+      drink.name,
+      drink.volume,
+      drink.sugarPer100ml,
+      drink.caloriePer100ml
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    return searchText.includes(keyword.toLowerCase());
+  });
+}
+
 async function init() {
   const drinks = await loadDrinks();
 
