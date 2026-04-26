@@ -21,4 +21,92 @@
     "image2": "./images/coca-cola-label.png",
     "mainColor": "#b91c1c"
   }
+  {
+    "id": "kangshifu-ice-tea-500",
+    "brand": "康师傅",
+    "name": "冰红茶",
+    "volume": 500,
+    "sugarPer100ml": 9,
+    "caloriePer100ml": 36,
+    "image1": "./images/kangshifu-ice-tea-front.png",
+    "image2": "./images/kangshifu-ice-tea-back.png",
+    "mainColor": "#c62828"
+  },
+  {
+    "id": "coca-cola-classic-500",
+    "brand": "可口可乐",
+    "name": "经典可乐",
+    "volume": 500,
+    "sugarPer100ml": 10.6,
+    "caloriePer100ml": 42,
+    "image1": "./images/coca-cola-front.png",
+    "image2": "./images/coca-cola-back.png",
+    "mainColor": "#b91c1c"
+  },
+  {
+    "id": "pepsi-zero-500",
+    "brand": "百事",
+    "name": "无糖可乐",
+    "volume": 500,
+    "sugarPer100ml": 0,
+    "caloriePer100ml": 0,
+    "image1": "./images/pepsi-zero-front.png",
+    "image2": "./images/pepsi-zero-back.png",
+    "mainColor": "#1d4ed8"
+  },
+  {
+    "id": "nongfu-dongfang-jasmine-500",
+    "brand": "农夫山泉",
+    "name": "东方树叶茉莉花茶",
+    "volume": 500,
+    "sugarPer100ml": 0,
+    "caloriePer100ml": 0,
+    "image1": "./images/dongfang-jasmine-front.png",
+    "image2": "./images/dongfang-jasmine-back.png",
+    "mainColor": "#166534"
+  },
+  {
+    "id": "yuanqi-peach-soda-480",
+    "brand": "元气森林",
+    "name": "白桃气泡水",
+    "volume": 480,
+    "sugarPer100ml": 0,
+    "caloriePer100ml": 0,
+    "image1": "./images/yuanqi-peach-soda-front.png",
+    "image2": "./images/yuanqi-peach-soda-back.png",
+    "mainColor": "#fb7185"
+  },
+  {
+    "id": "dongpeng-energy-500",
+    "brand": "东鹏饮料",
+    "name": "东鹏特饮",
+    "volume": 500,
+    "sugarPer100ml": 6.8,
+    "caloriePer100ml": 29,
+    "image1": "./images/dongpeng-energy-front.png",
+    "image2": "./images/dongpeng-energy-back.png",
+    "mainColor": "#f59e0b"
+  },
+  {
+    "id": "wanglaoji-herbal-tea-310",
+    "brand": "王老吉",
+    "name": "凉茶",
+    "volume": 310,
+    "sugarPer100ml": 8.5,
+    "caloriePer100ml": 34,
+    "image1": "./images/wanglaoji-front.png",
+    "image2": "./images/wanglaoji-back.png",
+    "mainColor": "#dc2626"
+  },
+  {
+    "id": "wahaha-water-596",
+    "brand": "娃哈哈",
+    "name": "饮用纯净水",
+    "volume": 596,
+    "sugarPer100ml": 0,
+    "caloriePer100ml": 0,
+    "image1": "./images/wahaha-water-front.png",
+    "image2": "./images/wahaha-water-back.png",
+    "mainColor": "#2563eb"
+  }
 ]
