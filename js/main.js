@@ -186,8 +186,8 @@ function getFilteredDrinks() {
   });
 }
 
-async function init() {
-  const drinks = await loadDrinks();
+function renderDrinks() {
+  const drinks = getFilteredDrinks();
 
   if (drinks.length === 0) {
     cardGrid.innerHTML = "";
@@ -197,6 +197,17 @@ async function init() {
   cardGrid.innerHTML = drinks
     .map((drink, index) => renderCard(drink, index))
     .join("");
+}
+
+async function init() {
+  allDrinks = await loadDrinks();
+
+  renderDrinks();
+
+  searchInput.addEventListener("input", function () {
+    keyword = this.value.trim();
+    renderDrinks();
+  });
 }
 
 init();
