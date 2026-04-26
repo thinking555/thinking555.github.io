@@ -4,9 +4,12 @@
 
 :root {
   --orange: #ff8500;
-  --line: #efe7df;
-  --bg: #f7f7f7;
-  --text: #111;
+  --line: #5a3a20;
+  --bg: #15191a;
+  --card-bg: #171b1c;
+  --panel-bg: #2b1700;
+  --text: #e8e3dc;
+  --muted: #bdb6ad;
 }
 
 body {
@@ -18,87 +21,28 @@ body {
   color: var(--text);
 }
 
-
-.filter-section {
-  margin: 0 0 18px;
-  display: grid;
-  grid-template-columns: 1.5fr repeat(3, minmax(150px, 0.5fr));
-  gap: 12px;
-  align-items: center;
-}
-
-.search-input,
-.filter-select {
-  width: 100%;
-  height: 54px;
-  padding: 0 18px;
-  border: 2px solid #efe7df;
-  border-radius: 999px;
-  background: #fff;
-  color: #111;
-  font-size: 18px;
-  font-weight: 700;
-  outline: none;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-}
-
-.search-input::placeholder {
-  color: #999;
-  font-weight: 500;
-}
-
-.search-input:focus,
-.filter-select:focus {
-  border-color: #ff8500;
-  box-shadow: 0 0 0 4px rgba(255, 133, 0, 0.16);
-}
-
-@media (max-width: 900px) {
-  .filter-section {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .search-input {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 700px) {
-  .filter-section {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .search-input,
-  .filter-select {
-    height: 46px;
-    font-size: 15px;
-    padding: 0 15px;
-  }
-}
-
-
 .page {
   width: min(1920px, 100%);
   margin: 0 auto;
-  padding: 24px;
+  padding: 18px;
 }
 
+/* 顶部说明区 */
 .page-header {
-  margin: 0 auto 22px;
-  padding: 22px 24px;
-  background: #fff;
+  margin: 0 auto 18px;
+  padding: 18px 22px;
+  background: #171b1c;
   border: 2px solid var(--line);
-  border-radius: 24px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  border-radius: 22px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
 
 .badge {
   display: inline-flex;
   padding: 7px 12px;
   border-radius: 999px;
-  background: #fff3e3;
-  color: #9a4b00;
+  background: #3a2205;
+  color: #ffb25c;
   font-weight: 800;
   font-size: 14px;
 }
@@ -111,80 +55,79 @@ body {
 
 .page-header p {
   margin: 0;
-  color: #444;
+  color: var(--muted);
   font-size: 16px;
   line-height: 1.7;
 }
 
-.search-section {
-  margin: 0 0 18px;
-  display: flex;
-  justify-content: center;
+/* 搜索和筛选区 */
+.filter-section {
+  margin: 0 0 16px;
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, minmax(150px, 0.5fr));
+  gap: 12px;
+  align-items: center;
 }
 
-.search-input {
-  width: min(680px, 100%);
-  height: 54px;
-  padding: 0 20px;
-  border: 2px solid #efe7df;
+.search-input,
+.filter-select {
+  width: 100%;
+  height: 50px;
+  padding: 0 18px;
+  border: 2px solid var(--line);
   border-radius: 999px;
-  background: #fff;
-  color: #111;
-  font-size: 18px;
-  font-weight: 600;
+  background: #171b1c;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 700;
   outline: none;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
 }
 
 .search-input::placeholder {
-  color: #999;
+  color: #8f8982;
   font-weight: 500;
 }
 
-.search-input:focus {
-  border-color: #ff8500;
-  box-shadow: 0 0 0 4px rgba(255, 133, 0, 0.16);
+.search-input:focus,
+.filter-select:focus {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 4px rgba(255, 133, 0, 0.18);
 }
 
-@media (max-width: 700px) {
-  .search-input {
-    height: 46px;
-    font-size: 15px;
-    padding: 0 15px;
-  }
-}
-
+/* 卡片外部网格：电脑一排 5 个 */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 16px;
+  gap: 14px;
   align-items: stretch;
 }
 
-/* 保留原卡片 475:495 的比例，但改成可缩放，适合一排 5 个 */
+/* 单张卡片 */
 .drink-card {
   width: 100%;
-  aspect-ratio: 475 / 495;
+  height: 255px;
   min-width: 0;
-  background: #fff;
+  background: var(--card-bg);
   border: 2px solid var(--line);
-  border-radius: clamp(14px, 1.4vw, 24px);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-  padding: clamp(10px, 1.25vw, 24px);
+  border-radius: 18px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+  padding: 8px;
   display: grid;
-  grid-template-columns: 36% 1fr;
-  column-gap: clamp(8px, 1vw, 22px);
+  grid-template-columns: 30% 1fr;
+  column-gap: 10px;
   overflow: hidden;
 }
 
+/* 左侧图片区域 */
 .image-area {
   width: 100%;
   height: 100%;
-  align-self: center;
+  align-self: stretch;
   position: relative;
   overflow: hidden;
-  border-radius: clamp(10px, 1vw, 14px);
-  background: linear-gradient(180deg, #fafafa, #f0f0f0);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #1b2021, #15191a);
 }
 
 .slider-track {
@@ -201,6 +144,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 2px;
 }
 
 .slide-green {
@@ -209,113 +153,124 @@ body {
 }
 
 @keyframes autoSlide {
-  0%, 42% {
+  0%,
+  42% {
     transform: translateX(0);
   }
-  50%, 92% {
+
+  50%,
+  92% {
     transform: translateX(-50%);
   }
+
   100% {
     transform: translateX(0);
   }
 }
 
-.bottle-svg {
-  width: 88%;
-  height: 92%;
-  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.12));
-}
-
+.bottle-svg,
 .product-image {
-  width: 92%;
-  height: 92%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.12));
+  object-position: center;
+  display: block;
+  background: transparent;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.18));
 }
 
+/* 右侧内容：核心优化点 */
 .info {
   min-width: 0;
-  padding-top: clamp(8px, 1.45vw, 28px);
+  height: 100%;
+  padding: 6px 2px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: minmax(42px, auto) 28px auto;
+  align-content: center;
+  row-gap: 7px;
   align-items: center;
 }
 
+/* 标题 */
 .title {
   margin: 0;
-  color: #111;
-  font-size: clamp(16px, 1.6vw, 34px);
-  line-height: 1.28;
-  font-weight: 800;
-  letter-spacing: 1px;
+  color: var(--text);
+  font-size: clamp(16px, 0.95vw, 22px);
+  line-height: 1.12;
+  font-weight: 900;
+  letter-spacing: 0;
   max-width: 100%;
   word-break: break-word;
   overflow-wrap: break-word;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
+/* 规格 */
 .spec {
+  width: 100%;
+  max-width: 210px;
+  min-height: 26px;
+  margin: 0 auto;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #222627, #1d2122);
+  color: var(--muted);
+  font-size: clamp(10px, 0.68vw, 13px);
+  font-weight: 800;
+  line-height: 1.2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  max-width: 220px;
-  min-height: clamp(28px, 2.5vw, 44px);
-  margin: clamp(10px, 1.25vw, 22px) 0 clamp(12px, 1.8vw, 34px);
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, #f7f7f7, #eeeeee);
-  color: #555;
-  font-size: clamp(12px, 1vw, 18px);
-  font-weight: 600;
-  line-height: 1.35;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
-  word-break: break-word;
-  overflow-wrap: break-word;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
+/* 糖分面板 */
 .sugar-panel {
   width: 100%;
-  max-width: 240px;
+  max-width: 220px;
   margin: 0 auto;
-  padding: clamp(10px, 1vw, 18px) clamp(8px, .9vw, 16px) clamp(9px, .85vw, 16px);
-  border-radius: clamp(14px, 1.2vw, 20px);
-  background: linear-gradient(180deg, #fffaf3, #ffffff);
-  border: 1px solid #f1dfc9;
-  box-shadow: 0 8px 22px rgba(255, 133, 0, 0.12);
+  padding: 7px 8px 6px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #3a2104, #2a1700);
+  border: 1px solid #7a4a06;
+  box-shadow: 0 8px 18px rgba(255, 133, 0, 0.08);
   overflow: hidden;
 }
 
 .sugar-meta {
-  margin: 0 0 clamp(6px, .6vw, 10px);
-  color: #666;
-  font-size: clamp(12px, 1.08vw, 20px);
-  font-weight: 700;
-  line-height: 1.35;
-  word-break: break-word;
-  overflow-wrap: break-word;
+  margin: 0 0 3px;
+  color: var(--muted);
+  font-size: clamp(10px, 0.68vw, 13px);
+  font-weight: 800;
+  line-height: 1.18;
 }
 
 .sugar-row {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: clamp(3px, .45vw, 8px);
-  color: #222;
+  gap: 4px;
+  color: var(--text);
   font-weight: 800;
-  flex-wrap: wrap;
-  line-height: 1.15;
+  flex-wrap: nowrap;
+  line-height: 1;
 }
 
 .sugar-row .approx,
 .sugar-row .unit {
-  font-size: clamp(13px, 1.25vw, 25px);
+  font-size: clamp(9px, 0.65vw, 13px);
   white-space: nowrap;
 }
 
 .sugar-row .number {
   color: var(--orange);
-  font-size: clamp(34px, 3.6vw, 72px);
+  font-size: clamp(30px, 1.9vw, 42px);
   line-height: 0.9;
   font-weight: 950;
   text-shadow: 0 4px 10px rgba(255, 133, 0, 0.22);
@@ -323,24 +278,23 @@ body {
 }
 
 .calorie {
-  margin-top: clamp(8px, .75vw, 12px);
-  padding-top: clamp(8px, .75vw, 12px);
-  border-top: 1px solid #eeeeee;
-  color: #333;
-  font-size: clamp(12px, 1vw, 18px);
-  font-weight: 500;
-  line-height: 1.4;
-  word-break: break-word;
-  overflow-wrap: break-word;
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--muted);
+  font-size: clamp(9px, 0.62vw, 12px);
+  font-weight: 700;
+  line-height: 1.2;
 }
 
+/* 说明区 */
 .tips {
   margin-top: 24px;
-  padding: 22px 24px;
-  background: #fff;
+  padding: 20px 22px;
+  background: #171b1c;
   border: 2px solid var(--line);
-  border-radius: 24px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  border-radius: 22px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
 }
 
 .tips h2 {
@@ -350,11 +304,11 @@ body {
 .tips p {
   margin: 0 0 12px;
   line-height: 1.7;
-  color: #444;
+  color: var(--muted);
 }
 
 .tips code {
-  background: #f5f5f5;
+  background: #252a2b;
   border-radius: 6px;
   padding: 2px 5px;
 }
@@ -364,22 +318,37 @@ body {
   overflow: auto;
   padding: 14px;
   border-radius: 14px;
-  background: #111827;
+  background: #101415;
   color: #d1fae5;
   line-height: 1.65;
 }
 
-/* 平板：避免卡片太窄 */
-@media (max-width: 1180px) {
+/* 中等屏幕：一排 3 个 */
+@media (max-width: 1280px) {
   .card-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .drink-card {
+    height: 275px;
+  }
+}
+
+/* 筛选区平板适配 */
+@media (max-width: 900px) {
+  .filter-section {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .search-input {
+    grid-column: 1 / -1;
   }
 }
 
 /* 手机：一排 2 个 */
 @media (max-width: 700px) {
   .page {
-    padding: 12px;
+    padding: 10px;
   }
 
   .page-header {
@@ -387,300 +356,16 @@ body {
     border-radius: 18px;
   }
 
-  .card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .drink-card {
-    grid-template-columns: 35% 1fr;
-    padding: 8px;
-    border-radius: 16px;
-  }
-
-  .title {
-    font-size: clamp(13px, 4.5vw, 22px);
-    line-height: 1.18;
-  }
-
-  .spec {
-    font-size: clamp(10px, 3.2vw, 14px);
-    margin: 8px 0 10px;
-    min-height: 26px;
-    padding: 4px 6px;
-  }
-
-  .sugar-panel {
-    padding: 8px 6px;
-    border-radius: 12px;
-  }
-
-  .sugar-meta {
-    font-size: clamp(10px, 3vw, 13px);
-    margin-bottom: 4px;
-  }
-
-  .sugar-row .approx,
-  .sugar-row .unit {
-    font-size: clamp(10px, 3vw, 13px);
-  }
-
-  .sugar-row .number {
-    font-size: clamp(28px, 10vw, 42px);
-  }
-
-  .calorie {
-    font-size: clamp(10px, 3vw, 13px);
-    margin-top: 6px;
-    padding-top: 6px;
-  }
-
-  .tips {
-    padding: 16px;
-    border-radius: 18px;
-  }
-}
-
-
- 
-.title {
-  font-size: clamp(20px, 1.35vw, 31px);
-  line-height: 1.22;
-  letter-spacing: .3px;
-  margin: 0;
-}
-
-.spec {
-  margin: 0;
-  min-height: clamp(34px, 2.2vw, 46px);
-  font-size: clamp(13px, .95vw, 18px);
-  padding: 6px 12px;
-}
-
-.sugar-panel {
-  margin-top: clamp(6px, .6vw, 12px);
-  max-width: 100%;
-  padding: clamp(12px, .9vw, 16px) clamp(10px, .9vw, 16px);
-}
-
-.sugar-meta {
-  font-size: clamp(14px, .95vw, 19px);
-  margin-bottom: clamp(4px, .45vw, 8px);
-}
-
-.sugar-row .approx,
-.sugar-row .unit {
-  font-size: clamp(14px, 1vw, 22px);
-}
-
-.sugar-row .number {
-  font-size: clamp(44px, 3.05vw, 66px);
-}
-
-.calorie {
-  font-size: clamp(13px, .9vw, 17px);
-  margin-top: clamp(7px, .6vw, 10px);
-  padding-top: clamp(7px, .6vw, 10px);
-}
-
-@media (max-width: 1280px) {
-  .card-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .drink-card {
-    min-height: 500px;
-  }
-}
-
-@media (max-width: 700px) {
-  .card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-
-  .drink-card {
-    min-height: 420px;
+  .filter-section {
     grid-template-columns: 1fr;
-    grid-template-rows: 42% 1fr;
-    row-gap: 8px;
-    padding: 10px;
+    gap: 10px;
   }
 
-  .info {
-    padding: 0;
-    gap: 7px;
-  }
-
-  .title {
-    font-size: clamp(16px, 4.4vw, 21px);
-    line-height: 1.18;
-  }
-
-  .spec {
-    min-height: 28px;
-    font-size: clamp(11px, 3vw, 14px);
-    padding: 4px 8px;
-  }
-
-  .sugar-panel {
-    margin-top: 0;
-    padding: 8px 6px;
-    border-radius: 12px;
-  }
-
-  .sugar-meta {
-    font-size: clamp(11px, 3vw, 13px);
-    margin-bottom: 4px;
-  }
-
-  .sugar-row .approx,
-  .sugar-row .unit {
-    font-size: clamp(10px, 3vw, 13px);
-  }
-
-  .sugar-row .number {
-    font-size: clamp(30px, 9vw, 42px);
-  }
-
-  .calorie {
-    font-size: clamp(10px, 3vw, 13px);
-    margin-top: 5px;
-    padding-top: 5px;
-  }
-}
-
-
-
-
-/* ===== 最终压缩版：减少卡片内部上下空隙 ===== */
-
-.card-grid {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 14px;
-  align-items: stretch;
-}
-
-.drink-card {
-  aspect-ratio: auto;
-  height: clamp(270px, 15vw, 315px);
-  min-height: 0;
-  grid-template-columns: 30% 1fr;
-  column-gap: 10px;
-  padding: 8px 10px;
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-.image-area {
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  border-radius: 14px;
-}
-
-.slider-track {
-  height: 100%;
-}
-
-.slide {
-  padding: 2px;
-}
-
-.product-image {
-  width: 100%;
-  height: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  object-position: center;
-  display: block;
-  background: transparent;
-}
-
-.bottle-svg {
-  width: 100%;
-  height: 100%;
-}
-
-.info {
-  padding: 0;
-  gap: 5px;
-  justify-content: center;
-}
-
-.title {
-  margin: 0;
-  font-size: clamp(16px, 0.95vw, 22px);
-  line-height: 1.14;
-  letter-spacing: 0;
-  font-weight: 800;
-
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.spec {
-  min-height: 24px;
-  margin: 0;
-  padding: 2px 8px;
-  font-size: clamp(10px, 0.66vw, 13px);
-  line-height: 1.2;
-}
-
-.sugar-panel {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 6px 8px;
-  border-radius: 13px;
-}
-
-.sugar-meta {
-  margin: 0 0 2px;
-  font-size: clamp(10px, 0.66vw, 13px);
-  line-height: 1.2;
-}
-
-.sugar-row {
-  gap: 3px;
-  line-height: 1;
-}
-
-.sugar-row .approx,
-.sugar-row .unit {
-  font-size: clamp(9px, 0.65vw, 13px);
-}
-
-.sugar-row .number {
-  font-size: clamp(30px, 1.85vw, 42px);
-  line-height: 0.9;
-}
-
-.calorie {
-  margin-top: 4px;
-  padding-top: 4px;
-  font-size: clamp(9px, 0.62vw, 12px);
-  line-height: 1.2;
-}
-
-/* 中等屏幕：3 列 */
-@media (max-width: 1280px) {
-  .card-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .drink-card {
-    height: 300px;
-  }
-}
-
-/* 手机端：一排 2 个 */
-@media (max-width: 700px) {
-  .page {
-    padding: 10px;
+  .search-input,
+  .filter-select {
+    height: 44px;
+    font-size: 15px;
+    padding: 0 14px;
   }
 
   .card-grid {
@@ -689,21 +374,27 @@ body {
   }
 
   .drink-card {
-    height: 245px;
+    height: 230px;
     grid-template-columns: 1fr;
-    grid-template-rows: 34% 1fr;
+    grid-template-rows: 33% 1fr;
     row-gap: 4px;
     padding: 6px;
     border-radius: 13px;
   }
 
+  .image-area {
+    border-radius: 10px;
+  }
+
   .info {
-    gap: 3px;
+    padding: 0;
+    grid-template-rows: minmax(30px, auto) 22px auto;
+    row-gap: 3px;
   }
 
   .title {
     font-size: clamp(11px, 3.2vw, 15px);
-    line-height: 1.12;
+    line-height: 1.1;
     -webkit-line-clamp: 3;
     line-clamp: 3;
   }
@@ -724,6 +415,10 @@ body {
     margin-bottom: 1px;
   }
 
+  .sugar-row {
+    gap: 3px;
+  }
+
   .sugar-row .approx,
   .sugar-row .unit {
     font-size: clamp(8px, 2.2vw, 10px);
@@ -738,13 +433,18 @@ body {
     margin-top: 3px;
     padding-top: 3px;
   }
+
+  .tips {
+    padding: 16px;
+    border-radius: 18px;
+  }
 }
 
 /* 极窄手机 */
 @media (max-width: 420px) {
   .drink-card {
-    height: 230px;
-    grid-template-rows: 32% 1fr;
+    height: 215px;
+    grid-template-rows: 31% 1fr;
   }
 
   .title {
@@ -752,6 +452,6 @@ body {
   }
 
   .sugar-row .number {
-    font-size: 23px;
+    font-size: 22px;
   }
 }
