@@ -488,3 +488,28 @@ body {
     font-size: clamp(10px, 2.8vw, 12px);
   }
 }
+
+
+
+
+/* ===== 方糖数字按糖分等级变色 ===== */
+
+.sugar-number.zero {
+  color: #22c55e;
+  text-shadow: 0 4px 10px rgba(34, 197, 94, 0.28);
+}
+
+.sugar-number.low {
+  color: #2dd4bf;
+  text-shadow: 0 4px 10px rgba(45, 212, 191, 0.28);
+}
+
+.sugar-number.middle {
+  color: #fbbf24;
+  text-shadow: 0 4px 10px rgba(251, 191, 36, 0.28);
+}
+
+.sugar-number.high {
+  color: #f87171;
+  text-shadow: 0 4px 10px rgba(248, 113, 113, 0.28);
+}
