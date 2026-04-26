@@ -92,11 +92,14 @@ function renderCard(drink) {
     <article class="drink-card">
       <div class="image-area" aria-label="自动滚动图片区域">
         <div class="slider-track">
-          <div class="slide">
-            ${renderImage(drink)}
-          </div>
-          <div class="slide slide-green" aria-label="纯绿色图片"></div>
-        </div>
+  <div class="slide">
+    ${renderImage(drink, "image1")}
+  </div>
+
+  <div class="slide ${drink.image2 ? "" : "slide-green"}" aria-label="第二张图片">
+    ${drink.image2 ? renderImage(drink, "image2") : ""}
+  </div>
+</div>
       </div>
 
       <main class="info">
