@@ -102,6 +102,7 @@ function renderCard(drink) {
   const totalSugar = getTotalSugar(drink);
   const sugarCubes = getSugarCubes(totalSugar);
   const totalCalorie = getTotalCalorie(drink);
+  const sugarLevel = getSugarLevel(totalSugar);
   const volumeText = drink.volume ? `${drink.volume}ml` : "待填写";
 
   return `
@@ -128,7 +129,7 @@ function renderCard(drink) {
 
           <div class="sugar-row">
             <span class="approx">约</span>
-            <span class="number">${sugarCubes}</span>
+            <span class="number sugar-number ${sugarLevel}">${sugarCubes}</span>
             <span class="unit">块方糖</span>
           </div>
 
