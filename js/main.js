@@ -66,9 +66,17 @@ function placeholderBottle(drink) {
   `;
 }
 
-function renderImage(drink) {
-  if (drink.image) {
-    return `<img class="product-image" src="${escapeHtml(drink.image)}" alt="${escapeHtml((drink.brand || "") + (drink.name || ""))}" />`;
+function renderImage(drink, imageKey) {
+  const image = drink[imageKey];
+
+  if (image) {
+    return `
+      <img
+        class="product-image"
+        src="${escapeHtml(image)}"
+        alt="${escapeHtml((drink.brand || "") + (drink.name || ""))}"
+      />
+    `;
   }
 
   return placeholderBottle(drink);
