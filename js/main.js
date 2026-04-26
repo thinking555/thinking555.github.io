@@ -5,6 +5,10 @@ const cardGrid = document.getElementById("cardGrid");
 
 const searchInput = document.getElementById("searchInput");
 
+const brandFilter = document.getElementById("brandFilter");
+const categoryFilter = document.getElementById("categoryFilter");
+const sugarFilter = document.getElementById("sugarFilter");
+
 let allDrinks = [];
 let keyword = "";
 
@@ -40,6 +44,13 @@ function getTotalCalorie(drink) {
 
 function getSugarCubes(totalSugar) {
   return round1(totalSugar / SUGAR_CUBE_GRAMS);
+}
+
+function getSugarLevel(totalSugar) {
+  if (totalSugar === 0) return "zero";
+  if (totalSugar <= 5) return "low";
+  if (totalSugar <= 25) return "middle";
+  return "high";
 }
 
 function splitTitle(brand, name) {
@@ -166,23 +177,57 @@ async function loadDrinks() {
   }
 }
 
+
+function initFilters() {
+  const brands = [...new Set(allDrinks.map(drink => drink.brand).filter(Boolean))];
+  const categories = [...new Set(allDrinks.map(drink => drink.category).filter(Boolean))];
+
+  brandFilter.innerHTML =
+    `<option value="all">全部品牌</option>` +
+    brands
+      .map(brand => `<option value="${escapeHtml(brand)}">${escapeHtml(brand)}</option>`)
+      .join("");
+
+  categoryFilter.innerHTML =
+    `<option value="all">全部分类</option>` +
+    categories
+      .map(category => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`)
+      .join("");
+}
+
+function normalizeText(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/\s+/g, "")
+    .trim();
+}
+
 function getFilteredDrinks() {
-  if (!keyword) {
-    return allDrinks;
-  }
+  const keyword = normalizeText(searchInput ? searchInput.value : "");
+  const selectedBrand = brandFilter ? brandFilter.value : "all";
+  const selectedCategory = categoryFilter ? categoryFilter.value : "all";
+  const selectedSugar = sugarFilter ? sugarFilter.value : "all";
 
   return allDrinks.filter(drink => {
-    const searchText = [
+    const totalSugar = getTotalSugar(drink);
+    const sugarLevel = getSugarLevel(totalSugar);
+
+    const searchText = normalizeText([
+      drink.id,
       drink.brand,
       drink.name,
+      drink.category,
       drink.volume,
       drink.sugarPer100ml,
       drink.caloriePer100ml
-    ]
-      .join(" ")
-      .toLowerCase();
+    ].join(" "));
 
-    return searchText.includes(keyword.toLowerCase());
+    const matchKeyword = !keyword || searchText.includes(keyword);
+    const matchBrand = selectedBrand === "all" || drink.brand === selectedBrand;
+    const matchCategory = selectedCategory === "all" || drink.category === selectedCategory;
+    const matchSugar = selectedSugar === "all" || sugarLevel === selectedSugar;
+
+    return matchKeyword && matchBrand && matchCategory && matchSugar;
   });
 }
 
@@ -202,12 +247,13 @@ function renderDrinks() {
 async function init() {
   allDrinks = await loadDrinks();
 
+  initFilters();
   renderDrinks();
 
-  searchInput.addEventListener("input", function () {
-    keyword = this.value.trim();
-    renderDrinks();
-  });
+  searchInput.addEventListener("input", renderDrinks);
+  brandFilter.addEventListener("change", renderDrinks);
+  categoryFilter.addEventListener("change", renderDrinks);
+  sugarFilter.addEventListener("change", renderDrinks);
 }
 
 init();
