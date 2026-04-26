@@ -1,0 +1,102 @@
+[
+  {
+    "id": "drink-1",
+    "brand": "",
+    "name": "",
+    "volume": "",
+    "sugarPer100ml": "",
+    "caloriePer100ml": "",
+    "image": "",
+    "mainColor": "#e5392f"
+  },
+  {
+    "id": "drink-2",
+    "brand": "",
+    "name": "",
+    "volume": "",
+    "sugarPer100ml": "",
+    "caloriePer100ml": "",
+    "image": "",
+    "mainColor": "#ff8500"
+  },
+  {
+    "id": "drink-3",
+    "brand": "",
+    "name": "",
+    "volume": "",
+    "sugarPer100ml": "",
+    "caloriePer100ml": "",
+    "image": "",
+    "mainColor": "#00a6ff"
+  },
+  {
+    "id": "drink-4",
+    "brand": "",
+    "name": "",
+    "volume": "",
+    "sugarPer100ml": "",
+    "caloriePer100ml": "",
+    "image": "",
+    "mainColor": "#00b050"
+  },
+  {
+    "id": "drink-5",
+    "brand": "",
+    "name": "",
+    "volume": "",
+    "sugarPer100ml": "",
+    "caloriePer100ml": "",
+    "image": "",
+    "mainColor": "#8b5cf6"
+  },
+  {
+    "id": "drink-6",
+    "brand": "",
+    "name": "",
+    "volume": "",
+    "sugarPer100ml": "",
+    "caloriePer100ml": "",
+    "image": "",
+    "mainColor": "#ec4899"
+  },
+  {
+    "id": "drink-7",
+    "brand": "",
+    "name": "",
+    "volume": "",
+    "sugarPer100ml": "",
+    "caloriePer100ml": "",
+    "image": "",
+    "mainColor": "#111827"
+  },
+  {
+    "id": "drink-8",
+    "brand": "",
+    "name": "",
+    "volume": "",
+    "sugarPer100ml": "",
+    "caloriePer100ml": "",
+    "image": "",
+    "mainColor": "#f59e0b"
+  },
+  {
+    "id": "drink-9",
+    "brand": "",
+    "name": "",
+    "volume": "",
+    "sugarPer100ml": "",
+    "caloriePer100ml": "",
+    "image": "",
+    "mainColor": "#14b8a6"
+  },
+  {
+    "id": "drink-10",
+    "brand": "",
+    "name": "",
+    "volume": "",
+    "sugarPer100ml": "",
+    "caloriePer100ml": "",
+    "image": "",
+    "mainColor": "#ef4444"
+  }
+]

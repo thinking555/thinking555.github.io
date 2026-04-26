@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>饮料含糖量卡片练习版</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <div class="badge">drinks.json 练习版</div>
+      <h1>饮料含糖量卡片模板</h1>
+      <p>
+        电脑端固定一排 5 个、共 2 行 10 个；手机端一排 2 个。
+        你只需要修改 <strong>data/drinks.json</strong> 里的内容，页面会自动更新。
+      </p>
+    </header>
+
+    <section id="cardGrid" class="card-grid" aria-label="饮料含糖量卡片列表"></section>
+
+    <section class="tips">
+      <h2>怎么练习添加内容？</h2>
+      <p>打开 <code>data/drinks.json</code>，把空字段改成真实内容即可。</p>
+      <pre><code>{
+  "brand": "康师傅",
+  "name": "冰红茶",
+  "volume": 500,
+  "sugarPer100ml": 9,
+  "caloriePer100ml": 36,
+  "image": ""
+}</code></pre>
+    </section>
+  </main>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>
