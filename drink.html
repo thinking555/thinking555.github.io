@@ -16,13 +16,29 @@
         你只需要修改 <strong>data/drinks.json</strong> 里的内容，页面会自动更新。
       </p>
     </header>
-    <section class="search-section">
+    <section class="filter-section">
   <input
     id="searchInput"
     class="search-input"
     type="search"
     placeholder="搜索饮料，如 康师傅、冰红茶、可乐、元气森林"
   />
+
+  <select id="brandFilter" class="filter-select">
+    <option value="all">全部品牌</option>
+  </select>
+
+  <select id="categoryFilter" class="filter-select">
+    <option value="all">全部分类</option>
+  </select>
+
+  <select id="sugarFilter" class="filter-select">
+    <option value="all">全部糖分</option>
+    <option value="zero">无糖：0g</option>
+    <option value="low">低糖：0～5g</option>
+    <option value="middle">中糖：5～25g</option>
+    <option value="high">高糖：25g以上</option>
+  </select>
 </section>
     <section id="cardGrid" class="card-grid" aria-label="饮料含糖量卡片列表"></section>
 
