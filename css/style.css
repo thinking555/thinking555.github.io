@@ -455,3 +455,40 @@ body {
     font-size: 22px;
   }
 }
+
+
+
+/* ===== 放大规格、含糖、热量文字 ===== */
+
+/* 常见规格 */
+.spec {
+  font-size: clamp(13px, 0.85vw, 16px);
+  font-weight: 900;
+}
+
+/* 含糖约 45g */
+.sugar-meta {
+  font-size: clamp(13px, 0.85vw, 16px);
+  font-weight: 900;
+}
+
+/* 热量约 180kcal */
+.calorie {
+  font-size: clamp(12px, 0.78vw, 15px);
+  font-weight: 900;
+}
+
+/* 手机端也同步放大一点 */
+@media (max-width: 700px) {
+  .spec {
+    font-size: clamp(10px, 2.8vw, 12px);
+  }
+
+  .sugar-meta {
+    font-size: clamp(10px, 2.8vw, 12px);
+  }
+
+  .calorie {
+    font-size: clamp(9px, 2.6vw, 11px);
+  }
+}
