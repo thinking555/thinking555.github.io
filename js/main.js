@@ -123,28 +123,11 @@ function renderCard(drink) {
   `;
 }
 
-function createEmptyDrink(index) {
-  return {
-    id: `empty-${index + 1}`,
-    brand: "",
-    name: "",
-    volume: "",
-    sugarPer100ml: "",
-    caloriePer100ml: "",
-    image: "",
-    mainColor: "#e5392f"
-  };
-}
 
-function normalizeDrinks(drinks) {
-  const list = Array.isArray(drinks) ? drinks.slice(0, CARD_COUNT) : [];
 
-  while (list.length < CARD_COUNT) {
-    list.push(createEmptyDrink(list.length));
-  }
 
-  return list;
-}
+
+const MAX_CARD_COUNT = 10;
 
 async function loadDrinks() {
   try {
@@ -154,19 +137,39 @@ async function loadDrinks() {
       throw new Error("drinks.json 加载失败");
     }
 
-    const drinks = await response.json();
-    return normalizeDrinks(drinks);
+    const text = await response.text();
+
+    // 如果 drinks.json 是空白文件，不显示卡片
+    if (!text.trim()) {
+      return [];
+    }
+
+    const drinks = JSON.parse(text);
+
+    // 如果不是数组，不显示卡片
+    if (!Array.isArray(drinks)) {
+      return [];
+    }
+
+    // 有几条数据就显示几张，最多显示 10 张
+    return drinks.slice(0, MAX_CARD_COUNT);
   } catch (error) {
     console.error(error);
-    return normalizeDrinks([]);
+
+    // JSON 写错、路径错误、加载失败时，不显示卡片
+    return [];
   }
 }
-
 async function init() {
   const drinks = await loadDrinks();
 
+  if (drinks.length === 0) {
+    cardGrid.innerHTML = "";
+    return;
+  }
+
   cardGrid.innerHTML = drinks
-    .map((drink) => renderCard(drink))
+    .map((drink, index) => renderCard(drink, index))
     .join("");
 }
 
