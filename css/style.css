@@ -591,3 +591,87 @@ body {
     padding-top: 5px;
   }
 }
+
+
+
+
+/* ===== 紧凑版：卡片变短，仍保持内容完整 ===== */
+
+.card-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(12px, 1vw, 20px);
+}
+
+.drink-card {
+  min-height: clamp(395px, 23.5vw, 455px);
+  grid-template-columns: 33% 1fr;
+  column-gap: clamp(8px, .8vw, 14px);
+  padding: clamp(10px, .9vw, 16px);
+}
+
+.info {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  gap: clamp(6px, .55vw, 10px);
+  justify-content: center;
+}
+
+.title {
+  font-size: clamp(18px, 1.15vw, 26px);
+  line-height: 1.18;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.spec {
+  min-height: clamp(30px, 1.8vw, 38px);
+  font-size: clamp(12px, .82vw, 15px);
+  padding: 4px 10px;
+  margin: 0;
+}
+
+.sugar-panel {
+  margin-top: 2px;
+  padding: clamp(9px, .65vw, 12px) clamp(8px, .7vw, 12px);
+}
+
+.sugar-meta {
+  font-size: clamp(12px, .82vw, 16px);
+  margin-bottom: 4px;
+}
+
+.sugar-row .approx,
+.sugar-row .unit {
+  font-size: clamp(12px, .82vw, 17px);
+}
+
+.sugar-row .number {
+  font-size: clamp(36px, 2.35vw, 52px);
+}
+
+.calorie {
+  font-size: clamp(11px, .75vw, 14px);
+  margin-top: 6px;
+  padding-top: 6px;
+}
+
+@media (max-width: 700px) {
+  .drink-card {
+    min-height: 330px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 38% 1fr;
+    row-gap: 6px;
+    padding: 8px;
+  }
+
+  .title {
+    font-size: clamp(13px, 3.8vw, 18px);
+  }
+
+  .sugar-row .number {
+    font-size: clamp(26px, 7.8vw, 34px);
+  }
+}
+
