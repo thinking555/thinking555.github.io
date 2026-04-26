@@ -595,83 +595,204 @@ body {
 
 
 
-/* ===== 紧凑版：卡片变短，仍保持内容完整 ===== */
+/* ===== 最终短卡片版：电脑 5 列，手机 2 列，上下留白更少 ===== */
 
+/* 外部网格 */
 .card-grid {
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: clamp(12px, 1vw, 20px);
+  gap: clamp(12px, 1vw, 18px);
+  align-items: stretch;
 }
 
+/* 关键：不要再用长卡片比例，直接控制高度 */
 .drink-card {
-  min-height: clamp(395px, 23.5vw, 455px);
-  grid-template-columns: 33% 1fr;
-  column-gap: clamp(8px, .8vw, 14px);
-  padding: clamp(10px, .9vw, 16px);
+  aspect-ratio: auto;
+  height: clamp(315px, 18vw, 365px);
+  min-height: 0;
+  grid-template-columns: 31% 1fr;
+  column-gap: clamp(8px, .75vw, 13px);
+  padding: clamp(9px, .8vw, 14px);
+  border-radius: clamp(15px, 1vw, 21px);
+  overflow: hidden;
 }
 
+/* 左侧图片区域跟随卡片高度 */
+.image-area {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border-radius: clamp(10px, .75vw, 14px);
+}
+
+.slider-track {
+  height: 100%;
+}
+
+.slide {
+  padding: 2px;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: transparent;
+}
+
+.bottle-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* 右侧内容压紧，不再上下撑开 */
 .info {
-  padding-top: 4px;
-  padding-bottom: 4px;
-  gap: clamp(6px, .55vw, 10px);
+  padding: 0;
+  gap: clamp(5px, .45vw, 8px);
   justify-content: center;
 }
 
+/* 标题限制 3 行，避免长标题撑高 */
 .title {
-  font-size: clamp(18px, 1.15vw, 26px);
-  line-height: 1.18;
+  font-size: clamp(17px, 1.05vw, 24px);
+  line-height: 1.16;
+  letter-spacing: .1px;
+  margin: 0;
+
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
+/* 规格胶囊更短 */
 .spec {
-  min-height: clamp(30px, 1.8vw, 38px);
-  font-size: clamp(12px, .82vw, 15px);
-  padding: 4px 10px;
+  min-height: clamp(26px, 1.55vw, 34px);
+  font-size: clamp(11px, .72vw, 14px);
+  padding: 3px 9px;
   margin: 0;
 }
 
+/* 糖分面板再压缩 */
 .sugar-panel {
-  margin-top: 2px;
-  padding: clamp(9px, .65vw, 12px) clamp(8px, .7vw, 12px);
+  margin-top: 0;
+  max-width: 100%;
+  padding: clamp(7px, .52vw, 10px) clamp(7px, .6vw, 10px);
+  border-radius: clamp(11px, .8vw, 15px);
 }
 
 .sugar-meta {
-  font-size: clamp(12px, .82vw, 16px);
-  margin-bottom: 4px;
+  font-size: clamp(11px, .72vw, 14px);
+  margin-bottom: 2px;
+  line-height: 1.25;
+}
+
+.sugar-row {
+  gap: 3px;
+  line-height: 1;
 }
 
 .sugar-row .approx,
 .sugar-row .unit {
-  font-size: clamp(12px, .82vw, 17px);
+  font-size: clamp(10px, .72vw, 14px);
 }
 
 .sugar-row .number {
-  font-size: clamp(36px, 2.35vw, 52px);
+  font-size: clamp(32px, 2.05vw, 46px);
+  line-height: .9;
 }
 
 .calorie {
-  font-size: clamp(11px, .75vw, 14px);
-  margin-top: 6px;
-  padding-top: 6px;
+  font-size: clamp(10px, .68vw, 13px);
+  margin-top: 5px;
+  padding-top: 5px;
 }
 
-@media (max-width: 700px) {
+/* 中等屏幕：3 列 */
+@media (max-width: 1280px) {
+  .card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .drink-card {
-    min-height: 330px;
+    height: 350px;
+  }
+}
+
+/* 手机端：一排 2 个，上下结构，减少空白 */
+@media (max-width: 700px) {
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  .drink-card {
+    height: 285px;
     grid-template-columns: 1fr;
-    grid-template-rows: 38% 1fr;
-    row-gap: 6px;
-    padding: 8px;
+    grid-template-rows: 35% 1fr;
+    row-gap: 5px;
+    padding: 7px;
+    border-radius: 14px;
+  }
+
+  .info {
+    gap: 4px;
   }
 
   .title {
-    font-size: clamp(13px, 3.8vw, 18px);
+    font-size: clamp(12px, 3.5vw, 16px);
+    line-height: 1.12;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+
+  .spec {
+    min-height: 22px;
+    font-size: clamp(9px, 2.5vw, 11px);
+    padding: 2px 6px;
+  }
+
+  .sugar-panel {
+    padding: 5px 5px;
+    border-radius: 10px;
+  }
+
+  .sugar-meta {
+    font-size: clamp(9px, 2.5vw, 11px);
+    margin-bottom: 2px;
+  }
+
+  .sugar-row .approx,
+  .sugar-row .unit {
+    font-size: clamp(8px, 2.4vw, 10px);
   }
 
   .sugar-row .number {
-    font-size: clamp(26px, 7.8vw, 34px);
+    font-size: clamp(22px, 6.6vw, 30px);
+  }
+
+  .calorie {
+    font-size: clamp(8px, 2.4vw, 10px);
+    margin-top: 3px;
+    padding-top: 3px;
   }
 }
 
+/* 极窄手机 */
+@media (max-width: 420px) {
+  .drink-card {
+    height: 270px;
+    grid-template-rows: 33% 1fr;
+  }
+
+  .title {
+    font-size: 12px;
+  }
+
+  .sugar-row .number {
+    font-size: 25px;
+  }
+}
