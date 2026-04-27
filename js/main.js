@@ -13,12 +13,12 @@ let allDrinks = [];
 let keyword = "";
 
 function escapeHtml(value) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 function toNumber(value, defaultValue = 0) {
@@ -148,33 +148,40 @@ const MAX_CARD_COUNT = 10;
 
 async function loadDrinks() {
   try {
-    const response = await fetch("./data/drinks.json", { cache: "no-store" });
+    const response = await fetch("./data/drinks.json?v=" + Date.now(), {
+      cache: "no-store"
+    });
 
     if (!response.ok) {
-      throw new Error("drinks.json 加载失败");
+      throw new Error("drinks.json 加载失败，状态码：" + response.status);
     }
 
     const text = await response.text();
 
-    // 如果 drinks.json 是空白文件，不显示卡片
     if (!text.trim()) {
       return [];
     }
 
     const drinks = JSON.parse(text);
 
-    // 如果不是数组，不显示卡片
     if (!Array.isArray(drinks)) {
-      return [];
+      throw new Error("drinks.json 必须是数组格式");
     }
 
-    // 有几条数据就显示几张，最多显示 10 张
     return drinks.slice(0, MAX_CARD_COUNT);
   } catch (error) {
     console.error(error);
 
-    // JSON 写错、路径错误、加载失败时，不显示卡片
-    return [];
+    if (cardGrid) {
+      cardGrid.innerHTML = `
+        <div class="data-error">
+          数据加载失败：${escapeHtml(error.message)}<br>
+          请确认手机访问的是 http/https 网站地址，不是 file:// 本地文件；并确认 data/drinks.json 路径和大小写正确。
+        </div>
+      `;
+    }
+
+    return null;
   }
 }
 
@@ -246,7 +253,13 @@ function renderDrinks() {
 }
 
 async function init() {
-  allDrinks = await loadDrinks();
+  const loaded = await loadDrinks();
+
+  if (loaded === null) {
+    return;
+  }
+
+  allDrinks = loaded;
 
   initFilters();
   renderDrinks();
