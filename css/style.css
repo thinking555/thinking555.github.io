@@ -513,3 +513,18 @@ body {
   color: #f87171;
   text-shadow: 0 4px 10px rgba(248, 113, 113, 0.28);
 }
+
+
+
+.data-error {
+  grid-column: 1 / -1;
+  padding: 18px 20px;
+  border: 2px dashed var(--line);
+  border-radius: 18px;
+  background: #171b1c;
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.7;
+  text-align: center;
+}
