@@ -338,7 +338,7 @@
   {
     "id": "dongpeng-replenish-lemon-555",
     "brand": "东鹏饮料",
-    "name": "东鹏补水啦柠檬味",
+    "name": "补水啦柠檬味",
     "category": "运动饮料",
     "volume": 555,
     "sugarPer100ml": 6.3,
@@ -350,7 +350,7 @@
   {
     "id": "dongpeng-replenish-white-peach-555",
     "brand": "东鹏饮料",
-    "name": "东鹏补水啦白桃味",
+    "name": "补水啦白桃味",
     "category": "运动饮料",
     "volume": 555,
     "sugarPer100ml": 4.4,
@@ -362,7 +362,7 @@
   {
     "id": "dongpeng-replenish-zero-sugar-lychee-555",
     "brand": "东鹏饮料",
-    "name": "东鹏补水啦无糖荔枝味",
+    "name": "补水啦无糖荔枝味",
     "category": "运动饮料",
     "volume": 555,
     "sugarPer100ml": 0,
@@ -445,7 +445,7 @@
   },
   {
     "id": "drink-lemon-500",
-    "brand": "",
+    "brand": "统一",
     "name": "海之言柠檬味",
     "category": "运动饮料",
     "volume": 500,
@@ -542,7 +542,7 @@
   {
     "id": "yuanqi-senlin-genki-sparkling-water-lime-480",
     "brand": "元气森林",
-    "name": "元气森林气泡水青柠味",
+    "name": "气泡水青柠味",
     "category": "气泡水",
     "volume": 480,
     "sugarPer100ml": 0,
@@ -566,7 +566,7 @@
   {
     "id": "yuanqi-senlin-genki-rancha-oolong-500",
     "brand": "元气森林",
-    "name": "元气森林燃茶醇香乌龙",
+    "name": "燃茶醇香乌龙",
     "category": "茶饮料",
     "volume": 500,
     "sugarPer100ml": 0,
@@ -578,7 +578,7 @@
   {
     "id": "yuanqi-senlin-genki-rancha-jasmine-tea-500",
     "brand": "元气森林",
-    "name": "元气森林燃茶茉莉花茶",
+    "name": "燃茶茉莉花茶",
     "category": "茶饮料",
     "volume": 500,
     "sugarPer100ml": 0,
@@ -590,7 +590,7 @@
   {
     "id": "yuanqi-senlin-genki-rancha-pu-erh-500",
     "brand": "元气森林",
-    "name": "元气森林燃茶青柑普洱",
+    "name": "燃茶青柑普洱",
     "category": "茶饮料",
     "volume": 500,
     "sugarPer100ml": 0,
@@ -602,7 +602,7 @@
   {
     "id": "yuanqi-senlin-genki-ice-tea-lemon-900",
     "brand": "元气森林",
-    "name": "元气森林冰茶柠檬味",
+    "name": "冰茶柠檬味",
     "category": "茶饮料",
     "volume": 900,
     "sugarPer100ml": 5.9,
@@ -625,7 +625,7 @@
   },
   {
     "id": "drink-classic-500",
-    "brand": "",
+    "brand": "可口可乐",
     "name": "雪碧经典款",
     "category": "碳酸饮料",
     "volume": 500,
@@ -637,7 +637,7 @@
   },
   {
     "id": "drink-orange-soda-500",
-    "brand": "",
+    "brand": "可口可乐",
     "name": "芬达橙味汽水",
     "category": "碳酸饮料",
     "volume": 500,
@@ -661,7 +661,7 @@
   },
   {
     "id": "drink-orange-500",
-    "brand": "",
+    "brand": "百事",
     "name": "美年达橙味",
     "category": "碳酸饮料",
     "volume": 500,
@@ -673,7 +673,7 @@
   },
   {
     "id": "drink-grapefruit-600",
-    "brand": "",
+    "brand": "百事",
     "name": "佳得乐西柚味",
     "category": "运动饮料",
     "volume": 600,
@@ -889,7 +889,7 @@
   },
   {
     "id": "wanglaoji-wang-lao-ji-500",
-    "brand": "王老吉",
+    "brand": "广药集团",
     "name": "王老吉",
     "category": "凉茶",
     "volume": 500,
@@ -901,7 +901,7 @@
   },
   {
     "id": "jiaduobao-jia-duo-bao-500",
-    "brand": "加多宝",
+    "brand": "鸿道集团",
     "name": "加多宝",
     "category": "凉茶",
     "volume": 500,
