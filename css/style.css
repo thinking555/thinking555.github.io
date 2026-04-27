@@ -638,3 +638,29 @@ body {
     font-size: 22px;
   }
 }
+
+
+
+.load-more-btn {
+  display: block;
+  margin: 22px auto 0;
+  width: min(320px, 100%);
+  height: 48px;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  background: #2b1700;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.load-more-btn:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.load-more-btn.is-hidden {
+  display: none;
+}
+
