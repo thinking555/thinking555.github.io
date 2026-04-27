@@ -1,3 +1,7 @@
+const PAGE_SIZE = 20;
+let visibleCount = PAGE_SIZE;
+const loadMoreBtn = document.getElementById("loadMoreBtn");
+
 const CARD_COUNT = 10;
 const SUGAR_CUBE_GRAMS = 5;
 
@@ -168,7 +172,7 @@ async function loadDrinks() {
       throw new Error("drinks.json 必须是数组格式");
     }
 
-    return drinks.slice(0, MAX_CARD_COUNT);
+    return drinks;
   } catch (error) {
     console.error(error);
 
@@ -240,17 +244,34 @@ function getFilteredDrinks() {
 }
 
 function renderDrinks() {
-  const drinks = getFilteredDrinks();
+  const filteredDrinks = getFilteredDrinks();
+  const visibleDrinks = filteredDrinks.slice(0, visibleCount);
 
-  if (drinks.length === 0) {
+  if (visibleDrinks.length === 0) {
     cardGrid.innerHTML = "";
+    if (loadMoreBtn) loadMoreBtn.classList.add("is-hidden");
     return;
   }
 
-  cardGrid.innerHTML = drinks
+  cardGrid.innerHTML = visibleDrinks
     .map((drink, index) => renderCard(drink, index))
     .join("");
+
+  if (loadMoreBtn) {
+    if (filteredDrinks.length > visibleCount) {
+      loadMoreBtn.classList.remove("is-hidden");
+      loadMoreBtn.textContent = `加载更多｜已显示 ${visibleDrinks.length} / ${filteredDrinks.length}`;
+    } else {
+      loadMoreBtn.classList.add("is-hidden");
+    }
+  }
 }
+function resetAndRender() {
+  visibleCount = PAGE_SIZE;
+  renderDrinks();
+}
+
+
 
 async function init() {
   const loaded = await loadDrinks();
@@ -264,10 +285,17 @@ async function init() {
   initFilters();
   renderDrinks();
 
-  searchInput.addEventListener("input", renderDrinks);
-  brandFilter.addEventListener("change", renderDrinks);
-  categoryFilter.addEventListener("change", renderDrinks);
-  sugarFilter.addEventListener("change", renderDrinks);
+  searchInput.addEventListener("input", resetAndRender);
+brandFilter.addEventListener("change", resetAndRender);
+categoryFilter.addEventListener("change", resetAndRender);
+sugarFilter.addEventListener("change", resetAndRender);
+
+if (loadMoreBtn) {
+  loadMoreBtn.addEventListener("click", function () {
+    visibleCount += PAGE_SIZE;
+    renderDrinks();
+  });
+}
 }
 
 init();
