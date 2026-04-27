@@ -24,8 +24,8 @@
     "image2": "./images/huiyuan-100-back.png",
     "mainColor": "#f97316",
     "dataQuality": "generic_reference",
-    "source": "FatSecret 橙汁通用营养数据；搜索结果关联汇源橙汁",
-    "note": "未找到该具体包装公开营养标签，使用通用橙汁数据；建议按瓶身复核"
+    "source": "FatSecret 橙汁通用营养数据",
+    "note": "未找到该具体包装公开标签，建议按瓶身复核"
   },
   {
     "id": "huiyuan-100-1000",
@@ -41,23 +41,39 @@
     "mainColor": "#84cc16",
     "dataQuality": "generic_reference",
     "source": "FatSecret 苹果汁通用营养数据",
-    "note": "未找到该具体包装公开营养标签，使用通用苹果汁数据；建议按瓶身复核"
+    "note": "未找到该具体包装公开标签，建议按瓶身复核"
   },
   {
-    "id": "nongfu-nongfu-550",
+    "id": "nongfu-natural-water-550",
     "company": "农夫山泉",
     "brand": "农夫山泉",
-    "name": "农夫山泉水",
+    "name": "饮用天然水",
     "category": "包装水",
     "volume": 550,
     "sugarPer100ml": 0,
     "caloriePer100ml": 0,
-    "image1": "./images/nongfu-nongfu-front.png",
-    "image2": "./images/nongfu-nongfu-back.png",
+    "image1": "./images/nongfu-natural-water-front.png",
+    "image2": "./images/nongfu-natural-water-back.png",
     "mainColor": "#2563eb",
     "dataQuality": "category_zero",
-    "source": "包装水按营养标签通常为0糖0能量",
-    "note": "不同规格请按瓶身容量调整"
+    "source": "包装水或无糖茶按营养标签常见0糖0能量处理",
+    "note": ""
+  },
+  {
+    "id": "nongfu-pure-water-550",
+    "company": "农夫山泉",
+    "brand": "农夫山泉",
+    "name": "饮用纯净水",
+    "category": "包装水",
+    "volume": 550,
+    "sugarPer100ml": 0,
+    "caloriePer100ml": 0,
+    "image1": "./images/nongfu-pure-water-front.png",
+    "image2": "./images/nongfu-pure-water-back.png",
+    "mainColor": "#38bdf8",
+    "dataQuality": "category_zero",
+    "source": "包装水或无糖茶按营养标签常见0糖0能量处理",
+    "note": ""
   },
   {
     "id": "dongfang-shuye-500",
@@ -72,8 +88,8 @@
     "image2": "./images/dongfang-shuye-back.png",
     "mainColor": "#166534",
     "dataQuality": "online_verified",
-    "source": "FatSecret/公开配料信息：东方树叶为0能量/0碳水或无添加糖茶饮参考",
-    "note": "具体口味容量请按瓶身复核"
+    "source": "FatSecret：东方树叶每100ml 0kcal、碳水0g",
+    "note": ""
   },
   {
     "id": "dongfang-shuye-500",
@@ -88,8 +104,8 @@
     "image2": "./images/dongfang-shuye-back.png",
     "mainColor": "#166534",
     "dataQuality": "online_verified",
-    "source": "FatSecret/公开配料信息：东方树叶为0能量/0碳水或无添加糖茶饮参考",
-    "note": "具体口味容量请按瓶身复核"
+    "source": "FatSecret：东方树叶每100ml 0kcal、碳水0g",
+    "note": ""
   },
   {
     "id": "dongfang-shuye-500",
@@ -104,8 +120,8 @@
     "image2": "./images/dongfang-shuye-back.png",
     "mainColor": "#166534",
     "dataQuality": "online_verified",
-    "source": "FatSecret/公开配料信息：东方树叶为0能量/0碳水或无添加糖茶饮参考",
-    "note": "具体口味容量请按瓶身复核"
+    "source": "FatSecret：东方树叶每100ml 0kcal、碳水0g",
+    "note": ""
   },
   {
     "id": "dongfang-shuye-500",
@@ -120,8 +136,8 @@
     "image2": "./images/dongfang-shuye-back.png",
     "mainColor": "#166534",
     "dataQuality": "online_verified",
-    "source": "FatSecret/公开配料信息：东方树叶为0能量/0碳水或无添加糖茶饮参考",
-    "note": "具体口味容量请按瓶身复核"
+    "source": "FatSecret：东方树叶每100ml 0kcal、碳水0g",
+    "note": ""
   },
   {
     "id": "cha-pi-500",
@@ -136,8 +152,8 @@
     "image2": "./images/cha-pi-back.png",
     "mainColor": "#f59e0b",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "FatSecret 茶π/蜜桃乌龙茶：100ml约33kcal、碳水8g",
-    "note": "来源给出碳水物，未逐口味标糖；此处按碳水近似糖"
+    "source": "FatSecret：茶π每100ml约33kcal、碳水8g",
+    "note": "按碳水近似糖，具体口味需复核"
   },
   {
     "id": "cha-pi-500",
@@ -152,8 +168,8 @@
     "image2": "./images/cha-pi-back.png",
     "mainColor": "#f59e0b",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "FatSecret 茶π/蜜桃乌龙茶：100ml约33kcal、碳水8g",
-    "note": "来源给出碳水物，未逐口味标糖；此处按碳水近似糖"
+    "source": "FatSecret：茶π每100ml约33kcal、碳水8g",
+    "note": "按碳水近似糖，具体口味需复核"
   },
   {
     "id": "cha-pi-500",
@@ -168,8 +184,8 @@
     "image2": "./images/cha-pi-back.png",
     "mainColor": "#f59e0b",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "FatSecret 茶π/蜜桃乌龙茶：100ml约33kcal、碳水8g",
-    "note": "来源给出碳水物，未逐口味标糖；此处按碳水近似糖"
+    "source": "FatSecret：茶π每100ml约33kcal、碳水8g",
+    "note": "按碳水近似糖，具体口味需复核"
   },
   {
     "id": "cha-pi-500",
@@ -184,8 +200,8 @@
     "image2": "./images/cha-pi-back.png",
     "mainColor": "#f59e0b",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "FatSecret 茶π/蜜桃乌龙茶：100ml约33kcal、碳水8g",
-    "note": "来源给出碳水物，未逐口味标糖；此处按碳水近似糖"
+    "source": "FatSecret：茶π每100ml约33kcal、碳水8g",
+    "note": "按碳水近似糖，具体口味需复核"
   },
   {
     "id": "scream-scream-550",
@@ -200,8 +216,8 @@
     "image2": "./images/scream-scream-back.png",
     "mainColor": "#2563eb",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "FatSecret 尖叫：100ml约26kcal、碳水5g",
-    "note": "来源给出碳水物，未逐版本标糖；此处按碳水近似糖"
+    "source": "FatSecret：尖叫每100ml约26kcal、碳水5g",
+    "note": "按碳水近似糖，具体版本需复核"
   },
   {
     "id": "scream-scream-550",
@@ -216,8 +232,8 @@
     "image2": "./images/scream-scream-back.png",
     "mainColor": "#16a34a",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "FatSecret 尖叫：100ml约26kcal、碳水5g",
-    "note": "来源给出碳水物，未逐版本标糖；此处按碳水近似糖"
+    "source": "FatSecret：尖叫每100ml约26kcal、碳水5g",
+    "note": "按碳水近似糖，具体版本需复核"
   },
   {
     "id": "scream-scream-550",
@@ -232,8 +248,8 @@
     "image2": "./images/scream-scream-back.png",
     "mainColor": "#f97316",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "FatSecret 尖叫：100ml约26kcal、碳水5g",
-    "note": "来源给出碳水物，未逐版本标糖；此处按碳水近似糖"
+    "source": "FatSecret：尖叫每100ml约26kcal、碳水5g",
+    "note": "按碳水近似糖，具体版本需复核"
   },
   {
     "id": "c100-445",
@@ -248,8 +264,8 @@
     "image2": "./images/c100-back.png",
     "mainColor": "#facc15",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "FatSecret 水溶C100：445ml约170kcal、碳水42g",
-    "note": "换算约每100ml碳水9.4g、热量38kcal；按碳水近似糖"
+    "source": "FatSecret：水溶C100 445ml约170kcal、碳水42g",
+    "note": "换算约每100ml碳水9.4g、热量38kcal"
   },
   {
     "id": "c100-445",
@@ -264,8 +280,8 @@
     "image2": "./images/c100-back.png",
     "mainColor": "#facc15",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "FatSecret 水溶C100：445ml约170kcal、碳水42g",
-    "note": "换算约每100ml碳水9.4g、热量38kcal；按碳水近似糖"
+    "source": "FatSecret：水溶C100 445ml约170kcal、碳水42g",
+    "note": "换算约每100ml碳水9.4g、热量38kcal"
   },
   {
     "id": "c100-445",
@@ -280,8 +296,8 @@
     "image2": "./images/c100-back.png",
     "mainColor": "#facc15",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "FatSecret 水溶C100：445ml约170kcal、碳水42g",
-    "note": "换算约每100ml碳水9.4g、热量38kcal；按碳水近似糖"
+    "source": "FatSecret：水溶C100 445ml约170kcal、碳水42g",
+    "note": "换算约每100ml碳水9.4g、热量38kcal"
   },
   {
     "id": "drink-500",
@@ -296,8 +312,8 @@
     "image2": "./images/drink-back.png",
     "mainColor": "#f97316",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "FatSecret 搜索结果：农夫果园每100ml约41kcal、碳水9g",
-    "note": "来源给出碳水物，未标糖；此处按碳水近似糖"
+    "source": "FatSecret：农夫果园每100ml约41kcal、碳水9g",
+    "note": ""
   },
   {
     "id": "kangshifu-500",
@@ -312,7 +328,7 @@
     "image2": "./images/kangshifu-back.png",
     "mainColor": "#c62828",
     "dataQuality": "online_verified",
-    "source": "FatSecret 康师傅饮料冰红茶：100ml糖9.7g、39kcal",
+    "source": "FatSecret：康师傅冰红茶每100ml糖9.7g、39kcal",
     "note": ""
   },
   {
@@ -328,7 +344,7 @@
     "image2": "./images/kangshifu-back.png",
     "mainColor": "#43a047",
     "dataQuality": "online_verified",
-    "source": "FatSecret 康师傅饮料绿茶：100ml糖4.0g、17kcal",
+    "source": "FatSecret：康师傅绿茶每100ml糖4.0g、17kcal",
     "note": ""
   },
   {
@@ -344,11 +360,11 @@
     "image2": "./images/kangshifu-back.png",
     "mainColor": "#22c55e",
     "dataQuality": "variant_reference",
-    "source": "FatSecret 康师傅茉莉清茶/蜜茶相近条目：100ml糖约4.0g、17kcal",
+    "source": "FatSecret：康师傅茉莉清茶/蜜茶相近条目每100ml糖约4.0g、17kcal",
     "note": "产品名/版本可能不同，建议按瓶身复核"
   },
   {
-    "id": "kangshifu-water-550",
+    "id": "kangshifu-550",
     "company": "康师傅",
     "brand": "康师傅",
     "name": "包装水",
@@ -356,11 +372,11 @@
     "volume": 550,
     "sugarPer100ml": 0,
     "caloriePer100ml": 0,
-    "image1": "./images/kangshifu-water-front.png",
-    "image2": "./images/kangshifu-water-back.png",
+    "image1": "./images/kangshifu-front.png",
+    "image2": "./images/kangshifu-back.png",
     "mainColor": "#60a5fa",
     "dataQuality": "category_zero",
-    "source": "包装水按营养标签通常为0糖0能量",
+    "source": "包装水或无糖茶按营养标签常见0糖0能量处理",
     "note": ""
   },
   {
@@ -376,7 +392,7 @@
     "image2": "./images/dongpeng-back.png",
     "mainColor": "#f59e0b",
     "dataQuality": "third_party_test",
-    "source": "消费者报道/公开报道：500ml约66.5g糖；百度健康称500ml约215kcal",
+    "source": "公开报道/第三方检测：500ml约66.5g糖；折算13.3g/100ml",
     "note": "不同批次/规格可能不同，建议按瓶身复核"
   },
   {
@@ -392,7 +408,7 @@
     "image2": "./images/dongpeng-back.png",
     "mainColor": "#06b6d4",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "36氪报道：西柚/柠檬口味碳水约6.2–6.8g/100ml",
+    "source": "36氪报道：柠檬/西柚口味碳水约6.2–6.8g/100ml",
     "note": "取上限6.8g/100ml，按碳水近似糖"
   },
   {
@@ -408,7 +424,23 @@
     "image2": "./images/dongpeng-back.png",
     "mainColor": "#92400e",
     "dataQuality": "upper_bound",
-    "source": "FoodTalks/新品报道：每100ml含糖量不大于5g",
+    "source": "FoodTalks/新品报道：东鹏大咖每100ml含糖量不大于5g",
+    "note": "热量按同类拿铁估计，建议按瓶身复核"
+  },
+  {
+    "id": "dongpeng-330",
+    "company": "东鹏饮料",
+    "brand": "东鹏饮料",
+    "name": "东鹏大咖生椰拿铁",
+    "category": "咖啡饮料",
+    "volume": 330,
+    "sugarPer100ml": 5.0,
+    "caloriePer100ml": 45,
+    "image1": "./images/dongpeng-front.png",
+    "image2": "./images/dongpeng-back.png",
+    "mainColor": "#a16207",
+    "dataQuality": "upper_bound",
+    "source": "FoodTalks/新品报道：东鹏大咖每100ml含糖量不大于5g",
     "note": "热量按同类拿铁估计，建议按瓶身复核"
   },
   {
@@ -424,8 +456,8 @@
     "image2": "./images/tongyi-back.png",
     "mainColor": "#dc2626",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "FatSecret 搜索结果：统一饮料冰红茶每100ml约41kcal、碳水9.9g",
-    "note": "来源给出碳水物，未标糖；此处按碳水近似糖"
+    "source": "FatSecret：统一冰红茶每100ml约41kcal、碳水9.9g",
+    "note": "按碳水近似糖"
   },
   {
     "id": "tongyi-500",
@@ -440,7 +472,7 @@
     "image2": "./images/tongyi-back.png",
     "mainColor": "#16a34a",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "FatSecret 搜索结果：统一饮料绿茶每100ml约16kcal、碳水4.0g",
+    "source": "FatSecret：统一绿茶每100ml约16kcal、碳水4.0g",
     "note": "按碳水近似糖"
   },
   {
@@ -456,7 +488,7 @@
     "image2": "./images/tongyi-back.png",
     "mainColor": "#b45309",
     "dataQuality": "online_verified",
-    "source": "FatSecret 统一饮料奶茶：100ml糖7.4g、37kcal",
+    "source": "FatSecret：统一奶茶每100ml糖7.4g、37kcal",
     "note": ""
   },
   {
@@ -472,7 +504,7 @@
     "image2": "./images/tongyi-back.png",
     "mainColor": "#fb923c",
     "dataQuality": "estimated_from_carbohydrate",
-    "source": "FatSecret 搜索结果：统一鲜橙多每100ml约41kcal、碳水9.8g",
+    "source": "FatSecret：统一鲜橙多每100ml约41kcal、碳水9.8g",
     "note": "按碳水近似糖"
   },
   {
@@ -488,116 +520,116 @@
     "image2": "./images/tongyi-back.png",
     "mainColor": "#38bdf8",
     "dataQuality": "variant_reference",
-    "source": "FatSecret 统一饮料条目：100ml约48kcal、碳水10g；海之言列于相关产品",
+    "source": "FatSecret：统一相关饮料条目每100ml约48kcal、碳水10g",
     "note": "非精确海之言页面，需按瓶身复核"
   },
   {
-    "id": "cestbon-cestbon-555",
+    "id": "cestbon-pure-water-555",
     "company": "华润饮料",
     "brand": "怡宝",
-    "name": "怡宝",
+    "name": "纯净水",
     "category": "包装水",
     "volume": 555,
     "sugarPer100ml": 0,
     "caloriePer100ml": 0,
-    "image1": "./images/cestbon-cestbon-front.png",
-    "image2": "./images/cestbon-cestbon-back.png",
+    "image1": "./images/cestbon-pure-water-front.png",
+    "image2": "./images/cestbon-pure-water-back.png",
     "mainColor": "#2563eb",
     "dataQuality": "category_zero",
-    "source": "包装水按营养标签通常为0糖0能量",
+    "source": "包装水或无糖茶按营养标签常见0糖0能量处理",
     "note": ""
   },
   {
-    "id": "cestbon-480",
+    "id": "zhiben-qingrun-480",
     "company": "华润饮料",
-    "brand": "怡宝",
+    "brand": "至本清润",
     "name": "菊花茶",
     "category": "植物饮料",
     "volume": 480,
     "sugarPer100ml": 8.0,
     "caloriePer100ml": 32,
-    "image1": "./images/cestbon-front.png",
-    "image2": "./images/cestbon-back.png",
+    "image1": "./images/zhiben-qingrun-front.png",
+    "image2": "./images/zhiben-qingrun-back.png",
     "mainColor": "#facc15",
     "dataQuality": "needs_label_verification",
     "source": "同类植物/茶饮料参考值",
     "note": "未找到公开营养标签，必须按瓶身复核"
   },
   {
-    "id": "cestbon-480",
+    "id": "zuowei-chashi-480",
     "company": "华润饮料",
-    "brand": "怡宝",
+    "brand": "佐味茶事",
     "name": "红茶",
     "category": "茶饮料",
     "volume": 480,
-    "sugarPer100ml": 8.0,
-    "caloriePer100ml": 32,
-    "image1": "./images/cestbon-front.png",
-    "image2": "./images/cestbon-back.png",
+    "sugarPer100ml": 0,
+    "caloriePer100ml": 0,
+    "image1": "./images/zuowei-chashi-front.png",
+    "image2": "./images/zuowei-chashi-back.png",
     "mainColor": "#dc2626",
     "dataQuality": "needs_label_verification",
-    "source": "同类含糖茶饮料参考值",
-    "note": "未找到公开营养标签，必须按瓶身复核"
+    "source": "无糖茶类参考",
+    "note": "佐味茶事有无糖茶系列，需按具体瓶身复核"
   },
   {
-    "id": "cestbon-480",
+    "id": "zuowei-chashi-480",
     "company": "华润饮料",
-    "brand": "怡宝",
+    "brand": "佐味茶事",
     "name": "乌龙茶",
     "category": "茶饮料",
     "volume": 480,
     "sugarPer100ml": 0,
     "caloriePer100ml": 0,
-    "image1": "./images/cestbon-front.png",
-    "image2": "./images/cestbon-back.png",
+    "image1": "./images/zuowei-chashi-front.png",
+    "image2": "./images/zuowei-chashi-back.png",
     "mainColor": "#854d0e",
     "dataQuality": "needs_label_verification",
     "source": "无糖茶类参考",
-    "note": "未找到该款公开营养标签，按无糖茶暂置0，需复核"
+    "note": "佐味茶事有无糖茶系列，需按具体瓶身复核"
   },
   {
-    "id": "cestbon-480",
+    "id": "zhiben-qingrun-480",
     "company": "华润饮料",
-    "brand": "怡宝",
+    "brand": "至本清润",
     "name": "柠檬茶",
     "category": "茶饮料",
     "volume": 480,
     "sugarPer100ml": 8.0,
     "caloriePer100ml": 32,
-    "image1": "./images/cestbon-front.png",
-    "image2": "./images/cestbon-back.png",
+    "image1": "./images/zhiben-qingrun-front.png",
+    "image2": "./images/zhiben-qingrun-back.png",
     "mainColor": "#eab308",
     "dataQuality": "needs_label_verification",
     "source": "同类柠檬茶参考值",
     "note": "未找到公开营养标签，必须按瓶身复核"
   },
   {
-    "id": "cestbon-480",
+    "id": "zhiben-qingrun-480",
     "company": "华润饮料",
-    "brand": "怡宝",
+    "brand": "至本清润",
     "name": "酸梅汤",
     "category": "植物饮料",
     "volume": 480,
     "sugarPer100ml": 12.0,
     "caloriePer100ml": 49,
-    "image1": "./images/cestbon-front.png",
-    "image2": "./images/cestbon-back.png",
+    "image1": "./images/zhiben-qingrun-front.png",
+    "image2": "./images/zhiben-qingrun-back.png",
     "mainColor": "#7f1d1d",
     "dataQuality": "generic_reference",
-    "source": "FatSecret 康师傅酸梅汤作为同类参考：100ml糖12g、49kcal",
+    "source": "FatSecret：康师傅酸梅汤同类参考每100ml糖12g、49kcal",
     "note": "品牌不同，仅作同类参考，需按瓶身复核"
   },
   {
-    "id": "cestbon-480",
+    "id": "zhiben-qingrun-480",
     "company": "华润饮料",
-    "brand": "怡宝",
+    "brand": "至本清润",
     "name": "枇杷炖梨",
     "category": "植物饮料",
     "volume": 480,
     "sugarPer100ml": 8.0,
     "caloriePer100ml": 32,
-    "image1": "./images/cestbon-front.png",
-    "image2": "./images/cestbon-back.png",
+    "image1": "./images/zhiben-qingrun-front.png",
+    "image2": "./images/zhiben-qingrun-back.png",
     "mainColor": "#ca8a04",
     "dataQuality": "needs_label_verification",
     "source": "同类植物饮料参考值",
@@ -620,16 +652,16 @@
     "note": "具体口味按瓶身复核"
   },
   {
-    "id": "alienergy-500",
+    "id": "alienergy-alienergy-500",
     "company": "元气森林",
     "brand": "外星人",
-    "name": "电解质水",
+    "name": "外星人",
     "category": "电解质饮料",
     "volume": 500,
     "sugarPer100ml": 0,
     "caloriePer100ml": 0,
-    "image1": "./images/alienergy-front.png",
-    "image2": "./images/alienergy-back.png",
+    "image1": "./images/alienergy-alienergy-front.png",
+    "image2": "./images/alienergy-alienergy-back.png",
     "mainColor": "#22c55e",
     "dataQuality": "category_zero",
     "source": "公开资料/产品常见0糖款参考",
@@ -648,7 +680,7 @@
     "image2": "./images/rancha-rancha-back.png",
     "mainColor": "#854d0e",
     "dataQuality": "variant_reference",
-    "source": "FatSecret 搜索结果：燃茶100ml约5kcal、碳水2.1g；无糖茶版本需按瓶身复核",
+    "source": "FatSecret：燃茶每100ml约5kcal、碳水2.1g；无糖茶版本需按瓶身复核",
     "note": "燃茶有不同版本，糖字段暂按0处理"
   },
   {
@@ -664,7 +696,7 @@
     "image2": "./images/yuanqi-back.png",
     "mainColor": "#f97316",
     "dataQuality": "online_verified",
-    "source": "FatSecret 元气森林冰茶：100ml糖5.9g、24kcal",
+    "source": "FatSecret：元气森林冰茶每100ml糖5.9g、24kcal",
     "note": ""
   },
   {
@@ -680,7 +712,7 @@
     "image2": "./images/yuanqi-back.png",
     "mainColor": "#f9a8d4",
     "dataQuality": "variant_reference",
-    "source": "FatSecret 元气森林厚乳桃桃：100ml糖3g、34kcal，作为乳茶参考",
+    "source": "FatSecret：元气森林厚乳桃桃每100ml糖3g、34kcal，作为乳茶参考",
     "note": "不是所有乳茶口味；需按具体口味复核"
   },
   {
@@ -700,16 +732,16 @@
     "note": "需要按瓶身复核"
   },
   {
-    "id": "heqizheng-550",
+    "id": "heqizheng-heqizheng-550",
     "company": "达利集团",
     "brand": "和其正",
-    "name": "凉茶",
+    "name": "和其正",
     "category": "凉茶",
     "volume": 550,
     "sugarPer100ml": 8.5,
     "caloriePer100ml": 34,
-    "image1": "./images/heqizheng-front.png",
-    "image2": "./images/heqizheng-back.png",
+    "image1": "./images/heqizheng-heqizheng-front.png",
+    "image2": "./images/heqizheng-heqizheng-back.png",
     "mainColor": "#dc2626",
     "dataQuality": "generic_reference",
     "source": "王老吉凉茶/同类凉茶参考值",
@@ -732,36 +764,20 @@
     "note": "取中间值10g/100ml，需按瓶身复核"
   },
   {
-    "id": "doubendou-250",
+    "id": "doubendou-doubendou-250",
     "company": "达利集团",
     "brand": "豆本豆",
-    "name": "豆奶",
+    "name": "豆本豆",
     "category": "植物蛋白饮料",
     "volume": 250,
     "sugarPer100ml": 5.0,
     "caloriePer100ml": 45,
-    "image1": "./images/doubendou-front.png",
-    "image2": "./images/doubendou-back.png",
+    "image1": "./images/doubendou-doubendou-front.png",
+    "image2": "./images/doubendou-doubendou-back.png",
     "mainColor": "#facc15",
     "dataQuality": "needs_label_verification",
     "source": "未找到公开营养标签",
     "note": "需按瓶身复核"
-  },
-  {
-    "id": "daliyuan-500",
-    "company": "达利集团",
-    "brand": "达利园",
-    "name": "饮料",
-    "category": "饮料",
-    "volume": 500,
-    "sugarPer100ml": 8.0,
-    "caloriePer100ml": 32,
-    "image1": "./images/daliyuan-front.png",
-    "image2": "./images/daliyuan-back.png",
-    "mainColor": "#fb923c",
-    "dataQuality": "needs_label_verification",
-    "source": "未找到公开营养标签",
-    "note": "需按具体产品复核"
   },
   {
     "id": "ganten-ganten-570",
@@ -776,7 +792,7 @@
     "image2": "./images/ganten-ganten-back.png",
     "mainColor": "#2563eb",
     "dataQuality": "category_zero",
-    "source": "包装水按营养标签通常为0糖0能量",
+    "source": "包装水或无糖茶按营养标签常见0糖0能量处理",
     "note": ""
   },
   {
@@ -792,23 +808,7 @@
     "image2": "./images/jingtian-jingtian-back.png",
     "mainColor": "#38bdf8",
     "dataQuality": "category_zero",
-    "source": "包装水按营养标签通常为0糖0能量",
-    "note": ""
-  },
-  {
-    "id": "blairquhan-blairquhan-500",
-    "company": "景田集团",
-    "brand": "Blairquhan",
-    "name": "Blairquhan",
-    "category": "包装水",
-    "volume": 500,
-    "sugarPer100ml": 0,
-    "caloriePer100ml": 0,
-    "image1": "./images/blairquhan-blairquhan-front.png",
-    "image2": "./images/blairquhan-blairquhan-back.png",
-    "mainColor": "#0ea5e9",
-    "dataQuality": "category_zero",
-    "source": "包装水按营养标签通常为0糖0能量",
+    "source": "包装水或无糖茶按营养标签常见0糖0能量处理",
     "note": ""
   },
   {
@@ -824,7 +824,7 @@
     "image2": "./images/coca-cola-coca-cola-back.png",
     "mainColor": "#dc2626",
     "dataQuality": "online_verified",
-    "source": "FatSecret 可口可乐：100ml糖10.6g、43kcal",
+    "source": "FatSecret：可口可乐每100ml糖10.6g、43kcal",
     "note": ""
   },
   {
@@ -840,7 +840,7 @@
     "image2": "./images/sprite-sprite-back.png",
     "mainColor": "#22c55e",
     "dataQuality": "needs_label_verification",
-    "source": "同类柠檬汽水/软饮参考；需按瓶身标签复核",
+    "source": "同类柠檬汽水/软饮参考",
     "note": "未找到本轮精确网页，建议按瓶身复核"
   },
   {
@@ -856,7 +856,7 @@
     "image2": "./images/fanta-fanta-back.png",
     "mainColor": "#f97316",
     "dataQuality": "online_verified",
-    "source": "FatSecret 可口可乐芬达：100ml糖4.6g、19kcal",
+    "source": "FatSecret：可口可乐芬达每100ml糖4.6g、19kcal",
     "note": "可能为减糖/版本差异，需按具体包装复核"
   },
   {
@@ -872,7 +872,7 @@
     "image2": "./images/pepsi-pepsi-back.png",
     "mainColor": "#2563eb",
     "dataQuality": "online_verified",
-    "source": "FatSecret 百事可乐：100ml糖7.0g、28kcal",
+    "source": "FatSecret：百事可乐每100ml糖7.0g、28kcal",
     "note": ""
   },
   {
@@ -888,7 +888,7 @@
     "image2": "./images/mirinda-mirinda-back.png",
     "mainColor": "#f97316",
     "dataQuality": "generic_reference",
-    "source": "FatSecret 芬达/橙味汽水同类参考：100ml糖10.6g、44kcal",
+    "source": "FatSecret：芬达/橙味汽水同类参考每100ml糖10.6g、44kcal",
     "note": "品牌不同，仅作同类参考，需按瓶身复核"
   },
   {
@@ -911,7 +911,7 @@
     "id": "tropicana-tropicana-1000",
     "company": "百事",
     "brand": "纯果乐",
-    "name": "纯果乐橙汁",
+    "name": "纯果乐",
     "category": "果汁",
     "volume": 1000,
     "sugarPer100ml": 8.7,
@@ -943,33 +943,33 @@
     "id": "redbull-250",
     "company": "红牛",
     "brand": "红牛",
-    "name": "维生素风味饮料",
+    "name": "维生素风味饮料（无咖啡因）",
     "category": "功能饮料",
     "volume": 250,
-    "sugarPer100ml": 10.7,
+    "sugarPer100ml": 12.68,
     "caloriePer100ml": 45,
     "image1": "./images/redbull-front.png",
     "image2": "./images/redbull-back.png",
     "mainColor": "#2563eb",
-    "dataQuality": "online_verified",
-    "source": "红牛官网：100ml糖10.7g；百度健康约45kcal/100ml",
-    "note": "不同版本可能不同"
+    "dataQuality": "variant_reference",
+    "source": "维基百科汇总包装摘录：红牛维生素风味饮料每罐250ml含糖31.7g",
+    "note": "折算约12.68g/100ml；需按当前瓶身复核"
   },
   {
     "id": "redbull-250",
     "company": "红牛",
     "brand": "红牛",
-    "name": "维生素功能饮料",
+    "name": "维生素功能饮料（有咖啡因）",
     "category": "功能饮料",
     "volume": 250,
-    "sugarPer100ml": 10.7,
+    "sugarPer100ml": 12.16,
     "caloriePer100ml": 45,
     "image1": "./images/redbull-front.png",
     "image2": "./images/redbull-back.png",
     "mainColor": "#facc15",
-    "dataQuality": "online_verified",
-    "source": "红牛官网：100ml糖10.7g；百度健康约45kcal/100ml",
-    "note": "不同版本可能不同"
+    "dataQuality": "variant_reference",
+    "source": "维基百科汇总包装摘录：中国红牛维生素功能饮料每罐250ml含糖30.4g",
+    "note": "折算约12.16g/100ml；需按当前瓶身复核"
   },
   {
     "id": "wahaha-ad-calcium-milk-220",
@@ -984,7 +984,7 @@
     "image2": "./images/wahaha-ad-calcium-milk-back.png",
     "mainColor": "#f9a8d4",
     "dataQuality": "variant_reference",
-    "source": "FatSecret 娃哈哈乳酸菌饮品/相关条目：100ml约48kcal、碳水7g",
+    "source": "FatSecret：娃哈哈乳酸菌饮品/相关条目每100ml约48kcal、碳水7g",
     "note": "AD钙奶具体标签需按瓶身复核"
   },
   {
@@ -1000,7 +1000,7 @@
     "image2": "./images/wahaha-pure-water-back.png",
     "mainColor": "#60a5fa",
     "dataQuality": "category_zero",
-    "source": "包装水按营养标签通常为0糖0能量",
+    "source": "包装水或无糖茶按营养标签常见0糖0能量处理",
     "note": ""
   },
   {
@@ -1016,7 +1016,7 @@
     "image2": "./images/wahaha-nutrition-express-back.png",
     "mainColor": "#facc15",
     "dataQuality": "variant_reference",
-    "source": "FatSecret 娃哈哈乳酸菌饮品/相关营养饮料参考：100ml约48kcal、碳水7g",
+    "source": "FatSecret：娃哈哈乳酸菌饮品/相关营养饮料参考每100ml约48kcal、碳水7g",
     "note": "具体营养快线版本需复核"
   },
   {
@@ -1032,7 +1032,7 @@
     "image2": "./images/wahaha-shuangwaiwai-back.png",
     "mainColor": "#f9a8d4",
     "dataQuality": "variant_reference",
-    "source": "FatSecret 娃哈哈乳酸菌饮品参考：100ml约48kcal、碳水7g",
+    "source": "FatSecret：娃哈哈乳酸菌饮品参考每100ml约48kcal、碳水7g",
     "note": "需按瓶身复核"
   },
   {
@@ -1048,7 +1048,7 @@
     "image2": "./images/wahaha-kvass-back.png",
     "mainColor": "#b45309",
     "dataQuality": "needs_label_verification",
-    "source": "FatSecret 娃哈哈乳酸菌页面列有格瓦斯相关产品，但未取到精确页",
+    "source": "FatSecret 娃哈哈相关页面列有格瓦斯相关产品，但未取到精确页",
     "note": "需按瓶身复核"
   },
   {
@@ -1080,7 +1080,7 @@
     "image2": "./images/wahaha-future-cola-back.png",
     "mainColor": "#dc2626",
     "dataQuality": "generic_reference",
-    "source": "可乐类通用/可口可乐参考：100ml糖10.6g、43kcal",
+    "source": "可乐类通用/可口可乐参考：每100ml糖10.6g、43kcal",
     "note": "品牌不同，仅作同类参考，需按瓶身复核"
   }
 ]
