@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>饮料含糖量卡片练习版</title>
+  <title>饮料含糖量可视化系统</title>
   <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
   <main class="page">
     <header class="page-header">
-      <div class="badge">drinks.json 练习版</div>
-      <h1>饮料含糖量卡片模板</h1>
+      <div class="badge">🥤 </div>
+      <h1>饮料含糖量可视化系统</h1>
       <p>
-        电脑端固定一排 5 个、共 2 行 10 个；手机端一排 2 个。
-        你只需要修改 <strong>data/drinks.json</strong> 里的内容，页面会自动更新。
+        方糖按 1 块 = 5g 计算
+        每日摄入 <  25g 
       </p>
     </header>
     <section class="filter-section">
@@ -45,15 +45,14 @@
     <button id="loadMoreBtn" class="load-more-btn">加载更多</button>
     
     <section class="tips">
-      <h2>怎么练习添加内容？</h2>
-      <p>打开 <code>data/drinks.json</code>，把空字段改成真实内容即可。</p>
+      <h2>怎么添加内容？</h2>
+      <p><a href="https://t.me/shadowufobot">联系电报机器人</a></p>
       <pre><code>{
-  "brand": "康师傅",
-  "name": "冰红茶",
-  "volume": 500,
-  "sugarPer100ml": 9,
-  "caloriePer100ml": 36,
-  "image": ""
+  支持拍照添加饮料，把购买的饮料包装拍摄（正面、营养成分表）2张图片。通过邮箱或电报机器人传送给我。格式（下方）
+饮料名字：某某某
+容量规格：多少 mL
+[ 2张还算清晰的图片文件 ]
+署名：XXX拍摄 （可留空）
 }</code></pre>
     </section>
   </main>
