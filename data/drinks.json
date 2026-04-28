@@ -830,7 +830,7 @@
   {
     "id": "nongfu-natural-water-550",
     "brand": "农夫山泉",
-    "name": "农夫山泉饮用天然水",
+    "name": "饮用天然水",
     "category": "饮用水",
     "volume": 550,
     "sugarPer100ml": 0,
@@ -842,7 +842,7 @@
   {
     "id": "nongfu-purified-water-550",
     "brand": "农夫山泉",
-    "name": "农夫山泉饮用纯净水",
+    "name": "饮用纯净水",
     "category": "饮用水",
     "volume": 550,
     "sugarPer100ml": 0,
