@@ -134,7 +134,7 @@ body {
   width: 200%;
   height: 100%;
   display: flex;
-  animation: autoSlide 5s infinite;
+  animation: autoSlide 24s infinite;
 }
 
 .slide {
