@@ -299,3 +299,28 @@ if (loadMoreBtn) {
 }
 
 init();
+
+const shareBtn = document.getElementById("shareBtn");
+const shareTip = document.getElementById("shareTip");
+
+const shareText = `饮料含糖量可视化系统
+可以查看常见饮料的含糖量、方糖数量和每日摄入参考。
+
+快来看看：
+https://thinking555.github.io/drink.html`;
+
+shareBtn.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(shareText);
+
+    shareTip.textContent = "分享内容已复制，可以粘贴发送给朋友了";
+    shareTip.classList.add("show");
+
+    setTimeout(() => {
+      shareTip.textContent = "";
+      shareTip.classList.remove("show");
+    }, 2500);
+  } catch (error) {
+    shareTip.textContent = "复制失败，请手动复制分享内容";
+  }
+});
