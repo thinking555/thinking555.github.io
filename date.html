@@ -1,0 +1,1827 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>数据泄露案汇总</title>
+  <style>
+:root {
+  --bg: #f6f7fb;
+  --paper: #ffffff;
+  --ink: #20242a;
+  --muted: #667085;
+  --line: #e5e7eb;
+  --brand: #2563eb;
+  --brand-soft: #eff6ff;
+  --ok: #047857;
+  --bad: #b91c1c;
+  --shadow: 0 18px 45px rgba(16, 24, 40, 0.08);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+  background: radial-gradient(circle at top left, #eef4ff 0, transparent 32rem), var(--bg);
+  color: var(--ink);
+  line-height: 1.72;
+}
+.page {
+  width: min(1180px, calc(100% - 32px));
+  margin: 36px auto 60px;
+}
+header.hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+  margin-bottom: 22px;
+}
+.hero h1 {
+  margin: 0 0 10px;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -0.04em;
+}
+.hero p {
+  margin: 0;
+  color: var(--muted);
+}
+.toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.search {
+  flex: 1 1 280px;
+  min-width: 220px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 11px 14px;
+  font-size: 15px;
+  outline: none;
+  background: #fff;
+}
+.search:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, .12);
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid #dbeafe;
+  color: #1d4ed8;
+  background: var(--brand-soft);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+.toc {
+  position: sticky;
+  top: 18px;
+  background: rgba(255,255,255,.86);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 10px 28px rgba(16,24,40,.06);
+}
+.toc strong { display: block; margin-bottom: 10px; }
+.toc ul { list-style: none; padding: 0; margin: 0; }
+.toc li { margin: 6px 0; }
+.toc a {
+  color: #344054;
+  text-decoration: none;
+  font-size: 14px;
+}
+.toc a:hover { color: var(--brand); }
+.toc .toc-l2 { padding-left: 12px; }
+main.content {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+main.content > h1:first-child { margin-top: 0; }
+h1, h2, h3 {
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 1.4em 0 .7em;
+}
+h1 { font-size: 34px; }
+h2 { font-size: 24px; padding-top: 8px; }
+h3 { font-size: 20px; }
+.anchor {
+  opacity: 0;
+  color: var(--brand);
+  text-decoration: none;
+  margin-right: 8px;
+  font-weight: 700;
+}
+h1:hover .anchor, h2:hover .anchor, h3:hover .anchor { opacity: 1; }
+p { margin: 1em 0; }
+a { color: var(--brand); text-decoration-thickness: .08em; text-underline-offset: 3px; }
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  margin: 18px 0 28px;
+  background: #fff;
+}
+table {
+  width: 100%;
+  min-width: 920px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 14px;
+}
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #f8fafc;
+  color: #111827;
+  text-align: left;
+  font-weight: 700;
+  border-bottom: 1px solid var(--line);
+}
+th, td {
+  padding: 12px 14px;
+  vertical-align: top;
+  border-bottom: 1px solid #eef2f7;
+}
+tbody tr:hover { background: #f9fbff; }
+tbody tr:last-child td { border-bottom: 0; }
+td:nth-last-child(1) {
+  white-space: nowrap;
+  text-align: center;
+  font-size: 16px;
+}
+code {
+  background: #f2f4f7;
+  padding: .15em .35em;
+  border-radius: 6px;
+}
+blockquote {
+  margin: 18px 0;
+  border-left: 4px solid var(--brand);
+  padding: 4px 0 4px 16px;
+  color: #475467;
+  background: #f8fafc;
+}
+footer {
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+  margin-top: 24px;
+}
+@media (max-width: 860px) {
+  .page { width: min(100% - 20px, 1180px); margin-top: 16px; }
+  .layout { grid-template-columns: 1fr; }
+  .toc { position: relative; top: auto; }
+  header.hero, main.content { padding: 20px; border-radius: 18px; }
+  table { font-size: 13px; }
+}
+@media print {
+  body { background: #fff; }
+  .page { width: 100%; margin: 0; }
+  .toc, .toolbar, footer { display: none; }
+  header.hero, main.content { box-shadow: none; border: 0; padding: 0; }
+  .table-wrap { overflow: visible; border: 1px solid #ddd; break-inside: avoid; }
+  table { min-width: 0; font-size: 10px; }
+  a { color: inherit; text-decoration: none; }
+}
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <h1>数据泄露案汇总</h1>
+      <p>保留 Markdown 文件。</p>
+      <div class="toolbar">
+        <input id="tableSearch" class="search" type="search" placeholder="搜索表格内容，例如：微博、淘宝、Reuters、TB">
+        <span id="searchStatus" class="chip">正在统计…</span>
+      </div>
+    </header>
+    <div class="layout">
+      <main class="content">
+        <p>数据泄露案汇总</p>
+<h2 id="中国数据泄露案--数据集"><a class="anchor" href="#中国数据泄露案--数据集" aria-label="跳转到本节">#</a>中国数据泄露案 / 数据集</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>数据泄露案 / 数据集</th>
+  <th style="text-align:right">规模</th>
+  <th>文件大小</th>
+  <th>备注</th>
+  <th>权威报道来源</th>
+  <th>核实</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>拼多多客户记录及购物历史</td>
+  <td style="text-align:right">145 亿条</td>
+  <td>892 GB</td>
+  <td>未核实 / 暗网声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>京东中国用户数据库</td>
+  <td style="text-align:right">100 亿条</td>
+  <td>600 GB</td>
+  <td>未核实 / 暗网声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>中国 Elasticsearch 暴露库记录</td>
+  <td style="text-align:right">87.3 亿条</td>
+  <td>文件大小未明确</td>
+  <td>—</td>
+  <td><a href="https://cybernews.com/security/billions-chinese-records-data-leak/" target="_blank" rel="noopener noreferrer">Cybernews</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>中国电商购物历史数据</td>
+  <td style="text-align:right">81.5 亿条</td>
+  <td>600 GB</td>
+  <td>未核实 / 暗网声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>中国 Elasticsearch 暴露库可解析唯一记录</td>
+  <td style="text-align:right">63.8 亿条</td>
+  <td>文件大小未明确</td>
+  <td>SpyCloud 分析口径；与 87.3 亿条属于同一事件分析口径</td>
+  <td><a href="https://cybernews.com/security/billions-chinese-records-data-leak/" target="_blank" rel="noopener noreferrer">Cybernews</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>客户记录（圆通速递 + 中通快递 + 顺丰物流）</td>
+  <td style="text-align:right">45 亿条</td>
+  <td>3.9 TB</td>
+  <td>未核实 / 暗网声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>中国单源超大暴露库记录</td>
+  <td style="text-align:right">40 亿条</td>
+  <td>631 GB</td>
+  <td>—</td>
+  <td><a href="https://cybernews.com/security/chinese-data-leak-billiones-records-exposed/" target="_blank" rel="noopener noreferrer">Cybernews</a> / <a href="https://spycloud.com/blog/inside-the-chinese-data-leak" target="_blank" rel="noopener noreferrer">SpyCloud</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Mars Hydro 物联网设备 / WiFi 网络相关记录</td>
+  <td style="text-align:right">27 亿条</td>
+  <td>文件大小未明确</td>
+  <td>中国 IoT 公司公开暴露数据库</td>
+  <td><a href="https://www.techradar.com/pro/security/massive-online-data-breach-sees-2-7-billion-records-leaked-heres-what-we-know" target="_blank" rel="noopener noreferrer">TechRadar</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>中国单源暴露库原始样本 / 唯一记录</td>
+  <td style="text-align:right">18 亿条原始样本 / 17 亿条唯一记录</td>
+  <td>文件大小未明确</td>
+  <td>SpyCloud 获取部分样本后的分析口径；与 40 亿条属于同一事件</td>
+  <td><a href="https://spycloud.com/blog/inside-the-chinese-data-leak" target="_blank" rel="noopener noreferrer">SpyCloud</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>LightInTheBox 客户 / Web 日志记录</td>
+  <td style="text-align:right">15 亿至 16 亿条</td>
+  <td>约 1.3 TB</td>
+  <td>中国跨境电商公开暴露数据库</td>
+  <td><a href="https://www.theregister.com/2019/12/16/lightinthebox_data_breach_1_5bn_customer_records/" target="_blank" rel="noopener noreferrer">The Register</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>腾讯 / QQ 用户记录</td>
+  <td style="text-align:right">14 亿条</td>
+  <td>44 GB 压缩；约 500 GB 解压</td>
+  <td>腾讯方面否认 / 未核实</td>
+  <td><a href="https://cyberinsider.com/hacker-leaks-over-4-billion-user-records-from-nationalpublicdata-and-tencent/" target="_blank" rel="noopener noreferrer">CyberInsider</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>QQ手机号绑定</td>
+  <td style="text-align:right">8亿条</td>
+  <td>19.23GB;2018年</td>
+  <td>核实</td>
+  <td>暂无权威确认</td>
+  <td>✅</td>
+</tr>
+<tr>
+  <td>警方数据库记录</td>
+  <td style="text-align:right">12 亿条</td>
+  <td>1.2 TB</td>
+  <td>未核实 / 暗网声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>淘宝用户数据 / 用户信息片段</td>
+  <td style="text-align:right">11 亿条</td>
+  <td>文件大小未公开;2019年</td>
+  <td>爬虫抓取事件</td>
+  <td><a href="https://www.cpomagazine.com/cyber-security/web-scraping-on-alibabas-taobao-resulted-in-data-leak-of-1-1-billion-records/" target="_blank" rel="noopener noreferrer">CPO Magazine</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>上海公安 / SHGA 公民数据</td>
+  <td style="text-align:right">10 亿人</td>
+  <td>23 TB</td>
+  <td>黑客声称</td>
+  <td><a href="https://www.reuters.com/world/china/hacker-claims-have-stolen-1-bln-records-chinese-citizens-police-2022-07-04/" target="_blank" rel="noopener noreferrer">Reuters</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>上海公安身份证记录样本</td>
+  <td style="text-align:right">9.61 亿条</td>
+  <td>文件大小未明确</td>
+  <td>SpyCloud 分析样本；去重后约 1.05 亿唯一身份证</td>
+  <td><a href="https://spycloud.com/blog/insights-from-leaked-chinese-national-id-numbers" target="_blank" rel="noopener noreferrer">SpyCloud</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>上海公安 SHGA 公民数据</td>
+  <td style="text-align:right">9.6 亿条</td>
+  <td>文件大小未明确</td>
+  <td>未核实 / 暗网声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>普通公民数据库</td>
+  <td style="text-align:right">9.6 亿条</td>
+  <td>890 GB</td>
+  <td>未核实 / 暗网声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>淘宝用户 / 购物相关数据</td>
+  <td style="text-align:right">8.15 亿条</td>
+  <td>600 GB Tar.gz + 1.8 TB CSV</td>
+  <td>Babuk 声称；淘宝回应称并非来自其平台</td>
+  <td><a href="https://cybernews.com/security/babuk-ransomware-claims-alibaba-owned-taobao/" target="_blank" rel="noopener noreferrer">Cybernews</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>微博用户数据</td>
+  <td style="text-align:right">5.38 亿条</td>
+  <td>12GB；2020年3月4日</td>
+  <td>含约 1.72 亿手机号</td>
+  <td><a href="https://www.zdnet.com/article/details-of-538-million-weibo-users-sold-on-the-dark-web/" target="_blank" rel="noopener noreferrer">ZDNet</a></td>
+  <td>✅</td>
+</tr>
+<tr>
+  <td>SocialArks 社交媒体聚合记录</td>
+  <td style="text-align:right">3.18 亿条记录 / 约 2.14 亿用户</td>
+  <td>约 408 GB</td>
+  <td>中国公司暴露库；数据来自 Facebook / Instagram / LinkedIn 等</td>
+  <td><a href="https://www.threatpost.com/social-profiles-leaked-chinese-data-scrapers/162936/" target="_blank" rel="noopener noreferrer">Threatpost</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>华住酒店集团记录</td>
+  <td style="text-align:right">2.4 亿条记录 / 约 1.3 亿客人</td>
+  <td>约 141.5 GB</td>
+  <td>另有“近 5 亿条信息”口径</td>
+  <td><a href="https://securityaffairs.com/75741/deep-web/chinese-hotel-chain-data-leak.html" target="_blank" rel="noopener noreferrer">SecurityAffairs</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>网易 / 163 邮箱用户数据</td>
+  <td style="text-align:right">2.34 亿条</td>
+  <td>文件大小未明确</td>
+  <td>未核实 / 历史泄露口径</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>中国某医院 / 医疗机构相关数据</td>
+  <td style="text-align:right">1.38 亿行</td>
+  <td>原始大小约 325 GB；导出大小约 188 GB</td>
+  <td>未核实 / 暗网声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>国泰航空 / 港龙航空乘客数据</td>
+  <td style="text-align:right">940 万条</td>
+  <td>文件大小未公开</td>
+  <td>香港航空公司</td>
+  <td><a href="https://www.reuters.com/article/business/cathay-pacific-flags-data-breach-affecting-94-million-passengers-idUSKCN1MY2B7/" target="_blank" rel="noopener noreferrer">Reuters</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>优酷用户数据</td>
+  <td style="text-align:right">9200 万条</td>
+  <td>文件大小未明确</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>12306 用户数据传闻</td>
+  <td style="text-align:right">3000 万条</td>
+  <td>文件大小未明确</td>
+  <td>官方否认</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>淘宝用户账号数据</td>
+  <td style="text-align:right">2100 万条</td>
+  <td>文件大小未明确</td>
+  <td>Have I Been Pwned 标注为未完全验证</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>CSDN / 中国软件开发者网络用户记录</td>
+  <td style="text-align:right">640 万条</td>
+  <td>约 274 MB</td>
+  <td>含用户名、邮箱、明文密码；历史泄露</td>
+  <td><a href="https://haveibeenpwned.com/breach/CSDN" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>振华数据全球人物画像数据</td>
+  <td style="text-align:right">240 万条</td>
+  <td>文件大小未明确</td>
+  <td>OSINT / 聚合画像类泄露</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>PandaBuy 用户数据</td>
+  <td style="text-align:right">130 万条</td>
+  <td>文件大小未明确</td>
+  <td>含邮箱、IP、姓名、电话、地址、订单咨询等</td>
+  <td><a href="https://haveibeenpwned.com/Breach/Pandabuy" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>12306 真实用户数据</td>
+  <td style="text-align:right">13 万条</td>
+  <td>文件大小未明确</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>外卖订单数据集</td>
+  <td style="text-align:right">海量</td>
+  <td>400 GB</td>
+  <td>未核实 / 暗网声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>中国长城防火墙 / Geedge + MESA 内部文件泄露</td>
+  <td style="text-align:right">记录数不适合按“条”统计</td>
+  <td>600 GB 左右；含约 500 GB 单个归档</td>
+  <td>源码、技术文档、工作日志、内部通信等；偏内部文件泄露；不是普通客户数据库</td>
+  <td><a href="https://dti.domaintools.com/inside-the-great-firewall-part-1-the-dump" target="_blank" rel="noopener noreferrer">DomainTools</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Knownsec / 知道创宇相关泄露文件集</td>
+  <td style="text-align:right">未明确</td>
+  <td>含 95 GB 印度移民记录、3 TB 韩国 LG U+ 通话日志、459 GB 台湾交通数据</td>
+  <td>更偏安全公司内部泄露 + 多国数据集</td>
+  <td><a href="https://cybernews.com/security/knownsec-leak-exposes-involvement-in-state-linked-cyber-operations/" target="_blank" rel="noopener noreferrer">Cybernews</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>新疆 Police Files 文件集</td>
+  <td style="text-align:right">数万份文件、图片、表格和内部资料</td>
+  <td>10 GB</td>
+  <td>数万份文件、图片、表格和内部资料；非普通商业数据库</td>
+  <td><a href="https://www.bbc.com/news/world-asia-china-61572513" target="_blank" rel="noopener noreferrer">BBC</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>淘宝，抖音疑似出现新的快递数据泄露</td>
+  <td style="text-align:right"></td>
+  <td></td>
+  <td>星链社工机器人宣布永久关闭并已销毁数据</td>
+  <td></td>
+  <td>❌</td>
+</tr>
+</tbody>
+</table></div>
+<p>2020年11月23日，有用户在黑客论坛放出了一个44.65GB社工库信息包，该库就包含了此前所泄露的大约5.38亿微博用户数据、8亿条QQ用户数据、75万条车主信息、某保险公司10万条数据、70万条企业数据、部分快递信息和某贷视频照片。该数据包传播甚广，拥有这些数据的人非常多。</p>
+<h2 id="中国以外数据泄露案--数据集"><a class="anchor" href="#中国以外数据泄露案--数据集" aria-label="跳转到本节">#</a>中国以外数据泄露案 / 数据集</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>数据泄露案 / 数据集</th>
+  <th style="text-align:right">规模</th>
+  <th>文件大小</th>
+  <th>备注</th>
+  <th>权威报道来源</th>
+  <th>核实</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Netcore Cloud 邮件营销 / 系统日志记录</td>
+  <td style="text-align:right">400 亿条</td>
+  <td>13.41 TB</td>
+  <td>印度营销平台公开暴露数据库</td>
+  <td><a href="https://www.websiteplanet.com/news/netcore-cloud-breach-report/" target="_blank" rel="noopener noreferrer">WebsitePlanet</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>MOAB 超级泄露合集</td>
+  <td style="text-align:right">260 亿条</td>
+  <td>12 TB</td>
+  <td>—</td>
+  <td><a href="https://cybernews.com/security/billions-passwords-credentials-leaked-mother-of-all-breaches/" target="_blank" rel="noopener noreferrer">Cybernews</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>ALIEN TXTBASE 信息窃取木马日志</td>
+  <td style="text-align:right">230 亿行</td>
+  <td>1.5 TB</td>
+  <td>约 4.93 亿唯一网站-邮箱组合；约 2.84 亿唯一邮箱</td>
+  <td><a href="https://www.troyhunt.com/processing-23-billion-rows-of-alien-txtbase-stealer-logs/" target="_blank" rel="noopener noreferrer">Troy Hunt</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>全球登录凭据合集</td>
+  <td style="text-align:right">160 亿条</td>
+  <td>文件大小未统一公开</td>
+  <td>—</td>
+  <td><a href="https://cybernews.com/security/billions-credentials-exposed-infostealers-data-leak/" target="_blank" rel="noopener noreferrer">Cybernews</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>CAM4 用户与行为记录</td>
+  <td style="text-align:right">108.8 亿条</td>
+  <td>7 TB</td>
+  <td>—</td>
+  <td><a href="https://www.safetydetectives.com/blog/cam4-leak-report/" target="_blank" rel="noopener noreferrer">SafetyDetectives</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>RockYou2021 密码合集</td>
+  <td style="text-align:right">84.59 亿条</td>
+  <td>100 GB</td>
+  <td>—</td>
+  <td><a href="https://cybernews.com/security/rockyou2021-alltime-largest-password-compilation-leaked/" target="_blank" rel="noopener noreferrer">Cybernews</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>邮箱地址合集</td>
+  <td style="text-align:right">68 亿条</td>
+  <td>文件大小未明确</td>
+  <td>研究者估计真实有效邮箱约 30 亿</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>职业资料 / LinkedIn 风格职业画像记录</td>
+  <td style="text-align:right">43 亿条</td>
+  <td>16 TB</td>
+  <td>—</td>
+  <td><a href="https://securityaffairs.com/185661/data-breach/experts-found-an-unsecured-16tb-database-containing-4-3b-professional-records.html" target="_blank" rel="noopener noreferrer">SecurityAffairs</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>社交与职业聚合资料</td>
+  <td style="text-align:right">40 亿个用户账号 / 12 亿人</td>
+  <td>约 4 TB</td>
+  <td>People Data Labs / OxyData 相关暴露口径</td>
+  <td><a href="https://www.wired.com/story/billion-records-exposed-online/" target="_blank" rel="noopener noreferrer">Wired</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>COMB / Compilation of Many Breaches 凭据合集</td>
+  <td style="text-align:right">32 亿条</td>
+  <td>文件大小未明确</td>
+  <td>—</td>
+  <td><a href="https://cybernews.com/security/billions-passwords-credentials-leaked-mother-of-all-breaches/" target="_blank" rel="noopener noreferrer">Cybernews</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Yahoo 用户账户数据</td>
+  <td style="text-align:right">30 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>邮箱与密码 + 美国社会安全号码暴露库</td>
+  <td style="text-align:right">30 亿个邮箱与密码记录 + 27 亿条含 SSN 记录</td>
+  <td>文件大小未明确</td>
+  <td>UpGuard “Social Insecurity” 暴露库；疑似旧泄露重组</td>
+  <td><a href="https://www.upguard.com/breaches/social-insecurity-billions-of-social-security-number-and-passwords" target="_blank" rel="noopener noreferrer">UpGuard</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>National Public Data 个人记录</td>
+  <td style="text-align:right">29 亿条</td>
+  <td>文件大小未明确</td>
+  <td>早期诉讼 / 声称口径</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>National Public Data 明文记录</td>
+  <td style="text-align:right">27 亿条</td>
+  <td>约 277 GB</td>
+  <td>后续公开转储口径</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Collection #1 泄露凭据合集</td>
+  <td style="text-align:right">26.9 亿行</td>
+  <td>约 87 GB</td>
+  <td>约 7.73 亿唯一邮箱</td>
+  <td><a href="https://haveibeenpwned.com/Breach/Collection1" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Synthient Credential Stuffing Threat Data 凭据填充威胁数据</td>
+  <td style="text-align:right">20 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Real Estate Wealth Network 房产相关记录</td>
+  <td style="text-align:right">15.24 亿条</td>
+  <td>1.16 TB</td>
+  <td>—</td>
+  <td><a href="https://securityaffairs.com/185661/data-breach/experts-found-an-unsecured-16tb-database-containing-4-3b-professional-records.html" target="_blank" rel="noopener noreferrer">SecurityAffairs</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Salesforce / Salesloft Drift 相关 CRM 记录</td>
+  <td style="text-align:right">15 亿条</td>
+  <td>文件大小未明确</td>
+  <td>未完全核实 / 攻击组织声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>River City Media 邮件营销 / 垃圾邮件库记录</td>
+  <td style="text-align:right">14 亿条</td>
+  <td>约 200 GB</td>
+  <td>—</td>
+  <td><a href="https://www.theregister.com/2017/03/07/rcm_email_megaleak/" target="_blank" rel="noopener noreferrer">The Register</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>4iQ 明文凭据合集</td>
+  <td style="text-align:right">14 亿条</td>
+  <td>文件大小未明确</td>
+  <td>聚合凭据库</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>People Data Labs / OxyData 聚合个人资料记录</td>
+  <td style="text-align:right">12 亿条</td>
+  <td>约 4 TB</td>
+  <td>与上方 40 亿账号口径存在重叠</td>
+  <td><a href="https://www.wired.com/story/billion-records-exposed-online/" target="_blank" rel="noopener noreferrer">Wired</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>印度 Aadhaar 相关个人数据争议记录</td>
+  <td style="text-align:right">11 亿条</td>
+  <td>文件大小未公开</td>
+  <td>官方否认完整数据库被攻破</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>IDMerit / KYC 身份验证相关个人记录</td>
+  <td style="text-align:right">10 亿条</td>
+  <td>约 1 TB</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>First American Financial 房贷 / 产权文件</td>
+  <td style="text-align:right">8.85 亿份</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://krebsonsecurity.com/2019/05/first-american-financial-corp-leaked-hundreds-of-millions-of-title-insurance-records/" target="_blank" rel="noopener noreferrer">KrebsOnSecurity</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>印度 ICMR / Aadhaar / 护照相关个人数据</td>
+  <td style="text-align:right">8.15 亿条</td>
+  <td>文件大小未公开</td>
+  <td>黑客声称；ICMR 未确认</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Verifications.io 邮箱营销数据库</td>
+  <td style="text-align:right">7.63 亿条</td>
+  <td>约 150 GB</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/Breach/VerificationsIO" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Onliner Spambot 邮箱 / 凭据相关记录</td>
+  <td style="text-align:right">7.11 亿条</td>
+  <td>文件大小公开口径不一</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>LinkedIn 用户数据</td>
+  <td style="text-align:right">7 亿条</td>
+  <td>文件大小未公开</td>
+  <td>LinkedIn 称为抓取数据；不是系统入侵</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Ticketmaster / Snowflake 用户数据</td>
+  <td style="text-align:right">5.6 亿条</td>
+  <td>约 1.3 TB</td>
+  <td>—</td>
+  <td><a href="https://www.techradar.com/pro/security/ticketmaster-breached-data-of-over-500-million-users-allegedly-put-up-for-sale-online" target="_blank" rel="noopener noreferrer">TechRadar</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Facebook 第三方应用 Cultura Colectiva 数据</td>
+  <td style="text-align:right">5.4 亿条</td>
+  <td>146 GB</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Facebook 用户数据</td>
+  <td style="text-align:right">5.33 亿条</td>
+  <td>文件大小未公开</td>
+  <td>抓取库</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Yahoo 2014 年用户账户数据</td>
+  <td style="text-align:right">5 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Marriott / Starwood 酒店客户记录</td>
+  <td style="text-align:right">5 亿条</td>
+  <td>文件大小未明确</td>
+  <td>后续修正口径约 3.39 亿至 3.83 亿</td>
+  <td><a href="https://news.marriott.com/news/2018/11/30/marriott-announces-starwood-guest-reservation-database-security-incident" target="_blank" rel="noopener noreferrer">Marriott</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Syniverse 电信相关记录</td>
+  <td style="text-align:right">5 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>FriendFinder Networks 账户数据</td>
+  <td style="text-align:right">4.12 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Bykea 用户 / 司机 / 订单相关记录</td>
+  <td style="text-align:right">4 亿条</td>
+  <td>约 200 GB</td>
+  <td>—</td>
+  <td><a href="https://www.websiteplanet.com/news/bykea-breach-report/" target="_blank" rel="noopener noreferrer">WebsitePlanet</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Telegram 上发布的 Combolists 凭据合集</td>
+  <td style="text-align:right">3.615 亿条</td>
+  <td>文件大小未公开</td>
+  <td>聚合凭据类</td>
+  <td><a href="https://cybernews.com/security/billions-passwords-credentials-leaked-mother-of-all-breaches/" target="_blank" rel="noopener noreferrer">Cybernews</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>MySpace 用户账户数据</td>
+  <td style="text-align:right">3.6 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Exactis 用户画像记录</td>
+  <td style="text-align:right">3.4 亿条</td>
+  <td>约 2 TB</td>
+  <td>—</td>
+  <td><a href="https://www.wired.com/story/exactis-database-leak-340-million-records/" target="_blank" rel="noopener noreferrer">Wired</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>印度尼西亚 Dukcapil 人口登记相关数据</td>
+  <td style="text-align:right">3.37 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Twitter 用户密码内部日志暴露风险记录</td>
+  <td style="text-align:right">3.3 亿条</td>
+  <td>文件大小未公开</td>
+  <td>平台要求用户重置密码</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Not SOCRadar 数据</td>
+  <td style="text-align:right">2.825 亿条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Twitter 数据</td>
+  <td style="text-align:right">2.81 亿条</td>
+  <td>文件大小未明确</td>
+  <td>MOAB 合集中出现的 Twitter 数据口径；可能与历史抓取数据重复</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Wattpad 用户数据</td>
+  <td style="text-align:right">2.7 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Deezer 用户数据</td>
+  <td style="text-align:right">2.58 亿条</td>
+  <td>文件大小未明确</td>
+  <td>MOAB 合集中出现的数据口径</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Microsoft 客服支持记录</td>
+  <td style="text-align:right">2.5 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>巴西公民 CPF 数据</td>
+  <td style="text-align:right">2.23 亿条</td>
+  <td>旧案约 673–873 GB；另有 1.8 TB 再售 / 声称口径</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>X / Twitter API 抓取数据</td>
+  <td style="text-align:right">2 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Deep Root Analytics 美国选民数据</td>
+  <td style="text-align:right">2 亿条</td>
+  <td>1.1 TB</td>
+  <td>—</td>
+  <td><a href="https://www.upguard.com/breaches/the-rnc-files" target="_blank" rel="noopener noreferrer">UpGuard</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Court Ventures / Experian 个人记录</td>
+  <td style="text-align:right">2 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>美国选民数据 / RNC Deep Root Analytics 口径</td>
+  <td style="text-align:right">1.98 亿条</td>
+  <td>1.1 TB</td>
+  <td>与上项可能重复</td>
+  <td><a href="https://www.upguard.com/breaches/the-rnc-files" target="_blank" rel="noopener noreferrer">UpGuard</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Change Healthcare 医疗相关数据</td>
+  <td style="text-align:right">1.927 亿条</td>
+  <td>文件大小未公开</td>
+  <td>美国 HHS / Reuters 更新口径</td>
+  <td><a href="https://www.reuters.com/technology/cybersecurity/unitedhealth-says-change-healthcare-data-breach-impacted-about-190-million-people-2025-01-24/" target="_blank" rel="noopener noreferrer">Reuters</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>公开暴露的登录 / 邮箱 / 凭据类记录</td>
+  <td style="text-align:right">1.84 亿条</td>
+  <td>文件大小未公开</td>
+  <td>2025 年暴露库口径</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Synthient Stealer Log Threat Data 信息窃取木马日志数据</td>
+  <td style="text-align:right">1.83 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Zynga 用户账户数据</td>
+  <td style="text-align:right">1.73 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>LinkedIn 2012 年用户账户数据</td>
+  <td style="text-align:right">1.65 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Dubsmash 用户数据</td>
+  <td style="text-align:right">1.62 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Adobe 用户数据</td>
+  <td style="text-align:right">1.53 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>MyFitnessPal 用户数据</td>
+  <td style="text-align:right">1.51 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>用户名 / 密码暴露库</td>
+  <td style="text-align:right">1.49 亿条</td>
+  <td>约 96 GB</td>
+  <td>含 Google、Apple、Meta 等平台相关登录信息；公开暴露数据库口径</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Equifax 信用数据</td>
+  <td style="text-align:right">1.48 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://www.ftc.gov/enforcement/refunds/equifax-data-breach-settlement" target="_blank" rel="noopener noreferrer">FTC</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>eBay 用户数据</td>
+  <td style="text-align:right">1.45 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Canva 用户数据</td>
+  <td style="text-align:right">1.37 亿至 1.39 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Apollo.io 邮箱 / 数据点</td>
+  <td style="text-align:right">1.25 亿个邮箱 / 约 90 亿数据点</td>
+  <td>文件大小未公开</td>
+  <td>营销数据聚合库</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>DemandScience / Pure Incubation 数据</td>
+  <td style="text-align:right">1.218 亿条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>MobiKwik 用户数据</td>
+  <td style="text-align:right">1.1 亿条</td>
+  <td>8.2 TB</td>
+  <td>黑客声称；公司曾否认 / 调查</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>AT&amp;T 现 / 前用户数据</td>
+  <td style="text-align:right">1.1 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://about.att.com/story/2024/addressing-data-set-released-on-dark-web.html" target="_blank" rel="noopener noreferrer">AT&amp;T</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>AT&amp;T 无线客户通话 / 短信元数据</td>
+  <td style="text-align:right">1.09 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://about.att.com/story/2024/addressing-illegal-download.html" target="_blank" rel="noopener noreferrer">AT&amp;T</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Data Troll Stealer Logs 凭据 / 日志数据</td>
+  <td style="text-align:right">1.095 亿条</td>
+  <td>文件大小未公开</td>
+  <td>信息窃取木马日志类</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Capital One 信用卡 / 申请人数据</td>
+  <td style="text-align:right">1.06 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Evite 用户数据</td>
+  <td style="text-align:right">1.01 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Quora 用户数据</td>
+  <td style="text-align:right">1 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>VK 用户数据</td>
+  <td style="text-align:right">1 亿条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Eurail 乘客相关原始数据行</td>
+  <td style="text-align:right">1 亿条</td>
+  <td>1.3 TB</td>
+  <td>黑客声称 / 样本经安全媒体查看</td>
+  <td><a href="https://cybernews.com/security/eurail-data-breach-passenger-data-sale/" target="_blank" rel="noopener noreferrer">Cybernews</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>1win 用户数据</td>
+  <td style="text-align:right">9600 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>French Citizens / 法国公民聚合数据</td>
+  <td style="text-align:right">9500 万条</td>
+  <td>约 30.1 GB</td>
+  <td>开放 Elasticsearch；来自至少 17 个法国相关泄露的聚合库；HIBP 另有 2840 万条口径</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Dailymotion 用户数据</td>
+  <td style="text-align:right">8600 万条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Advance Auto Parts 客户数据</td>
+  <td style="text-align:right">7920 万条</td>
+  <td>文件大小未公开</td>
+  <td>Snowflake 相关事件</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Under Armour 客户与员工邮箱数据</td>
+  <td style="text-align:right">7270 万条</td>
+  <td>19.5 GB</td>
+  <td>黑客声称 / 泄露数据集</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>2025 年 1 月 Stealer Logs 凭据日志</td>
+  <td style="text-align:right">7100 万条</td>
+  <td>文件大小未公开</td>
+  <td>信息窃取木马日志类</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Dropbox 用户数据</td>
+  <td style="text-align:right">6900 万条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Tumblr 用户数据</td>
+  <td style="text-align:right">6500 万条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>The Post Millennial 用户数据</td>
+  <td style="text-align:right">5700 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Hot Topic 用户数据</td>
+  <td style="text-align:right">5690 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>ShinyHunters 多组织数据合集</td>
+  <td style="text-align:right">5000 万条以上</td>
+  <td>约数千万条记录 + TB 级数据</td>
+  <td>涉及 Mytheresa、Zara、Carnival、7-Eleven、Medtronic 等；黑客组织泄露口径</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Canadian Tire 客户账户数据</td>
+  <td style="text-align:right">约 4200 万条记录 / 约 3800 万客户</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>ManoMano 欧洲电商客户数据</td>
+  <td style="text-align:right">3800 万条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Neiman Marcus 用户数据</td>
+  <td style="text-align:right">3120 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Internet Archive 用户数据</td>
+  <td style="text-align:right">3110 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Star Health 印度健康保险客户数据</td>
+  <td style="text-align:right">3100 万条</td>
+  <td>7.24 TB</td>
+  <td>黑客声称；含个人与医疗数据</td>
+  <td><a href="https://www.reuters.com/technology/cybersecurity/hacker-uses-telegram-chatbots-leak-data-top-indian-insurer-star-health-2024-09-20/" target="_blank" rel="noopener noreferrer">Reuters</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>SoundCloud 用户数据</td>
+  <td style="text-align:right">2980 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>French Citizens 法国公民数据</td>
+  <td style="text-align:right">2840 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录；与 9500 万法国聚合库可能存在口径差异</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Speedio 数据</td>
+  <td style="text-align:right">2750 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Telegram 上发布的 Stealer Logs</td>
+  <td style="text-align:right">2610 万条</td>
+  <td>文件大小未公开</td>
+  <td>信息窃取木马日志类</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Conduent 政府 / 医疗服务相关个人数据</td>
+  <td style="text-align:right">2500 万条</td>
+  <td>约 8.5 TB</td>
+  <td>SafePay 勒索组织声称</td>
+  <td><a href="https://www.malwarebytes.com/blog/news/2026/02/the-conduent-breach-from-10-million-to-25-million-and-counting" target="_blank" rel="noopener noreferrer">Malwarebytes</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Motel One 文件</td>
+  <td style="text-align:right">2440 万个</td>
+  <td>约 6 TB</td>
+  <td>ALPHV / BlackCat 声称；含酒店预订相关信息</td>
+  <td><a href="https://securityaffairs.com/151732/cyber-crime/alphv-ransomware-motel-one.html" target="_blank" rel="noopener noreferrer">SecurityAffairs</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Hopamedia 数据</td>
+  <td style="text-align:right">2380 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Cutout.Pro 用户数据</td>
+  <td style="text-align:right">2000 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>France Titres / ANTS 法国身份与车辆证件平台相关记录</td>
+  <td style="text-align:right">1900 万条</td>
+  <td>文件大小未公开</td>
+  <td>黑客声称；法国机构确认发生访问事件</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Ticketek 用户数据</td>
+  <td style="text-align:right">1760 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Prosper 用户数据</td>
+  <td style="text-align:right">1760 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Operation Endgame 2.0 执法行动相关凭据 / 恶意软件数据</td>
+  <td style="text-align:right">1540 万条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Trello 用户数据</td>
+  <td style="text-align:right">1510 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Free 法国电信用户数据</td>
+  <td style="text-align:right">1390 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>McGraw Hill 用户账户数据</td>
+  <td style="text-align:right">1350 万条</td>
+  <td>文件大小未公开</td>
+  <td>Salesforce 环境相关泄露</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>MediSecure 澳大利亚电子处方 / 医疗数据</td>
+  <td style="text-align:right">1290 万条</td>
+  <td>6.5 TB</td>
+  <td>涉及个人和健康信息</td>
+  <td><a href="https://securityaffairs.com/165932/security/medisecure-databreach-12-9m-individuals.html" target="_blank" rel="noopener noreferrer">SecurityAffairs</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>CarGurus 用户 / 经销商 / 金融预审相关记录</td>
+  <td style="text-align:right">1240 万条</td>
+  <td>约 6.1 GB</td>
+  <td>黑客声称 / HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Zacks 2024 用户数据</td>
+  <td style="text-align:right">1200 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Storenvy 用户数据</td>
+  <td style="text-align:right">1110 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Raaga 用户数据</td>
+  <td style="text-align:right">1020 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Z-lib 用户数据</td>
+  <td style="text-align:right">970 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Medibank 客户数据</td>
+  <td style="text-align:right">970 万条</td>
+  <td>约 200 GB</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Explore Talent 用户数据</td>
+  <td style="text-align:right">890 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录；另有 540 万条旧口径</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Carnival 用户数据</td>
+  <td style="text-align:right">750 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>boAt 用户数据</td>
+  <td style="text-align:right">750 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Pass’Sport 用户数据</td>
+  <td style="text-align:right">640 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Gemotest 医学实验室用户数据</td>
+  <td style="text-align:right">630 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Odido 荷兰电信用户数据</td>
+  <td style="text-align:right">610 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>MovieBoxPro 用户数据</td>
+  <td style="text-align:right">600 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>MyPertamina 用户数据</td>
+  <td style="text-align:right">600 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Qantas 客户数据</td>
+  <td style="text-align:right">570 万条</td>
+  <td>文件大小未公开</td>
+  <td>澳航确认</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Bouygues Telecom 用户数据</td>
+  <td style="text-align:right">570 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Panera Bread 用户账户数据</td>
+  <td style="text-align:right">510 万条</td>
+  <td>文件大小未明确</td>
+  <td>原声称 1400 万记录；后修正为约 510 万唯一邮箱</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>ClaimPix / 车险理赔文件与图片</td>
+  <td style="text-align:right">510 万个文件</td>
+  <td>约 10 TB</td>
+  <td>含车辆登记、维修发票、授权书、事故车辆图片等</td>
+  <td><a href="https://www.websiteplanet.com/news/claimpix-breach-report/" target="_blank" rel="noopener noreferrer">WebsitePlanet</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Lookiero 用户数据</td>
+  <td style="text-align:right">500 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Scholastic 用户数据</td>
+  <td style="text-align:right">420 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Windows 设备被无名木马感染并窃取数据</td>
+  <td style="text-align:right">320 万台设备</td>
+  <td>约 1.2 TB</td>
+  <td>含文件、Cookie、凭据；含约 2600 万组登录凭据、20 亿 Cookie</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Thermomix Recipe World Forum 用户数据</td>
+  <td style="text-align:right">310 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Giant Tiger 用户数据</td>
+  <td style="text-align:right">280 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>HuntStand 用户数据</td>
+  <td style="text-align:right">280 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>mSpy 2024 用户数据</td>
+  <td style="text-align:right">240 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Ahold Delhaize 员工 / 相关人员数据</td>
+  <td style="text-align:right">224 万条</td>
+  <td>勒索组织声称总量 6 TB；其中约 800 GB 被发布</td>
+  <td>确认影响约 224 万人</td>
+  <td><a href="https://securityaffairs.com/179448/data-breach/ahold-delhaize-data-breach-affected-over-2-2-million-individuals.html" target="_blank" rel="noopener noreferrer">SecurityAffairs</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Amtrak 用户数据</td>
+  <td style="text-align:right">210 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Piping Rock 用户数据</td>
+  <td style="text-align:right">210 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>MC2 Data 用户数据</td>
+  <td style="text-align:right">210 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Habib Bank AG Zurich 瑞士银行相关文件</td>
+  <td style="text-align:right">近 200 万个</td>
+  <td>约 2.5 TB</td>
+  <td>黑客声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Betterment 用户数据</td>
+  <td style="text-align:right">140 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Crunchyroll 用户数据</td>
+  <td style="text-align:right">120 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>KomikoAI 用户数据</td>
+  <td style="text-align:right">110 万条</td>
+  <td>文件大小未公开</td>
+  <td>HIBP 收录</td>
+  <td><a href="https://haveibeenpwned.com/PwnedWebsites" target="_blank" rel="noopener noreferrer">Have I Been Pwned</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>ASKUL 日本电商 / 物流客户与合作方记录</td>
+  <td style="text-align:right">70 万条</td>
+  <td>勒索组织声称窃取约 1 TB 数据</td>
+  <td>公司确认约 70 万级记录受影响</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>UK Biobank 去标识化健康研究记录</td>
+  <td style="text-align:right">50 万条</td>
+  <td>文件大小未公开</td>
+  <td>—</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="中国以外大型文件泄露--记录数未公开或不适合按条统计"><a class="anchor" href="#中国以外大型文件泄露--记录数未公开或不适合按条统计" aria-label="跳转到本节">#</a>中国以外大型文件泄露 / 记录数未公开或不适合按“条”统计</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+  <th>数据泄露案 / 数据集</th>
+  <th style="text-align:right">规模</th>
+  <th>文件大小</th>
+  <th>备注</th>
+  <th>权威报道来源</th>
+  <th>核实</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>阿联酋三家大型机构相关数据</td>
+  <td style="text-align:right">记录数未公开</td>
+  <td>149 TB</td>
+  <td>Handala 声称窃取；未核实 / 文件量声称口径；记录数未公开</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>塞内加尔 DAF 国家身份系统数据</td>
+  <td style="text-align:right">记录数未公开</td>
+  <td>139 GB 至 139 TB</td>
+  <td>黑客声称；涉及公民数据库、生物识别、移民文件等；官方未确认真实体量</td>
+  <td><a href="https://www.brightdefense.com/news/senegal-id-system-breach/" target="_blank" rel="noopener noreferrer">BrightDefense</a></td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>AXA 亚洲业务相关敏感数据</td>
+  <td style="text-align:right">记录数未公开</td>
+  <td>3 TB</td>
+  <td>记录数未公开；勒索组织声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Cell C 南非电信用户相关数据</td>
+  <td style="text-align:right">记录数未公开</td>
+  <td>2 TB</td>
+  <td>记录数未公开；RansomHouse 声称；企业确认发生事件</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Apodis Pharma 法国医药供应链平台数据</td>
+  <td style="text-align:right">记录数未公开</td>
+  <td>1.7 TB</td>
+  <td>记录数未公开</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Insomniac Games 内部资料</td>
+  <td style="text-align:right">约 130 万个文件</td>
+  <td>1.67 TB</td>
+  <td>记录数未公开</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Kadokawa / Niconico 相关内部与用户资料</td>
+  <td style="text-align:right">记录数未公开</td>
+  <td>1.5 TB</td>
+  <td>记录数未公开；勒索组织声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Iron Mountain 数据管理公司相关数据</td>
+  <td style="text-align:right">记录数未公开</td>
+  <td>1.4 TB</td>
+  <td>记录数未公开；黑客声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Nike 内部 / 产品与供应链相关数据</td>
+  <td style="text-align:right">记录数未公开</td>
+  <td>1.4 TB</td>
+  <td>记录数未公开；黑客声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Dell 相关数据</td>
+  <td style="text-align:right">记录数未公开</td>
+  <td>1.3 TB</td>
+  <td>记录数未公开；黑客声称；公司称部分为合成 / 测试信息</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Dollar Tree / 99 Cents Only 相关数据</td>
+  <td style="text-align:right">记录数未公开</td>
+  <td>1.2 TB</td>
+  <td>记录数未公开；勒索组织声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Disney 内部 Slack 数据</td>
+  <td style="text-align:right">记录数未公开</td>
+  <td>1.1 TB</td>
+  <td>记录数未公开；美国司法部口径</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Epworth HealthCare 澳大利亚医疗数据</td>
+  <td style="text-align:right">记录数未公开</td>
+  <td>920 GB</td>
+  <td>记录数未公开；勒索组织声称</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+<tr>
+  <td>Twitch 源代码与内部资料</td>
+  <td style="text-align:right">用户影响数未完全确认</td>
+  <td>125 GB</td>
+  <td>用户影响数未完全确认</td>
+  <td>暂无权威确认</td>
+  <td>❌</td>
+</tr>
+</tbody>
+</table></div>
+
+      </main>
+    </div>
+    <footer>HTML converted from Markdown · UTF-8</footer>
+  </div>
+  <script>
+const input = document.getElementById('tableSearch');
+const statusEl = document.getElementById('searchStatus');
+const rows = Array.from(document.querySelectorAll('tbody tr'));
+
+function updateSearch() {
+  const q = input.value.trim().toLowerCase();
+  let visible = 0;
+  rows.forEach(row => {
+    const hit = !q || row.textContent.toLowerCase().includes(q);
+    row.style.display = hit ? '' : 'none';
+    if (hit) visible += 1;
+  });
+  statusEl.textContent = q ? `匹配 ${visible} 行` : `共 ${rows.length} 行`;
+}
+
+input.addEventListener('input', updateSearch);
+updateSearch();
+</script>
+</body>
+</html>

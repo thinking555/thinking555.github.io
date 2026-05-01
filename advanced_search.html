@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高级搜索语法</title>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --paper: rgba(255,255,255,.88);
+    --text: #182033;
+    --muted: #667085;
+    --line: #e7eaf0;
+    --blue: #2563eb;
+    --blue2: #0ea5e9;
+    --soft: #eff6ff;
+    --code: #f3f6fa;
+    --shadow: 0 18px 45px rgba(15, 23, 42, .08);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(37,99,235,.18), transparent 32%),
+      radial-gradient(circle at 88% 0%, rgba(14,165,233,.16), transparent 30%),
+      linear-gradient(180deg, #ffffff 0%, var(--bg) 42%, #eef2f8 100%);
+    line-height: 1.65;
+  }
+  .wrap {
+    width: min(1160px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 42px 0 64px;
+  }
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 42px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 52%, #38bdf8 100%);
+    color: #fff;
+    box-shadow: var(--shadow);
+  }
+  .hero:before {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    right: -120px;
+    top: -145px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.14);
+  }
+  .hero:after {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    left: 48%;
+    bottom: -140px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.10);
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 999px;
+    background: rgba(255,255,255,.12);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .02em;
+  }
+  h1 {
+    margin: 18px 0 12px;
+    font-size: clamp(34px, 5vw, 60px);
+    line-height: 1.05;
+    letter-spacing: -.05em;
+  }
+  .desc {
+    margin: 0;
+    max-width: 790px;
+    color: rgba(255,255,255,.84);
+    font-size: 17px;
+  }
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    margin: 18px 0 24px;
+    padding: 14px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    border: 1px solid rgba(231,234,240,.82);
+    border-radius: 22px;
+    background: rgba(255,255,255,.78);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 8px 24px rgba(15,23,42,.05);
+  }
+  .nav a {
+    color: var(--blue);
+    text-decoration: none;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: var(--soft);
+    border: 1px solid #dbeafe;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .section {
+    margin-top: 22px;
+    padding: 24px;
+    border-radius: 26px;
+    border: 1px solid rgba(231,234,240,.96);
+    background: var(--paper);
+    box-shadow: var(--shadow);
+  }
+  .section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .section-head > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+  .badge {
+    display: inline-grid;
+    place-items: center;
+    width: 42px;
+    height: 34px;
+    border-radius: 13px;
+    color: var(--blue);
+    background: linear-gradient(180deg, #eff6ff, #dbeafe);
+    font-weight: 900;
+    font-variant-numeric: tabular-nums;
+  }
+  h2 {
+    margin: 0;
+    font-size: 23px;
+    letter-spacing: -.02em;
+  }
+  .source-link {
+    flex: 0 0 auto;
+    text-decoration: none;
+    color: var(--blue);
+    font-weight: 700;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid #dbeafe;
+  }
+  .hint {
+    margin: 0 0 14px;
+    padding: 13px 15px;
+    border-radius: 16px;
+    color: #344054;
+    background: #f8fafc;
+    border: 1px solid var(--line);
+  }
+  .table-card {
+    overflow-x: auto;
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: #fff;
+  }
+  table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  th, td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    text-align: left;
+  }
+  th {
+    background: linear-gradient(180deg, #f8fafc, #f1f5f9);
+    color: #344054;
+    font-size: 13px;
+    letter-spacing: .04em;
+    white-space: nowrap;
+  }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: #f8fbff; }
+  code {
+    display: inline-block;
+    max-width: 100%;
+    padding: 3px 8px;
+    border-radius: 8px;
+    background: var(--code);
+    color: #101828;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: .93em;
+    white-space: nowrap;
+  }
+  .search-example {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--blue);
+    font-weight: 750;
+  }
+  .search-example code {
+    color: var(--blue);
+    background: #eef6ff;
+    border: 1px solid #dbeafe;
+    transition: .16s ease;
+  }
+  .search-example span {
+    font-size: 13px;
+    opacity: .72;
+  }
+  .search-example:hover code {
+    background: #dbeafe;
+    transform: translateY(-1px);
+  }
+  a { color: var(--blue); }
+  .example-box {
+    margin-top: 14px;
+    padding: 16px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #ffffff, #f8fafc);
+    border: 1px dashed #cbd5e1;
+  }
+  .example-title {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .example-item + .example-item { margin-top: 8px; }
+  footer {
+    margin-top: 26px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  @media (max-width: 720px) {
+    .wrap { width: min(100% - 20px, 1160px); padding-top: 18px; }
+    .hero { padding: 28px 22px; border-radius: 24px; }
+    .section { padding: 18px; border-radius: 22px; }
+    .section-head { align-items: flex-start; }
+    .source-link { display: none; }
+    code { white-space: normal; }
+  }
+  @media print {
+    body { background: #fff; }
+    .wrap { width: 100%; padding: 0; }
+    .hero, .section, .nav { box-shadow: none; }
+    .nav { display: none; }
+    table { min-width: 0; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Search Operators · 可点击示例版</div>
+    <h1>高级搜索语法</h1>
+    <p class="desc">按搜索引擎分类整理常用高级搜索指令。示例列已加跳转链接，点击即可在对应搜索引擎中执行该搜索。</p>
+  </header>
+
+  <nav class="nav" aria-label="页面目录">
+    <a href="#通用语法">通用语法</a><a href="#谷歌">谷歌</a><a href="#搜狗">搜狗</a><a href="#百度">百度</a><a href="#bing">Bing</a><a href="#duckduckgo">DuckDuckGo</a>
+  </nav>
+
+  
+<section class="section" id="通用语法">
+  <div class="section-head">
+    <div>
+      <span class="badge">01</span>
+      <h2>通用语法</h2>
+    </div>
+    
+  </div>
+  <div class="table-card"><table>
+<thead><tr><th>语法</th><th>用途说明</th></tr></thead>
+<tbody>
+<tr>
+<td><code>&quot;完整短语&quot; 精确匹配</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>-排除词 排除某个词</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>site:example.com 只搜某个网站</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>filetype:pdf 只搜 PDF</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>intitle:关键词 标题包含关键词</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>inurl:关键词 URL 包含关键词</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>关键词 OR 关键词 二选一搜索</code></td>
+<td></td>
+</tr>
+</tbody></table></div>
+</section>
+
+
+<section class="section" id="谷歌">
+  <div class="section-head">
+    <div>
+      <span class="badge">02</span>
+      <h2>谷歌</h2>
+    </div>
+    <a class="source-link" href="https://www.google.com/advanced_search" target="_blank" rel="noopener noreferrer">高级搜索</a>
+  </div>
+  <p class="hint">可使用通用语法，并通过高级搜索页面组合精确短语、排除词、站点、文件类型、语言、地区等条件。</p>
+</section>
+
+
+<section class="section" id="搜狗">
+  <div class="section-head">
+    <div>
+      <span class="badge">03</span>
+      <h2>搜狗</h2>
+    </div>
+    <a class="source-link" href="https://www.sogou.com/advanced/advanced.html" target="_blank" rel="noopener noreferrer">高级搜索</a>
+  </div>
+  <div class="table-card"><table>
+<thead><tr><th>类型</th><th>语法 / 功能</th><th>用途说明</th><th>示例</th></tr></thead>
+<tbody>
+<tr>
+<td>搜狗语法</td>
+<td><code>&quot;完整短语&quot;</code></td>
+<td>精确匹配，不拆分关键词</td>
+<td><a class="search-example" href="https://www.sogou.com/web?q=%22%E7%83%AD%E9%97%A8%E6%B8%B8%E6%88%8F%22&amp;query=%22%E7%83%AD%E9%97%A8%E6%B8%B8%E6%88%8F%22&amp;fieldtitle=&amp;fieldcontent=&amp;fieldstripurl=&amp;bstype=&amp;ie=utf8&amp;sitequery=&amp;located=0&amp;tro=off&amp;filetype=&amp;num=10" target="_blank" rel="noopener noreferrer" title="打开搜索：&quot;热门游戏&quot;"><code>&quot;热门游戏&quot;</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>搜狗语法</td>
+<td><code>关键词 site:域名</code></td>
+<td>在指定网站内搜索</td>
+<td><a class="search-example" href="https://www.sogou.com/web?q=%E8%B4%A2%E7%BB%8F%20site%3Asohu.com&amp;query=%E8%B4%A2%E7%BB%8F%20site%3Asohu.com&amp;fieldtitle=&amp;fieldcontent=&amp;fieldstripurl=&amp;bstype=&amp;ie=utf8&amp;sitequery=&amp;located=0&amp;tro=off&amp;filetype=&amp;num=10" target="_blank" rel="noopener noreferrer" title="打开搜索：财经 site:sohu.com"><code>财经 site:sohu.com</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>搜狗语法</td>
+<td><code>关键词 site:域名1|域名2</code></td>
+<td>多站点搜索，多个网站用 | 分隔</td>
+<td><a class="search-example" href="https://www.sogou.com/web?q=%E8%B4%A2%E7%BB%8F%20site%3Awww.sina.com.cn%7Cwww.sohu.com&amp;query=%E8%B4%A2%E7%BB%8F%20site%3Awww.sina.com.cn%7Cwww.sohu.com&amp;fieldtitle=&amp;fieldcontent=&amp;fieldstripurl=&amp;bstype=&amp;ie=utf8&amp;sitequery=&amp;located=0&amp;tro=off&amp;filetype=&amp;num=10" target="_blank" rel="noopener noreferrer" title="打开搜索：财经 site:www.sina.com.cn|www.sohu.com"><code>财经 site:www.sina.com.cn|www.sohu.com</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>搜狗语法</td>
+<td><code>site:域名</code></td>
+<td>查询某网站在搜狗中的收录情况</td>
+<td><a class="search-example" href="https://www.sogou.com/web?q=site%3Aexample.com&amp;query=site%3Aexample.com&amp;fieldtitle=&amp;fieldcontent=&amp;fieldstripurl=&amp;bstype=&amp;ie=utf8&amp;sitequery=&amp;located=0&amp;tro=off&amp;filetype=&amp;num=10" target="_blank" rel="noopener noreferrer" title="打开搜索：site:example.com"><code>site:example.com</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>搜狗语法</td>
+<td><code>site:后缀</code></td>
+<td>查询某类域名后缀下的内容</td>
+<td><a class="search-example" href="https://www.sogou.com/web?q=site%3Acn&amp;query=site%3Acn&amp;fieldtitle=&amp;fieldcontent=&amp;fieldstripurl=&amp;bstype=&amp;ie=utf8&amp;sitequery=&amp;located=0&amp;tro=off&amp;filetype=&amp;num=10" target="_blank" rel="noopener noreferrer" title="打开搜索：site:cn"><code>site:cn</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>搜狗语法</td>
+<td><code>site:域名:端口号</code></td>
+<td>查询指定端口的网站内容</td>
+<td><a class="search-example" href="https://www.sogou.com/web?q=site%3Aexample.com%3A8080&amp;query=site%3Aexample.com%3A8080&amp;fieldtitle=&amp;fieldcontent=&amp;fieldstripurl=&amp;bstype=&amp;ie=utf8&amp;sitequery=&amp;located=0&amp;tro=off&amp;filetype=&amp;num=10" target="_blank" rel="noopener noreferrer" title="打开搜索：site:example.com:8080"><code>site:example.com:8080</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>搜狗语法</td>
+<td><code>关键词 intitle:标题词</code></td>
+<td>限定搜索词出现在网页标题中</td>
+<td><a class="search-example" href="https://www.sogou.com/web?q=%E6%96%B0%E6%AD%8C%20intitle%3A%E5%91%A8%E6%9D%B0%E4%BC%A6&amp;query=%E6%96%B0%E6%AD%8C%20intitle%3A%E5%91%A8%E6%9D%B0%E4%BC%A6&amp;fieldtitle=&amp;fieldcontent=&amp;fieldstripurl=&amp;bstype=&amp;ie=utf8&amp;sitequery=&amp;located=0&amp;tro=off&amp;filetype=&amp;num=10" target="_blank" rel="noopener noreferrer" title="打开搜索：新歌 intitle:周杰伦"><code>新歌 intitle:周杰伦</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>搜狗语法</td>
+<td><code>关键词 filetype:格式</code></td>
+<td>搜索指定文件格式</td>
+<td><a class="search-example" href="https://www.sogou.com/web?q=%E5%B8%82%E5%9C%BA%E5%88%86%E6%9E%90%20filetype%3Adoc&amp;query=%E5%B8%82%E5%9C%BA%E5%88%86%E6%9E%90%20filetype%3Adoc&amp;fieldtitle=&amp;fieldcontent=&amp;fieldstripurl=&amp;bstype=&amp;ie=utf8&amp;sitequery=&amp;located=0&amp;tro=off&amp;filetype=&amp;num=10" target="_blank" rel="noopener noreferrer" title="打开搜索：市场分析 filetype:doc"><code>市场分析 filetype:doc</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>搜狗语法</td>
+<td><code>filetype:格式 关键词</code></td>
+<td>filetype: 可放在关键词前面</td>
+<td><a class="search-example" href="https://www.sogou.com/web?q=filetype%3Adoc%20%E5%B8%82%E5%9C%BA%E5%88%86%E6%9E%90&amp;query=filetype%3Adoc%20%E5%B8%82%E5%9C%BA%E5%88%86%E6%9E%90&amp;fieldtitle=&amp;fieldcontent=&amp;fieldstripurl=&amp;bstype=&amp;ie=utf8&amp;sitequery=&amp;located=0&amp;tro=off&amp;filetype=&amp;num=10" target="_blank" rel="noopener noreferrer" title="打开搜索：filetype:doc 市场分析"><code>filetype:doc 市场分析</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>搜狗语法</td>
+<td><code>filetype:all</code></td>
+<td>搜索全部文档格式</td>
+<td><a class="search-example" href="https://www.sogou.com/web?q=filetype%3Aall%20%E4%B8%AD%E5%9B%BD&amp;query=filetype%3Aall%20%E4%B8%AD%E5%9B%BD&amp;fieldtitle=&amp;fieldcontent=&amp;fieldstripurl=&amp;bstype=&amp;ie=utf8&amp;sitequery=&amp;located=0&amp;tro=off&amp;filetype=&amp;num=10" target="_blank" rel="noopener noreferrer" title="打开搜索：filetype:all 中国"><code>filetype:all 中国</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>搜狗语法</td>
+<td><code>site:域名 filetype:格式 关键词</code></td>
+<td>在指定网站内搜索指定格式文档</td>
+<td><a class="search-example" href="https://www.sogou.com/web?q=site%3Awww.tsinghua.edu.cn%20filetype%3Apdf%20%E4%B8%AD%E5%9B%BD&amp;query=site%3Awww.tsinghua.edu.cn%20filetype%3Apdf%20%E4%B8%AD%E5%9B%BD&amp;fieldtitle=&amp;fieldcontent=&amp;fieldstripurl=&amp;bstype=&amp;ie=utf8&amp;sitequery=&amp;located=0&amp;tro=off&amp;filetype=&amp;num=10" target="_blank" rel="noopener noreferrer" title="打开搜索：site:www.tsinghua.edu.cn filetype:pdf 中国"><code>site:www.tsinghua.edu.cn filetype:pdf 中国</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>搜狗规则</td>
+<td><code>DOC / PDF / PPT / XLS / RTF / ALL</code></td>
+<td>filetype: 支持的主要格式，不区分大小写</td>
+<td><a class="search-example" href="https://www.sogou.com/web?q=%E6%8A%A5%E5%91%8A%20filetype%3APDF&amp;query=%E6%8A%A5%E5%91%8A%20filetype%3APDF&amp;fieldtitle=&amp;fieldcontent=&amp;fieldstripurl=&amp;bstype=&amp;ie=utf8&amp;sitequery=&amp;located=0&amp;tro=off&amp;filetype=&amp;num=10" target="_blank" rel="noopener noreferrer" title="打开搜索：报告 filetype:PDF"><code>报告 filetype:PDF</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+</tbody></table></div>
+</section>
+
+
+<section class="section" id="百度">
+  <div class="section-head">
+    <div>
+      <span class="badge">04</span>
+      <h2>百度</h2>
+    </div>
+    <a class="source-link" href="https://www.baidu.com/" target="_blank" rel="noopener noreferrer">设置-高级搜索</a>
+  </div>
+  <div class="table-card"><table>
+<thead><tr><th>类型</th><th>语法 / 功能</th><th>用途说明</th><th>示例</th></tr></thead>
+<tbody>
+<tr>
+<td>直接语法</td>
+<td><code>关键词1 关键词2</code></td>
+<td>多关键词搜索，关键词之间用空格分隔</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=%E6%B5%8E%E5%8D%97%20%E6%B3%89%E5%9F%8E%E5%B9%BF%E5%9C%BA" target="_blank" rel="noopener noreferrer" title="打开搜索：济南 泉城广场"><code>济南 泉城广场</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>直接语法</td>
+<td><code>intitle:关键词</code></td>
+<td>限定关键词出现在网页标题中</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=%E5%9C%B0%E9%93%81%20intitle%3A%E5%8C%97%E4%BA%AC" target="_blank" rel="noopener noreferrer" title="打开搜索：地铁 intitle:北京"><code>地铁 intitle:北京</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>直接语法</td>
+<td><code>site:域名</code></td>
+<td>限定在指定网站内搜索</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=%E8%A5%BF%E6%B5%B7%E5%B2%B8%20site%3A163.com" target="_blank" rel="noopener noreferrer" title="打开搜索：西海岸 site:163.com"><code>西海岸 site:163.com</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>直接语法</td>
+<td><code>关键词 site:域名</code></td>
+<td>搜某网站内与关键词相关的内容</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=%E7%94%84%E5%AC%9B%E4%BC%A0%20site%3Atieba.baidu.com" target="_blank" rel="noopener noreferrer" title="打开搜索：甄嬛传 site:tieba.baidu.com"><code>甄嬛传 site:tieba.baidu.com</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>直接语法</td>
+<td><code>inurl:关键词</code></td>
+<td>限定关键词出现在 URL 中</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=Office%20inurl%3Ajingyan" target="_blank" rel="noopener noreferrer" title="打开搜索：Office inurl:jingyan"><code>Office inurl:jingyan</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>直接语法</td>
+<td><code>filetype:格式</code></td>
+<td>搜索指定文档格式</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=%E7%9B%91%E7%90%86%E5%88%B6%E5%BA%A6%20filetype%3Adoc" target="_blank" rel="noopener noreferrer" title="打开搜索：监理制度 filetype:doc"><code>监理制度 filetype:doc</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>直接语法</td>
+<td><code>关键词 filetype:pdf</code></td>
+<td>搜 PDF 文档</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%20filetype%3Apdf" target="_blank" rel="noopener noreferrer" title="打开搜索：人工智能 filetype:pdf"><code>人工智能 filetype:pdf</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>直接语法</td>
+<td><code>关键词 filetype:ppt</code></td>
+<td>搜 PPT 文档</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=%E4%B8%BB%E6%97%A5%E5%AD%A6%20filetype%3Appt" target="_blank" rel="noopener noreferrer" title="打开搜索：主日学 filetype:ppt"><code>主日学 filetype:ppt</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>直接语法</td>
+<td><code>关键词 filetype:xls</code></td>
+<td>搜 Excel 表格</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=%E9%A2%84%E7%AE%97%E8%A1%A8%20filetype%3Axls" target="_blank" rel="noopener noreferrer" title="打开搜索：预算表 filetype:xls"><code>预算表 filetype:xls</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>直接语法</td>
+<td><code>关键词 filetype:rtf</code></td>
+<td>搜 RTF 文档</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=%E5%90%88%E5%90%8C%E6%A8%A1%E6%9D%BF%20filetype%3Artf" target="_blank" rel="noopener noreferrer" title="打开搜索：合同模板 filetype:rtf"><code>合同模板 filetype:rtf</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>直接语法</td>
+<td><code>filetype:all 关键词</code></td>
+<td>搜所有支持的文档格式</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=filetype%3Aall%20%E4%B8%AD%E5%9B%BD" target="_blank" rel="noopener noreferrer" title="打开搜索：filetype:all 中国"><code>filetype:all 中国</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>直接语法</td>
+<td><code>&quot;完整短语&quot;</code></td>
+<td>精确匹配，不拆分关键词</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=%22%E6%97%A7%E5%88%B6%E5%BA%A6%E4%B8%8E%E5%A4%A7%E9%9D%A9%E5%91%BD%22" target="_blank" rel="noopener noreferrer" title="打开搜索：&quot;旧制度与大革命&quot;"><code>&quot;旧制度与大革命&quot;</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>直接语法</td>
+<td><code>《书名或词组》</code></td>
+<td>精确匹配，常用于书名、作品名</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=%E3%80%8A%E5%9B%BD%E5%AE%B6%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%A4%B1%E8%B4%A5%E3%80%8B" target="_blank" rel="noopener noreferrer" title="打开搜索：《国家为什么会失败》"><code>《国家为什么会失败》</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>直接语法</td>
+<td><code>关键词 -排除词</code></td>
+<td>排除包含某个词的结果</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=%E5%8F%A4%E5%89%91%E5%A5%87%E8%B0%AD%20-%E7%94%B5%E8%A7%86%E5%89%A7" target="_blank" rel="noopener noreferrer" title="打开搜索：古剑奇谭 -电视剧"><code>古剑奇谭 -电视剧</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>组合语法</td>
+<td><code>site:域名 filetype:格式 关键词</code></td>
+<td>在指定网站内搜索指定格式文档</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=site%3Apku.edu.cn%20filetype%3Apdf%20%E8%AE%BA%E6%96%87" target="_blank" rel="noopener noreferrer" title="打开搜索：site:pku.edu.cn filetype:pdf 论文"><code>site:pku.edu.cn filetype:pdf 论文</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>组合语法</td>
+<td><code>关键词 intitle:标题词 filetype:pdf</code></td>
+<td>搜标题相关且为 PDF 的内容</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=%E6%96%B0%E8%83%BD%E6%BA%90%20intitle%3A%E6%8A%A5%E5%91%8A%20filetype%3Apdf" target="_blank" rel="noopener noreferrer" title="打开搜索：新能源 intitle:报告 filetype:pdf"><code>新能源 intitle:报告 filetype:pdf</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>规则</td>
+<td><code>site: 后不要加 http://</code></td>
+<td>只写域名即可</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=site%3Abaidu.com" target="_blank" rel="noopener noreferrer" title="打开搜索：site:baidu.com"><code>site:baidu.com</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>规则</td>
+<td><code>site: / intitle: / inurl: / filetype: 后不要加空格</code></td>
+<td>冒号后直接接关键词或域名</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=intitle%3A%E5%8C%97%E4%BA%AC" target="_blank" rel="noopener noreferrer" title="打开搜索：intitle:北京"><code>intitle:北京</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td>规则</td>
+<td><code>减号前要有空格</code></td>
+<td>前一个关键词和 - 之间保留空格</td>
+<td><a class="search-example" href="https://www.baidu.com/s?wd=%E8%8B%B9%E6%9E%9C%20-%E6%89%8B%E6%9C%BA" target="_blank" rel="noopener noreferrer" title="打开搜索：苹果 -手机"><code>苹果 -手机</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+</tbody></table></div><div class="example-box"><div class="example-title">组合示例，可点击跳转搜索</div><div class="example-item"><a class="search-example" href="https://www.baidu.com/s?wd=%22%E5%AD%A6%E5%8F%B7%22%20filetype%3Apdf%20site%3Aedu.cn" target="_blank" rel="noopener noreferrer" title="打开搜索：&quot;学号&quot; filetype:pdf site:edu.cn"><code>&quot;学号&quot; filetype:pdf site:edu.cn</code><span aria-hidden="true">↗</span></a></div></div>
+</section>
+
+
+<section class="section" id="bing">
+  <div class="section-head">
+    <div>
+      <span class="badge">05</span>
+      <h2>Bing</h2>
+    </div>
+    <a class="source-link" href="https://www.bing.com/" target="_blank" rel="noopener noreferrer">搜索官网</a>
+  </div>
+  <div class="table-card"><table>
+<thead><tr><th>关键词</th><th>用途说明</th><th>示例</th></tr></thead>
+<tbody>
+<tr>
+<td><code>contains:</code></td>
+<td>搜索包含指定文件类型链接的网站</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=music+contains%3Awma" target="_blank" rel="noopener noreferrer" title="打开搜索：music contains:wma"><code>music contains:wma</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>ext:</code></td>
+<td>只返回指定文件扩展名的网页</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=report+ext%3Adocx" target="_blank" rel="noopener noreferrer" title="打开搜索：report ext:docx"><code>report ext:docx</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>filetype:</code></td>
+<td>只返回指定文件类型的网页</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=report+filetype%3Apdf" target="_blank" rel="noopener noreferrer" title="打开搜索：report filetype:pdf"><code>report filetype:pdf</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>inanchor:</code></td>
+<td>搜索锚文本/链接文字中包含指定词的网页</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=inanchor%3Amsn" target="_blank" rel="noopener noreferrer" title="打开搜索：inanchor:msn"><code>inanchor:msn</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>inbody:</code></td>
+<td>搜索网页正文中包含指定词的网页</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=inbody%3Aspaces" target="_blank" rel="noopener noreferrer" title="打开搜索：inbody:spaces"><code>inbody:spaces</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>intitle:</code></td>
+<td>搜索网页标题中包含指定词的网页</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=intitle%3Areport" target="_blank" rel="noopener noreferrer" title="打开搜索：intitle:report"><code>intitle:report</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>ip:</code></td>
+<td>搜索托管在指定 IP 地址上的网站</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=ip%3A207.46.249.252" target="_blank" rel="noopener noreferrer" title="打开搜索：ip:207.46.249.252"><code>ip:207.46.249.252</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>language:</code></td>
+<td>限定网页语言</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=%22antiques%22+language%3Aen" target="_blank" rel="noopener noreferrer" title="打开搜索：&quot;antiques&quot; language:en"><code>&quot;antiques&quot; language:en</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>loc:</code></td>
+<td>限定网页所在国家或地区</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=sculpture+loc%3AUS" target="_blank" rel="noopener noreferrer" title="打开搜索：sculpture loc:US"><code>sculpture loc:US</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>location:</code></td>
+<td>loc: 的完整写法，用于限定国家或地区</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=sculpture+location%3AGB" target="_blank" rel="noopener noreferrer" title="打开搜索：sculpture location:GB"><code>sculpture location:GB</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>prefer:</code></td>
+<td>强调某个搜索词或运算符，提高其相关性</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=football+prefer%3Aorganization" target="_blank" rel="noopener noreferrer" title="打开搜索：football prefer:organization"><code>football prefer:organization</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>site:</code></td>
+<td>限定搜索指定网站、域名、顶级域名或目录</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=%22heart+disease%22+site%3Abbc.co.uk" target="_blank" rel="noopener noreferrer" title="打开搜索：&quot;heart disease&quot; site:bbc.co.uk"><code>&quot;heart disease&quot; site:bbc.co.uk</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>feed:</code></td>
+<td>查找与关键词相关的 RSS 或 Atom 订阅源</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=feed%3Afootball" target="_blank" rel="noopener noreferrer" title="打开搜索：feed:football"><code>feed:football</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>hasfeed:</code></td>
+<td>查找包含 RSS 或 Atom 订阅源的网页</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=site%3Awww.nytimes.com+hasfeed%3Afootball" target="_blank" rel="noopener noreferrer" title="打开搜索：site:www.nytimes.com hasfeed:football"><code>site:www.nytimes.com hasfeed:football</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>url:</code></td>
+<td>检查某个域名或网址是否在 Bing 索引中</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=url%3Amicrosoft.com" target="_blank" rel="noopener noreferrer" title="打开搜索：url:microsoft.com"><code>url:microsoft.com</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>+</code></td>
+<td>查找包含 + 后面所有词的网页；也可强制包含通常会被忽略的词</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=%2Bthe+best+coffee" target="_blank" rel="noopener noreferrer" title="打开搜索：+the best coffee"><code>+the best coffee</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>&quot; &quot;</code></td>
+<td>精确搜索引号中的完整短语</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=%22climate+change+report%22" target="_blank" rel="noopener noreferrer" title="打开搜索：&quot;climate change report&quot;"><code>&quot;climate change report&quot;</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>( )</code></td>
+<td>将一组词组合起来，用于包含或排除整组条件</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=%28cats+OR+dogs%29+food" target="_blank" rel="noopener noreferrer" title="打开搜索：(cats OR dogs) food"><code>(cats OR dogs) food</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>AND / &amp;</code></td>
+<td>查找同时包含所有词或短语的网页</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=apple+AND+iphone" target="_blank" rel="noopener noreferrer" title="打开搜索：apple AND iphone"><code>apple AND iphone</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>NOT / -</code></td>
+<td>排除包含某个词或短语的网页</td>
+<td><a class="search-example" href="https://www.bing.com/search?q=jaguar+NOT+car" target="_blank" rel="noopener noreferrer" title="打开搜索：jaguar NOT car"><code>jaguar NOT car</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>OR /</code></td>
+<td></td>
+<td><a class="search-example" href="https://www.bing.com/search?q=%E6%9F%A5%E6%89%BE%E5%8C%85%E5%90%AB%E4%BB%BB%E6%84%8F%E4%B8%80%E4%B8%AA%E8%AF%8D%E6%88%96%E7%9F%AD%E8%AF%AD%E7%9A%84%E7%BD%91%E9%A1%B5" target="_blank" rel="noopener noreferrer" title="打开搜索：查找包含任意一个词或短语的网页"><code>查找包含任意一个词或短语的网页</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+</tbody></table></div>
+</section>
+
+
+<section class="section" id="duckduckgo">
+  <div class="section-head">
+    <div>
+      <span class="badge">06</span>
+      <h2>DuckDuckGo</h2>
+    </div>
+    <a class="source-link" href="https://duckduckgo.com/" target="_blank" rel="noopener noreferrer">搜索官网</a>
+  </div>
+  <div class="table-card"><table>
+<thead><tr><th>语法</th><th>用途说明</th><th>示例</th></tr></thead>
+<tbody>
+<tr>
+<td><code>cats dogs</code></td>
+<td>搜索关于 cats 或 dogs 的结果</td>
+<td><a class="search-example" href="https://duckduckgo.com/?q=cats+dogs" target="_blank" rel="noopener noreferrer" title="打开搜索：cats dogs"><code>cats dogs</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>&quot;完整短语&quot;</code></td>
+<td>精确搜索完整短语；如果结果很少，可能会展示相关结果</td>
+<td><a class="search-example" href="https://duckduckgo.com/?q=%22cats+and+dogs%22" target="_blank" rel="noopener noreferrer" title="打开搜索：&quot;cats and dogs&quot;"><code>&quot;cats and dogs&quot;</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>~&quot;完整短语&quot;</code></td>
+<td>实验性语法：搜索语义相近的短语</td>
+<td><a class="search-example" href="https://duckduckgo.com/?q=~%22cats+and+dogs%22" target="_blank" rel="noopener noreferrer" title="打开搜索：~&quot;cats and dogs&quot;"><code>~&quot;cats and dogs&quot;</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>-关键词</code></td>
+<td>减少/排除包含该关键词的结果</td>
+<td><a class="search-example" href="https://duckduckgo.com/?q=cats+-dogs" target="_blank" rel="noopener noreferrer" title="打开搜索：cats -dogs"><code>cats -dogs</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>+关键词</code></td>
+<td>增加/强调包含该关键词的结果</td>
+<td><a class="search-example" href="https://duckduckgo.com/?q=cats+%2Bdogs" target="_blank" rel="noopener noreferrer" title="打开搜索：cats +dogs"><code>cats +dogs</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>filetype:格式</code></td>
+<td>搜索指定文件类型；支持 pdf、doc/docx、xls/xlsx、ppt/pptx、html</td>
+<td><a class="search-example" href="https://duckduckgo.com/?q=cats+filetype%3Apdf" target="_blank" rel="noopener noreferrer" title="打开搜索：cats filetype:pdf"><code>cats filetype:pdf</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>site:域名</code></td>
+<td>只搜索指定网站的页面</td>
+<td><a class="search-example" href="https://duckduckgo.com/?q=dogs+site%3Aexample.com" target="_blank" rel="noopener noreferrer" title="打开搜索：dogs site:example.com"><code>dogs site:example.com</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>-site:域名</code></td>
+<td>排除指定网站的结果</td>
+<td><a class="search-example" href="https://duckduckgo.com/?q=cats+-site%3Aexample.com" target="_blank" rel="noopener noreferrer" title="打开搜索：cats -site:example.com"><code>cats -site:example.com</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>intitle:关键词</code></td>
+<td>搜索标题中包含关键词的页面</td>
+<td><a class="search-example" href="https://duckduckgo.com/?q=intitle%3Adogs" target="_blank" rel="noopener noreferrer" title="打开搜索：intitle:dogs"><code>intitle:dogs</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>inurl:关键词</code></td>
+<td>搜索 URL 中包含关键词的页面</td>
+<td><a class="search-example" href="https://duckduckgo.com/?q=inurl%3Acats" target="_blank" rel="noopener noreferrer" title="打开搜索：inurl:cats"><code>inurl:cats</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>\关键词</code></td>
+<td>直接跳转到第一个搜索结果</td>
+<td><a class="search-example" href="https://duckduckgo.com/?q=%5Cfuturama" target="_blank" rel="noopener noreferrer" title="打开搜索：\futurama"><code>\futurama</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>!站点缩写 关键词</code></td>
+<td>使用 DuckDuckGo 的 Bang 快捷方式，直接到其他网站搜索</td>
+<td><a class="search-example" href="https://duckduckgo.com/?q=%21a+blink182" target="_blank" rel="noopener noreferrer" title="打开搜索：!a blink182"><code>!a blink182</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>!safeon</code></td>
+<td>本次搜索开启安全搜索</td>
+<td><a class="search-example" href="https://duckduckgo.com/?q=cats+%21safeon" target="_blank" rel="noopener noreferrer" title="打开搜索：cats !safeon"><code>cats !safeon</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+<tr>
+<td><code>!safeoff</code></td>
+<td>本次搜索关闭安全搜索</td>
+<td><a class="search-example" href="https://duckduckgo.com/?q=cats+%21safeoff" target="_blank" rel="noopener noreferrer" title="打开搜索：cats !safeoff"><code>cats !safeoff</code><span aria-hidden="true">↗</span></a></td>
+</tr>
+</tbody></table></div>
+</section>
+
+</main>
+</body>
+</html>

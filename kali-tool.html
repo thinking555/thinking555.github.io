@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kali Linux 常见工具与常用指令速查表</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+      background: #f4f6fa;
+      color: #1f2937;
+      line-height: 1.8;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 36px;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 34px;
+      color: #111827;
+      line-height: 1.3;
+      border-bottom: 4px solid #2563eb;
+      padding-bottom: 14px;
+    }
+
+    h2 {
+      margin-top: 42px;
+      padding-left: 12px;
+      border-left: 5px solid #2563eb;
+      color: #1d4ed8;
+      font-size: 25px;
+    }
+
+    h3 {
+      margin-top: 28px;
+      color: #111827;
+      font-size: 20px;
+    }
+
+    p {
+      margin: 12px 0;
+      font-size: 16px;
+    }
+
+    .notice {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      padding: 16px 20px;
+      border-radius: 12px;
+      margin: 22px 0;
+    }
+
+    .tip {
+      background: #eff6ff;
+      border-left: 5px solid #2563eb;
+      padding: 16px 20px;
+      border-radius: 12px;
+      margin: 22px 0;
+    }
+
+    pre {
+      background: #111827;
+      color: #f9fafb;
+      padding: 16px 18px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-size: 15px;
+      line-height: 1.7;
+      margin: 14px 0 20px;
+    }
+
+    code {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+
+    ul, ol {
+      padding-left: 24px;
+    }
+
+    .kbd-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .kbd-item {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .kbd {
+      display: inline-block;
+      padding: 4px 8px;
+      margin: 0 2px;
+      border-radius: 6px;
+      background: #111827;
+      color: #ffffff;
+      font-size: 14px;
+      font-family: monospace;
+    }
+
+    .footer {
+      margin-top: 42px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+      color: #6b7280;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .card {
+        padding: 24px 18px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      pre {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <article class="card">
+      <h1>Kali Linux 常见工具 + 常用指令速查表</h1>
+
+      <div class="notice">
+        仅建议在自己的设备、实验环境或已授权目标上使用。
+      </div>
+
+      <h2>一、Kali / Linux 基础命令</h2>
+
+      <h3>查看系统信息</h3>
+      <pre><code>uname -a
+lsb_release -a
+whoami
+id
+hostname</code></pre>
+
+      <h3>文件和目录</h3>
+      <pre><code>pwd                 # 查看当前位置
+ls -lah             # 查看文件
+cd 目录名            # 进入目录
+mkdir test          # 新建目录
+rm 文件名            # 删除文件
+rm -rf 目录名        # 删除目录，谨慎
+cp a.txt b.txt      # 复制
+mv a.txt b.txt      # 移动/重命名</code></pre>
+
+      <h3>查找文件</h3>
+      <pre><code>find / -name "文件名" 2&gt;/dev/null
+locate 文件名
+which nmap
+whereis nmap</code></pre>
+
+      <h3>查看文件内容</h3>
+      <pre><code>cat file.txt
+less file.txt
+head file.txt
+tail file.txt
+tail -f log.txt</code></pre>
+
+      <h2>二、软件包管理</h2>
+
+      <h3>更新软件源和系统</h3>
+      <pre><code>sudo apt update
+sudo apt upgrade</code></pre>
+
+      <h3>安装工具</h3>
+      <pre><code>sudo apt install nmap
+sudo apt install wireshark
+sudo apt install gobuster</code></pre>
+
+      <h3>删除工具</h3>
+      <pre><code>sudo apt remove 工具名
+sudo apt autoremove</code></pre>
+
+      <h3>搜索工具</h3>
+      <pre><code>apt search 工具名
+apt show 工具名</code></pre>
+
+      <h2>三、网络基础命令</h2>
+
+      <h3>查看 IP 和网卡</h3>
+      <pre><code>ip a
+ip route
+ifconfig</code></pre>
+
+      <h3>测试网络</h3>
+      <pre><code>ping 8.8.8.8
+ping google.com
+traceroute google.com</code></pre>
+
+      <h3>查看端口和连接</h3>
+      <pre><code>ss -tulnp
+netstat -tulnp</code></pre>
+
+      <h3>DNS 查询</h3>
+      <pre><code>nslookup example.com
+dig example.com
+dig example.com A
+dig example.com MX</code></pre>
+
+      <h3>下载文件</h3>
+      <pre><code>wget https://example.com/file.zip
+curl -I https://example.com
+curl https://example.com</code></pre>
+
+      <h2>四、常见信息收集工具</h2>
+
+      <h3>1. Nmap：端口扫描 / 服务识别</h3>
+      <pre><code>nmap 192.168.1.1
+nmap -sV 192.168.1.1
+nmap -O 192.168.1.1
+nmap -p 1-1000 192.168.1.1
+nmap -A 192.168.1.1</code></pre>
+
+      <h3>常用参数</h3>
+      <pre><code>-sV    识别服务版本
+-O     尝试识别操作系统
+-p     指定端口
+-A     综合扫描
+-sn    只做主机发现，不扫端口</code></pre>
+
+      <h3>扫描局域网存活主机</h3>
+      <pre><code>nmap -sn 192.168.1.0/24</code></pre>
+
+      <h3>2. Whois：域名注册信息</h3>
+      <pre><code>whois example.com</code></pre>
+
+      <h3>3. theHarvester：公开信息收集</h3>
+      <pre><code>theHarvester -d example.com -b bing</code></pre>
+
+      <h3>4. WhatWeb：识别网站技术栈</h3>
+      <pre><code>whatweb https://example.com</code></pre>
+
+      <h2>五、抓包和流量分析</h2>
+
+      <h3>1. Wireshark</h3>
+      <p>图形化抓包工具：</p>
+      <pre><code>sudo wireshark</code></pre>
+
+      <p>常用于查看：</p>
+      <pre><code>HTTP 请求
+DNS 查询
+TCP 握手
+TLS 连接
+局域网通信</code></pre>
+
+      <h3>2. tcpdump</h3>
+      <p>命令行抓包：</p>
+      <pre><code>sudo tcpdump -i eth0
+sudo tcpdump -i wlan0
+sudo tcpdump -i any</code></pre>
+
+      <p>保存抓包文件：</p>
+      <pre><code>sudo tcpdump -i any -w capture.pcap</code></pre>
+
+      <p>读取抓包文件：</p>
+      <pre><code>tcpdump -r capture.pcap</code></pre>
+
+      <p>只看某个端口：</p>
+      <pre><code>sudo tcpdump -i any port 80
+sudo tcpdump -i any port 443</code></pre>
+
+      <h2>六、Web 安全常见工具</h2>
+
+      <h3>1. Nikto：Web 服务器基础扫描</h3>
+      <pre><code>nikto -h http://192.168.1.100</code></pre>
+
+      <h3>2. Gobuster：目录扫描</h3>
+      <pre><code>gobuster dir -u http://192.168.1.100 -w /usr/share/wordlists/dirb/common.txt</code></pre>
+
+      <h3>常用参数</h3>
+      <pre><code>dir    目录扫描
+-u     目标 URL
+-w     字典文件
+-x     扩展名，例如 php,txt,html</code></pre>
+
+      <h3>示例</h3>
+      <pre><code>gobuster dir -u http://192.168.1.100 -w /usr/share/wordlists/dirb/common.txt -x php,txt,html</code></pre>
+
+      <h3>3. Dirsearch：目录扫描</h3>
+      <pre><code>dirsearch -u http://192.168.1.100</code></pre>
+
+      <h3>4. Burp Suite：Web 抓包代理</h3>
+      <p>启动：</p>
+      <pre><code>burpsuite</code></pre>
+
+      <p>常见用途：</p>
+      <pre><code>抓取浏览器请求
+修改请求参数
+查看 Cookie / Header
+测试接口请求</code></pre>
+
+      <h2>七、漏洞验证 / 渗透测试框架</h2>
+
+      <h3>Metasploit</h3>
+      <p>启动：</p>
+      <pre><code>msfconsole</code></pre>
+
+      <p>常用命令：</p>
+      <pre><code>search 关键词
+info 模块名
+use 模块名
+show options
+set RHOSTS 目标IP
+set RPORT 端口
+check
+run
+back
+exit</code></pre>
+
+      <p>建议只在靶机环境使用，例如：</p>
+      <pre><code>Metasploitable
+DVWA
+VulnHub
+TryHackMe
+Hack The Box</code></pre>
+
+      <h2>八、密码审计工具</h2>
+
+      <h3>John the Ripper</h3>
+      <p>查看帮助：</p>
+      <pre><code>john --help</code></pre>
+
+      <p>常见用法：</p>
+      <pre><code>john hash.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt</code></pre>
+
+      <h3>Hashcat</h3>
+      <p>查看帮助：</p>
+      <pre><code>hashcat --help</code></pre>
+
+      <p>示例：</p>
+      <pre><code>hashcat -m 0 hash.txt /usr/share/wordlists/rockyou.txt</code></pre>
+
+      <div class="notice">
+        注意：这些工具只能用于自己账号、实验哈希、授权审计。
+      </div>
+
+      <h2>九、无线网络相关工具</h2>
+
+      <h3>常见工具</h3>
+      <pre><code>airmon-ng
+airodump-ng
+aireplay-ng
+aircrack-ng
+wifite</code></pre>
+
+      <h3>查看无线网卡</h3>
+      <pre><code>iwconfig
+ip a</code></pre>
+
+      <p>
+        查看是否支持监听模式，通常需要外接无线网卡。Mac 虚拟机里使用 Kali 时，
+        内置 Wi-Fi 通常不能直接给 Kali 使用，需要 USB 无线网卡直通。
+      </p>
+
+      <h2>十、Netcat 常用命令</h2>
+
+      <h3>测试端口是否开放</h3>
+      <pre><code>nc -vz 192.168.1.1 80
+nc -vz 192.168.1.1 22</code></pre>
+
+      <h3>监听本地端口</h3>
+      <pre><code>nc -lvnp 4444</code></pre>
+
+      <h3>发送简单文本</h3>
+      <pre><code>nc 192.168.1.100 1234</code></pre>
+
+      <div class="notice">
+        Netcat 很强大，但也很容易被滥用，建议只在本地实验环境中使用。
+      </div>
+
+      <h2>十一、常见字典位置</h2>
+
+      <h3>Kali 常见字典目录</h3>
+      <pre><code>ls /usr/share/wordlists</code></pre>
+
+      <h3>Rockyou 字典通常需要解压</h3>
+      <pre><code>sudo gzip -d /usr/share/wordlists/rockyou.txt.gz</code></pre>
+
+      <h3>查看</h3>
+      <pre><code>ls -lh /usr/share/wordlists/rockyou.txt</code></pre>
+
+      <h2>十二、常用靶场环境</h2>
+
+      <p>学习 Kali 最好配合靶场，不要扫真实网站。</p>
+
+      <h3>推荐</h3>
+      <pre><code>DVWA
+Metasploitable2
+OWASP Juice Shop
+TryHackMe
+Hack The Box
+VulnHub
+PortSwigger Web Security Academy</code></pre>
+
+      <h3>本地可以用</h3>
+      <pre><code>docker run --rm -p 3000:3000 bkimminich/juice-shop</code></pre>
+
+      <p>然后访问：</p>
+      <pre><code>http://127.0.0.1:3000</code></pre>
+
+      <h2>十三、入门常用组合</h2>
+
+      <h3>查看自己 IP</h3>
+      <pre><code>ip a</code></pre>
+
+      <h3>扫描局域网</h3>
+      <pre><code>nmap -sn 192.168.1.0/24</code></pre>
+
+      <h3>扫描某台机器端口</h3>
+      <pre><code>nmap -sV 192.168.1.100</code></pre>
+
+      <h3>抓包保存</h3>
+      <pre><code>sudo tcpdump -i any -w test.pcap</code></pre>
+
+      <h3>查看网站技术</h3>
+      <pre><code>whatweb http://192.168.1.100</code></pre>
+
+      <h3>扫描网站目录</h3>
+      <pre><code>gobuster dir -u http://192.168.1.100 -w /usr/share/wordlists/dirb/common.txt</code></pre>
+
+      <h2>十四、推荐学习顺序</h2>
+
+      <pre><code>Linux 基础命令
+网络基础：IP、端口、DNS、HTTP
+Nmap 扫描
+Wireshark 抓包
+Web 基础测试
+靶场练习
+Metasploit 基础
+密码审计基础</code></pre>
+
+      <h2>十五、Kali 复制粘贴快捷键</h2>
+
+      <div class="kbd-box">
+        <div class="kbd-item">
+          <strong>Kali 终端</strong>
+          <p>
+            复制：
+            <span class="kbd">Ctrl</span> +
+            <span class="kbd">Shift</span> +
+            <span class="kbd">C</span>
+          </p>
+          <p>
+            粘贴：
+            <span class="kbd">Ctrl</span> +
+            <span class="kbd">Shift</span> +
+            <span class="kbd">V</span>
+          </p>
+        </div>
+
+        <div class="kbd-item">
+          <strong>普通图形界面</strong>
+          <p>
+            复制：
+            <span class="kbd">Ctrl</span> +
+            <span class="kbd">C</span>
+          </p>
+          <p>
+            粘贴：
+            <span class="kbd">Ctrl</span> +
+            <span class="kbd">V</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer">
+        Kali Linux 常见工具与常用指令速查表
+      </div>
+    </article>
+  </main>
+</body>
+</html>
