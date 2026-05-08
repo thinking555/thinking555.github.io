@@ -1,1207 +1,1207 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-<meta charset="UTF-8">
-<title>Xinshoucpu</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
-}
-
-body{
-    background:#ffffff;
-    color:#000000;
-}
-
-/* 顶部 */
-.topbar{
-    position:relative;
-    height:90px;
-    padding:25px 60px;
-}
-
-.logo{
-    font-size:28px;
-    font-weight:600;
-}
-
-/* 搜索 */
-.search-wrap{
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    width:520px;
-}
-
-.search-box{
-    display:flex;
-    background:#ebe9e9;
-    border-radius:8px;
-    overflow:hidden;
-    border:1px solid #e8e6e6;
-}
-
-.search-box input{
-    flex:1;
-    padding:14px 16px;
-    border:none;
-    outline:none;
-    font-size:15px;
-    background:#ffffff;
-    color:#fff;
-}
-
-.search-box button{
-    width:60px;
-    border:none;
-    background:#ffffff;
-    cursor:pointer;
-    color:#fff;
-}
-
-/* ===== 固定 5 列 ===== */
-.container{
-    column-count:5;
-    column-gap:10px;
-    padding:20px 60px 60px 60px;
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-}
-
-.section{
-    margin-bottom:10px;
-    break-inside:avoid;
-}
-
-.section h3{
-    font-size:14px;
-    margin-bottom:14px;
-    color:#888;
-    font-weight:500;
-    text-align:center;   /* 👈 居中 */
-}
-
-/* 链接（无背景） */
-.link-item{
-    display:flex;
-    align-items:center;
-    margin-bottom:10px;
-    text-decoration:none;
-    color:#000000;
-    font-size:16px;
-    transition:.2s;
-    word-break: break-word;
-    overflow-wrap: break-word;
-}
-
-.link-item:hover{
-    color:rgb(0, 158, 32);
-   
-}
-
-/* 网站图标 */
-.link-item img{
-    width:16px;
-    height:16px;
-    margin-right:8px;
-    border-radius:3px;
-     flex-shrink:0;   /* 防止图标被压缩 */
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="topbar">
-    <div class="logo">Xinshoucpu</div>
-
-    <div class="search-wrap">
-        <form class="search-box" action="https://www.google.com/search" method="GET">
-            <input type="text" name="q">
-            <button type="submit">🔍</button>
-        </form>
-    </div>
-</div>
-
-<div class="container">
-
-    <!-- 第一列 -->
-    <div class="section">
-        <h3>搜索</h3>
-
-        <a class="link-item" href="https://thinking555.github.io/1.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=thinking555.github.io">
-            Super 谷歌高级搜索
-        </a>
-
-        <a class="link-item" href="https://thinking555.github.io/11.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            Yandex 高级搜索
-        </a>
-
-        <a class="link-item" href="http://www.google.com/ncr" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
-            Google
-        </a>
-
-       <a class="link-item" href="https://duckduckgo.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=duckduckgo.com/">
-            Duckduckgo
-        </a>
-
-        <a class="link-item" href="https://yandex.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
-            Yandex
-        </a>
-
-        <a class="link-item" href="https://www.youtube.com/results?search_query=" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com/">
-            Youtube
-        </a>
-
-        <a class="link-item" href="https://www.sogou.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=sogou.com/">
-            sogou
-        </a>
-
-        <a class="link-item" href="https://search.save-web.org/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=search.save-web.org/">
-            丑搜：博客文章
-        </a>
-
-       <a class="link-item" href="https://www.feisoo.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=feisoo.com">
-            飞书文档搜索
-        </a>
-
-    </div>
-
-    <!-- 第二列 -->
-    <div class="section">
-        <h3>谷歌高级搜索</h3>
-
-        <a class="link-item" href="https://www.google.com/search?q=+site%3Abilibili.com&sca_esv=87fb0059039d9338&sxsrf=AE3TifMlMasGtWNByf-mCHZyMZ0WQaysiw%3A1767389619523&ei=szlYacTVH-zT1e8PyprFuQM&ved=0ahUKEwiE-82z5-2RAxXsafUHHUpNMTcQ4dUDCBE&uact=5&oq=+site%3Abilibili.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiEiBzaXRlOmJpbGliaWxpLmNvbUj6E1DuB1i3CXABeACQAQCYAfkBoAG9A6oBBTAuMS4xuAEDyAEA-AEBmAIAoAIAmAMAiAYBkgcAoAcisgcAuAcAwgcAyAcAgAgB&sclient=gws-wiz-serp" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
-            site:bilibili.com
-        </a>
-
-       <a class="link-item" href="https://www.google.com/search?q=site%3Azhihu.com&sca_esv=87fb0059039d9338&sxsrf=AE3TifNx4793Cs12qcGpjlAj_K5TTfOG5g%3A1767389706986&ei=CjpYaZD5O82Ovr0P5v20wAk&ved=0ahUKEwiQpqjd5-2RAxVNh68BHeY-DZgQ4dUDCBE&oq=site%3Azhihu.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiDnNpdGU6emhpaHUuY29tSMIXUMIHWMIHcAF4AJABAJgBwwKgAcMCqgEDMy0xuAEMyAEA-AEBmAIAoAIAmAMAiAYBkgcAoAcRsgcAuAcAwgcAyAcAgAgB&sclient=gws-wiz-serp" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
-            site:zhihu.com
-        </a>
-
-        <a class="link-item" href="https://www.google.com.hk/search?q=site%3Agithub.com&newwindow=1&sca_esv=bb60679124c5811c&ei=MIdeafiUM72fvr0PgpmE6Qg&ved=0ahUKEwj47OOS6vmRAxW9j68BHYIMIY0Q4dUDCBE&uact=5&oq=site%3Agithub.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiD3NpdGU6Z2l0aHViLmNvbUiODFD_BVj_BXABeAGQAQCYAbkBoAG5AaoBAzAuMbgBA8gBAPgBAvgBAZgCAaACDcICChAAGLADGNYEGEeYAwCIBgGQBgqSBwExoAczsgcAuAcAwgcDMy0xyAcLgAgA&sclient=gws-wiz-serp" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
-            site:github.com 
-        </a>
-
-       <a class="link-item" href="https://www.google.com/search?q=site%3Ayoutube.com&sca_esv=87fb0059039d9338&sxsrf=ANbL-n48k0PhNOo-6RtRmJmOLmujck_Lrg%3A1772719236370&ei=hIypabScFu-_0-kPjb-wuQE&biw=1391&bih=713&ved=0ahUKEwi07vri9YiTAxXv3zQHHY0fLBcQ4dUDCBE&uact=5&oq=site%3Ayoutube.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiEHNpdGU6eW91dHViZS5jb21Inj9QmgJY9zlwAXgAkAEAmAHMAqABiAyqAQUyLTIuM7gBA8gBAPgBAvgBAZgCAKACAJgDAIgGAZIHAKAH_wGyBwC4BwDCBwDIBwCACAA&sclient=gws-wiz-serp" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
-            site:youtube.com 
-        </a>
-
-        <a class="link-item" href="https://www.google.com/search?q=site%3Ax.com&sca_esv=87fb0059039d9338&biw=1391&bih=713&sxsrf=ANbL-n5M6pnWH-k5WxK2JWHavyeHsiooyw%3A1772719287355&ei=t4ypacuqFamN2roPqquCmQM&ved=0ahUKEwiL4qL79YiTAxWphlYBHaqVIDMQ4dUDCBE&uact=5&oq=site%3Ax.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiCnNpdGU6eC5jb21I8GVQAFi2L3ABeACQAQCYAfQBoAHVEaoBBDItMTC4AQPIAQD4AQL4AQGYAgCgAgCYAwCSBwCgB_4DsgcAuAcAwgcAyAcAgAgA&sclient=gws-wiz-serp" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
-            site:x.com 
-        </a>
-
-       <a class="link-item" href="https://www.google.com/search?q=site%3Ablogspot.com&sca_esv=87fb0059039d9338&biw=1391&bih=713&sxsrf=ANbL-n6mscw2ZiQtnvweXFRaAwAqcH_CxQ%3A1772719418892&ei=Oo2pabCJNvyd0-kP3NvYiQY&ved=0ahUKEwiwjv-59oiTAxX8zjQHHdwtNmEQ4dUDCBE&uact=5&oq=site%3Ablogspot.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiEXNpdGU6YmxvZ3Nwb3QuY29tSPcYUOYKWM4RcAF4AJABAJgBmQKgAc8FqgEFMC4xLjK4AQPIAQD4AQGYAgCgAgCYAwCIBgGSBwCgB5kBsgcAuAcAwgcAyAcAgAgA&sclient=gws-wiz-serp" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
-            site:blogspot.com
-        </a>
-
-        <a class="link-item" href="https://www.google.com/search?q=site%3Atelegra.ph&sca_esv=87fb0059039d9338&biw=1391&bih=713&sxsrf=ANbL-n6rFFi6wJnKfrzzQmh-CtGFCD78AA%3A1772719486068&ei=fo2pac31A_DP2roPzIGJsA8&ved=0ahUKEwjNrIPa9oiTAxXwp1YBHcxAAvYQ4dUDCBE&oq=site%3Atelegra.ph&gs_lp=Egxnd3Mtd2l6LXNlcnAiD3NpdGU6dGVsZWdyYS5waEiBVlAAWABwAHgAkAEAmAGrBKABqwSqAQM1LTG4AQzIAQCYAgCgAgCYAwCIBgGSBwCgBzOyBwC4BwDCBwDIBwCACAA&sclient=gws-wiz-serp" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
-            site:telegra.ph
-        </a>
-
-       <a class="link-item" href="https://www.google.com/search?q=site%3Areddit.com&sca_esv=87fb0059039d9338&biw=1391&bih=713&sxsrf=ANbL-n5hfhOlOpQQOwOzzFVtY9u35HUy0g%3A1772721055923&ei=n5OpaZqMOI_t1e8P0sXnmAI&ved=0ahUKEwja18vG_IiTAxWPdvUHHdLiGSMQ4dUDCBE&uact=5&oq=site%3Areddit.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiD3NpdGU6cmVkZGl0LmNvbUi5RlD8A1iYN3ABeACQAQCYAZoEoAHaCqoBCTItMi4xLjAuMbgBA8gBAPgBAvgBAZgCAKACAJgDAIgGAZIHAKAHzAGyBwC4BwDCBwDIBwCACAA&sclient=gws-wiz-serp" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
-            site:reddit.com
-        </a>
-
-        <a class="link-item" href="https://www.google.com/search?q=site%3Ated.com&sca_esv=87fb0059039d9338&biw=1391&bih=713&sxsrf=ANbL-n5wRVeWjlsH9G_Wp7baFTyDAS5ksA%3A1772721730359&ei=QpapaazQFZrm1e8P0qSO0Q0&ved=0ahUKEwis-ZeI_4iTAxUac_UHHVKSI9oQ4dUDCBE&uact=5&oq=site%3Ated.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiDHNpdGU6dGVkLmNvbUjTE1CzBlikCXABeACQAQCYAekCoAHGBqoBBTItMi4xuAEDyAEA-AEBmAIAoAIAmAMAiAYBkgcAoAeZAbIHALgHAMIHAMgHAIAIAA&sclient=gws-wiz-serp" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
-            site:ted.com 
-        </a>
-
-       <a class="link-item" href="https://www.google.com/search?q=site%3Aarchive.org&sca_esv=87fb0059039d9338&biw=1391&bih=713&sxsrf=ANbL-n4beE6R6s-rVWNUBKBZqayNxdP3CQ%3A1772721800731&ei=iJapaaumLOev0-kPvKbSmQ0&ved=0ahUKEwirit-p_4iTAxXn1zQHHTyTNNMQ4dUDCBE&uact=5&oq=site%3Aarchive.org&gs_lp=Egxnd3Mtd2l6LXNlcnAiEHNpdGU6YXJjaGl2ZS5vcmdIyg1Q3QVYlgpwAXgAkAEAmAHdAaABvwaqAQMyLTS4AQPIAQD4AQGYAgCgAgCYAwCIBgGSBwCgB8wBsgcAuAcAwgcAyAcAgAgA&sclient=gws-wiz-serp" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
-            site:archive.org
-        </a>
-
-    </div>
-
-    <!-- 第三列 -->
-    <div class="section">
-        <h3>AI</h3>
-
-        <a class="link-item" href="https://gemini.google.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=gemini.google.com/">
-            Gemini
-        </a>
-
-       <a class="link-item" href="https://chatgpt.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=chatgpt.com/">
-            ChatGPT
-        </a>
-
-        <a class="link-item" href="https://grok.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=grok.com">
-            Grok
-        </a>
-
-        <a class="link-item" href="https://claude.ai/new" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=claude.ai/">
-            claude
-        </a>
-
-        <a class="link-item" href="https://www.perplexity.ai/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=perplexity.ai">
-            perplexity
-        </a>
-
-        <a class="link-item" href="https://www.qianwen.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=qianwen.com/">
-            Qwen
-        </a>
-
-       <a class="link-item" href="https://manus.im/app" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=manus.im/">
-            Manus
-        </a>
-
-        <a class="link-item" href="https://cursor.com/cn/agents" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=cursor.com">
-            cursor
-        </a>
-
-        <a class="link-item" href="https://chat.mistral.ai/chat" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=chat.mistral.ai/">
-            Mistral
-        </a>
-    </div>
-
-    <!-- 第四列 -->
-    <div class="section">
-        <h3>翻译</h3>
-
-       <a class="link-item" href="https://translate.google.com/?sl=auto&tl=zh-CN&op=translate" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=translate.google.com">
-            谷歌翻译文字
-        </a>
-
-       <a class="link-item" href="https://www.deepl.com/zh/translator" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=deepl.com">
-            Deepl翻译文字
-        </a>
-
-        <a class="link-item" href="https://translate.google.com/?sl=auto&tl=zh-CN&op=images" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=translate.google.com">
-            谷歌翻译图片
-        </a>
-
-        <a class="link-item" href="https://translate.google.com/?sl=auto&tl=zh-CN&op=docs" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=translate.google.com">
-            谷歌翻译文档
-        </a>
-
-        <a class="link-item" href="https://belindoc.com/zh" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=/belindoc.com/">
-            PDF、ePub
-        </a>
-
-         <a class="link-item" href="https://deeppdf.ai/pdf-translator" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=deeppdf.ai">
-            PDF
-        </a>
-
-         <a class="link-item" href="https://app.immersivetranslate.com/file/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=app.immersivetranslate.com">
-             PDF、ePub
-        </a>
-
-         <a class="link-item" href="https://pdf2zh.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=pdf2zh.com">
-            PDF
-        </a>
-
-         <a class="link-item" href="https://www.onlinedoctranslator.com/zh-CN/translationform" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=onlinedoctranslator.com">
-            PDF
-        </a>
-
-    </div>
-
-    <!-- 第五列 -->
-    <div class="section">
-        <h3>教程</h3>
-
-       <a class="link-item" href="https://thinking555.github.io/localsend-fix.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            LocalSend Mac 无法搜索到设备解决办法
-        </a>
-
-       <a class="link-item" href="https://thinking555.github.io/afilmory-guide.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            使用 afilmory 创建公开图片浏览库
-        </a>
-
-        <a class="link-item" href="https://thinking555.github.io/Pegasus.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            NSO Group 与 Pegasus 间谍软件
-        </a>
-
-        <a class="link-item" href="https://thinking555.github.io/md.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            markdown语法
-        </a>
-
-        <a class="link-item" href="https://thinking555.github.io/gogogo.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            gogogo
-        </a>
-    </div>
-
-    <div class="section">
-        <h3>GO</h3>
-
-        <a class="link-item" href="https://thinking555.github.io/tg.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            电报教程
-        </a>
-
-        <a class="link-item" href="https://thinking555.github.io/2.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            视频相关
-        </a>
-
-        <a class="link-item" href="https://thinking555.github.io/3.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            软件相关
-        </a>
-
-        <a class="link-item" href="https://thinking555.github.io/4.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            网盘相关
-        </a>
-
-        <a class="link-item" href="https://thinking555.github.io/5.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            图片相关
-        </a>
-
-        <a class="link-item" href="https://thinking555.github.io/6.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            邮箱和接码
-        </a>
-
-        <a class="link-item" href="https://thinking555.github.io/7.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            安全工具
-        </a>
-
-        <a class="link-item" href="https://thinking555.github.io/tg.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            地图工具
-        </a>
-
-    </div>
-
-    <div class="section">
-        <h3>中右媒体</h3>
-
-        <a class="link-item" href="https://www.nikkei.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=nikkei.com/">
-            日本经济新闻
-        </a>
-
-       <a class="link-item" href="https://www.wsj.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=wsj.com/">
-            华尔街日报
-        </a>
-
-        <a class="link-item" href="https://www.economist.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=economist.com/">
-            经济学人
-        </a>
-
-        <a class="link-item" href="https://fortune.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=fortune.com/">
-            财富
-        </a>
-
-        <a class="link-item" href="https://www.reuters.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=reuters.com/">
-            路透社
-        </a>
-
-        <a class="link-item" href="https://www.kyodonews.jp/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=kyodonews.jp/">
-            共同通讯社 
-        </a>
-
-        <a class="link-item" href="https://www.ft.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=ft.com/">
-            金融时报
-        </a>
-
-        <a class="link-item" href="https://www.businessweekly.com.tw/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=businessweekly.com.tw/">
-            商业周刊 
-        </a>
-
-    </div>
-
-    <div class="section">
-        <h3>环境音</h3>
-
-        <a class="link-item" href="https://open.spotify.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=open.spotify.com/">
-            spotify
-        </a>
-
-       <a class="link-item" href="https://www.whitenoisegenerator.top/zh" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=whitenoisegenerator.top">
-            白噪音生成器
-        </a>
-
-        <a class="link-item" href="https://www.rainymood.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=rainymood.com">
-            rainymood
-        </a>
-
-        <a class="link-item" href="https://freemind.fit/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=freemind.fit/">
-            FreeMind
-        </a>
-
-        <a class="link-item" href="https://www.ppbzy.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=ppbzy.com/">
-            泡泡白噪音
-        </a>
-
-         <a class="link-item" href="https://moodist.mvze.net/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=moodist.mvze.net">
-            Ambient Sounds
-        </a>
-
-       <a class="link-item" href="https://www.tree.fm/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=tree.fm">
-            tree.fm
-        </a>
-
-        <a class="link-item" href="https://www.xiaoyuzhoufm.com/podcast/646e28c135ad0ed380113f59" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=xiaoyuzhoufm.com/">
-            刘润的个人播客
-        </a>
-
-        <a class="link-item" href="https://open.spotify.com/show/2dWL5Q8FhQX4fefC1zouhC" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=open.spotify.com/">
-            季風播客
-        </a>
-
-    </div>
-
+    <!DOCTYPE html>
+    <html lang="zh">
+    <head>
+    <meta charset="UTF-8">
+    <title>Xinshoucpu</title>
+
+    <style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+    }
+
+    body{
+        background:#ffffff;
+        color:#000000;
+    }
+
+    /* 顶部 */
+    .topbar{
+        position:relative;
+        height:90px;
+        padding:25px 60px;
+    }
+
+    .logo{
+        font-size:28px;
+        font-weight:600;
+    }
+
+    /* 搜索 */
+    .search-wrap{
+        position:absolute;
+        left:50%;
+        top:50%;
+        transform:translate(-50%,-50%);
+        width:520px;
+    }
+
+    .search-box{
+        display:flex;
+        background:#ebe9e9;
+        border-radius:8px;
+        overflow:hidden;
+        border:1px solid #e8e6e6;
+    }
+
+    .search-box input{
+        flex:1;
+        padding:14px 16px;
+        border:none;
+        outline:none;
+        font-size:15px;
+        background:#ffffff;
+        color:#fff;
+    }
+
+    .search-box button{
+        width:60px;
+        border:none;
+        background:#ffffff;
+        cursor:pointer;
+        color:#fff;
+    }
+
+    /* ===== 固定 5 列 ===== */
+    .container{
+        column-count:5;
+        column-gap:10px;
+        padding:20px 60px 60px 60px;
+        display:grid;
+        grid-template-columns:repeat(5,1fr);
+    }
+
+    .section{
+        margin-bottom:10px;
+        break-inside:avoid;
+    }
+
+    .section h3{
+        font-size:14px;
+        margin-bottom:14px;
+        color:#888;
+        font-weight:500;
+        text-align:center;   /* 👈 居中 */
+    }
+
+    /* 链接（无背景） */
+    .link-item{
+        display:flex;
+        align-items:center;
+        margin-bottom:10px;
+        text-decoration:none;
+        color:#000000;
+        font-size:16px;
+        transition:.2s;
+        word-break: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .link-item:hover{
+        color:rgb(0, 158, 32);
     
-    <div class="section">
-        <h3>图床二维码</h3>
+    }
 
-       <a class="link-item" href="https://postimages.org/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=postimages.org/">
-            Postimages
-        </a>
+    /* 网站图标 */
+    .link-item img{
+        width:16px;
+        height:16px;
+        margin-right:8px;
+        border-radius:3px;
+        flex-shrink:0;   /* 防止图标被压缩 */
+    }
 
-       <a class="link-item" href="https://mjj.today/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=mjj.today/">
-            mjj.today
-        </a>
+    </style>
+    </head>
 
-        <a class="link-item" href="https://cdn.ipfsscan.io/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=cdn.ipfsscan.io/">
-            ipfsscan
-        </a>
+    <body>
 
-        <a class="link-item" href="https://imgloc.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=imgloc.com/"">
-            imgloc
-        </a>
+    <div class="topbar">
+        <div class="logo">Xinshoucpu</div>
 
-        <a class="link-item" href="https://swiftqr.tanpok.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=swiftqr.tanpok.com/">
-            快速生成二维码
-        </a>
-
-        <a class="link-item" href="https://qrcode.fun/zh-hans" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=qrcode.fun">
-            生成二维码
-        </a>
-
-        <a class="link-item" href="https://qrbtf.com/zh/style/a1" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=qrbtf.com/">
-            二维码生成器
-        </a>
-
-        <a class="link-item" href="https://qrframe.kylezhe.ng/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=qrframe.kylezhe.ng">
-            二维码生成器
-        </a>
-
-        <a class="link-item" href="https://wificard.io/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=wificard.io/">
-            Wi-Fi 连接卡
-        </a>
-
+        <div class="search-wrap">
+            <form class="search-box" action="https://www.google.com/search" method="GET">
+                <input type="text" name="q">
+                <button type="submit">🔍</button>
+            </form>
+        </div>
     </div>
 
-    <div class="section">
-        <h3>工具</h3>
-
-        <a class="link-item" href="https://www.perplexity.ai/discover" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=perplexity.ai">
-            perplexity AI新闻
-        </a>
-
-        <a class="link-item" href="https://www.newsminimalist.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=newsminimalist.com">
-            AI新闻
-        </a>
-
-         <a class="link-item" href="https://wise.com/zh-cn/currency-converter/usd-to-cny-rate?amount=100" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=wise.com">
-            100 美元兑人民币
-        </a>
-
-       <a class="link-item" href="https://wise.com/zh-cn/currency-converter/usd-to-jpy-rate?amount=100" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=wise.com">
-            100 美元兑日元
-        </a>
-
-        <a class="link-item" href="https://wise.com/zh-cn/currency-converter/cny-to-jpy-rate?amount=1" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=wise.com">
-            1 人民币兑日元
-        </a>
-
-        <a class="link-item" href="https://wise.com/zh-cn/currency-converter/thb-to-usd-rate" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=wise.com">
-            泰铢兑美元
-        </a>
-
-        <a class="link-item" href="https://www.google.com/search?q=100USD+CNY" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
-            100USD CNY
-        </a>
-
-        <a class="link-item" href="https://www.google.com/search?q=100USD+JPY" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
-            100USD JPY
-        </a>
-
-        <a class="link-item" href="https://www.google.com/search?q=1CNY+JPY" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
-            1CNY JPY
-        </a>
-    </div>
-
-    <div class="section">
-        <h3>真实数据</h3>
-
-         <a class="link-item" href="https://www.amnesty.org/zh-hans/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=amnesty.org/">
-            国际特赦组织
-        </a>
-
-       <a class="link-item" href="https://www.oxfam.org/en" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=oxfam.org">
-            乐施会国际
-        </a>
-
-        <a class="link-item" href="https://www.transparency.org/en" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=transparency.org">
-            透明国际
-        </a>
-
-        <a class="link-item" href="https://data.worldbank.org.cn/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=data.worldbank.org.cn">
-            世界银行公开数据
-        </a>
-
-        <a class="link-item" href="https://www.huilvbiao.com/gold" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=huilvbiao.com">
-            黄金价格
-        </a>
-
-       <a class="link-item" href="www.bitget.com/zh-CN/price" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=bitget.com/">
-            加密货币价格
-        </a>
-
-        <a class="link-item" href="https://www.marketcapwatch.com/zh/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=marketcapwatch.com">
-            市值最高的公司
-        </a>
-
-        <a class="link-item" href="https://dapanyuntu.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=dapanyuntu.com">
-            A股
-        </a>
-
-        <a class="link-item" href="https://cn.investing.com/commodities/crude-oil" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=investing.com">
-            原油价格
-        </a>
-
-        <a class="link-item" href="https://how-to-buy-house.vercel.app/home" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=how-to-buy-house.vercel.app">
-            陆区房价趋势
-        </a>
-
-        <a class="link-item" href="https://wodegongzi.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=wodegongzi.com">
-            陆区工资和税
-        </a>
-
-        <a class="link-item" href="https://www.gapminder.org/dollar-street" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=gapminder.org/">
-            家庭收入水平
-        </a>
-
-        <a class="link-item" href="https://www.xiaoxiongyouhao.com/fprice/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=">
-            陆区小车油价
-        </a>
-
-        <a class="link-item" href="https://ourworldindata.org/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=ourworldindata.org">
-            什么数据都有
-        </a>
-
-         <a class="link-item" href="https://uinotes.com/app" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=uinotes.com">
-            App 完整截图
-        </a>
-
-       <a class="link-item" href="https://manuelmoreale.com/blog-platforms" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=manuelmoreale.com">
-            博客平台列表
-        </a>
-
-        <a class="link-item" href="https://www.statista.com/homepage" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=statista.com/">
-            行业、市场、消费统计数据 💰
-        </a>
-
-        <a class="link-item" href="https://www.cbndata.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=cbndata.com/">
-            消费大数据（中国）
-        </a>
-
-        <a class="link-item" href="https://www.pbc.gov.cn/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=pbc.gov.cn">
-            外汇储备、信贷数据
-        </a>
-
-         <a class="link-item" href="https://www.killedby.tech/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=killedby.tech">
-            苹果、谷歌和微软停产产品
-        </a>
-
-       <a class="link-item" href="https://killedbygoogle.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=killedbygoogle.com/">
-            所有被谷歌废弃的产品
-        </a>
-
-        <a class="link-item" href="www.paywallpro.app/zh/paywalls" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=paywallpro.app">
-            应用的付费墙案例
-        </a>
-
-        <a class="link-item" href="https://www.stripealternatives.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=stripealternatives.com">
-            收款公司
-        </a>
-
-        <a class="link-item" href="https://pastebin.com/raw/LCPyenzC" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=pastebin.com">
-            微信封控词（2019数据）
-        </a>
-
-         <a class="link-item" href="https://hao.199it.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=hao.199it.com/">
-            导航探索
-        </a>
-
-       <a class="link-item" href="https://datasetsearch.research.google.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=datasetsearch.research.google.com/">
-            数据搜索
-        </a>
-
-        <a class="link-item" href="https://www.icpsr.umich.edu/sites/icpsr/home" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=icpsr.umich.edu/">
-            社会数据
-        </a>
-
-        <a class="link-item" href="https://www.visualcapitalist.com/cp/international-students-in-the-u-s-come-from/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=visualcapitalist.com">
-            美国的留学生来自哪？
-        </a>
-
-    </div>
-    
-    <div class="section">
-        <h3>书籍</h3>
-
-         <a class="link-item" href="https://zh.1lib.sk/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=zh.1lib.sk/">
-            Z-Library
-        </a>
-
-       <a class="link-item" href="https://annas-archive.gl/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=annas-archive.gl">
-            Anna’s Archive
-        </a>
-
-        <a class="link-item" href="https://www.shukui.net/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=shukui.net">
-            书葵网
-        </a>
-
-        <a class="link-item" href="https://www.sci-hub.pub/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=sci-hub.pub/">
-            Sci-Hub导航
-        </a>
-
-        <a class="link-item" href="https://tool.yovisun.com/scihub/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=tool.yovisun.com/">
-            Sci-Hub导航
-        </a>
-
-         <a class="link-item" href="https://open-slum.org/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=open-slum.org/">
-            Library导航
-        </a>
-
-       <a class="link-item" href="https://zlib.pro/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=zlib.pro/">
-            Z-Library导航
-        </a>
-
-        <a class="link-item" href="https://getzlib.com/zh#features" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=getzlib.com">
-            Z-Library导航
-        </a>
-
-        <a class="link-item" href="https://www.zhihu.com/question/266097642" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=zhihu.com">
-            SCI-HUB如何使用？
-        </a>
-
-        <a class="link-item" href="https://ac.scmor.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=ac.scmor.com/">
-            学术导航
-        </a>
-
-         <a class="link-item" href="https://search.crossref.org/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=search.crossref.org/">
-            探索
-        </a>
-
-       <a class="link-item" href="https://www.mdpi.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=mdpi.com">
-            探索
-        </a>
-
-        <a class="link-item" href="https://doaj.org/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=doaj.org/">
-            探索
-        </a>
-
-        <a class="link-item" href="https://liber3.eth.limo/#/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=liber3.eth.limo">
-            liber3
-        </a>
-
-        <a class="link-item" href="https://www.jiumodiary.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=jiumodiary.com">
-            鸠摩搜索
-        </a>
-
-         <a class="link-item" href="https://scholar.google.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=scholar.google.com/">
-            谷歌学术搜索
-        </a>
-
-       <a class="link-item" href="https://archive.org/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=archive.org/">
-            archive
-        </a>
-
-        <a class="link-item" href="https://github.com/ruanyf/free-books" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com/">
-            互联网上的免费书籍
-        </a>
-
-        <a class="link-item" href="https://ebookfoundation.github.io/free-programming-books/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=ebookfoundation.github.io">
-            免費程式設計書
-        </a>
-
-        <a class="link-item" href="https://www.ovid.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=ovid.com">
-            ovid
-        </a>
-
-         <a class="link-item" href="https://pubs.acs.org/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=pubs.acs.org/">
-            acs
-        </a>
-
-       <a class="link-item" href="https://link.springer.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=link.springer.com">
-            springer
-        </a>
-
-        <a class="link-item" href="https://www.sciencedirect.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=sciencedirect.com">
-            sciencedirect
-        </a>
-
-        <a class="link-item" href="https://github.com/kska32/ebooks" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
-            经典书籍
-        </a>
-
-        <a class="link-item" href="https://kska32.github.io/ebooks/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=kska32.github.io/">
-            经典书籍搜索功能
-        </a>
-
-         <a class="link-item" href="https://sobooks.cc/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=sobooks.cc">
-            sobooks
-        </a>
-
-       <a class="link-item" href="https://www.chenjin5.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=chenjin5.com/">
-            沉金书屋
-        </a>
-
-        <a class="link-item" href="https://www.jb51.net/books/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=jb51.net/">
-            脚本之家
-        </a>
-
-        <a class="link-item" href="https://www.bookstack.cn/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=bookstack.cn/">
-            书栈网
-        </a>
-
-        <a class="link-item" href="https://www.nmod.net/lishi" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=nmod.net/">
-            nmod
-        </a>
-
-         <a class="link-item" href="https://welib.org/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=welib.org">
-            welib
-        </a>
-
-       <a class="link-item" href="https://qread.xmsoushu.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=qread.xmsoushu.com">
-            速读
-        </a>
-
-        <a class="link-item" href="https://www.nbfox.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=nbfox.com/">
-            麦田艺术
-        </a>
-
-        <a class="link-item" href="https://artvee.com/c/posters/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=artvee.com/">
-            artvee
-        </a>
-
-        <a class="link-item" href="https://gallerix.asia/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=gallerix.asia/">
-            gallerix
-        </a>
-
-    </div>
-    
-    <div class="section">
-        <h3>音乐</h3>
-
-        <button onclick="openAll()">打开所有环境音网站</button>
-
-        <a class="link-item" href="https://raining.fm/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=raining.fm/">
-            raining.fm
-        </a>
-
-        <a class="link-item" href="https://rainyscope.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=rainyscope.com/">
-            rainyscope
-        </a>
-
-        <a class="link-item" href="https://virtocean.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=virtocean.com/">
-            virtocean
-        </a>
-
-        <a class="link-item" href="https://defonic.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=defonic.com/">
-            defonic
-        </a>
-
-        <a class="link-item" href="https://asoftmurmur.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=asoftmurmur.com/">
-            asoftmurmur
-        </a>
-
-        <a class="link-item" href="https://www.noisli.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=noisli.com/">
-            noisli
-        </a>
-
-        <a class="link-item" href="https://www.window-swap.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=window-swap.com/">
-            window-swap
-        </a>
-
-        <a class="link-item" href="https://www.thisisathing.io/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=thisisathing.io/">
-            thisisathing
-        </a>
-
-        <a class="link-item" href="https://mynoise.net/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=mynoise.net/">
-            mynoise
-        </a>
-
-        <a class="link-item" href="https://kaizenflow.co/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=kaizenflow.co">
-            kaizenflow
-        </a>
-
-        <a class="link-item" href="https://ambicular.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=ambicular.com/">
-            ambicular
-        </a>
-
-         <a class="link-item" href="https://www.fangpi.net/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=fangpi.net/">
-            fangpi
-        </a>
-
-       <a class="link-item" href="https://spotube.netlify.app/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=spotube.netlify.app/">
-            spotube
-        </a>
-
-        <a class="link-item" href="https://www.gequbao.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=gequbao.com/">
-            gequbao
-        </a>
-
-        <a class="link-item" href="https://flac.music.hi.cn/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=flac.music.hi.cn/">
-            flac.music
-        </a>
-
-        <a class="link-item" href="https://pjmp3.de/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=pjmp3.de/">
-            泡椒音乐
-        </a>
-
-         <a class="link-item" href="https://flacdownloader.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=flacdownloader.com">
-            flacdownloader
-        </a>
-
-       <a class="link-item" href="https://zvu4no.org/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=zvu4no.org/">
-            zvu4no.org
-        </a>
-
-        <a class="link-item" href="https://mu-jie.cc/musicBox/#/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=mu-jie.cc">
-            枫叶音乐盒
-        </a>
-
-        <a class="link-item" href="https://coderadio.freecodecamp.org/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=coderadio.freecodecamp.org/">
-            freecodecamp
-        </a>
-
-        <a class="link-item" href="https://lucida.to/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=lucida.to/">
-            输入链接下载
-        </a>
-
-         <a class="link-item" href="https://mojigeci.com/zh-Hans" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=mojigeci.com/">
-            歌词下载
-        </a>
-
-       <a class="link-item" href="https://myringtone.app/zh-cn" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=myringtone.app">
-            铃声下载
-        </a>
-
-    </div>
-    
-    <div class="section">
-        <h3>工具</h3>
+    <div class="container">
+
+        <!-- 第一列 -->
+        <div class="section">
+            <h3>搜索</h3>
+
+            <a class="link-item" href="https://thinking555.github.io/1.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=thinking555.github.io">
+                Super 谷歌高级搜索
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/11.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                Yandex 高级搜索
+            </a>
+
+            <a class="link-item" href="http://www.google.com/ncr" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+                Google
+            </a>
+
+        <a class="link-item" href="https://duckduckgo.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=duckduckgo.com/">
+                Duckduckgo
+            </a>
+
+            <a class="link-item" href="https://yandex.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=yandex.com">
+                Yandex
+            </a>
+
+            <a class="link-item" href="https://www.youtube.com/results?search_query=" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com/">
+                Youtube
+            </a>
+
+            <a class="link-item" href="https://www.sogou.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=sogou.com/">
+                sogou
+            </a>
+
+            <a class="link-item" href="https://search.save-web.org/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=search.save-web.org/">
+                丑搜：博客文章
+            </a>
+
+        <a class="link-item" href="https://www.feisoo.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=feisoo.com">
+                飞书文档搜索
+            </a>
+
+        </div>
+
+        <!-- 第二列 -->
+        <div class="section">
+            <h3>谷歌高级搜索</h3>
+
+            <a class="link-item" href="https://www.google.com/search?q=+site%3Abilibili.com&sca_esv=87fb0059039d9338&sxsrf=AE3TifMlMasGtWNByf-mCHZyMZ0WQaysiw%3A1767389619523&ei=szlYacTVH-zT1e8PyprFuQM&ved=0ahUKEwiE-82z5-2RAxXsafUHHUpNMTcQ4dUDCBE&uact=5&oq=+site%3Abilibili.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiEiBzaXRlOmJpbGliaWxpLmNvbUj6E1DuB1i3CXABeACQAQCYAfkBoAG9A6oBBTAuMS4xuAEDyAEA-AEBmAIAoAIAmAMAiAYBkgcAoAcisgcAuAcAwgcAyAcAgAgB&sclient=gws-wiz-serp" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+                site:bilibili.com
+            </a>
+
+        <a class="link-item" href="https://www.google.com/search?q=site%3Azhihu.com&sca_esv=87fb0059039d9338&sxsrf=AE3TifNx4793Cs12qcGpjlAj_K5TTfOG5g%3A1767389706986&ei=CjpYaZD5O82Ovr0P5v20wAk&ved=0ahUKEwiQpqjd5-2RAxVNh68BHeY-DZgQ4dUDCBE&oq=site%3Azhihu.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiDnNpdGU6emhpaHUuY29tSMIXUMIHWMIHcAF4AJABAJgBwwKgAcMCqgEDMy0xuAEMyAEA-AEBmAIAoAIAmAMAiAYBkgcAoAcRsgcAuAcAwgcAyAcAgAgB&sclient=gws-wiz-serp" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+                site:zhihu.com
+            </a>
+
+            <a class="link-item" href="https://www.google.com.hk/search?q=site%3Agithub.com&newwindow=1&sca_esv=bb60679124c5811c&ei=MIdeafiUM72fvr0PgpmE6Qg&ved=0ahUKEwj47OOS6vmRAxW9j68BHYIMIY0Q4dUDCBE&uact=5&oq=site%3Agithub.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiD3NpdGU6Z2l0aHViLmNvbUiODFD_BVj_BXABeAGQAQCYAbkBoAG5AaoBAzAuMbgBA8gBAPgBAvgBAZgCAaACDcICChAAGLADGNYEGEeYAwCIBgGQBgqSBwExoAczsgcAuAcAwgcDMy0xyAcLgAgA&sclient=gws-wiz-serp" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+                site:github.com 
+            </a>
+
+        <a class="link-item" href="https://www.google.com/search?q=site%3Ayoutube.com&sca_esv=87fb0059039d9338&sxsrf=ANbL-n48k0PhNOo-6RtRmJmOLmujck_Lrg%3A1772719236370&ei=hIypabScFu-_0-kPjb-wuQE&biw=1391&bih=713&ved=0ahUKEwi07vri9YiTAxXv3zQHHY0fLBcQ4dUDCBE&uact=5&oq=site%3Ayoutube.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiEHNpdGU6eW91dHViZS5jb21Inj9QmgJY9zlwAXgAkAEAmAHMAqABiAyqAQUyLTIuM7gBA8gBAPgBAvgBAZgCAKACAJgDAIgGAZIHAKAH_wGyBwC4BwDCBwDIBwCACAA&sclient=gws-wiz-serp" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+                site:youtube.com 
+            </a>
+
+            <a class="link-item" href="https://www.google.com/search?q=site%3Ax.com&sca_esv=87fb0059039d9338&biw=1391&bih=713&sxsrf=ANbL-n5M6pnWH-k5WxK2JWHavyeHsiooyw%3A1772719287355&ei=t4ypacuqFamN2roPqquCmQM&ved=0ahUKEwiL4qL79YiTAxWphlYBHaqVIDMQ4dUDCBE&uact=5&oq=site%3Ax.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiCnNpdGU6eC5jb21I8GVQAFi2L3ABeACQAQCYAfQBoAHVEaoBBDItMTC4AQPIAQD4AQL4AQGYAgCgAgCYAwCSBwCgB_4DsgcAuAcAwgcAyAcAgAgA&sclient=gws-wiz-serp" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+                site:x.com 
+            </a>
+
+        <a class="link-item" href="https://www.google.com/search?q=site%3Ablogspot.com&sca_esv=87fb0059039d9338&biw=1391&bih=713&sxsrf=ANbL-n6mscw2ZiQtnvweXFRaAwAqcH_CxQ%3A1772719418892&ei=Oo2pabCJNvyd0-kP3NvYiQY&ved=0ahUKEwiwjv-59oiTAxX8zjQHHdwtNmEQ4dUDCBE&uact=5&oq=site%3Ablogspot.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiEXNpdGU6YmxvZ3Nwb3QuY29tSPcYUOYKWM4RcAF4AJABAJgBmQKgAc8FqgEFMC4xLjK4AQPIAQD4AQGYAgCgAgCYAwCIBgGSBwCgB5kBsgcAuAcAwgcAyAcAgAgA&sclient=gws-wiz-serp" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+                site:blogspot.com
+            </a>
+
+            <a class="link-item" href="https://www.google.com/search?q=site%3Atelegra.ph&sca_esv=87fb0059039d9338&biw=1391&bih=713&sxsrf=ANbL-n6rFFi6wJnKfrzzQmh-CtGFCD78AA%3A1772719486068&ei=fo2pac31A_DP2roPzIGJsA8&ved=0ahUKEwjNrIPa9oiTAxXwp1YBHcxAAvYQ4dUDCBE&oq=site%3Atelegra.ph&gs_lp=Egxnd3Mtd2l6LXNlcnAiD3NpdGU6dGVsZWdyYS5waEiBVlAAWABwAHgAkAEAmAGrBKABqwSqAQM1LTG4AQzIAQCYAgCgAgCYAwCIBgGSBwCgBzOyBwC4BwDCBwDIBwCACAA&sclient=gws-wiz-serp" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+                site:telegra.ph
+            </a>
+
+        <a class="link-item" href="https://www.google.com/search?q=site%3Areddit.com&sca_esv=87fb0059039d9338&biw=1391&bih=713&sxsrf=ANbL-n5hfhOlOpQQOwOzzFVtY9u35HUy0g%3A1772721055923&ei=n5OpaZqMOI_t1e8P0sXnmAI&ved=0ahUKEwja18vG_IiTAxWPdvUHHdLiGSMQ4dUDCBE&uact=5&oq=site%3Areddit.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiD3NpdGU6cmVkZGl0LmNvbUi5RlD8A1iYN3ABeACQAQCYAZoEoAHaCqoBCTItMi4xLjAuMbgBA8gBAPgBAvgBAZgCAKACAJgDAIgGAZIHAKAHzAGyBwC4BwDCBwDIBwCACAA&sclient=gws-wiz-serp" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+                site:reddit.com
+            </a>
+
+            <a class="link-item" href="https://www.google.com/search?q=site%3Ated.com&sca_esv=87fb0059039d9338&biw=1391&bih=713&sxsrf=ANbL-n5wRVeWjlsH9G_Wp7baFTyDAS5ksA%3A1772721730359&ei=QpapaazQFZrm1e8P0qSO0Q0&ved=0ahUKEwis-ZeI_4iTAxUac_UHHVKSI9oQ4dUDCBE&uact=5&oq=site%3Ated.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiDHNpdGU6dGVkLmNvbUjTE1CzBlikCXABeACQAQCYAekCoAHGBqoBBTItMi4xuAEDyAEA-AEBmAIAoAIAmAMAiAYBkgcAoAeZAbIHALgHAMIHAMgHAIAIAA&sclient=gws-wiz-serp" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+                site:ted.com 
+            </a>
+
+        <a class="link-item" href="https://www.google.com/search?q=site%3Aarchive.org&sca_esv=87fb0059039d9338&biw=1391&bih=713&sxsrf=ANbL-n4beE6R6s-rVWNUBKBZqayNxdP3CQ%3A1772721800731&ei=iJapaaumLOev0-kPvKbSmQ0&ved=0ahUKEwirit-p_4iTAxXn1zQHHTyTNNMQ4dUDCBE&uact=5&oq=site%3Aarchive.org&gs_lp=Egxnd3Mtd2l6LXNlcnAiEHNpdGU6YXJjaGl2ZS5vcmdIyg1Q3QVYlgpwAXgAkAEAmAHdAaABvwaqAQMyLTS4AQPIAQD4AQGYAgCgAgCYAwCIBgGSBwCgB8wBsgcAuAcAwgcAyAcAgAgA&sclient=gws-wiz-serp" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+                site:archive.org
+            </a>
+
+        </div>
+
+        <!-- 第三列 -->
+        <div class="section">
+            <h3>AI</h3>
+
+            <a class="link-item" href="https://gemini.google.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=gemini.google.com/">
+                Gemini
+            </a>
+
+        <a class="link-item" href="https://chatgpt.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=chatgpt.com/">
+                ChatGPT
+            </a>
+
+            <a class="link-item" href="https://grok.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=grok.com">
+                Grok
+            </a>
+
+            <a class="link-item" href="https://claude.ai/new" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=claude.ai/">
+                claude
+            </a>
+
+            <a class="link-item" href="https://www.perplexity.ai/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=perplexity.ai">
+                perplexity
+            </a>
+
+            <a class="link-item" href="https://www.qianwen.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=qianwen.com/">
+                Qwen
+            </a>
+
+        <a class="link-item" href="https://manus.im/app" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=manus.im/">
+                Manus
+            </a>
+
+            <a class="link-item" href="https://cursor.com/cn/agents" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=cursor.com">
+                cursor
+            </a>
+
+            <a class="link-item" href="https://chat.mistral.ai/chat" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=chat.mistral.ai/">
+                Mistral
+            </a>
+        </div>
+
+        <!-- 第四列 -->
+        <div class="section">
+            <h3>翻译</h3>
+
+        <a class="link-item" href="https://translate.google.com/?sl=auto&tl=zh-CN&op=translate" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=translate.google.com">
+                谷歌翻译文字
+            </a>
+
+        <a class="link-item" href="https://www.deepl.com/zh/translator" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=deepl.com">
+                Deepl翻译文字
+            </a>
+
+            <a class="link-item" href="https://translate.google.com/?sl=auto&tl=zh-CN&op=images" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=translate.google.com">
+                谷歌翻译图片
+            </a>
+
+            <a class="link-item" href="https://translate.google.com/?sl=auto&tl=zh-CN&op=docs" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=translate.google.com">
+                谷歌翻译文档
+            </a>
+
+            <a class="link-item" href="https://belindoc.com/zh" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=/belindoc.com/">
+                PDF、ePub
+            </a>
+
+            <a class="link-item" href="https://deeppdf.ai/pdf-translator" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=deeppdf.ai">
+                PDF
+            </a>
+
+            <a class="link-item" href="https://app.immersivetranslate.com/file/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=app.immersivetranslate.com">
+                PDF、ePub
+            </a>
+
+            <a class="link-item" href="https://pdf2zh.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=pdf2zh.com">
+                PDF
+            </a>
+
+            <a class="link-item" href="https://www.onlinedoctranslator.com/zh-CN/translationform" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=onlinedoctranslator.com">
+                PDF
+            </a>
+
+        </div>
+
+        <!-- 第五列 -->
+        <div class="section">
+            <h3>教程</h3>
+
+        <a class="link-item" href="https://thinking555.github.io/localsend-fix.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                LocalSend Mac 无法搜索到设备解决办法
+            </a>
+
+        <a class="link-item" href="https://thinking555.github.io/afilmory-guide.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                使用 afilmory 创建公开图片浏览库
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/Pegasus.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                NSO Group 与 Pegasus 间谍软件
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/md.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                markdown语法
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/gogogo.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                gogogo
+            </a>
+        </div>
+
+        <div class="section">
+            <h3>GO</h3>
+
+            <a class="link-item" href="https://thinking555.github.io/tg.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                电报教程
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/2.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                视频相关
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/3.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                软件相关
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/4.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                网盘相关
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/5.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                图片相关
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/6.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                邮箱和接码
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/7.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                安全工具
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/map.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                地图工具
+            </a>
+
+        </div>
+
+        <div class="section">
+            <h3>中右媒体</h3>
+
+            <a class="link-item" href="https://www.nikkei.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=nikkei.com/">
+                日本经济新闻
+            </a>
+
+        <a class="link-item" href="https://www.wsj.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=wsj.com/">
+                华尔街日报
+            </a>
+
+            <a class="link-item" href="https://www.economist.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=economist.com/">
+                经济学人
+            </a>
+
+            <a class="link-item" href="https://fortune.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=fortune.com/">
+                财富
+            </a>
+
+            <a class="link-item" href="https://www.reuters.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=reuters.com/">
+                路透社
+            </a>
+
+            <a class="link-item" href="https://www.kyodonews.jp/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=kyodonews.jp/">
+                共同通讯社 
+            </a>
+
+            <a class="link-item" href="https://www.ft.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=ft.com/">
+                金融时报
+            </a>
+
+            <a class="link-item" href="https://www.businessweekly.com.tw/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=businessweekly.com.tw/">
+                商业周刊 
+            </a>
+
+        </div>
+
+        <div class="section">
+            <h3>环境音</h3>
+
+            <a class="link-item" href="https://open.spotify.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=open.spotify.com/">
+                spotify
+            </a>
+
+        <a class="link-item" href="https://www.whitenoisegenerator.top/zh" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=whitenoisegenerator.top">
+                白噪音生成器
+            </a>
+
+            <a class="link-item" href="https://www.rainymood.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=rainymood.com">
+                rainymood
+            </a>
+
+            <a class="link-item" href="https://freemind.fit/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=freemind.fit/">
+                FreeMind
+            </a>
+
+            <a class="link-item" href="https://www.ppbzy.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=ppbzy.com/">
+                泡泡白噪音
+            </a>
+
+            <a class="link-item" href="https://moodist.mvze.net/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=moodist.mvze.net">
+                Ambient Sounds
+            </a>
+
+        <a class="link-item" href="https://www.tree.fm/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=tree.fm">
+                tree.fm
+            </a>
+
+            <a class="link-item" href="https://www.xiaoyuzhoufm.com/podcast/646e28c135ad0ed380113f59" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=xiaoyuzhoufm.com/">
+                刘润的个人播客
+            </a>
+
+            <a class="link-item" href="https://open.spotify.com/show/2dWL5Q8FhQX4fefC1zouhC" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=open.spotify.com/">
+                季風播客
+            </a>
+
+        </div>
 
         
+        <div class="section">
+            <h3>图床二维码</h3>
 
-         <a class="link-item" href="https://www.xygalaxy.com/quickKeys" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=xygalaxy.com/">
-            Windows快捷键
-        </a>
+        <a class="link-item" href="https://postimages.org/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=postimages.org/">
+                Postimages
+            </a>
 
-       <a class="link-item" href="https://hotkeycheatsheet.com/zh" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=hotkeycheatsheet.com/">
-            快捷键备忘录
-        </a>
+        <a class="link-item" href="https://mjj.today/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=mjj.today/">
+                mjj.today
+            </a>
 
-        <a class="link-item" href="http://www.kjjw.cc/iina/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=kjjw.cc">
-            IINA快捷键
-        </a>
+            <a class="link-item" href="https://cdn.ipfsscan.io/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=cdn.ipfsscan.io/">
+                ipfsscan
+            </a>
 
-        <a class="link-item" href="https://compound-interest-calculator.net/zh" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=compound-interest-calculator.net">
-            复利计算器
-        </a>
+            <a class="link-item" href="https://imgloc.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=imgloc.com/"">
+                imgloc
+            </a>
 
-        <a class="link-item" href="https://www.speedtest.net/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=speedtest.net">
-            speedtest 网络测速
-        </a>
+            <a class="link-item" href="https://swiftqr.tanpok.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=swiftqr.tanpok.com/">
+                快速生成二维码
+            </a>
 
-        <a class="link-item" href="https://fast.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=fast.com/">
-            fast    
-        </a>
+            <a class="link-item" href="https://qrcode.fun/zh-hans" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=qrcode.fun">
+                生成二维码
+            </a>
 
-        <a class="link-item" href="https://speed.cloudflare.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=speed.cloudflare.com/">
-            speed
-        </a>
+            <a class="link-item" href="https://qrbtf.com/zh/style/a1" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=qrbtf.com/">
+                二维码生成器
+            </a>
 
-        <a class="link-item" href="https://fiber.google.com/speedtest/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=fiber.google.com">
-            speedtest
-        </a>
+            <a class="link-item" href="https://qrframe.kylezhe.ng/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=qrframe.kylezhe.ng">
+                二维码生成器
+            </a>
 
-         <a class="link-item" href="https://whattimeissunset.net/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=whattimeissunset.net">
-            日落時間
-        </a>
+            <a class="link-item" href="https://wificard.io/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=wificard.io/">
+                Wi-Fi 连接卡
+            </a>
 
-         <a class="link-item" href="https://www.airpano.org.cn/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=airpano.org.cn">
-            环游世界
-        </a>
+        </div>
 
-        <a class="link-item" href="https://www.passportindex.org/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=passportindex.org">
-            护照·文明在哪
-        </a>
+        <div class="section">
+            <h3>工具</h3>
 
-        <a class="link-item" href="https://www.amz123.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=amz123.com">
-            跨境卖家导航
-        </a>
+            <a class="link-item" href="https://www.perplexity.ai/discover" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=perplexity.ai">
+                perplexity AI新闻
+            </a>
 
-        <a class="link-item" href="https://apply.joinsherpa.com/map?language=zh-CN" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=apply.joinsherpa.com">
-            了解护照免签国
-        </a>
+            <a class="link-item" href="https://www.newsminimalist.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=newsminimalist.com">
+                AI新闻
+            </a>
 
-        <a class="link-item" href="https://www.checkplug.com/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=checkplug.com">
-            插頭類型、電壓
-        </a>
+            <a class="link-item" href="https://wise.com/zh-cn/currency-converter/usd-to-cny-rate?amount=100" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=wise.com">
+                100 美元兑人民币
+            </a>
 
-        <a class="link-item" href="https://zufang.ababtools.com/s1" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=zufang.ababtools.com">
-            租房指南
-        </a>
+        <a class="link-item" href="https://wise.com/zh-cn/currency-converter/usd-to-jpy-rate?amount=100" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=wise.com">
+                100 美元兑日元
+            </a>
 
-        <a class="link-item" href="https://worldpowerplug.com/zh" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=worldpowerplug.com">
-            全球电源插头与电压指南
-        </a>
+            <a class="link-item" href="https://wise.com/zh-cn/currency-converter/cny-to-jpy-rate?amount=1" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=wise.com">
+                1 人民币兑日元
+            </a>
 
-        <a class="link-item" href="https://versus.com/cn/ereader" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=versus.com">
-            万物皆可对比
-        </a>
-    </div>
+            <a class="link-item" href="https://wise.com/zh-cn/currency-converter/thb-to-usd-rate" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=wise.com">
+                泰铢兑美元
+            </a>
 
-    <div class="section">
-        <h3>文章</h3>
+            <a class="link-item" href="https://www.google.com/search?q=100USD+CNY" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+                100USD CNY
+            </a>
 
-         <a class="link-item" href="https://thinking555.github.io/date.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=thinking555.github.io">
-            数据泄露案汇总
-        </a>
+            <a class="link-item" href="https://www.google.com/search?q=100USD+JPY" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+                100USD JPY
+            </a>
 
-        <a class="link-item" href="https://thinking555.github.io/advanced_search.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=thinking555.github.io">
-            高级搜索语法
-        </a>
+            <a class="link-item" href="https://www.google.com/search?q=1CNY+JPY" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+                1CNY JPY
+            </a>
+        </div>
 
-        <a class="link-item" href="https://thinking555.github.io/kali-cn.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=thinking555.github.io">
-            Kali 设置中文教程
-        </a>
+        <div class="section">
+            <h3>真实数据</h3>
 
-        <a class="link-item" href="https://thinking555.github.io/kali-tool.html" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=thinking555.github.io">
-            Kali Linux 常用指令速查表
-        </a>
+            <a class="link-item" href="https://www.amnesty.org/zh-hans/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=amnesty.org/">
+                国际特赦组织
+            </a>
 
-        <a class="link-item" href="https://thinking555.github.io/" target="_blank">
-            <img src="https://www.google.com/s2/favicons?sz=64&domain=thinking555.github.io">
+        <a class="link-item" href="https://www.oxfam.org/en" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=oxfam.org">
+                乐施会国际
+            </a>
+
+            <a class="link-item" href="https://www.transparency.org/en" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=transparency.org">
+                透明国际
+            </a>
+
+            <a class="link-item" href="https://data.worldbank.org.cn/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=data.worldbank.org.cn">
+                世界银行公开数据
+            </a>
+
+            <a class="link-item" href="https://www.huilvbiao.com/gold" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=huilvbiao.com">
+                黄金价格
+            </a>
+
+        <a class="link-item" href="www.bitget.com/zh-CN/price" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=bitget.com/">
+                加密货币价格
+            </a>
+
+            <a class="link-item" href="https://www.marketcapwatch.com/zh/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=marketcapwatch.com">
+                市值最高的公司
+            </a>
+
+            <a class="link-item" href="https://dapanyuntu.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=dapanyuntu.com">
+                A股
+            </a>
+
+            <a class="link-item" href="https://cn.investing.com/commodities/crude-oil" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=investing.com">
+                原油价格
+            </a>
+
+            <a class="link-item" href="https://how-to-buy-house.vercel.app/home" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=how-to-buy-house.vercel.app">
+                陆区房价趋势
+            </a>
+
+            <a class="link-item" href="https://wodegongzi.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=wodegongzi.com">
+                陆区工资和税
+            </a>
+
+            <a class="link-item" href="https://www.gapminder.org/dollar-street" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=gapminder.org/">
+                家庭收入水平
+            </a>
+
+            <a class="link-item" href="https://www.xiaoxiongyouhao.com/fprice/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=">
+                陆区小车油价
+            </a>
+
+            <a class="link-item" href="https://ourworldindata.org/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=ourworldindata.org">
+                什么数据都有
+            </a>
+
+            <a class="link-item" href="https://uinotes.com/app" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=uinotes.com">
+                App 完整截图
+            </a>
+
+        <a class="link-item" href="https://manuelmoreale.com/blog-platforms" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=manuelmoreale.com">
+                博客平台列表
+            </a>
+
+            <a class="link-item" href="https://www.statista.com/homepage" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=statista.com/">
+                行业、市场、消费统计数据 💰
+            </a>
+
+            <a class="link-item" href="https://www.cbndata.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=cbndata.com/">
+                消费大数据（中国）
+            </a>
+
+            <a class="link-item" href="https://www.pbc.gov.cn/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=pbc.gov.cn">
+                外汇储备、信贷数据
+            </a>
+
+            <a class="link-item" href="https://www.killedby.tech/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=killedby.tech">
+                苹果、谷歌和微软停产产品
+            </a>
+
+        <a class="link-item" href="https://killedbygoogle.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=killedbygoogle.com/">
+                所有被谷歌废弃的产品
+            </a>
+
+            <a class="link-item" href="www.paywallpro.app/zh/paywalls" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=paywallpro.app">
+                应用的付费墙案例
+            </a>
+
+            <a class="link-item" href="https://www.stripealternatives.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=stripealternatives.com">
+                收款公司
+            </a>
+
+            <a class="link-item" href="https://pastebin.com/raw/LCPyenzC" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=pastebin.com">
+                微信封控词（2019数据）
+            </a>
+
+            <a class="link-item" href="https://hao.199it.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=hao.199it.com/">
+                导航探索
+            </a>
+
+        <a class="link-item" href="https://datasetsearch.research.google.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=datasetsearch.research.google.com/">
+                数据搜索
+            </a>
+
+            <a class="link-item" href="https://www.icpsr.umich.edu/sites/icpsr/home" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=icpsr.umich.edu/">
+                社会数据
+            </a>
+
+            <a class="link-item" href="https://www.visualcapitalist.com/cp/international-students-in-the-u-s-come-from/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=visualcapitalist.com">
+                美国的留学生来自哪？
+            </a>
+
+        </div>
+        
+        <div class="section">
+            <h3>书籍</h3>
+
+            <a class="link-item" href="https://zh.1lib.sk/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=zh.1lib.sk/">
+                Z-Library
+            </a>
+
+        <a class="link-item" href="https://annas-archive.gl/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=annas-archive.gl">
+                Anna’s Archive
+            </a>
+
+            <a class="link-item" href="https://www.shukui.net/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=shukui.net">
+                书葵网
+            </a>
+
+            <a class="link-item" href="https://www.sci-hub.pub/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=sci-hub.pub/">
+                Sci-Hub导航
+            </a>
+
+            <a class="link-item" href="https://tool.yovisun.com/scihub/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=tool.yovisun.com/">
+                Sci-Hub导航
+            </a>
+
+            <a class="link-item" href="https://open-slum.org/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=open-slum.org/">
+                Library导航
+            </a>
+
+        <a class="link-item" href="https://zlib.pro/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=zlib.pro/">
+                Z-Library导航
+            </a>
+
+            <a class="link-item" href="https://getzlib.com/zh#features" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=getzlib.com">
+                Z-Library导航
+            </a>
+
+            <a class="link-item" href="https://www.zhihu.com/question/266097642" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=zhihu.com">
+                SCI-HUB如何使用？
+            </a>
+
+            <a class="link-item" href="https://ac.scmor.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=ac.scmor.com/">
+                学术导航
+            </a>
+
+            <a class="link-item" href="https://search.crossref.org/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=search.crossref.org/">
+                探索
+            </a>
+
+        <a class="link-item" href="https://www.mdpi.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=mdpi.com">
+                探索
+            </a>
+
+            <a class="link-item" href="https://doaj.org/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=doaj.org/">
+                探索
+            </a>
+
+            <a class="link-item" href="https://liber3.eth.limo/#/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=liber3.eth.limo">
+                liber3
+            </a>
+
+            <a class="link-item" href="https://www.jiumodiary.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=jiumodiary.com">
+                鸠摩搜索
+            </a>
+
+            <a class="link-item" href="https://scholar.google.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=scholar.google.com/">
+                谷歌学术搜索
+            </a>
+
+        <a class="link-item" href="https://archive.org/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=archive.org/">
+                archive
+            </a>
+
+            <a class="link-item" href="https://github.com/ruanyf/free-books" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com/">
+                互联网上的免费书籍
+            </a>
+
+            <a class="link-item" href="https://ebookfoundation.github.io/free-programming-books/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=ebookfoundation.github.io">
+                免費程式設計書
+            </a>
+
+            <a class="link-item" href="https://www.ovid.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=ovid.com">
+                ovid
+            </a>
+
+            <a class="link-item" href="https://pubs.acs.org/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=pubs.acs.org/">
+                acs
+            </a>
+
+        <a class="link-item" href="https://link.springer.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=link.springer.com">
+                springer
+            </a>
+
+            <a class="link-item" href="https://www.sciencedirect.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=sciencedirect.com">
+                sciencedirect
+            </a>
+
+            <a class="link-item" href="https://github.com/kska32/ebooks" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+                经典书籍
+            </a>
+
+            <a class="link-item" href="https://kska32.github.io/ebooks/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=kska32.github.io/">
+                经典书籍搜索功能
+            </a>
+
+            <a class="link-item" href="https://sobooks.cc/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=sobooks.cc">
+                sobooks
+            </a>
+
+        <a class="link-item" href="https://www.chenjin5.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=chenjin5.com/">
+                沉金书屋
+            </a>
+
+            <a class="link-item" href="https://www.jb51.net/books/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=jb51.net/">
+                脚本之家
+            </a>
+
+            <a class="link-item" href="https://www.bookstack.cn/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=bookstack.cn/">
+                书栈网
+            </a>
+
+            <a class="link-item" href="https://www.nmod.net/lishi" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=nmod.net/">
+                nmod
+            </a>
+
+            <a class="link-item" href="https://welib.org/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=welib.org">
+                welib
+            </a>
+
+        <a class="link-item" href="https://qread.xmsoushu.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=qread.xmsoushu.com">
+                速读
+            </a>
+
+            <a class="link-item" href="https://www.nbfox.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=nbfox.com/">
+                麦田艺术
+            </a>
+
+            <a class="link-item" href="https://artvee.com/c/posters/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=artvee.com/">
+                artvee
+            </a>
+
+            <a class="link-item" href="https://gallerix.asia/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=gallerix.asia/">
+                gallerix
+            </a>
+
+        </div>
+        
+        <div class="section">
+            <h3>音乐</h3>
+
+            <button onclick="openAll()">打开所有环境音网站</button>
+
+            <a class="link-item" href="https://raining.fm/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=raining.fm/">
+                raining.fm
+            </a>
+
+            <a class="link-item" href="https://rainyscope.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=rainyscope.com/">
+                rainyscope
+            </a>
+
+            <a class="link-item" href="https://virtocean.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=virtocean.com/">
+                virtocean
+            </a>
+
+            <a class="link-item" href="https://defonic.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=defonic.com/">
+                defonic
+            </a>
+
+            <a class="link-item" href="https://asoftmurmur.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=asoftmurmur.com/">
+                asoftmurmur
+            </a>
+
+            <a class="link-item" href="https://www.noisli.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=noisli.com/">
+                noisli
+            </a>
+
+            <a class="link-item" href="https://www.window-swap.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=window-swap.com/">
+                window-swap
+            </a>
+
+            <a class="link-item" href="https://www.thisisathing.io/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=thisisathing.io/">
+                thisisathing
+            </a>
+
+            <a class="link-item" href="https://mynoise.net/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=mynoise.net/">
+                mynoise
+            </a>
+
+            <a class="link-item" href="https://kaizenflow.co/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=kaizenflow.co">
+                kaizenflow
+            </a>
+
+            <a class="link-item" href="https://ambicular.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=ambicular.com/">
+                ambicular
+            </a>
+
+            <a class="link-item" href="https://www.fangpi.net/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=fangpi.net/">
+                fangpi
+            </a>
+
+        <a class="link-item" href="https://spotube.netlify.app/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=spotube.netlify.app/">
+                spotube
+            </a>
+
+            <a class="link-item" href="https://www.gequbao.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=gequbao.com/">
+                gequbao
+            </a>
+
+            <a class="link-item" href="https://flac.music.hi.cn/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=flac.music.hi.cn/">
+                flac.music
+            </a>
+
+            <a class="link-item" href="https://pjmp3.de/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=pjmp3.de/">
+                泡椒音乐
+            </a>
+
+            <a class="link-item" href="https://flacdownloader.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=flacdownloader.com">
+                flacdownloader
+            </a>
+
+        <a class="link-item" href="https://zvu4no.org/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=zvu4no.org/">
+                zvu4no.org
+            </a>
+
+            <a class="link-item" href="https://mu-jie.cc/musicBox/#/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=mu-jie.cc">
+                枫叶音乐盒
+            </a>
+
+            <a class="link-item" href="https://coderadio.freecodecamp.org/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=coderadio.freecodecamp.org/">
+                freecodecamp
+            </a>
+
+            <a class="link-item" href="https://lucida.to/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=lucida.to/">
+                输入链接下载
+            </a>
+
+            <a class="link-item" href="https://mojigeci.com/zh-Hans" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=mojigeci.com/">
+                歌词下载
+            </a>
+
+        <a class="link-item" href="https://myringtone.app/zh-cn" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=myringtone.app">
+                铃声下载
+            </a>
+
+        </div>
+        
+        <div class="section">
+            <h3>工具</h3>
+
             
-        </a>
+
+            <a class="link-item" href="https://www.xygalaxy.com/quickKeys" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=xygalaxy.com/">
+                Windows快捷键
+            </a>
+
+        <a class="link-item" href="https://hotkeycheatsheet.com/zh" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=hotkeycheatsheet.com/">
+                快捷键备忘录
+            </a>
+
+            <a class="link-item" href="http://www.kjjw.cc/iina/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=kjjw.cc">
+                IINA快捷键
+            </a>
+
+            <a class="link-item" href="https://compound-interest-calculator.net/zh" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=compound-interest-calculator.net">
+                复利计算器
+            </a>
+
+            <a class="link-item" href="https://www.speedtest.net/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=speedtest.net">
+                speedtest 网络测速
+            </a>
+
+            <a class="link-item" href="https://fast.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=fast.com/">
+                fast    
+            </a>
+
+            <a class="link-item" href="https://speed.cloudflare.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=speed.cloudflare.com/">
+                speed
+            </a>
+
+            <a class="link-item" href="https://fiber.google.com/speedtest/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=fiber.google.com">
+                speedtest
+            </a>
+
+            <a class="link-item" href="https://whattimeissunset.net/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=whattimeissunset.net">
+                日落時間
+            </a>
+
+            <a class="link-item" href="https://www.airpano.org.cn/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=airpano.org.cn">
+                环游世界
+            </a>
+
+            <a class="link-item" href="https://www.passportindex.org/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=passportindex.org">
+                护照·文明在哪
+            </a>
+
+            <a class="link-item" href="https://www.amz123.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=amz123.com">
+                跨境卖家导航
+            </a>
+
+            <a class="link-item" href="https://apply.joinsherpa.com/map?language=zh-CN" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=apply.joinsherpa.com">
+                了解护照免签国
+            </a>
+
+            <a class="link-item" href="https://www.checkplug.com/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=checkplug.com">
+                插頭類型、電壓
+            </a>
+
+            <a class="link-item" href="https://zufang.ababtools.com/s1" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=zufang.ababtools.com">
+                租房指南
+            </a>
+
+            <a class="link-item" href="https://worldpowerplug.com/zh" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=worldpowerplug.com">
+                全球电源插头与电压指南
+            </a>
+
+            <a class="link-item" href="https://versus.com/cn/ereader" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=versus.com">
+                万物皆可对比
+            </a>
+        </div>
+
+        <div class="section">
+            <h3>文章</h3>
+
+            <a class="link-item" href="https://thinking555.github.io/date.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=thinking555.github.io">
+                数据泄露案汇总
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/advanced_search.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=thinking555.github.io">
+                高级搜索语法
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/kali-cn.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=thinking555.github.io">
+                Kali 设置中文教程
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/kali-tool.html" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=thinking555.github.io">
+                Kali Linux 常用指令速查表
+            </a>
+
+            <a class="link-item" href="https://thinking555.github.io/" target="_blank">
+                <img src="https://www.google.com/s2/favicons?sz=64&domain=thinking555.github.io">
+                
+            </a>
 
 
+        </div>
+        
     </div>
-    
-</div>
 
 
-<script>
-function openAll() {
-    window.open("https://www.tree.fm/");
-    window.open("https://moodist.mvze.net/");
-    window.open("https://www.ppbzy.com/");
-    window.open("https://freemind.fit");
-    window.open("https://www.rainymood.com/");
-    window.open("https://www.whitenoisegenerator.top/zh");
-    window.open("https://ambicular.com/");
-    window.open("https://kaizenflow.co/");
-    window.open("https://mynoise.net/");
-    window.open("https://www.thisisathing.io/");
-    window.open("https://www.window-swap.com/");
-    window.open("https://www.noisli.com/playlists");
-    window.open("https://asoftmurmur.com/");
-    window.open("https://defonic.com/");
-    window.open("https://virtocean.com/");
-    window.open("https://rainyscope.com/");
-    window.open("https://raining.fm/");
-}
-</script>
-</body>
+    <script>
+    function openAll() {
+        window.open("https://www.tree.fm/");
+        window.open("https://moodist.mvze.net/");
+        window.open("https://www.ppbzy.com/");
+        window.open("https://freemind.fit");
+        window.open("https://www.rainymood.com/");
+        window.open("https://www.whitenoisegenerator.top/zh");
+        window.open("https://ambicular.com/");
+        window.open("https://kaizenflow.co/");
+        window.open("https://mynoise.net/");
+        window.open("https://www.thisisathing.io/");
+        window.open("https://www.window-swap.com/");
+        window.open("https://www.noisli.com/playlists");
+        window.open("https://asoftmurmur.com/");
+        window.open("https://defonic.com/");
+        window.open("https://virtocean.com/");
+        window.open("https://rainyscope.com/");
+        window.open("https://raining.fm/");
+    }
+    </script>
+    </body>
 
-</html>
+    </html>
