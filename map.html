@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Xinshoucpu｜地图</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+}
+
+body{
+    background:#ffffff;
+    color:#000000;
+}
+
+/* 顶部 */
+.topbar{
+    position:relative;
+    height:90px;
+    padding:25px 60px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:600;
+}
+
+/* 搜索 */
+.search-wrap{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:520px;
+}
+
+.search-box{
+    display:flex;
+    background:#ebe9e9;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid #e8e6e6;
+}
+
+.search-box input{
+    flex:1;
+    padding:14px 16px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:#ffffff;
+    color:#fff;
+}
+
+.search-box button{
+    width:60px;
+    border:none;
+    background:#ffffff;
+    cursor:pointer;
+    color:#fff;
+}
+
+/* ===== 固定 5 列 ===== */
+.container{
+    column-count:5;
+    column-gap:10px;
+    padding:20px 60px 60px 60px;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+}
+
+.section{
+    margin-bottom:10px;
+    break-inside:avoid;
+}
+
+.section h3{
+    font-size:14px;
+    margin-bottom:14px;
+    color:#888;
+    font-weight:500;
+    text-align:center;   /* 👈 居中 */
+}
+
+/* 链接（无背景） */
+.link-item{
+    display:flex;
+    align-items:center;
+    margin-bottom:10px;
+    text-decoration:none;
+    color:#000000;
+    font-size:16px;
+    transition:.2s;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.link-item:hover{
+    color:rgb(0, 158, 32);
+   
+}
+
+/* 网站图标 */
+.link-item img{
+    width:16px;
+    height:16px;
+    margin-right:8px;
+    border-radius:3px;
+     flex-shrink:0;   /* 防止图标被压缩 */
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <div class="logo">地图</div>
+
+    <div class="search-wrap">
+        <form class="search-box" action="https://www.google.com/search" method="GET">
+            <input type="text" name="q">
+            <button type="submit">🔍</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- 第一列 -->
+    <div class="section">
+        <h3>综合地图服务</h3>
+
+        <a class="link-item" href="https://www.google.com/maps/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+            Google Maps
+        </a>
+        <a class="link-item" href="https://www.openstreetmap.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=openstreetmap.org">
+            OpenStreetMap
+        </a>
+        <a class="link-item" href="https://earth.google.com/web/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=earth.google.com">
+            Google Earth
+        </a>
+        <a class="link-item" href="https://www.waze.com/zh/live-map" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=waze.com">
+            Waze Live Map
+        </a>
+        <a class="link-item" href="https://map.baidu.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=map.baidu.com">
+            百度地图
+        </a>
+        <a class="link-item" href="https://www.amap.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=amap.com">
+            高德地图
+        </a>
+        <a class="link-item" href="https://map.naver.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=map.naver.com">
+            NAVER Map(韩国)
+        </a>
+        <a class="link-item" href="https://map.yahoo.co.jp/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=map.yahoo.co.jp">
+            Yahoo! MAP Japan
+        </a>
+        <a class="link-item" href="https://organicmaps.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=organicmaps.app">
+            Organic Maps
+        </a>
+    </div>
+
+    <!-- 第二列 -->
+    <div class="section">
+        <h3>地图制作工具</h3>
+
+        <a class="link-item" href="https://pixelmap.amcharts.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=pixelmap.amcharts.com">
+            Pixel Map by amCharts
+        </a>
+
+        <a class="link-item" href="https://www.mapchart.net/world.html" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mapchart.net">
+            MapChart World
+        </a>
+
+        <a class="link-item" href="https://www.mapchart.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mapchart.net">
+            MapChart
+        </a>
+    </div>
+
+    <!-- 第三列 -->
+    <div class="section">
+        <h3>天气气象</h3>
+
+        <a class="link-item" href="https://earth.nullschool.net/zh-cn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=earth.nullschool.net">
+            Earth Nullschool 全球风场
+        </a>
+        <a class="link-item" href="https://www.windy.com/zh/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=windy.com">
+            Windy
+        </a>
+        <a class="link-item" href="https://www.ventusky.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=ventusky.com">
+            Ventusky
+        </a>
+        <a class="link-item" href="https://zoom.earth/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=zoom.earth">
+            Zoom Earth
+        </a>
+        <a class="link-item" href="https://www.meteoblue.com/weather-maps" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=meteoblue.com">
+            Meteoblue Weather Maps
+        </a>
+    </div>
+
+    <!-- 第四列 -->
+    <div class="section">
+        <h3>有趣的地图标记</h3>
+
+        <a class="link-item" href="https://www.anitabi.cn/map" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=anitabi.cn">
+            Anitabi 动画取景坐标
+        </a>
+
+        <a class="link-item" href="https://map.bemanicn.com/nearby" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=map.bemanicn.com">
+            全国音游地图
+        </a>
+
+        <a class="link-item" href="https://www.locationsmart.org/?tag=_shopping_vending&lat=36.27337364119134&lon=139.3451256071751&z=10" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=locationsmart.org">
+            贩卖机地图
+        </a>
+
+        <a class="link-item" href="https://www.dydo.co.jp/jihanki/map/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=dydo.co.jp">
+            DyDo 自贩机 MAP
+        </a>
+
+        <a class="link-item" href="https://park4night.com/en" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=park4night.com">
+            欧洲露营地 Park4night
+        </a>
+    </div>
+
+    <!-- 第五列 -->
+    <div class="section">
+        <h3>实时卫星监控</h3>
+
+        <a class="link-item" href="https://himawari8.nict.go.jp/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=himawari8.nict.go.jp">
+            向日葵8号卫星实时图像
+        </a>
+
+        <a class="link-item" href="https://satellitemap.space/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=satellitemap.space">
+            Starlink 卫星实时位置
+        </a>
+
+        <a class="link-item" href="https://minitokyo3d.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=minitokyo3d.com">
+            东京地铁实时 3D 地图
+        </a>
+
+        <a class="link-item" href="https://m.luodianyun.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=m.luodianyun.com">
+            陆区高速公路实时监控
+        </a>
+
+        <a class="link-item" href="https://www.1968services.tw/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=1968services.tw">
+            台湾高速即时影像
+        </a>
+
+        <a class="link-item" href="https://www.dsat.gov.mo/dsat/realtime.aspx" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=dsat.gov.mo">
+            澳门道路实时影像
+        </a>
+
+        <a class="link-item" href="https://www.hkemobility.gov.hk/tc/traffic-information/live/cctv" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=hkemobility.gov.hk">
+            香港道路实时影像
+        </a>
+
+        <a class="link-item" href="https://weather.sz.gov.cn/qixiangfuwu/qixiangjiance/shijingjiance/index.html" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=weather.sz.gov.cn">
+            深圳实景监测
+        </a>
+    </div>
+
+    <div class="section">
+        <h3>陆区</h3>
+
+        
+        <a class="link-item" href="https://subway.cuvii.dev/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=subway.cuvii.dev">
+            中国部分城市地铁可视化
+        </a>
+        <a class="link-item" href="https://datav.aliyun.com/portal/school/atlas/area_selector" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=datav.aliyun.com">
+            县城边界
+        </a>
+        <a class="link-item" href="https://map.ruiduobao.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=map.ruiduobao.com">
+            县镇村边界
+        </a>
+        <a class="link-item" href="https://uni.utities.online/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=uni.utities.online">
+            中国高校分布地图
+        </a>
+        <a class="link-item" href="https://sdmtai.github.io/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=sdmtai.github.io">
+            中国历史疆域地图
+        </a>
+        <a class="link-item" href="https://phonemica.net/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=phonemica.net">
+            中国方言
+        </a>
+        <a class="link-item" href="https://tools.buyixiao.xyz/historical-figure-query" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tools.buyixiao.xyz">
+            中国古代历史人物可视化
+        </a>
+        <a class="link-item" href="https://www.ditushu.com/user/48/owner" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=www.ditushu.com">
+            古地图
+        </a>
+        <a class="link-item" href="https://metrodb.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=metrodb.org">
+            地铁信息概览
+        </a>
+        <a class="link-item" href="https://drive-escape.pomodiary.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=drive-escape.pomodiary.com">
+            周末自驾逃离计划
+        </a>
+    </div>
+
+    <div class="section">
+        <h3>全球</h3>
+
+
+        <a class="link-item" href="https://mapy.com/en/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=mapy.com">
+            Mapy 徒步、骑行、离线户外地图
+        </a>
+
+        <a class="link-item" href="https://www.strava.com/maps/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=strava.com">
+            Strava Maps 运动路线热力图
+        </a>
+
+        <a class="link-item" href="https://map.openseamap.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=openseamap.org">
+            OpenSeaMap 海洋地图
+        </a>
+
+        <a class="link-item" href="https://www.marinetraffic.com/en/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=marinetraffic.com">
+            MarineTraffic 海上航线
+        </a>
+
+        <a class="link-item" href="https://www.flightradar24.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=flightradar24.com">
+            FlightRadar24 国际航班
+        </a>
+
+        <a class="link-item" href="https://www.flightaware.com/live/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=flightaware.com">
+            FlightAware 航班追踪
+        </a>
+
+        <a class="link-item" href="https://seismic-explorer.concord.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=seismic-explorer.concord.org">
+            全球地震地图 1980 年至今
+        </a>
+
+        <a class="link-item" href="https://opentopomap.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=opentopomap.org">
+            OpenTopoMap 地形图
+        </a>
+
+        <a class="link-item" href="https://openinframap.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=openinframap.org">
+            全球电力设施地图
+        </a>
+
+        <a class="link-item" href="https://www.iqair.cn/cn/earth?nav" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=iqair.cn">
+            全球空气质量
+        </a>
+    </div>
+
+    <div class="section">
+        <h3>全球2</h3>
+
+        <a class="link-item" href="https://anvaka.github.io/city-roads/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=anvaka.github.io">
+            City Roads 城市道路可视化
+        </a>
+
+        <a class="link-item" href="https://www.printcityroad.uk/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=www.printcityroad.uk">
+            Print City Road 城市交通路线图
+        </a>
+
+        <a class="link-item" href="https://international-iq-test.com/zh-Hans/test/IQ_by_country" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=international-iq-test.com">
+            各国平均智商
+        </a>
+
+        <a class="link-item" href="https://he.net/3d-map/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=he.net">
+            HE 3D Map 海底光缆与骨干机房
+        </a>
+
+        <a class="link-item" href="https://www.submarinecablemap.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=www.submarinecablemap.com">
+            Submarine Cable Map 海底光缆
+        </a>
+
+        <a class="link-item" href="https://chronas.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=chronas.org">
+            Chronas 历史地图
+        </a>
+
+        <a class="link-item" href="https://visalist.io/cn/united-states-of-america/tourist" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=visalist.io">
+            美国护照可访问国家 2025
+        </a>
+
+        <a class="link-item" href="https://www.numbeo.com/cost-of-living/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=www.numbeo.com">
+            Numbeo 全球生活成本
+        </a>
+
+        <a class="link-item" href="https://tjukanovt.github.io/notable-people" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=tjukanovt.github.io">
+            知名人士出生地
+        </a>
+
+        <a class="link-item" href="https://www.passportindex.org/byRank.php" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=www.passportindex.org">
+            全球护照权力排名
+        </a>
+    </div>
+
+    
+    <div class="section">
+        <h3>全球3</h3>
+
+        <a class="link-item" href="https://famelack.com/jp" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=famelack.com">
+            全球电视直播
+        </a>
+
+        <a class="link-item" href="https://apply.joinsherpa.com/map?language=zh-CN" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=apply.joinsherpa.com">
+            签证和旅行要求
+        </a>
+
+        <a class="link-item" href="http://globe.cid.harvard.edu/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=globe.cid.harvard.edu">
+            全球出口产品
+        </a>
+
+        <a class="link-item" href="https://globalthreatmap.up.railway.app/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=globalthreatmap.up.railway.app">
+            全球军事基地地图
+        </a>
+
+        <a class="link-item" href="https://www.pizzint.watch/polyglobe" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=pizzint.watch">
+            Polyglobe 全球军事基地
+        </a>
+
+        <a class="link-item" href="https://openrailwaymap.org/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=openrailwaymap.org">
+            全球铁路地图
+        </a>
+
+        <a class="link-item" href="https://radio.garden/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=radio.garden">
+            全球广播电台
+        </a>
+
+        <a class="link-item" href="http://www.worldlicenseplates.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=worldlicenseplates.com">
+            各国车牌样式
+        </a>
+
+        <a class="link-item" href="https://github.com/koala73/worldmonitor" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com">
+            地缘政治监控 World Monitor
+        </a>
+    </div>
+
+    <div class="section">
+        <h3>其他国家</h3>
+
+        <a class="link-item" href="https://www.reddit.com/r/MapPorn/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=reddit.com">
+            MapPorn 全球地图爱好者社区
+        </a>
+
+        <a class="link-item" href="https://vdata.nikkei.com/newsgraphics/japan-epicenter-map/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=vdata.nikkei.com">
+            日本地震地图
+        </a>
+
+        <a class="link-item" href="https://apps.london.gov.uk/public-realm-trees/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=apps.london.gov.uk">
+            伦敦公共领域树木
+        </a>
+
+        <a class="link-item" href="https://www.oldmapsonline.org/en" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=oldmapsonline.org">
+            南美洲旧地图
+        </a>
+    </div>
+
+    <div class="section">
+        <h3>创造属于自己的地图</h3>
+    </div>
+    
+</div>
+
+</body>
+
+</html>
