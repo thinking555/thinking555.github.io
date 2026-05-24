@@ -20,7 +20,7 @@ body{
 /* 顶部 */
 .topbar{
     position:relative;
-    height:90px;
+    min-height:150px;
     padding:25px 60px;
 }
 
@@ -35,7 +35,7 @@ body{
     left:50%;
     top:50%;
     transform:translate(-50%,-50%);
-    width:520px;
+    width:620px;
 }
 
 .search-box{
@@ -53,7 +53,21 @@ body{
     outline:none;
     font-size:15px;
     background:#ffffff;
-    color:#fff;
+    color:#000;
+}
+
+.search-box textarea{
+    flex:1;
+    min-height:48px;
+    max-height:130px;
+    padding:12px 16px;
+    border:none;
+    outline:none;
+    font-size:15px;
+    background:#ffffff;
+    color:#000;
+    resize:vertical;
+    line-height:1.5;
 }
 
 .search-box button{
@@ -61,7 +75,37 @@ body{
     border:none;
     background:#ffffff;
     cursor:pointer;
-    color:#fff;
+    color:#000;
+    font-size:18px;
+}
+
+.search-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+    justify-content:center;
+}
+
+.search-actions button{
+    border:1px solid #e5e5e5;
+    background:#fff;
+    color:#111;
+    border-radius:999px;
+    padding:7px 12px;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.search-actions button:hover{
+    border-color:#111;
+}
+
+.search-tip{
+    margin-top:8px;
+    text-align:center;
+    color:#888;
+    font-size:12px;
 }
 
 /* ===== 固定 5 列 ===== */
@@ -122,10 +166,18 @@ body{
     <div class="logo">Super 谷歌高级搜索</div>
 
     <div class="search-wrap">
-        <form class="search-box" action="https://www.google.com/search" method="GET">
-            <input type="text" name="q">
-            <button type="submit">🔍</button>
+        <form class="search-box" id="mainSearchForm">
+            <textarea id="keywordInput" name="q" placeholder="输入关键词；多个关键词请一行一个"></textarea>
+            <button type="submit" title="Google 普通搜索">🔍</button>
         </form>
+        <div class="search-actions">
+            <button type="button" data-category="视频平台">搜视频平台</button>
+            <button type="button" data-category="常用平台">搜常用平台</button>
+            <button type="button" data-category="媒体">搜媒体</button>
+            <button type="button" data-category="文章博客">搜文章博客</button>
+            <button type="button" id="searchAllCategories">全部分类搜索</button>
+        </div>
+        <div class="search-tip">点击上方分类按钮，会按 Google 的 site:网站 + 关键词 批量搜索；每行关键词会分别打开。</div>
     </div>
 </div>
 
@@ -158,6 +210,11 @@ body{
         <a class="link-item" href="https://www.sogou.com/" target="_blank">
             <img src="https://www.google.com/s2/favicons?sz=64&domain=sogou.com/">
             sogou
+        </a>
+
+        <a class="link-item" href="https://www.bing.com/?ensearch=1&FORM=BEHPTB" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=bing.com">
+            bing
         </a>
 
         <a class="link-item" href="https://search.save-web.org/" target="_blank">
@@ -408,6 +465,11 @@ body{
             site:wikipedia.org
         </a>
 
+        <a class="link-item" href="https://www.google.com/search?q=site%3Alinux.do" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+            site:linux.do
+        </a>
+
     </div>
     <div class="section">
         <h3>媒体</h3>
@@ -522,6 +584,15 @@ body{
             连线
         </a>
 
+         <a class="link-item" href="https://www.telegraph.co.uk/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=telegraph.co.uk">
+            每日电讯报
+        </a>
+
+         <a class="link-item" href="https://apnews.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=apnews.com">
+            美联社新闻
+        </a>
     </div>
 
     <div class="section">
@@ -635,6 +706,16 @@ body{
         <a class="link-item" href="https://www.google.com/search?q=site%3Awired.com&newwindow=1&sca_esv=98a34e30466cedc0&biw=1391&bih=713&sxsrf=ANbL-n6llBfvfVfLBiStgAs5y9HxvB9lDA%3A1773112885758&ei=NY6vaeL_Lbi10-kPwL7M8AQ&ved=0ahUKEwii7s6dsJSTAxW42jQHHUAfE04Q4dUDCBE&uact=5&oq=site%3Awired.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiDnNpdGU6d2lyZWQuY29tSNAEUKsCWKsCcAF4AJABAJgBjwKgAY8CqgEDMi0xuAEDyAEA-AEC-AEBmAIAoAIAmAMAiAYBkgcAoAczsgcAuAcAwgcAyAcAgAgA&sclient=gws-wiz-serp" target="_blank">
             <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
             连线
+        </a>
+
+        <a class="link-item" href="https://www.google.com/search?q=site%3Atelegraph.co.uk&newwindow=1&sca_esv=98a34e30466cedc0&biw=1392&bih=720&sxsrf=ANbL-n71Jjt1C6Zsynh5cr74Rx3tlQgjIw%3A1779609268299&ei=tK4SasL9EbLj5NoPp_7LyAk&ved=0ahUKEwjCp5qSudGUAxWyMVkFHSf_EpkQ4dUDCBA&oq=site%3Atelegraph.co.uk&gs_lp=Egxnd3Mtd2l6LXNlcnAiFHNpdGU6dGVsZWdyYXBoLmNvLnVrSIMRUABYAHAAeACQAQCYAekHoAHpB6oBAzctMbgBDMgBAJgCAKACAJgDAIgGAZIHAKAHM7IHALgHAMIHAMgHAIAIAA&sclient=gws-wiz-serp" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+            每日电讯报
+        </a>
+
+         <a class="link-item" href="https://www.google.com/search?q=site%3Aapnews.com&newwindow=1&sca_esv=98a34e30466cedc0&biw=1392&bih=720&sxsrf=ANbL-n6gsgf9rcvyw6J2g0Rc-MPpmfCbog%3A1779609195264&ei=a64Sar7yD8Tl5NoP77SBiQc&ved=0ahUKEwj-07DvuNGUAxXEMlkFHW9aIHEQ4dUDCBA&uact=5&oq=site%3Aapnews.com&gs_lp=Egxnd3Mtd2l6LXNlcnAiD3NpdGU6YXBuZXdzLmNvbUjqClC8Bli8BnABeACQAQCYAcQDoAHEA6oBAzQtMbgBA8gBAPgBAvgBAZgCAKACAJgDAIgGAZIHAKAHM7IHALgHAMIHAMgHAIAIAA&sclient=gws-wiz-serp" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
+            美联社新闻
         </a>
     </div>
 
@@ -849,8 +930,131 @@ body{
             电报频道
         </a>
     </div>
+
+     <div class="section">
+        <h3>社工</h3>
+
+        <a class="link-item" href="https://t.me/shadowufobot" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=t.me">
+            电报联系我
+        </a>
+
+        <a class="link-item" href="https://t.me/xinshoucpu" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=t.me">
+            电报频道
+        </a>
+    </div>
     
 </div>
+
+
+<script>
+(function(){
+    const targetCategories = ["视频平台", "常用平台", "媒体", "文章博客"];
+    const googleSearchBase = "https://www.google.com/search?q=";
+
+    function getKeywords(){
+        const input = document.getElementById("keywordInput");
+        return input.value
+            .split(/\n+/)
+            .map(v => v.trim())
+            .filter(Boolean);
+    }
+
+    function normalizeDomainFromUrl(url){
+        try{
+            const u = new URL(url);
+            return u.hostname.replace(/^www\./, "");
+        }catch(e){
+            return "";
+        }
+    }
+
+    function extractSiteFromLink(a){
+        const text = a.textContent.trim();
+        const siteMatch = text.match(/site:([^\s]+)/i);
+        if(siteMatch) return siteMatch[1].replace(/^www\./, "");
+
+        // 对“媒体”这类直接网址链接，自动从 href 提取域名
+        const href = a.getAttribute("href") || "";
+        if(!href.includes("google.com/search")){
+            return normalizeDomainFromUrl(href);
+        }
+
+        // 对 Google 搜索链接，尝试从 q=site:xxx 提取域名
+        try{
+            const u = new URL(href);
+            const q = u.searchParams.get("q") || "";
+            const qMatch = q.match(/site:([^\s]+)/i);
+            if(qMatch) return qMatch[1].replace(/^www\./, "");
+        }catch(e){}
+        return "";
+    }
+
+    function getSitesByCategory(categoryName){
+        const sections = Array.from(document.querySelectorAll(".section"));
+        const section = sections.find(sec => {
+            const h3 = sec.querySelector("h3");
+            return h3 && h3.textContent.trim() === categoryName;
+        });
+        if(!section) return [];
+        return Array.from(section.querySelectorAll("a.link-item"))
+            .map(extractSiteFromLink)
+            .filter(Boolean)
+            .filter((v, i, arr) => arr.indexOf(v) === i);
+    }
+
+    function openSiteSearch(site, keyword){
+        const query = `site:${site} ${keyword}`;
+        window.open(googleSearchBase + encodeURIComponent(query), "_blank");
+    }
+
+    function searchCategory(categoryName){
+        const keywords = getKeywords();
+        if(!keywords.length){
+            alert("请先输入关键词；多个关键词一行一个。");
+            return;
+        }
+        const sites = getSitesByCategory(categoryName);
+        if(!sites.length){
+            alert(`未找到分类：${categoryName}`);
+            return;
+        }
+        sites.forEach(site => keywords.forEach(keyword => openSiteSearch(site, keyword)));
+    }
+
+    document.getElementById("mainSearchForm").addEventListener("submit", function(e){
+        e.preventDefault();
+        const keywords = getKeywords();
+        if(!keywords.length) return;
+        keywords.forEach(keyword => window.open(googleSearchBase + encodeURIComponent(keyword), "_blank"));
+    });
+
+    document.querySelectorAll(".search-actions button[data-category]").forEach(btn => {
+        btn.addEventListener("click", () => searchCategory(btn.dataset.category));
+    });
+
+    document.getElementById("searchAllCategories").addEventListener("click", function(){
+        targetCategories.forEach(searchCategory);
+    });
+
+    // 点击这些分类里的单个网站时，如果搜索框有关键词，就执行 site:域名 + 关键词；否则保持原链接跳转。
+    document.querySelectorAll(".section").forEach(section => {
+        const h3 = section.querySelector("h3");
+        if(!h3 || !targetCategories.includes(h3.textContent.trim())) return;
+        section.querySelectorAll("a.link-item").forEach(a => {
+            a.addEventListener("click", function(e){
+                const keywords = getKeywords();
+                if(!keywords.length) return;
+                const site = extractSiteFromLink(a);
+                if(!site) return;
+                e.preventDefault();
+                keywords.forEach(keyword => openSiteSearch(site, keyword));
+            });
+        });
+    });
+})();
+</script>
 
 </body>
 
