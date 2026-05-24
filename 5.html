@@ -20,7 +20,7 @@ body{
 /* 顶部 */
 .topbar{
     position:relative;
-    height:90px;
+    min-height:130px;
     padding:25px 60px;
 }
 
@@ -33,35 +33,48 @@ body{
 .search-wrap{
     position:absolute;
     left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    width:520px;
+    top:25px;
+    transform:translateX(-50%);
+    width:620px;
 }
 
 .search-box{
     display:flex;
-    background:#ebe9e9;
-    border-radius:8px;
-    overflow:hidden;
-    border:1px solid #e8e6e6;
+    gap:8px;
+    align-items:stretch;
 }
 
-.search-box input{
+.search-box textarea{
     flex:1;
-    padding:14px 16px;
-    border:none;
+    height:80px;
+    padding:12px 14px;
+    border:1px solid #e8e6e6;
+    border-radius:8px;
     outline:none;
+    resize:vertical;
     font-size:15px;
+    line-height:1.5;
     background:#ffffff;
-    color:#fff;
+    color:#000000;
 }
 
-.search-box button{
-    width:60px;
-    border:none;
+.search-buttons{
+    display:grid;
+    grid-template-columns:repeat(2,72px);
+    gap:8px;
+}
+
+.search-buttons button{
+    border:1px solid #e8e6e6;
+    border-radius:8px;
     background:#ffffff;
     cursor:pointer;
-    color:#fff;
+    color:#000000;
+    font-size:14px;
+}
+
+.search-buttons button:hover{
+    background:#f3f3f3;
 }
 
 /* ===== 固定 5 列 ===== */
@@ -122,10 +135,15 @@ body{
     <div class="logo">图片</div>
 
     <div class="search-wrap">
-        <form class="search-box" action="https://www.google.com/search" method="GET">
-            <input type="text" name="q">
-            <button type="submit">🔍</button>
-        </form>
+        <div class="search-box">
+            <textarea id="imageKeywords" placeholder="一行一个关键词"></textarea>
+            <div class="search-buttons">
+                <button type="button" onclick="imageSearch('google')">Google</button>
+                <button type="button" onclick="imageSearch('yandex')">Yandex</button>
+                <button type="button" onclick="imageSearch('baidu')">Baidu</button>
+                <button type="button" onclick="imageSearch('sogou')">Sogou</button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -679,6 +697,32 @@ body{
         </a>
 
     </div>
+
+<script>
+function imageSearch(engine){
+    const textarea = document.getElementById('imageKeywords');
+    const keywords = textarea.value
+        .split(/\n+/)
+        .map(item => item.trim())
+        .filter(Boolean);
+
+    if(!keywords.length){
+        textarea.focus();
+        return;
+    }
+
+    const urls = {
+        google: 'https://www.google.com/search?tbm=isch&q=',
+        yandex: 'https://yandex.com/images/search?text=',
+        baidu: 'https://image.baidu.com/search/index?tn=baiduimage&word=',
+        sogou: 'https://pic.sogou.com/pics?query='
+    };
+
+    keywords.forEach(keyword => {
+        window.open(urls[engine] + encodeURIComponent(keyword), '_blank');
+    });
+}
+</script>
 
 </body>
 
