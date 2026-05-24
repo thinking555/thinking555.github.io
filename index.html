@@ -59,9 +59,46 @@
     .search-box button{
         width:60px;
         border:none;
-        background:#ffffff;
+        background:#4CAF50;
         cursor:pointer;
+        color:#ffffff;
+        font-size:18px;
+        transition:.2s;
+    }
+
+    .search-box button:hover{
+        background:#43a047;
+    }
+
+    .search-box input{
+        color:#000000;
+    }
+
+    /* 搜索按钮组 */
+    .button-group{
+        margin-top:12px;
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+        justify-content:center;
+    }
+
+    .button-group button{
+        padding:8px 16px;
+        border:none;
+        border-radius:20px;
+        background:#f5f5f5;
+        color:#222;
+        cursor:pointer;
+        font-size:14px;
+        box-shadow:0 2px 6px rgba(0,0,0,.08);
+        transition:.2s;
+    }
+
+    .button-group button:hover{
+        background:#4CAF50;
         color:#fff;
+        transform:translateY(-1px);
     }
 
     /* ===== 固定 5 列 ===== */
@@ -122,10 +159,18 @@
         <div class="logo">Xinshoucpu</div>
 
         <div class="search-wrap">
-            <form class="search-box" action="https://www.google.com/search" method="GET">
-                <input type="text" name="q">
-                <button type="submit">🔍</button>
-            </form>
+            <div class="search-box">
+                <input type="text" id="q" name="q" placeholder="输入关键词" onkeydown="if(event.key==='Enter'){searchGoogle();}">
+                <button type="button" onclick="searchGoogle()">🔍</button>
+            </div>
+
+            <div class="button-group">
+                <button type="button" onclick="articleSearch()">文章搜索</button>
+                <button type="button" onclick="googleAdvanced()">谷歌高级</button>
+                <button type="button" onclick="translateGoogle()">谷歌翻译</button>
+                <button type="button" onclick="bookSearch()">书籍搜索</button>
+                <button type="button" onclick="musicSearch()">音乐搜索</button>
+            </div>
         </div>
     </div>
 
@@ -145,7 +190,7 @@
                 Yandex 高级搜索
             </a>
 
-            <a class="link-item" href="http://www.google.com/ncr" target="_blank">
+            <a class="link-item" href="https://www.google.com/ncr" target="_blank">
                 <img src="https://www.google.com/s2/favicons?sz=64&domain=google.com">
                 Google
             </a>
@@ -1182,6 +1227,67 @@
 
 
     <script>
+    function getQ(){
+        return encodeURIComponent(document.getElementById("q").value.trim());
+    }
+
+    function searchGoogle(){
+        var q = getQ();
+        if(!q) return;
+        window.open("https://www.google.com/search?q=" + q, "_blank");
+    }
+
+    function articleSearch(){
+        var q = getQ();
+        if(!q) return;
+        window.open("https://search.save-web.org/search?q=" + q + "&sort=relevance", "_blank");
+        window.open("https://www.feisoo.com/result/" + q, "_blank");
+    }
+
+    function googleAdvanced(){
+        var q = getQ();
+        if(!q) return;
+        var sites = ["bilibili.com", "zhihu.com", "github.com", "youtube.com", "x.com", "blogspot.com", "telegra.ph", "reddit.com", "ted.com", "archive.org"];
+        sites.forEach(function(site){
+            window.open("https://www.google.com/search?q=" + q + "+site%3A" + encodeURIComponent(site), "_blank");
+        });
+    }
+
+    function translateGoogle(){
+        var q = getQ();
+        if(!q) return;
+        window.open("https://translate.google.com/?sl=auto&tl=zh-CN&text=" + q + "&op=translate", "_blank");
+    }
+
+    function bookSearch(){
+        var q = getQ();
+        if(!q) return;
+        var urls = [
+            "https://zh.1lib.sk/s/" + q,
+            "https://zh.annas-archive.gl/search?q=" + q,
+            "https://www.shukui.net/so/search.php?q=" + q,
+            "https://liber3.eth.limo/#/search?q=" + q,
+            "https://scholar.google.com/scholar?hl=zh-CN&as_sdt=0%2C5&q=" + q + "&btnG=",
+            "https://archive.org/search?tab=texts&query=" + q,
+            "https://ebookfoundation.github.io/free-programming-books-search/?search=" + q + "&submit=Search",
+            "https://sobooks.cc/search/" + q,
+            "https://www.chenjin5.com/search?title=" + q,
+            "https://www.nmod.net/search/" + q,
+            "https://welib.org/search?page=1&q=" + q,
+            "https://www.bookstack.cn/search/result?wd=" + q,
+            "https://sci-hub.ru/match/" + q
+        ];
+        urls.forEach(function(url){ window.open(url, "_blank"); });
+    }
+
+    function musicSearch(){
+        var q = getQ();
+        if(!q) return;
+        window.open("https://open.spotify.com/search/" + q, "_blank");
+        window.open("https://www.gequbao.com/s/" + q, "_blank");
+        window.open("https://zvu4it.org/tracks/" + q, "_blank");
+    }
+
     function openAll() {
         window.open("https://www.tree.fm/");
         window.open("https://moodist.mvze.net/");
