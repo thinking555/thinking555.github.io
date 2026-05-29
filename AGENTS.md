@@ -147,20 +147,9 @@ origin https://github.com/thinking555/thinking555.github.io.git
 
 ## Python 脚本说明
 
-目录中有一些 Python 学习或实验脚本：
+当前项目根目录未保留 Python 脚本。此前的练习脚本和机器人实验脚本已按“以本地为主”的原则清理，不再作为网站项目的一部分维护。
 
-- `1.py` 到 `5.py`：基础语法练习
-- `sum = 0.py`：列表循环练习
-- `# 身份证校验码计算脚本.py`：身份证第 18 位校验码计算
-- `bot.py`：Telegram 搜索机器人示例
-- `cs.py`：Telegram + BscScan/USDT 订单监听实验
-- `print("我在学 Python").py`：空文件
-
-注意：
-
-- `bot.py` 和 `cs.py` 中存在硬编码 token/API key/地址等敏感配置。后续维护时应改为读取环境变量，并考虑轮换已暴露的密钥。
-- `requirements.txt` 当前只有 `python-telegram-bot==20.7`，但 `cs.py` 还使用了 `requests`，如需运行应补齐依赖。
-- 部分练习脚本存在语法问题或不完整逻辑，例如中文弯引号、`if n=-1` 等，不应当作生产脚本直接运行。
+`requirements.txt` 仍存在，但当前静态站点本身不依赖 Python 运行；如果后续不再需要 Python 相关实验，可以考虑一并清理。
 
 ## 维护注意事项
 
