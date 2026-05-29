@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>人口年龄分布与预测</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+    background: #f6f8fb;
+    color: #1f2937;
+  }
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px 16px 48px;
+  }
+  header {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  h1 {
+    margin: 0 0 8px;
+    font-size: 34px;
+    color: #0f2f66;
+  }
+  .desc {
+    margin: 0;
+    color: #667085;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 20px;
+    margin-top: 16px;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  h2 {
+    margin: 0;
+    color: #0f2f66;
+    font-size: 24px;
+  }
+  .note {
+    margin: 6px 0 0;
+    color: #667085;
+    font-size: 14px;
+  }
+  .tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  button {
+    border: 1px solid #c7d7ee;
+    background: #f3f7ff;
+    color: #0f2f66;
+    padding: 9px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  button.active {
+    background: #0f5fc6;
+    color: #fff;
+    border-color: #0f5fc6;
+  }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .metric {
+    background: #f8fbff;
+    border: 1px solid #e2ecf8;
+    border-radius: 14px;
+    padding: 12px;
+  }
+  .metric span {
+    display: block;
+    font-size: 12px;
+    color: #667085;
+  }
+  .metric strong {
+    display: block;
+    margin-top: 4px;
+    color: #0f2f66;
+    font-size: 18px;
+  }
+  .chart-scroll {
+    overflow-x: auto;
+  }
+  .chart {
+    min-width: 760px;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 110px 1fr 210px;
+    gap: 12px;
+    align-items: center;
+    margin: 8px 0;
+  }
+  .age {
+    text-align: right;
+    font-weight: 700;
+  }
+  .track {
+    height: 22px;
+    background: repeating-linear-gradient(90deg, #eef2f7 0, #eef2f7 calc(14.28% - 1px), #d0d7e2 calc(14.28% - 1px), #d0d7e2 14.28%);
+    border-left: 2px solid #111827;
+    border-radius: 0 8px 8px 0;
+    overflow: hidden;
+  }
+  .bar {
+    height: 100%;
+    width: var(--w);
+    background: linear-gradient(90deg, #7cc4ff, #0f5fc6);
+    border-radius: 0 8px 8px 0;
+  }
+  .value {
+    font-weight: 700;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .sex {
+    color: #0f5fc6;
+    font-size: 12px;
+    margin-left: 6px;
+  }
+  .axis {
+    display: grid;
+    grid-template-columns: 110px 1fr 210px;
+    gap: 12px;
+    min-width: 760px;
+    margin-top: 8px;
+  }
+  .scale {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #111827;
+    padding-top: 4px;
+    color: #667085;
+    font-size: 12px;
+  }
+  .axis-title {
+    text-align: center;
+    color: #0f2f66;
+    font-weight: 800;
+    margin-top: 6px;
+  }
+  table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+  }
+  .table-scroll {
+    overflow-x: auto;
+  }
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: right;
+    font-size: 14px;
+  }
+  th:first-child, td:first-child {
+    text-align: left;
+    font-weight: 700;
+  }
+  th {
+    background: #f3f7ff;
+    color: #0f2f66;
+  }
+  ul {
+    margin: 10px 0 0;
+    padding-left: 20px;
+  }
+  li {
+    margin: 6px 0;
+  }
+  a {
+    color: #0f5fc6;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .impact {
+    background: #f8fbff;
+    border: 1px solid #e2ecf8;
+    border-radius: 14px;
+    padding: 14px;
+  }
+  .impact strong {
+    color: #0f2f66;
+  }
+  .impact p {
+    margin: 6px 0 0;
+    color: #4b5563;
+    font-size: 14px;
+  }
+  @media (max-width: 760px) {
+    h1 { font-size: 28px; }
+    .metrics, .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>人口年龄分布与预测</h1>
+    <p class="desc">基于 2020 年第七次全国人口普查 5 岁年龄组数据，展示 2020 官方数据及 2030 / 2040 / 2050 简化推演。</p>
+  </header>
+
+  <section class="card">
+    <div class="top">
+      <div>
+        <h2 id="title">年龄结构柱状图</h2>
+        <p class="note" id="note"></p>
+      </div>
+      <div class="tabs" id="tabs"></div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><span>总人口口径</span><strong id="total"></strong></div>
+      <div class="metric"><span>展示范围</span><strong id="scope"></strong></div>
+      <div class="metric"><span>最大年龄组</span><strong id="peak"></strong></div>
+      <div class="metric"><span>65岁及以上</span><strong id="old"></strong></div>
+    </div>
+
+    <div class="chart-scroll">
+      <div class="chart" id="chart"></div>
+      <div class="axis">
+        <div></div>
+        <div class="scale">
+          <span>0</span><span>2000</span><span>4000</span><span>6000</span><span>8000</span><span>10000</span><span>12000</span><span>14000</span>
+        </div>
+        <div></div>
+      </div>
+    </div>
+    <div class="axis-title">人口（万人）</div>
+  </section>
+
+  <section class="card">
+    <h2>2020 数据表</h2>
+    <p class="note">性别比（女=100）表示：每 100 名女性对应多少名男性。</p>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>年龄组</th>
+            <th>人口（人）</th>
+            <th>人口（万人）</th>
+            <th>占比</th>
+            <th>性别比（女=100）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>0—4岁</td><td>77,884,000</td><td>7788.4</td><td>5.52%</td><td>110.98</td></tr>
+<tr><td>5—9岁</td><td>90,244,000</td><td>9024.4</td><td>6.39%</td><td>113.71</td></tr>
+<tr><td>10—14岁</td><td>85,256,000</td><td>8525.6</td><td>6.04%</td><td>115.03</td></tr>
+<tr><td>15—19岁</td><td>72,684,000</td><td>7268.4</td><td>5.15%</td><td>116.12</td></tr>
+<tr><td>20—24岁</td><td>74,942,000</td><td>7494.2</td><td>5.31%</td><td>112.51</td></tr>
+<tr><td>25—29岁</td><td>91,847,000</td><td>9184.7</td><td>6.51%</td><td>110.25</td></tr>
+<tr><td>30—34岁</td><td>124,145,000</td><td>12414.5</td><td>8.79%</td><td>105.97</td></tr>
+<tr><td>35—39岁</td><td>99,013,000</td><td>9901.3</td><td>7.01%</td><td>105.93</td></tr>
+<tr><td>40—44岁</td><td>92,955,000</td><td>9295.5</td><td>6.58%</td><td>105.10</td></tr>
+<tr><td>45—49岁</td><td>114,225,000</td><td>11422.5</td><td>8.09%</td><td>103.85</td></tr>
+<tr><td>50—54岁</td><td>123,164,000</td><td>12316.4</td><td>8.72%</td><td>101.74</td></tr>
+<tr><td>55—59岁</td><td>101,401,000</td><td>10140.1</td><td>7.18%</td><td>100.46</td></tr>
+<tr><td>60—64岁</td><td>73,383,000</td><td>7338.3</td><td>5.20%</td><td>100.98</td></tr>
+<tr><td>65—69岁</td><td>74,006,000</td><td>7400.6</td><td>5.24%</td><td>96.47</td></tr>
+<tr><td>70—74岁</td><td>49,590,000</td><td>4959.0</td><td>3.51%</td><td>95.03</td></tr>
+<tr><td>75—79岁</td><td>31,239,000</td><td>3123.9</td><td>2.21%</td><td>89.48</td></tr>
+<tr><td>80—84岁</td><td>20,383,000</td><td>2038.3</td><td>1.44%</td><td>81.57</td></tr>
+<tr><td>85—89岁</td><td>10,827,000</td><td>1082.7</td><td>0.77%</td><td>69.15</td></tr>
+<tr><td>90—94岁</td><td>3,653,000</td><td>365.3</td><td>0.26%</td><td>59.85</td></tr>
+<tr><td>95—99岁</td><td>820,000</td><td>82.0</td><td>0.06%</td><td>49.50</td></tr>
+<tr><td>100岁及以上</td><td>119,000</td><td>11.9</td><td>0.01%</td><td>41.95</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>趋势说明</h2>
+    <div class="grid">
+      <div class="impact"><strong>养老压力明显加大</strong><p>养老金、医保、长期护理、养老院、社区养老服务需求增加。</p></div>
+      <div class="impact"><strong>劳动年龄人口占比下降</strong><p>年轻劳动力减少，企业招工和人力成本会受影响。</p></div>
+      <div class="impact"><strong>家庭赡养压力增加</strong><p>老人比例更高，子女照护和医疗陪护压力更明显。</p></div>
+      <div class="impact"><strong>消费结构变化</strong><p>医疗、康复、护理、适老化住房、银发旅游等需求上升。</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>数据来源</h2>
+    <ul>
+      <li><a href="https://www.stats.gov.cn/sj/tjgb/rkpcgb/qgrkpcgb/202302/t20230206_1902005.html" target="_blank">国家统计局：《第七次全国人口普查公报（第五号）》</a></li>
+      <li><a href="https://www.stats.gov.cn/sj/pcsj/rkpc/7rp/zk/html/A0301.xls" target="_blank">国家统计局：《中国人口普查年鉴—2020》表 3-1 全国分年龄、性别的人口</a></li>
+    </ul>
+    <p class="note">2030、2040、2050 为简化队列推演，非官方预测。2040、2050 因 2030 年后出生人口不做预测，低龄组不显示。</p>
+  </section>
+</div>
+
+<script>
+const datasets = {"2020": {"title": "2020 官方数据", "total": "141178万人", "scope": "全年龄组", "note": "第七次全国人口普查 5 岁年龄组数据。", "data": [["0—4岁", 7788.4, 5.52, 110.98], ["5—9岁", 9024.4, 6.39, 113.71], ["10—14岁", 8525.6, 6.04, 115.03], ["15—19岁", 7268.4, 5.15, 116.12], ["20—24岁", 7494.2, 5.31, 112.51], ["25—29岁", 9184.7, 6.51, 110.25], ["30—34岁", 12414.5, 8.79, 105.97], ["35—39岁", 9901.3, 7.01, 105.93], ["40—44岁", 9295.5, 6.58, 105.1], ["45—49岁", 11422.5, 8.09, 103.85], ["50—54岁", 12316.4, 8.72, 101.74], ["55—59岁", 10140.1, 7.18, 100.46], ["60—64岁", 7338.3, 5.2, 100.98], ["65—69岁", 7400.6, 5.24, 96.47], ["70—74岁", 4959.0, 3.51, 95.03], ["75—79岁", 3123.9, 2.21, 89.48], ["80—84岁", 2038.3, 1.44, 81.57], ["85—89岁", 1082.7, 0.77, 69.15], ["90—94岁", 365.3, 0.26, 59.85], ["95—99岁", 82.0, 0.06, 49.5], ["100岁及以上", 11.9, 0.01, 41.95]]}, "2030": {"title": "2030 推演", "total": "约139452万人", "scope": "全年龄组", "note": "简化队列推演，非官方预测。", "data": [["0—4岁", 3493.0, 2.5], ["5—9岁", 4628.7, 3.32], ["10—14岁", 7749.5, 5.56], ["15—19岁", 8979.3, 6.44], ["20—24岁", 8483.0, 6.08], ["25—29岁", 7217.5, 5.18], ["30—34岁", 7434.2, 5.33], ["35—39岁", 9092.9, 6.52], ["40—44岁", 12240.7, 8.78], ["45—49岁", 9723.1, 6.97], ["50—54岁", 9072.4, 6.51], ["55—59岁", 11045.6, 7.92], ["60—64岁", 11725.2, 8.41], ["65—69岁", 9450.6, 6.78], ["70—74岁", 6494.4, 4.66], ["75—79岁", 6105.5, 4.38], ["80—84岁", 3620.1, 2.6], ["85—89岁", 1811.9, 1.3], ["90—94岁", 815.3, 0.58], ["95—99岁", 238.2, 0.17], ["100岁及以上", 30.9, 0.02]]}, "2040": {"title": "2040 推演", "total": "约125181万人", "scope": "10岁及以上", "note": "2030年后出生人口不预测，因此0—9岁不显示。", "data": [["10—14岁", 3475.5, 2.78], ["15—19岁", 4605.6, 3.68], ["20—24岁", 7710.8, 6.16], ["25—29岁", 8916.4, 7.12], ["30—34岁", 8415.1, 6.72], ["35—39岁", 7145.3, 5.71], ["40—44岁", 7330.1, 5.86], ["45—49岁", 8929.2, 7.13], ["50—54岁", 11946.9, 9.54], ["55—59岁", 9402.2, 7.51], ["60—64岁", 8636.9, 6.9], ["65—69岁", 10294.5, 8.22], ["70—74岁", 10376.8, 8.29], ["75—79岁", 7796.7, 6.23], ["80—84岁", 4740.9, 3.79], ["85—89岁", 3541.2, 2.83], ["90—94岁", 1448.0, 1.16], ["95—99岁", 398.6, 0.32], ["100岁及以上", 70.1, 0.06]]}, "2050": {"title": "2050 推演", "total": "约106780万人", "scope": "20岁及以上", "note": "2030年后出生人口不预测，因此0—19岁不显示。", "data": [["20—24岁", 3458.1, 3.24], ["25—29岁", 4573.4, 4.28], ["30—34岁", 7649.1, 7.16], ["35—39岁", 8827.2, 8.27], ["40—44岁", 8297.3, 7.77], ["45—49岁", 7016.7, 6.57], ["50—54岁", 7154.2, 6.7], ["55—59岁", 8634.5, 8.09], ["60—64岁", 11373.4, 10.65], ["65—69岁", 8762.9, 8.21], ["70—74岁", 7643.7, 7.16], ["75—79岁", 8493.0, 7.95], ["80—84岁", 7575.1, 7.09], ["85—89岁", 4522.1, 4.23], ["90—94岁", 1896.4, 1.78], ["95—99岁", 779.1, 0.73], ["100岁及以上", 124.0, 0.12]]}};
+let current = "2020";
+const maxAxis = 14000;
+
+function startAge(age) {
+  return age.includes("100") ? 100 : parseInt(age.split("—")[0], 10);
+}
+
+function fmt(v) {
+  return Number(v).toLocaleString("zh-CN", {minimumFractionDigits: 1, maximumFractionDigits: 1});
+}
+
+function renderTabs() {
+  const tabs = document.getElementById("tabs");
+  tabs.innerHTML = Object.keys(datasets).map(y => `<button class="${y === current ? "active" : ""}" data-y="${y}">${y}</button>`).join("");
+  tabs.querySelectorAll("button").forEach(btn => {
+    btn.onclick = () => {
+      current = btn.dataset.y;
+      render();
+    };
+  });
+}
+
+function render() {
+  renderTabs();
+  const ds = datasets[current];
+  const rows = ds.data;
+  const sum = rows.reduce((a, r) => a + r[1], 0);
+  const peak = rows.reduce((a, r) => r[1] > a[1] ? r : a, rows[0]);
+  const old = rows.filter(r => startAge(r[0]) >= 65).reduce((a, r) => a + r[1], 0);
+
+  document.getElementById("title").textContent = ds.title;
+  document.getElementById("note").textContent = ds.note;
+  document.getElementById("total").textContent = ds.total;
+  document.getElementById("scope").textContent = ds.scope;
+  document.getElementById("peak").textContent = `${peak[0]}｜${fmt(peak[1])}万`;
+  document.getElementById("old").textContent = `${fmt(old)}万｜${(old / sum * 100).toFixed(1)}%`;
+
+  document.getElementById("chart").innerHTML = rows.map(r => {
+    const [age, wan, pct, sex] = r;
+    const w = Math.max(0.6, Math.min(100, wan / maxAxis * 100));
+    const sexHtml = current === "2020" ? `<span class="sex">性别比 ${sex.toFixed(2)}</span>` : "";
+    return `
+      <div class="row">
+        <div class="age">${age}</div>
+        <div class="track"><div class="bar" style="--w:${w}%"></div></div>
+        <div class="value">${fmt(wan)}万人（${pct.toFixed(2)}%）${sexHtml}</div>
+      </div>
+    `;
+  }).join("");
+}
+
+render();
+</script>
+</body>
+</html>

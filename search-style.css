@@ -1,0 +1,297 @@
+/* Unified search styling */
+:root {
+    --search-accent: #2fa866;
+    --search-accent-dark: #258d55;
+    --search-border: #dfe7df;
+    --search-text: #111827;
+    --search-muted: #8a9390;
+    --search-shadow: 0 12px 28px rgba(16, 24, 40, .08);
+    --search-focus: 0 0 0 4px rgba(47, 168, 102, .14), 0 14px 32px rgba(16, 24, 40, .1);
+}
+
+.topbar:has(.button-group),
+.topbar:has(.search-actions),
+.topbar:has(.search-tip) {
+    height: auto;
+    min-height: 150px;
+}
+
+.search-wrap {
+    width: min(620px, calc(100vw - 40px));
+    max-width: calc(100vw - 40px);
+}
+
+.search-box {
+    display: flex;
+    align-items: stretch;
+    background: #ffffff;
+    border: 1px solid var(--search-border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--search-shadow);
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.search-box:focus-within {
+    border-color: var(--search-accent);
+    box-shadow: var(--search-focus);
+}
+
+.search-box input,
+.search-box textarea {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 18px;
+    border: 0;
+    outline: 0;
+    background: #ffffff;
+    color: var(--search-text);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.search-box textarea {
+    min-height: 52px;
+    max-height: 140px;
+    resize: vertical;
+}
+
+.search-box input::placeholder,
+.search-box textarea::placeholder {
+    color: var(--search-muted);
+}
+
+.search-box button {
+    flex: 0 0 auto;
+    min-width: 56px;
+    width: auto;
+    min-height: 52px;
+    padding: 0 16px;
+    border: 0;
+    border-left: 1px solid #e9f0e9;
+    background: var(--search-accent);
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.search-box > button {
+    width: 56px;
+    padding: 0;
+    font-size: 18px;
+}
+
+#multiSearchForm > button {
+    width: auto;
+    min-width: 108px;
+    padding: 0 20px;
+    font-size: 15px;
+}
+
+.search-box button:hover {
+    background: var(--search-accent-dark);
+    transform: translateY(-1px);
+}
+
+.search-box button:active {
+    transform: translateY(0);
+}
+
+.button-group,
+.search-actions {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.button-group button,
+.search-actions button {
+    min-width: 86px;
+    min-height: 34px;
+    padding: 0 14px;
+    border: 1px solid #dfe7df;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #1f2937;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
+    box-shadow: 0 6px 16px rgba(16, 24, 40, .06);
+    transition: background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.search-actions button {
+    min-width: 96px;
+}
+
+.button-group button:hover,
+.search-actions button:hover {
+    border-color: var(--search-accent);
+    background: #f0fbf5;
+    color: var(--search-accent-dark);
+    transform: translateY(-1px);
+}
+
+.search-tip,
+.search-status {
+    color: #667085;
+}
+
+.search-box:has(.search-buttons) {
+    align-items: stretch;
+    gap: 10px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.search-box:has(.search-buttons):focus-within {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.search-box:has(.search-buttons) textarea {
+    min-height: 82px;
+    border: 1px solid var(--search-border);
+    border-radius: 14px;
+    box-shadow: var(--search-shadow);
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.search-box:has(.search-buttons) textarea:focus {
+    border-color: var(--search-accent);
+    box-shadow: var(--search-focus);
+}
+
+.search-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 76px);
+    gap: 10px;
+    flex: 0 0 auto;
+}
+
+.search-buttons button {
+    width: 76px;
+    min-width: 0;
+    min-height: 36px;
+    padding: 0 8px;
+    border: 1px solid #dfe7df;
+    border-radius: 12px;
+    background: #ffffff;
+    color: #1f2937;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.15;
+    box-shadow: 0 6px 16px rgba(16, 24, 40, .06);
+}
+
+.search-buttons button:hover {
+    border-color: var(--search-accent);
+    background: #f0fbf5;
+    color: var(--search-accent-dark);
+    transform: translateY(-1px);
+}
+
+.search {
+    flex: 1 1 320px;
+    min-width: 220px;
+    border: 1px solid var(--search-border);
+    border-radius: 14px;
+    padding: 13px 18px;
+    font-size: 15px;
+    outline: none;
+    background: #ffffff;
+    color: var(--search-text);
+    box-shadow: var(--search-shadow);
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.search::placeholder {
+    color: var(--search-muted);
+}
+
+.search:focus {
+    border-color: var(--search-accent);
+    box-shadow: var(--search-focus);
+}
+
+@media (max-width: 900px) {
+    .topbar {
+        height: auto;
+        min-height: 0;
+        padding: 20px;
+    }
+
+    .search-wrap {
+        position: static;
+        transform: none;
+        width: 100%;
+        max-width: 100%;
+        margin: 18px auto 0;
+    }
+
+    .search-box {
+        min-height: 50px;
+    }
+
+    .search-box button {
+        min-width: 56px;
+        padding: 0 14px;
+    }
+
+    .search-box > button {
+        padding: 0;
+    }
+
+    #multiSearchForm > button {
+        min-width: 96px;
+        padding: 0 16px;
+    }
+
+    .button-group,
+    .search-actions {
+        justify-content: flex-start;
+    }
+
+    .button-group button,
+    .search-actions button {
+        flex: 1 1 calc(50% - 8px);
+    }
+
+    .search-box:has(.search-buttons) {
+        flex-direction: column;
+    }
+
+    .search-buttons {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .search-buttons button {
+        width: auto;
+    }
+}
+
+@media (max-width: 520px) {
+    .search-box button {
+        min-width: 54px;
+        padding: 0 12px;
+    }
+
+    .button-group button,
+    .search-actions button {
+        flex-basis: 100%;
+    }
+
+    .search-buttons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

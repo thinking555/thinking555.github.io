@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>批量打开网页</title>
+</head>
+<body>
+
+<h2>一键打开多个网页（高级版）</h2>
+
+<button onclick="openAll()">全部打开</button>
+
+<script>
+const sites = [
+    "https://www.google.com",
+    "https://www.youtube.com",
+    "https://www.github.com",
+    "https://twitter.com",
+    "https://www.reddit.com"
+];
+
+function openAll() {
+    sites.forEach(url => {
+        window.open(url);
+    });
+}
+</script>
+
+</body>
+</html>

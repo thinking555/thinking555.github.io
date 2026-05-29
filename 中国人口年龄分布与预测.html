@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>中国人口年龄分布与预测</title>
+  <style>
+    :root {
+      --bg-0: #07142f;
+      --bg-1: #0d2c62;
+      --blue-950: #071a3d;
+      --blue-900: #0a2c66;
+      --blue-800: #10418f;
+      --blue-700: #1761c2;
+      --blue-600: #2383e2;
+      --blue-500: #38a2ff;
+      --cyan: #55d6ff;
+      --orange: #ffb454;
+      --red: #fb7185;
+      --green: #34d399;
+      --ink: #162033;
+      --muted: #667085;
+      --line: rgba(17, 78, 150, .14);
+      --card: rgba(255, 255, 255, .88);
+      --glass: rgba(255,255,255,.12);
+      --shadow: 0 24px 80px rgba(7, 20, 47, .18);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 0%, rgba(85, 214, 255, .22), transparent 28%),
+        radial-gradient(circle at 92% 10%, rgba(255, 180, 84, .18), transparent 32%),
+        linear-gradient(180deg, #eef6ff 0%, #f7fbff 44%, #ffffff 100%);
+      line-height: 1.58;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .55;
+      background-image:
+        linear-gradient(rgba(11, 44, 102, .06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(11, 44, 102, .06) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(180deg, black 0%, transparent 70%);
+      z-index: -2;
+    }
+
+    .page {
+      width: min(1220px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 70px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      color: rgba(255,255,255,.86);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(7, 26, 61, .78);
+      box-shadow: 0 10px 28px rgba(7, 20, 47, .20);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--cyan), var(--blue-700));
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.45);
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .nav a {
+      color: rgba(7, 26, 61, .78);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.7);
+      border: 1px solid rgba(17,78,150,.10);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 36px;
+      color: #fff;
+      padding: clamp(28px, 5vw, 56px);
+      background:
+        linear-gradient(135deg, rgba(7,20,47,.98), rgba(11,44,102,.96) 48%, rgba(16,65,143,.94)),
+        radial-gradient(circle at 85% 15%, rgba(85,214,255,.35), transparent 28%);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 460px;
+      height: 460px;
+      border-radius: 50%;
+      right: -180px;
+      top: -180px;
+      background: radial-gradient(circle, rgba(85,214,255,.28), transparent 70%);
+      z-index: -1;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: -90px;
+      bottom: -160px;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,180,84,.20), transparent 70%);
+      z-index: -1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 9px 13px;
+      border: 1px solid rgba(255,255,255,.20);
+      background: rgba(255,255,255,.10);
+      border-radius: 999px;
+      color: rgba(255,255,255,.86);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .eyebrow span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(52,211,153,.16);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(36px, 6vw, 72px);
+      line-height: 1.04;
+      letter-spacing: .02em;
+    }
+
+    .hero-text {
+      max-width: 770px;
+      margin: 18px 0 0;
+      color: rgba(255,255,255,.78);
+      font-size: clamp(15px, 1.5vw, 19px);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .hero-stat {
+      padding: 18px 18px 16px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-stat small {
+      display: block;
+      color: rgba(255,255,255,.66);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: clamp(21px, 2.6vw, 32px);
+      line-height: 1.15;
+      color: #fff;
+    }
+
+    .section {
+      margin-top: 26px;
+      padding: clamp(20px, 3vw, 30px);
+      border: 1px solid rgba(17, 78, 150, .12);
+      border-radius: var(--radius-xl);
+      background: var(--card);
+      box-shadow: 0 18px 60px rgba(7,20,47,.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 22px;
+      margin-bottom: 22px;
+    }
+
+    .section-kicker {
+      color: var(--blue-700);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--blue-950);
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.22;
+    }
+
+    .note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tabs {
+      display: inline-grid;
+      grid-template-columns: repeat(4, minmax(76px, 1fr));
+      padding: 6px;
+      gap: 5px;
+      background: #eef6ff;
+      border: 1px solid rgba(17,78,150,.10);
+      border-radius: 18px;
+    }
+
+    .tab {
+      border: 0;
+      cursor: pointer;
+      border-radius: 13px;
+      padding: 11px 14px;
+      color: var(--blue-900);
+      font-weight: 900;
+      background: transparent;
+      transition: .22s ease;
+      white-space: nowrap;
+    }
+
+    .tab.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-900));
+      box-shadow: 0 10px 24px rgba(23, 97, 194, .25);
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .metric {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      padding: 18px;
+      background: linear-gradient(180deg, #ffffff 0%, #f2f7ff 100%);
+      border: 1px solid rgba(17,78,150,.12);
+    }
+
+    .metric::after {
+      content: "";
+      position: absolute;
+      right: -38px;
+      top: -42px;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: rgba(35,131,226,.10);
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+      font-weight: 800;
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--blue-950);
+      font-size: clamp(20px, 2vw, 27px);
+      line-height: 1.15;
+      word-break: keep-all;
+    }
+
+    .chart-shell {
+      border-radius: 26px;
+      border: 1px solid rgba(17,78,150,.12);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.98), rgba(249,252,255,.98));
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .chart-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .chart-title-main {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chart-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #0f64d7, #0a2c66);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(23,97,194,.24);
+      flex: none;
+    }
+
+    .chart-title-main h3 {
+      margin: 0;
+      color: var(--blue-950);
+      font-size: 20px;
+      line-height: 1.2;
+    }
+
+    .chart-title-main p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      background: var(--blue-700);
+    }
+
+    .chart-scroll {
+      overflow: auto;
+      padding-bottom: 8px;
+    }
+
+    .bar-chart {
+      min-width: 820px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 116px 1fr 228px;
+      gap: 14px;
+      align-items: center;
+      margin: 8px 0;
+    }
+
+    .age-label {
+      color: #101828;
+      font-weight: 900;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .track {
+      height: 26px;
+      position: relative;
+      border-left: 2px solid rgba(15, 42, 88, .85);
+      background:
+        repeating-linear-gradient(90deg, transparent 0, transparent calc(14.285% - 1px), rgba(102,112,133,.18) calc(14.285% - 1px), rgba(102,112,133,.18) 14.285%);
+      border-radius: 0 12px 12px 0;
+      overflow: visible;
+    }
+
+    .fill {
+      height: 100%;
+      width: var(--w);
+      border-radius: 0 11px 11px 0;
+      background: linear-gradient(90deg, #82c7ff 0%, var(--c1) 55%, var(--c2) 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.42), 0 8px 18px rgba(23,97,194,.12);
+    }
+
+    .value-label {
+      white-space: nowrap;
+      color: #101828;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .sex-tag {
+      display: inline-flex;
+      margin-left: 6px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #eef6ff;
+      color: var(--blue-800);
+      font-size: 12px;
+      vertical-align: 1px;
+    }
+
+    .axis {
+      display: grid;
+      grid-template-columns: 116px 1fr 228px;
+      gap: 14px;
+      align-items: center;
+      margin-top: 8px;
+      min-width: 820px;
+    }
+
+    .axis-scale {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(15,42,88,.8);
+      padding-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .axis-name {
+      text-align: center;
+      color: var(--blue-900);
+      font-weight: 900;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .method-box {
+      margin-top: 18px;
+      display: flex;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 18px;
+      background: #f4f8ff;
+      border: 1px dashed rgba(23,97,194,.28);
+      color: #344054;
+      font-size: 14px;
+    }
+
+    .method-box b {
+      color: var(--blue-900);
+    }
+
+    .data-table-box {
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid rgba(17,78,150,.12);
+      background: #fff;
+    }
+
+    .table-scroll {
+      overflow: auto;
+      max-height: 620px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 840px;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(17,78,150,.09);
+      text-align: right;
+      font-size: 14px;
+    }
+
+    th:first-child, td:first-child {
+      text-align: left;
+    }
+
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: linear-gradient(180deg, #f2f7ff, #eaf3ff);
+      color: var(--blue-950);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    tbody tr:nth-child(even) td {
+      background: rgba(244,248,255,.60);
+    }
+
+    tbody tr:hover td {
+      background: #eaf3ff;
+    }
+
+    .age-chip {
+      display: inline-flex;
+      min-width: 96px;
+      justify-content: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eef6ff;
+      color: var(--blue-900);
+      font-weight: 900;
+    }
+
+    .insight-layout {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 18px;
+    }
+
+    .impact-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+    }
+
+    .impact {
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(17,78,150,.12);
+      background: linear-gradient(180deg, #fff, #f6faff);
+    }
+
+    .impact-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-900));
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .impact strong {
+      display: block;
+      color: var(--blue-950);
+      font-size: 17px;
+      margin-bottom: 7px;
+    }
+
+    .impact p {
+      margin: 0;
+      color: #475467;
+      font-size: 14px;
+    }
+
+    .side-card {
+      padding: 22px;
+      border-radius: 26px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 90% 8%, rgba(85,214,255,.26), transparent 34%),
+        linear-gradient(150deg, var(--blue-950), var(--blue-800));
+      box-shadow: 0 18px 52px rgba(7,20,47,.16);
+    }
+
+    .side-card h3 {
+      margin: 0 0 14px;
+      font-size: 24px;
+    }
+
+    .side-card p {
+      margin: 0 0 18px;
+      color: rgba(255,255,255,.74);
+    }
+
+    .ratio {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .ratio-box {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.16);
+    }
+
+    .ratio-box small {
+      display: block;
+      color: rgba(255,255,255,.65);
+      margin-bottom: 5px;
+    }
+
+    .ratio-box strong {
+      font-size: 24px;
+      color: #fff;
+    }
+
+    .sources {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .sources li {
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(17,78,150,.12);
+      background: #f7fbff;
+    }
+
+    .sources a {
+      color: var(--blue-700);
+      font-weight: 900;
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .sources a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-note {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .section-header {
+        flex-direction: column;
+      }
+
+      .tabs {
+        width: 100%;
+      }
+
+      .insight-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 20px, 1220px);
+        padding-top: 14px;
+      }
+
+      .hero {
+        border-radius: 26px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .hero-grid,
+      .summary-grid,
+      .impact-list {
+        grid-template-columns: 1fr;
+      }
+
+      .tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .bar-row {
+        grid-template-columns: 96px 1fr 210px;
+      }
+
+      .axis {
+        grid-template-columns: 96px 1fr 210px;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+      .topbar, .tabs {
+        display: none;
+      }
+      .section, .hero {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-mark">人</div>
+        <strong>人口年龄分布与预测</strong>
+      </div>
+      <nav class="nav">
+        <a href="#chartSection">图表</a>
+        <a href="#tableSection">数据表</a>
+        <a href="#insightSection">趋势解读</a>
+        <a href="#sourceSection">来源</a>
+      </nav>
+    </div>
+
+    <header class="hero">
+      <div class="eyebrow"><span></span> China Population Dashboard</div>
+      <h1>中国人口年龄分布与预测</h1>
+      <p class="hero-text">
+        基于第七次全国人口普查 5 岁年龄组数据，展示 2020 年官方结构，并以简化队列方法推演 2030、2040、2050 年年龄结构变化。
+      </p>
+      <div class="hero-grid">
+        <div class="hero-stat">
+          <small>2020 总人口口径</small>
+          <strong>141178 万人</strong>
+        </div>
+        <div class="hero-stat">
+          <small>数据颗粒度</small>
+          <strong>5岁年龄组</strong>
+        </div>
+        <div class="hero-stat">
+          <small>新增指标</small>
+          <strong>性别比</strong>
+        </div>
+        <div class="hero-stat">
+          <small>预测口径</small>
+          <strong>非官方推演</strong>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="chartSection">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Interactive Chart</div>
+          <h2>年龄结构柱状图</h2>
+          <p class="note">点击年份切换图表。2040 和 2050 因 2030 年后出生人口不做预测，会隐藏对应低龄组。</p>
+        </div>
+        <div class="tabs" id="tabs"></div>
+      </div>
+
+      <div class="dashboard">
+        <div class="summary-grid">
+          <div class="metric"><span>当前图表口径总人口</span><strong id="metricTotal">—</strong></div>
+          <div class="metric"><span>最大年龄组</span><strong id="metricPeak">—</strong></div>
+          <div class="metric"><span>65岁及以上</span><strong id="metricOld">—</strong></div>
+          <div class="metric"><span>展示口径</span><strong id="metricScope">—</strong></div>
+        </div>
+
+        <div class="chart-shell">
+          <div class="chart-title-row">
+            <div class="chart-title-main">
+              <div class="chart-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 19V9" stroke="white" stroke-width="2.4" stroke-linecap="round"/>
+                  <path d="M12 19V5" stroke="white" stroke-width="2.4" stroke-linecap="round"/>
+                  <path d="M19 19v-7" stroke="white" stroke-width="2.4" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <h3 id="chartHeading">—</h3>
+                <p id="chartSubheading">—</p>
+              </div>
+            </div>
+            <div class="legend">
+              <span><i class="legend-dot"></i> 人口规模</span>
+              <span><i class="legend-dot" style="background:var(--orange)"></i> 占比</span>
+            </div>
+          </div>
+
+          <div class="chart-scroll">
+            <div class="bar-chart" id="barChart"></div>
+            <div class="axis" id="axis"></div>
+          </div>
+          <div class="axis-name">人口（万人）</div>
+
+          <div class="method-box">
+            <div>ⓘ</div>
+            <div><b>方法说明：</b><span id="methodText">—</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tableSection">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Raw Data</div>
+          <h2>2020 年官方 5 岁年龄组数据表</h2>
+          <p class="note">性别比（女=100）表示：每 100 名女性对应多少名男性。</p>
+        </div>
+      </div>
+
+      <div class="data-table-box">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>年龄组</th>
+                <th>人口（人）</th>
+                <th>人口（万人）</th>
+                <th>占比</th>
+                <th>性别比（女=100）</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+    <tr>
+      <td><span class="age-chip">0—4岁</span></td>
+      <td>77,884,000</td>
+      <td>7788.4</td>
+      <td>5.52%</td>
+      <td>110.98</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">5—9岁</span></td>
+      <td>90,244,000</td>
+      <td>9024.4</td>
+      <td>6.39%</td>
+      <td>113.71</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">10—14岁</span></td>
+      <td>85,256,000</td>
+      <td>8525.6</td>
+      <td>6.04%</td>
+      <td>115.03</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">15—19岁</span></td>
+      <td>72,684,000</td>
+      <td>7268.4</td>
+      <td>5.15%</td>
+      <td>116.12</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">20—24岁</span></td>
+      <td>74,942,000</td>
+      <td>7494.2</td>
+      <td>5.31%</td>
+      <td>112.51</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">25—29岁</span></td>
+      <td>91,847,000</td>
+      <td>9184.7</td>
+      <td>6.51%</td>
+      <td>110.25</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">30—34岁</span></td>
+      <td>124,145,000</td>
+      <td>12414.5</td>
+      <td>8.79%</td>
+      <td>105.97</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">35—39岁</span></td>
+      <td>99,013,000</td>
+      <td>9901.3</td>
+      <td>7.01%</td>
+      <td>105.93</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">40—44岁</span></td>
+      <td>92,955,000</td>
+      <td>9295.5</td>
+      <td>6.58%</td>
+      <td>105.10</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">45—49岁</span></td>
+      <td>114,225,000</td>
+      <td>11422.5</td>
+      <td>8.09%</td>
+      <td>103.85</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">50—54岁</span></td>
+      <td>123,164,000</td>
+      <td>12316.4</td>
+      <td>8.72%</td>
+      <td>101.74</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">55—59岁</span></td>
+      <td>101,401,000</td>
+      <td>10140.1</td>
+      <td>7.18%</td>
+      <td>100.46</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">60—64岁</span></td>
+      <td>73,383,000</td>
+      <td>7338.3</td>
+      <td>5.20%</td>
+      <td>100.98</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">65—69岁</span></td>
+      <td>74,006,000</td>
+      <td>7400.6</td>
+      <td>5.24%</td>
+      <td>96.47</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">70—74岁</span></td>
+      <td>49,590,000</td>
+      <td>4959.0</td>
+      <td>3.51%</td>
+      <td>95.03</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">75—79岁</span></td>
+      <td>31,239,000</td>
+      <td>3123.9</td>
+      <td>2.21%</td>
+      <td>89.48</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">80—84岁</span></td>
+      <td>20,383,000</td>
+      <td>2038.3</td>
+      <td>1.44%</td>
+      <td>81.57</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">85—89岁</span></td>
+      <td>10,827,000</td>
+      <td>1082.7</td>
+      <td>0.77%</td>
+      <td>69.15</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">90—94岁</span></td>
+      <td>3,653,000</td>
+      <td>365.3</td>
+      <td>0.26%</td>
+      <td>59.85</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">95—99岁</span></td>
+      <td>820,000</td>
+      <td>82.0</td>
+      <td>0.06%</td>
+      <td>49.50</td>
+    </tr>
+    
+
+    <tr>
+      <td><span class="age-chip">100岁及以上</span></td>
+      <td>119,000</td>
+      <td>11.9</td>
+      <td>0.01%</td>
+      <td>41.95</td>
+    </tr>
+    
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="footer-note">注：分年龄组数据建议统一标注为国家统计局《中国人口普查年鉴—2020》表 3-1 口径。</p>
+    </section>
+
+    <section class="section" id="insightSection">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">Implications</div>
+          <h2>老龄化趋势解读</h2>
+          <p class="note">这里把图表中的结构变化转化成更容易理解的社会影响。</p>
+        </div>
+      </div>
+
+      <div class="insight-layout">
+        <div class="impact-list">
+          <div class="impact">
+            <div class="impact-icon">养</div>
+            <strong>养老压力明显加大</strong>
+            <p>养老金、医保、长期护理、养老院、社区养老服务都会面临更大需求。</p>
+          </div>
+          <div class="impact">
+            <div class="impact-icon">工</div>
+            <strong>劳动年龄人口占比下降</strong>
+            <p>年轻劳动力减少，企业招工、制造业、服务业、人力成本都会受影响。</p>
+          </div>
+          <div class="impact">
+            <div class="impact-icon">家</div>
+            <strong>家庭赡养压力增加</strong>
+            <p>家庭中老人比例更高，子女照护、医疗陪护、经济支持压力会更明显。</p>
+          </div>
+          <div class="impact">
+            <div class="impact-icon">消</div>
+            <strong>消费结构变化</strong>
+            <p>医疗、康复、护理、保健、适老化住房、银发旅游等需求上升。</p>
+          </div>
+          <div class="impact">
+            <div class="impact-icon">城</div>
+            <strong>社会运行逻辑改变</strong>
+            <p>城市规划、交通、住宅、医疗资源、社保制度都需要围绕老龄化调整。</p>
+          </div>
+          <div class="impact">
+            <div class="impact-icon">数</div>
+            <strong>注意口径差异</strong>
+            <p>2040、2050 的百分比为“展示人口内部占比”，不是完整全国总人口占比。</p>
+          </div>
+        </div>
+
+        <aside class="side-card">
+          <h3>重点观察</h3>
+          <p>从 2030 到 2050，年龄结构的重心持续后移，中老年群体在图表中的占比明显上升。</p>
+          <div class="ratio">
+            <div class="ratio-box">
+              <small>2040：65岁及以上</small>
+              <strong>约30.9%</strong>
+            </div>
+            <div class="ratio-box">
+              <small>2050：65岁及以上</small>
+              <strong>约37.3%</strong>
+            </div>
+          </div>
+          <p style="margin-top:18px;">以上比例按对应年份图表展示口径计算，属于简化推演结果。</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="sourceSection">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">References</div>
+          <h2>数据来源与口径说明</h2>
+          <p class="note">2020 年为官方数据；2030、2040、2050 为基于表格数据的简化推演，非官方预测。</p>
+        </div>
+      </div>
+      <ul class="sources">
+        <li>
+          <a href="https://www.stats.gov.cn/sj/tjgb/rkpcgb/qgrkpcgb/202302/t20230206_1902005.html" target="_blank" rel="noopener">
+            国家统计局：《第七次全国人口普查公报（第五号）》
+          </a>
+        </li>
+        <li>
+          <a href="https://www.stats.gov.cn/sj/pcsj/rkpc/7rp/zk/html/A0301.xls" target="_blank" rel="noopener">
+            国家统计局：《中国人口普查年鉴—2020》表 3-1 全国分年龄、性别的人口
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const datasets = {"2020": {"label": "2020 官方", "title": "2020年第七次全国人口普查", "subtitle": "5岁年龄组官方细分数据，包含性别比（女=100）", "scope": "全年龄组", "total": "141178万人", "method": "国家统计局《中国人口普查年鉴—2020》表3-1。", "data": [["0—4岁", 7788.4, 5.52, 110.98], ["5—9岁", 9024.4, 6.39, 113.71], ["10—14岁", 8525.6, 6.04, 115.03], ["15—19岁", 7268.4, 5.15, 116.12], ["20—24岁", 7494.2, 5.31, 112.51], ["25—29岁", 9184.7, 6.51, 110.25], ["30—34岁", 12414.5, 8.79, 105.97], ["35—39岁", 9901.3, 7.01, 105.93], ["40—44岁", 9295.5, 6.58, 105.1], ["45—49岁", 11422.5, 8.09, 103.85], ["50—54岁", 12316.4, 8.72, 101.74], ["55—59岁", 10140.1, 7.18, 100.46], ["60—64岁", 7338.3, 5.2, 100.98], ["65—69岁", 7400.6, 5.24, 96.47], ["70—74岁", 4959.0, 3.51, 95.03], ["75—79岁", 3123.9, 2.21, 89.48], ["80—84岁", 2038.3, 1.44, 81.57], ["85—89岁", 1082.7, 0.77, 69.15], ["90—94岁", 365.3, 0.26, 59.85], ["95—99岁", 82.0, 0.06, 49.5], ["100岁及以上", 11.9, 0.01, 41.95]]}, "2030": {"label": "2030 推演", "title": "2030年人口年龄结构推演", "subtitle": "基于2020年表格数据进行简化队列推演", "scope": "全年龄组", "total": "约139452万人", "method": "0—4岁按2026—2030年出生人口年均约700万人估算；5—9岁采用2021—2025年实际出生人口并作简化存活修正；其余年龄组按2020人口向后平移10年并施加分年龄简化存活率。", "data": [["0—4岁", 3493.0, 2.5], ["5—9岁", 4628.7, 3.32], ["10—14岁", 7749.5, 5.56], ["15—19岁", 8979.3, 6.44], ["20—24岁", 8483.0, 6.08], ["25—29岁", 7217.5, 5.18], ["30—34岁", 7434.2, 5.33], ["35—39岁", 9092.9, 6.52], ["40—44岁", 12240.7, 8.78], ["45—49岁", 9723.1, 6.97], ["50—54岁", 9072.4, 6.51], ["55—59岁", 11045.6, 7.92], ["60—64岁", 11725.2, 8.41], ["65—69岁", 9450.6, 6.78], ["70—74岁", 6494.4, 4.66], ["75—79岁", 6105.5, 4.38], ["80—84岁", 3620.1, 2.6], ["85—89岁", 1811.9, 1.3], ["90—94岁", 815.3, 0.58], ["95—99岁", 238.2, 0.17], ["100岁及以上", 30.9, 0.02]]}, "2040": {"label": "2040 推演", "title": "2040年人口年龄结构推演", "subtitle": "2030年后出生人口不做预测，因此0—9岁不显示", "scope": "10岁及以上", "total": "约125181万人", "method": "基于2030简化推演结果继续向后推演10年；0—4岁、5—9岁未纳入展示，占比按展示人口内部计算。", "data": [["10—14岁", 3475.5, 2.78], ["15—19岁", 4605.6, 3.68], ["20—24岁", 7710.8, 6.16], ["25—29岁", 8916.4, 7.12], ["30—34岁", 8415.1, 6.72], ["35—39岁", 7145.3, 5.71], ["40—44岁", 7330.1, 5.86], ["45—49岁", 8929.2, 7.13], ["50—54岁", 11946.9, 9.54], ["55—59岁", 9402.2, 7.51], ["60—64岁", 8636.9, 6.9], ["65—69岁", 10294.5, 8.22], ["70—74岁", 10376.8, 8.29], ["75—79岁", 7796.7, 6.23], ["80—84岁", 4740.9, 3.79], ["85—89岁", 3541.2, 2.83], ["90—94岁", 1448.0, 1.16], ["95—99岁", 398.6, 0.32], ["100岁及以上", 70.1, 0.06]]}, "2050": {"label": "2050 推演", "title": "2050年人口年龄结构推演", "subtitle": "2030年后出生人口不做预测，因此0—19岁不显示", "scope": "20岁及以上", "total": "约106780万人", "method": "基于2040简化推演结果继续向后推演10年；0—4岁、5—9岁、10—14岁、15—19岁未纳入展示，占比按展示人口内部计算。", "data": [["20—24岁", 3458.1, 3.24], ["25—29岁", 4573.4, 4.28], ["30—34岁", 7649.1, 7.16], ["35—39岁", 8827.2, 8.27], ["40—44岁", 8297.3, 7.77], ["45—49岁", 7016.7, 6.57], ["50—54岁", 7154.2, 6.7], ["55—59岁", 8634.5, 8.09], ["60—64岁", 11373.4, 10.65], ["65—69岁", 8762.9, 8.21], ["70—74岁", 7643.7, 7.16], ["75—79岁", 8493.0, 7.95], ["80—84岁", 7575.1, 7.09], ["85—89岁", 4522.1, 4.23], ["90—94岁", 1896.4, 1.78], ["95—99岁", 779.1, 0.73], ["100岁及以上", 124.0, 0.12]]}};
+    const maxAxis = 14000;
+    const ticks = [0, 2000, 4000, 6000, 8000, 10000, 12000, 14000];
+    let activeYear = "2020";
+
+    const tabsEl = document.getElementById("tabs");
+    const barChartEl = document.getElementById("barChart");
+    const axisEl = document.getElementById("axis");
+
+    function fmtWan(v) {
+      return Number(v).toLocaleString("zh-CN", {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1
+      });
+    }
+
+    function getStartAge(age) {
+      if (age.includes("100")) return 100;
+      return parseInt(age.split("—")[0], 10);
+    }
+
+    function compute65Plus(rows) {
+      return rows.filter(row => getStartAge(row[0]) >= 65).reduce((sum, row) => sum + row[1], 0);
+    }
+
+    function sumRows(rows) {
+      return rows.reduce((sum, row) => sum + row[1], 0);
+    }
+
+    function computePeak(rows) {
+      return rows.reduce((peak, row) => row[1] > peak[1] ? row : peak, rows[0]);
+    }
+
+    function colorForValue(value) {
+      const t = Math.min(1, Math.max(0, value / 12500));
+      const c1 = `rgb(${Math.round(72 - 32*t)}, ${Math.round(168 - 88*t)}, ${Math.round(255 - 55*t)})`;
+      const c2 = `rgb(${Math.round(22 - 6*t)}, ${Math.round(97 - 44*t)}, ${Math.round(194 - 82*t)})`;
+      return [c1, c2];
+    }
+
+    function renderTabs() {
+      tabsEl.innerHTML = Object.entries(datasets).map(([year, ds]) => `
+        <button class="tab ${year === activeYear ? "active" : ""}" data-year="${year}">
+          ${ds.label}
+        </button>
+      `).join("");
+
+      tabsEl.querySelectorAll(".tab").forEach(btn => {
+        btn.addEventListener("click", () => {
+          activeYear = btn.dataset.year;
+          renderAll();
+        });
+      });
+    }
+
+    function renderMetrics(ds) {
+      const rows = ds.data;
+      const peak = computePeak(rows);
+      const old65 = compute65Plus(rows);
+      const totalShown = sumRows(rows);
+      const oldShare = totalShown ? old65 / totalShown * 100 : 0;
+
+      document.getElementById("metricTotal").textContent = ds.total;
+      document.getElementById("metricPeak").textContent = `${peak[0]}｜${fmtWan(peak[1])}万`;
+      document.getElementById("metricOld").textContent = `${fmtWan(old65)}万｜${oldShare.toFixed(1)}%`;
+      document.getElementById("metricScope").textContent = ds.scope;
+      document.getElementById("chartHeading").textContent = ds.title;
+      document.getElementById("chartSubheading").textContent = ds.subtitle;
+      document.getElementById("methodText").textContent = ds.method;
+    }
+
+    function renderChart(ds) {
+      const rows = ds.data;
+      barChartEl.innerHTML = rows.map(row => {
+        const [age, wan, pct, sexRatio] = row;
+        const width = Math.max(0.5, Math.min(100, wan / maxAxis * 100));
+        const [c1, c2] = colorForValue(wan);
+        const sexTag = activeYear === "2020" && sexRatio !== undefined
+          ? `<span class="sex-tag">性别比 ${Number(sexRatio).toFixed(2)}</span>`
+          : "";
+
+        return `
+          <div class="bar-row">
+            <div class="age-label">${age}</div>
+            <div class="track">
+              <div class="fill" style="--w:${width}%; --c1:${c1}; --c2:${c2}"></div>
+            </div>
+            <div class="value-label">${fmtWan(wan)}万人（${Number(pct).toFixed(2)}%）${sexTag}</div>
+          </div>
+        `;
+      }).join("");
+
+      axisEl.innerHTML = `
+        <div></div>
+        <div class="axis-scale">
+          ${ticks.map(t => `<span>${t}</span>`).join("")}
+        </div>
+        <div></div>
+      `;
+    }
+
+    function renderAll() {
+      renderTabs();
+      const ds = datasets[activeYear];
+      renderMetrics(ds);
+      renderChart(ds);
+    }
+
+    renderAll();
+  </script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>娃哈哈饮用纯净水卡片</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f7f7f7;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Microsoft YaHei", Arial, sans-serif;
+      padding: 16px;
+    }
+
+    .drink-card {
+      width: 475px;
+      min-height: 495px;
+      background: #fff;
+      border: 2px solid #efe7df;
+      border-radius: 24px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+      padding: 24px 24px 22px;
+      display: grid;
+      grid-template-columns: 165px 1fr;
+      column-gap: 22px;
+      overflow: hidden;
+    }
+
+    .image-area {
+      width: 165px;
+      height: 420px;
+      align-self: center;
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+    }
+
+    .slider-track {
+      width: 200%;
+      height: 100%;
+      display: flex;
+      animation: autoSlide 5s infinite;
+    }
+
+    .slide {
+      width: 50%;
+      height: 100%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-green {
+      background: #00b050;
+      border-radius: 12px;
+    }
+
+    @keyframes autoSlide {
+      0%, 42% {
+        transform: translateX(0);
+      }
+      50%, 92% {
+        transform: translateX(-50%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    .bottle-svg {
+      width: 150px;
+      height: 400px;
+      filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.12));
+    }
+
+    .info {
+      min-width: 0;
+      padding-top: 28px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .title {
+      margin: 0;
+      color: #111;
+      font-size: 34px;
+      line-height: 1.32;
+      font-weight: 800;
+      letter-spacing: 1px;
+      max-width: 100%;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .spec {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 220px;
+      min-height: 44px;
+      margin: 22px 0 34px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #f7f7f7, #eeeeee);
+      color: #555;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .sugar-panel {
+      width: 100%;
+      max-width: 240px;
+      margin: 0 auto;
+      padding: 18px 16px 16px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #fffaf3, #ffffff);
+      border: 1px solid #f1dfc9;
+      box-shadow: 0 8px 22px rgba(255, 133, 0, 0.12);
+      overflow: hidden;
+    }
+
+    .sugar-meta {
+      margin: 0 0 10px;
+      color: #666;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .sugar-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 8px;
+      color: #222;
+      font-weight: 800;
+      flex-wrap: wrap;
+      line-height: 1.15;
+    }
+
+    .sugar-row .approx,
+    .sugar-row .unit {
+      font-size: 25px;
+      white-space: nowrap;
+    }
+
+    .sugar-row .number {
+      color: #ff8500;
+      font-size: 72px;
+      line-height: 0.9;
+      font-weight: 950;
+      text-shadow: 0 4px 10px rgba(255, 133, 0, 0.22);
+      white-space: nowrap;
+    }
+
+    .calorie {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #eeeeee;
+      color: #333;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.4;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    @media (max-width: 520px) {
+      .drink-card {
+        width: 94vw;
+        grid-template-columns: 36% 1fr;
+        column-gap: 14px;
+        padding: 18px 14px;
+      }
+
+      .image-area {
+        width: 100%;
+        height: 390px;
+      }
+
+      .title {
+        font-size: 28px;
+      }
+
+      .spec {
+        max-width: 100%;
+        font-size: 16px;
+        margin-bottom: 28px;
+      }
+
+      .sugar-panel {
+        max-width: 100%;
+        padding: 16px 12px 14px;
+      }
+
+      .sugar-meta {
+        font-size: 18px;
+      }
+
+      .sugar-row .approx,
+      .sugar-row .unit {
+        font-size: 22px;
+      }
+
+      .sugar-row .number {
+        font-size: 60px;
+      }
+
+      .calorie {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="drink-card">
+    <div class="image-area" aria-label="自动滚动图片区域">
+      <div class="slider-track">
+        <!-- 第1张 -->
+        <div class="slide">
+          <svg class="bottle-svg" viewBox="0 0 150 400" role="img" aria-label="娃哈哈饮用纯净水">
+            <defs>
+              <linearGradient id="water" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stop-color="#f7fbff" />
+                <stop offset="0.45" stop-color="#ffffff" />
+                <stop offset="1" stop-color="#dbe6ee" />
+              </linearGradient>
+              <linearGradient id="label" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#ffffff" />
+                <stop offset="1" stop-color="#f5f5f5" />
+              </linearGradient>
+            </defs>
+
+            <rect x="55" y="5" width="40" height="28" rx="7" fill="#f4f6f8" stroke="#d5dce2" />
+            <rect x="52" y="30" width="46" height="22" rx="5" fill="#eef3f7" stroke="#d5dce2" />
+            <path d="M48 53 C48 72 36 83 32 103 L24 348 C22 374 42 392 75 392 C108 392 128 374 126 348 L118 103 C114 83 102 72 102 53 Z" fill="url(#water)" stroke="#cfd8df" stroke-width="2" />
+            <path d="M31 115 C48 122 101 122 119 115 L116 182 C96 190 52 190 34 182 Z" fill="url(#label)" stroke="#e1e1e1" />
+            <path d="M33 131 C48 125 51 154 67 154 C82 154 86 126 119 130 L116 174 C87 168 83 186 65 183 C48 180 45 155 34 162 Z" fill="#e5392f" opacity="0.92" />
+            <text x="75" y="145" text-anchor="middle" font-size="18" font-weight="800" fill="#d71920" font-family="Arial, sans-serif">娃哈哈</text>
+            <text x="75" y="166" text-anchor="middle" font-size="10" fill="#444" font-family="Arial, sans-serif">饮用纯净水</text>
+            <path d="M30 213 C48 225 101 225 120 213" fill="none" stroke="#d8e0e6" stroke-width="2" />
+            <path d="M29 244 C48 256 102 256 121 244" fill="none" stroke="#d8e0e6" stroke-width="2" />
+            <path d="M28 276 C48 288 102 288 122 276" fill="none" stroke="#d8e0e6" stroke-width="2" />
+            <path d="M27 310 C48 322 102 322 123 310" fill="none" stroke="#d8e0e6" stroke-width="2" />
+            <ellipse cx="75" cy="365" rx="40" ry="13" fill="none" stroke="#cfd8df" stroke-width="2" />
+          </svg>
+        </div>
+
+        <!-- 第2张：纯绿色 -->
+        <div class="slide slide-green" aria-label="纯绿色图片"></div>
+      </div>
+    </div>
+
+    <main class="info">
+      <h1 class="title">娃哈哈<br>饮用纯净水</h1>
+
+      <div class="spec">常见规格：596ml</div>
+
+      <section class="sugar-panel" aria-label="含糖信息">
+        <p class="sugar-meta">含糖约 0g</p>
+
+        <div class="sugar-row">
+          <span class="approx">约</span>
+          <span class="number">0</span>
+          <span class="unit">块方糖</span>
+        </div>
+
+        <div class="calorie">热量约 0kcal</div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
