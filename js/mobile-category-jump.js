@@ -18,39 +18,20 @@
 
         if (!searchWrap || !searchBox || !sections.length) return;
 
-        var oldJump = searchWrap.querySelector(":scope > .mobile-category-jump");
-        if (oldJump) {
-            oldJump.remove();
+        var oldMenu = searchWrap.querySelector(".mobile-category-menu");
+        if (oldMenu) {
+            oldMenu.remove();
         }
 
-        var menu = searchWrap.querySelector(".mobile-category-menu");
-        if (!menu) {
-            menu = document.createElement("div");
-            menu.className = "mobile-category-menu";
-            (buttonGroup || searchBox).insertAdjacentElement("afterend", menu);
-        }
-
-        var toggle = menu.querySelector(".mobile-category-toggle");
-        if (!toggle) {
-            toggle = document.createElement("button");
-            toggle.type = "button";
-            toggle.className = "mobile-category-toggle";
-            toggle.setAttribute("aria-expanded", "false");
-            toggle.textContent = "分类跳转";
-            menu.appendChild(toggle);
-        }
-
-        var jump = menu.querySelector(".mobile-category-jump");
+        var jump = searchWrap.querySelector(".mobile-category-jump");
         if (!jump) {
             jump = document.createElement("nav");
             jump.className = "mobile-category-jump";
             jump.id = "mobile-category-jump";
-            jump.hidden = true;
             jump.setAttribute("aria-label", "分类快速跳转");
-            menu.appendChild(jump);
+            (buttonGroup || searchBox).insertAdjacentElement("afterend", jump);
         }
 
-        toggle.setAttribute("aria-controls", jump.id);
         jump.textContent = "";
 
         sections.forEach(function (section, index) {
@@ -67,17 +48,26 @@
             jump.appendChild(link);
         });
 
-        toggle.addEventListener("click", function () {
-            var isOpen = menu.classList.toggle("is-open");
-            jump.hidden = !isOpen;
-            toggle.setAttribute("aria-expanded", String(isOpen));
+        var backTop = document.querySelector(".mobile-back-top");
+        if (!backTop) {
+            backTop = document.createElement("button");
+            backTop.type = "button";
+            backTop.className = "mobile-back-top";
+            backTop.setAttribute("aria-label", "回到顶部");
+            backTop.textContent = "↑";
+            document.body.appendChild(backTop);
+        }
+
+        function updateBackTop() {
+            backTop.classList.toggle("is-visible", window.scrollY > 360);
+        }
+
+        backTop.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
-        jump.addEventListener("click", function (event) {
-            if (!event.target.closest("a")) return;
-            menu.classList.remove("is-open");
-            jump.hidden = true;
-            toggle.setAttribute("aria-expanded", "false");
-        });
+        window.addEventListener("scroll", updateBackTop, { passive: true });
+        window.addEventListener("resize", updateBackTop);
+        updateBackTop();
     });
 }());
