@@ -303,24 +303,124 @@ init();
 const shareBtn = document.getElementById("shareBtn");
 const shareTip = document.getElementById("shareTip");
 
-const shareText = `饮料含糖量可视化系统
+const shareTitle = "饮料含糖量可视化系统";
+const shareUrl = "https://thinking555.github.io/drink.html";
+const shareMessage = `可以查看常见饮料的含糖量、方糖数量和每日摄入参考。`;
+const shareText = `${shareTitle}
 可以查看常见饮料的含糖量、方糖数量和每日摄入参考。
 
 快来看看：
-https://thinking555.github.io/drink.html`;
+${shareUrl}`;
 
-shareBtn.addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(shareText);
+let shareTipTimer;
 
-    shareTip.textContent = "分享内容已复制，可以粘贴发送给朋友了";
-    shareTip.classList.add("show");
+function showShareTip(message) {
+  if (!shareTip) return;
 
-    setTimeout(() => {
-      shareTip.textContent = "";
-      shareTip.classList.remove("show");
-    }, 2500);
-  } catch (error) {
-    shareTip.textContent = "复制失败，请手动复制分享内容";
+  shareTip.textContent = message;
+  shareTip.classList.add("show");
+
+  clearTimeout(shareTipTimer);
+  shareTipTimer = setTimeout(() => {
+    shareTip.textContent = "";
+    shareTip.classList.remove("show");
+  }, 2600);
+}
+
+function setManualShareBox(visible) {
+  const shareSection = shareBtn ? shareBtn.closest(".share-section") : null;
+  if (!shareSection) return;
+
+  let manualShareBox = document.getElementById("manualShareBox");
+
+  if (!manualShareBox) {
+    manualShareBox = document.createElement("textarea");
+    manualShareBox.id = "manualShareBox";
+    manualShareBox.className = "manual-share-box";
+    manualShareBox.setAttribute("readonly", "");
+    manualShareBox.setAttribute("aria-label", "分享内容");
+    manualShareBox.hidden = true;
+    shareSection.appendChild(manualShareBox);
   }
-});
+
+  manualShareBox.value = shareText;
+  manualShareBox.hidden = !visible;
+
+  if (visible) {
+    requestAnimationFrame(() => {
+      manualShareBox.focus();
+      manualShareBox.select();
+      manualShareBox.setSelectionRange(0, manualShareBox.value.length);
+    });
+  }
+}
+
+async function copyShareText() {
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(shareText);
+    return;
+  }
+
+  const textarea = document.createElement("textarea");
+  textarea.value = shareText;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.top = "0";
+  textarea.style.left = "-9999px";
+  textarea.style.opacity = "0";
+
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  textarea.setSelectionRange(0, textarea.value.length);
+
+  const copied = document.execCommand("copy");
+  document.body.removeChild(textarea);
+
+  if (!copied) {
+    throw new Error("复制失败");
+  }
+}
+
+if (shareBtn) {
+  shareBtn.addEventListener("click", async () => {
+    shareBtn.disabled = true;
+
+    const shareData = {
+      title: shareTitle,
+      text: shareMessage,
+      url: shareUrl
+    };
+
+    try {
+      setManualShareBox(false);
+
+      if (
+        navigator.share &&
+        (!navigator.canShare || navigator.canShare(shareData))
+      ) {
+        await navigator.share(shareData);
+        showShareTip("已打开系统分享");
+        return;
+      }
+
+      await copyShareText();
+      showShareTip("分享内容已复制，可以粘贴发送给朋友了");
+    } catch (error) {
+      if (error && error.name === "AbortError") {
+        showShareTip("已取消分享");
+        return;
+      }
+
+      try {
+        await copyShareText();
+        showShareTip("系统分享不可用，已复制分享内容");
+      } catch (copyError) {
+        setManualShareBox(true);
+        showShareTip("请长按下方内容复制分享");
+      }
+    } finally {
+      shareBtn.disabled = false;
+    }
+  });
+}

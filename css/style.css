@@ -3,19 +3,26 @@
 }
 
 :root {
-  --orange: #ff8500;
-  --line: #5a3a20;
-  --bg: #15191a;
-  --card-bg: #171b1c;
-  --panel-bg: #2b1700;
-  --text: #e8e3dc;
-  --muted: #bdb6ad;
+  --orange: #2fa866;
+  --line: rgba(91, 155, 123, 0.44);
+  --bg: #07130f;
+  --card-bg: rgba(13, 31, 24, 0.92);
+  --panel-bg: rgba(15, 56, 39, 0.92);
+  --text: #effaf4;
+  --muted: #b8d0c3;
+  --accent: #2fa866;
+  --accent-dark: #1f7a4b;
+  --accent-soft: #dff7ea;
+  --surface: rgba(14, 32, 25, 0.86);
+  --surface-strong: rgba(18, 48, 35, 0.96);
+  --shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--bg);
+  background:
+    linear-gradient(160deg, #06110d 0%, #0a1a14 42%, #101814 100%);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
     "Microsoft YaHei", Arial, sans-serif;
   color: var(--text);
@@ -31,20 +38,22 @@ body {
 .page-header {
   margin: 0 auto 18px;
   padding: 18px 22px;
-  background: #171b1c;
-  border: 2px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(13, 46, 33, 0.98), rgba(31, 122, 75, 0.86));
+  border: 1px solid rgba(155, 216, 181, 0.38);
   border-radius: 22px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow);
 }
 
 .badge {
   display: inline-flex;
   padding: 7px 12px;
   border-radius: 999px;
-  background: #3a2205;
-  color: #ffb25c;
+  background: rgba(255, 255, 255, 0.14);
+  color: #eafff2;
   font-weight: 800;
   font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .page-header h1 {
@@ -55,7 +64,7 @@ body {
 
 .page-header p {
   margin: 0;
-  color: var(--muted);
+  color: rgba(239, 250, 244, 0.82);
   font-size: 16px;
   line-height: 1.7;
 }
@@ -74,25 +83,27 @@ body {
   width: 100%;
   height: 50px;
   padding: 0 18px;
-  border: 2px solid var(--line);
+  border: 1px solid rgba(115, 184, 146, 0.42);
   border-radius: 999px;
-  background: #171b1c;
+  background: rgba(13, 31, 24, 0.92);
   color: var(--text);
   font-size: 17px;
   font-weight: 700;
   outline: none;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
 .search-input::placeholder {
-  color: #8f8982;
+  color: #88aa98;
   font-weight: 500;
 }
 
 .search-input:focus,
 .filter-select:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 0 4px rgba(255, 133, 0, 0.18);
+  background: rgba(12, 40, 28, 0.96);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(47, 168, 102, 0.18), 0 14px 30px rgba(0, 0, 0, 0.24);
 }
 
 /* 卡片外部网格：电脑一排 5 个 */
@@ -109,14 +120,21 @@ body {
   height: 255px;
   min-width: 0;
   background: var(--card-bg);
-  border: 2px solid var(--line);
+  border: 1px solid rgba(116, 198, 157, 0.34);
   border-radius: 18px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
   padding: 8px;
   display: grid;
   grid-template-columns: 30% 1fr;
   column-gap: 10px;
   overflow: hidden;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.drink-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(116, 198, 157, 0.68);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
 }
 
 /* 左侧图片区域 */
@@ -127,7 +145,7 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 14px;
-  background: linear-gradient(180deg, #1b2021, #15191a);
+  background: linear-gradient(180deg, rgba(23, 58, 43, 0.96), rgba(8, 20, 16, 0.96));
 }
 
 .slider-track {
@@ -148,7 +166,7 @@ body {
 }
 
 .slide-green {
-  background: #00b050;
+  background: linear-gradient(145deg, #2fa866, #74c69d);
   border-radius: 12px;
 }
 
@@ -219,7 +237,7 @@ body {
   margin: 0 auto;
   padding: 2px 8px;
   border-radius: 999px;
-  background: linear-gradient(180deg, #222627, #1d2122);
+  background: linear-gradient(180deg, rgba(35, 78, 57, 0.92), rgba(18, 45, 33, 0.94));
   color: var(--muted);
   font-size: clamp(10px, 0.68vw, 13px);
   font-weight: 800;
@@ -227,7 +245,8 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(116, 198, 157, 0.24);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 /* 糖分面板 */
@@ -237,9 +256,9 @@ body {
   margin: 0 auto;
   padding: 7px 8px 6px;
   border-radius: 14px;
-  background: linear-gradient(180deg, #3a2104, #2a1700);
-  border: 1px solid #7a4a06;
-  box-shadow: 0 8px 18px rgba(255, 133, 0, 0.08);
+  background: linear-gradient(180deg, rgba(27, 90, 61, 0.9), rgba(12, 48, 33, 0.96));
+  border: 1px solid rgba(116, 198, 157, 0.34);
+  box-shadow: 0 8px 18px rgba(47, 168, 102, 0.1);
   overflow: hidden;
 }
 
@@ -273,7 +292,7 @@ body {
   font-size: clamp(30px, 1.9vw, 42px);
   line-height: 0.9;
   font-weight: 950;
-  text-shadow: 0 4px 10px rgba(255, 133, 0, 0.22);
+  text-shadow: 0 4px 10px rgba(47, 168, 102, 0.28);
   white-space: nowrap;
 }
 
@@ -291,10 +310,10 @@ body {
 .tips {
   margin-top: 24px;
   padding: 20px 22px;
-  background: #171b1c;
-  border: 2px solid var(--line);
+  background: var(--surface);
+  border: 1px solid rgba(116, 198, 157, 0.34);
   border-radius: 22px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  box-shadow: var(--shadow);
 }
 
 .tips h2 {
@@ -308,9 +327,14 @@ body {
 }
 
 .tips code {
-  background: #252a2b;
+  display: inline-block;
+  max-width: 100%;
+  background: rgba(223, 247, 234, 0.1);
   border-radius: 6px;
   padding: 2px 5px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .tips pre {
@@ -318,9 +342,10 @@ body {
   overflow: auto;
   padding: 14px;
   border-radius: 14px;
-  background: #101415;
+  background: #08110d;
   color: #d1fae5;
   line-height: 1.65;
+  border: 1px solid rgba(116, 198, 157, 0.2);
 }
 
 /* 中等屏幕：一排 3 个 */
@@ -521,7 +546,7 @@ body {
   padding: 18px 20px;
   border: 2px dashed var(--line);
   border-radius: 18px;
-  background: #171b1c;
+  background: var(--surface);
   color: var(--muted);
   font-size: 16px;
   font-weight: 800;
@@ -646,18 +671,22 @@ body {
   margin: 22px auto 0;
   width: min(320px, 100%);
   height: 48px;
-  border: 2px solid var(--line);
+  border: 1px solid rgba(116, 198, 157, 0.42);
   border-radius: 999px;
-  background: #2b1700;
+  background: linear-gradient(180deg, rgba(29, 85, 58, 0.94), rgba(14, 56, 38, 0.96));
   color: var(--text);
   font-size: 16px;
   font-weight: 900;
   cursor: pointer;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
 .load-more-btn:hover {
   border-color: var(--orange);
-  color: var(--orange);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(47, 168, 102, 0.16);
 }
 
 .load-more-btn.is-hidden {
@@ -677,22 +706,55 @@ body {
   border-radius: 999px;
   padding: 12px 28px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 900;
   cursor: pointer;
-  background: #111827;
+  background: linear-gradient(135deg, #2fa866, #1f7a4b);
   color: #ffffff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 12px 24px rgba(47, 168, 102, 0.26);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .share-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 16px 30px rgba(47, 168, 102, 0.34);
+}
+
+.share-btn:disabled {
+  cursor: progress;
+  opacity: 0.72;
+  transform: none;
 }
 
 .share-tip {
   margin-top: 12px;
   min-height: 22px;
   font-size: 14px;
-  color: #16a34a;
+  color: #86efac;
+  font-weight: 700;
+}
+
+.manual-share-box {
+  display: block;
+  width: min(560px, 100%);
+  min-height: 118px;
+  margin: 12px auto 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(116, 198, 157, 0.42);
+  border-radius: 16px;
+  background: rgba(8, 17, 13, 0.92);
+  color: #effaf4;
+  font: 700 14px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Microsoft YaHei", Arial, sans-serif;
+  resize: vertical;
+  outline: none;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+}
+
+.manual-share-box:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(47, 168, 102, 0.16), 0 12px 26px rgba(0, 0, 0, 0.22);
+}
+
+.manual-share-box[hidden] {
+  display: none;
 }
