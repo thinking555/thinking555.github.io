@@ -126,8 +126,8 @@ body{
     <div class="logo">视频</div>
 
     <div class="search-wrap">
-        <form class="search-box" action="https://www.google.com/search" method="GET">
-            <input type="text" name="q">
+        <form class="search-box" id="downsubSearch">
+            <input type="text" name="url" placeholder="粘贴 YouTube 视频链接">
             <button type="submit">🔍</button>
         </form>
     </div>
@@ -639,6 +639,19 @@ body{
     </div>
 
 </div>
+
+<script>
+document.getElementById('downsubSearch').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const videoUrl = this.elements.url.value.trim();
+    if (!videoUrl) {
+        return;
+    }
+
+    window.open('https://downsub.com/?url=' + encodeURIComponent(videoUrl), '_blank');
+});
+</script>
 
 </body>
 
