@@ -16,6 +16,7 @@
 body{
     background:#ffffff;
     color:#000000;
+    line-height:1.5;
 }
 
 /* 顶部 */
@@ -28,6 +29,7 @@ body{
 .logo{
     font-size:28px;
     font-weight:600;
+    line-height:1.2;
 }
 
 /* 搜索 */
@@ -54,7 +56,7 @@ body{
     outline:none;
     font-size:15px;
     background:#ffffff;
-    color:#fff;
+    color:#000000;
 }
 
 .search-box button{
@@ -62,21 +64,22 @@ body{
     border:none;
     background:#ffffff;
     cursor:pointer;
-    color:#fff;
+    color:#000000;
+    font-size:18px;
 }
 
-/* ===== 固定 5 列 ===== */
+/* ===== 内容网格 ===== */
 .container{
-    column-count:5;
-    column-gap:10px;
     padding:20px 60px 60px 60px;
     display:grid;
     grid-template-columns:repeat(5,1fr);
+    gap:18px 28px;
 }
 
 .section{
     margin-bottom:10px;
     break-inside:avoid;
+    min-width:0;
 }
 
 .section h3{
@@ -95,6 +98,7 @@ body{
     text-decoration:none;
     color:#000000;
     font-size:16px;
+    line-height:1.45;
     transition:.2s;
     word-break: break-word;
     overflow-wrap: break-word;
@@ -114,6 +118,25 @@ body{
      flex-shrink:0;   /* 防止图标被压缩 */
 }
 
+@media (max-width:1200px){
+    .container{
+        grid-template-columns:repeat(4,1fr);
+    }
+}
+
+@media (max-width:1024px){
+    .topbar{
+        padding-left:36px;
+        padding-right:36px;
+    }
+
+    .container{
+        grid-template-columns:repeat(3,1fr);
+        padding-left:36px;
+        padding-right:36px;
+    }
+}
+
 </style>
 
 <link rel="stylesheet" href="search-style.css">
@@ -126,9 +149,9 @@ body{
     <div class="logo">视频</div>
 
     <div class="search-wrap">
-        <form class="search-box" id="downsubSearch">
-            <input type="text" name="url" placeholder="粘贴 YouTube 视频链接">
-            <button type="submit">🔍</button>
+        <form class="search-box" id="downsubSearch" aria-label="下载 YouTube 字幕">
+            <input type="url" name="url" inputmode="url" autocomplete="off" placeholder="粘贴 YouTube 视频链接" aria-label="YouTube 视频链接">
+            <button type="submit" aria-label="下载字幕" title="下载字幕">🔍</button>
         </form>
     </div>
 </div>
@@ -291,7 +314,7 @@ body{
         
         <a class="link-item" href="https://www.youtube.com/watch?v=_l8Rn6tPs6o&list=PLNEGQlCPzlkJVzbjuQOu0CZGKyn29CnT3" target="_blank">
             <img src="https://www.google.com/s2/favicons?sz=64&domain=youtube.com">
-            英语学习方法系列
+            技能学习方法系列
         </a>
 
         <a class="link-item" href="https://www.youtube.com/watch?v=kdmqd4ATPQw&list=PLp_CVzvlDOfPVbWcIuVRcFsmMUH8AqU8z" target="_blank">
@@ -455,7 +478,7 @@ body{
     <div class="section">
         <h3>视频与字幕下载</h3>
 
-        <a class="link-item" href="https://f-loat.github.io/caption2text/ target="_blank">
+        <a class="link-item" href="https://f-loat.github.io/caption2text/" target="_blank">
             <img src="https://www.google.com/s2/favicons?sz=64&domain=github.io">
             字幕转换文本
         </a>
@@ -468,6 +491,21 @@ body{
         <a class="link-item" href="https://downsub.com/" target="_blank">
             <img src="https://www.google.com/s2/favicons?sz=64&domain=downsub.com">
             下载Youtube字幕
+        </a>
+
+        <a class="link-item" href="https://next.hadzy.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=next.hadzy.com">
+            油管评论分析
+        </a>
+
+        <a class="link-item" href="https://hadzy.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=hadzy.com">
+            油管评论分析（词云、慢）
+        </a>
+
+        <a class="link-item" href="https://filmot.com/" target="_blank">
+            <img src="https://www.google.com/s2/favicons?sz=64&domain=filmot.com">
+            油管字幕搜索
         </a>
 
         <a class="link-item" href="https://tools.newzone.top/zh/subtitle-translator" target="_blank">
@@ -641,16 +679,20 @@ body{
 </div>
 
 <script>
-document.getElementById('downsubSearch').addEventListener('submit', function(event) {
-    event.preventDefault();
+const downsubSearch = document.getElementById('downsubSearch');
 
-    const videoUrl = this.elements.url.value.trim();
-    if (!videoUrl) {
-        return;
-    }
+if (downsubSearch) {
+    downsubSearch.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-    window.open('https://downsub.com/?url=' + encodeURIComponent(videoUrl), '_blank');
-});
+        const videoUrl = this.elements.url.value.trim();
+        if (!videoUrl) {
+            return;
+        }
+
+        window.open('https://downsub.com/?url=' + encodeURIComponent(videoUrl), '_blank');
+    });
+}
 </script>
 
 </body>

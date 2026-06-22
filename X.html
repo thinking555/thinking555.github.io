@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matrix Blue Background</title>
+  <style>
+    :root{
+      --bg:#020514;
+      --blue:#51B6F9;
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      width:100%;
+      height:100%;
+      min-height:100%;
+      overflow-x:hidden;
+      overflow-y:auto;
+      background:var(--bg);
+      font-family:Arial, "Microsoft YaHei", sans-serif;
+    }
+    canvas{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      display:block;
+    }
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(81,182,249,.12), transparent 30%),
+        radial-gradient(circle at 80% 18%, rgba(81,182,249,.09), transparent 20%),
+        linear-gradient(to bottom, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size:auto, auto, 100% 4px;
+      opacity:.55;
+      z-index:1;
+    }
+    .overlay{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:linear-gradient(180deg, rgba(2,5,20,.12), rgba(2,5,20,.78));
+      z-index:1;
+    }
+    .search-wrapper{
+      position:fixed;
+      left:50%;
+      top:50%;
+      transform:translate(-50%, -50%);
+      z-index:3;
+      width:min(620px, calc(100% - 40px));
+      padding:18px;
+      border:1px solid rgba(81,182,249,.42);
+      border-radius:22px;
+      background:rgba(2, 8, 28, .58);
+      backdrop-filter:blur(14px);
+      box-shadow:0 0 28px rgba(81,182,249,.24), inset 0 0 20px rgba(81,182,249,.08);
+    }
+    .search-box{
+      width:100%;
+    }
+    .search-box input{
+      width:100%;
+      height:54px;
+      border:1px solid rgba(81,182,249,.55);
+      border-radius:16px;
+      outline:none;
+      padding:0 18px;
+      color:#D8F5FF;
+      font-size:17px;
+      background:rgba(0, 15, 40, .72);
+      box-shadow:inset 0 0 16px rgba(81,182,249,.14);
+    }
+    .search-box input::placeholder{
+      color:rgba(216,245,255,.58);
+    }
+    .search-box input:focus{
+      border-color:rgba(210,242,255,.95);
+      box-shadow:0 0 22px rgba(81,182,249,.34), inset 0 0 16px rgba(81,182,249,.18);
+    }
+    .category-zone{
+      position:fixed;
+      z-index:2;
+      pointer-events:auto;
+    }
+    .top-categories,
+    .bottom-categories{
+      left:50%;
+      width:min(1180px, calc(100% - 48px));
+      transform:translateX(-50%);
+      display:grid;
+      grid-template-columns:repeat(9, minmax(0, 1fr));
+      gap:18px;
+    }
+    .top-categories{
+      bottom:calc(50% + 76px);
+    }
+    .bottom-categories{
+      top:calc(50% + 96px);
+    }
+    .left-category,
+    .right-category{
+      top:50%;
+      width:150px;
+      transform:translateY(-50%);
+    }
+    .left-category{
+      right:calc(50% + 356px);
+    }
+    .right-category{
+      left:calc(50% + 356px);
+    }
+    .search-category{
+      min-width:0;
+    }
+    .search-category h2{
+      margin:0 0 14px;
+      color:#D8F5FF;
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:0;
+      text-align:center;
+      text-shadow:0 0 12px rgba(81,182,249,.45);
+    }
+    .search-actions{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .search-actions button{
+      display:flex;
+      align-items:center;
+      width:100%;
+      min-height:24px;
+      border:0;
+      border-radius:0;
+      padding:0;
+      color:#D8F5FF;
+      font-size:15px;
+      line-height:1.2;
+      text-align:left;
+      background:transparent;
+      cursor:pointer;
+      text-shadow:0 0 10px rgba(81,182,249,.34);
+      transition:color .18s ease, text-shadow .18s ease, transform .18s ease;
+      word-break:break-word;
+    }
+    .search-actions button:hover,
+    .search-actions button:focus-visible{
+      color:#FFFFFF;
+      text-shadow:0 0 16px rgba(81,182,249,.78);
+      outline:none;
+      transform:translateY(-1px);
+    }
+    .search-actions button:active{
+      transform:translateY(0);
+    }
+    .placeholder-item{
+      display:flex;
+      align-items:center;
+      min-height:24px;
+      color:rgba(216,245,255,.42);
+      font-size:14px;
+      line-height:1.2;
+      text-shadow:0 0 10px rgba(81,182,249,.18);
+    }
+    .scrollable-category .search-actions{
+      max-height:220px;
+      overflow-y:auto;
+      padding-right:6px;
+      scrollbar-width:thin;
+      scrollbar-color:rgba(81,182,249,.48) rgba(81,182,249,.08);
+    }
+    .scrollable-category .search-actions::-webkit-scrollbar{
+      width:6px;
+    }
+    .scrollable-category .search-actions::-webkit-scrollbar-track{
+      background:rgba(81,182,249,.08);
+      border-radius:999px;
+    }
+    .scrollable-category .search-actions::-webkit-scrollbar-thumb{
+      background:rgba(81,182,249,.48);
+      border-radius:999px;
+    }
+    .ai-search .search-actions{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      column-gap:16px;
+      row-gap:4px;
+    }
+    @media (max-width:1160px){
+      .left-category,
+      .right-category{
+        width:128px;
+      }
+      .left-category{
+        right:calc(50% + 330px);
+      }
+      .right-category{
+        left:calc(50% + 330px);
+      }
+      .top-categories,
+      .bottom-categories{
+        gap:12px;
+        width:calc(100% - 32px);
+      }
+      .search-actions button,
+      .placeholder-item{
+        font-size:13px;
+      }
+    }
+    @media (max-width:980px){
+      body{
+        min-height:1180px;
+      }
+      .category-zone{
+        position:relative;
+        top:auto;
+        right:auto;
+        bottom:auto;
+        left:auto;
+        width:calc(100% - 28px);
+        transform:none;
+        margin:0 auto;
+      }
+      .top-categories,
+      .bottom-categories{
+        display:grid;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:18px 16px;
+      }
+      .top-categories{
+        padding-top:32px;
+      }
+      .left-category{
+        margin-top:calc(50vh + 80px);
+      }
+      .right-category,
+      .bottom-categories{
+        margin-top:22px;
+      }
+      .search-category h2{
+        margin-bottom:10px;
+      }
+      .scrollable-category .search-actions{
+        max-height:none;
+        overflow-y:visible;
+        padding-right:0;
+      }
+    }
+    @media (max-width:520px){
+      .search-wrapper{
+        width:calc(100% - 24px);
+        padding:14px;
+        border-radius:18px;
+      }
+      .search-box input{height:50px;font-size:15px;padding:0 14px}
+      .search-actions button{
+        min-height:24px;
+        font-size:13px;
+      }
+      .placeholder-item{
+        min-height:24px;
+        font-size:13px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+  <div class="overlay"></div>
+
+  <div class="search-wrapper">
+    <form class="search-box" id="searchForm">
+      <input id="searchInput" type="search" placeholder="请输入搜索内容" autocomplete="off" />
+    </form>
+  </div>
+
+  <div class="category-zone top-categories" aria-label="上方分类">
+    <section class="search-category scrollable-category">
+      <h2>文字内容搜索</h2>
+      <div class="search-actions">
+        <button type="button" data-search-url="https://search.save-web.org/search?q={query}&sort=relevance">博客搜索</button>
+        <button type="button" data-search-url="https://www.feisoo.com/result/{query}">飞搜</button>
+        <button type="button" data-search-url="https://www.dedao.cn/search/result?q={query}">得到电子书</button>
+        <button type="button" data-search-url="https://filmot.com/search/{query}/1?gridView=1" data-query-wrap="curly-quotes">油管字幕搜索</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Ablogspot.com&hl=zh_CN">Blogspot</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Asubstack.com&hl=zh_CN">Substack</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Apagecord.com&hl=zh_CN">Pagecord</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Atumblr.com&hl=zh_CN">Tumblr</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Awordpress.com&hl=zh_CN">WordPress</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Amedium.com&hl=zh_CN">Medium</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Ajianshu.com&hl=zh_CN">简书</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Acnblogs.com&hl=zh_CN">博客园</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Alinkedin.com&hl=zh_CN">LinkedIn</button>
+      </div>
+    </section>
+    <section class="search-category scrollable-category book-search">
+      <h2>书籍搜索</h2>
+      <div class="search-actions">
+        <button type="button" data-search-book-sites>全部搜索</button>
+        <button type="button" data-search-url="https://zh.1lib.sk/s/{query}">Z-Library</button>
+        <button type="button" data-search-url="https://zh.annas-archive.gl/search?q={query}">Anna's Archive</button>
+        <button type="button" data-search-url="https://www.shukui.net/so/search.php?q={query}">书葵</button>
+        <button type="button" data-search-url="https://liber3.eth.limo/#/search?q={query}">Liber3</button>
+        <button type="button" data-search-url="https://archive.org/search?tab=texts&query={query}">Archive Texts</button>
+        <button type="button" data-search-url="https://ebookfoundation.github.io/free-programming-books-search/?search={query}&submit=Search">Free Books</button>
+        <button type="button" data-search-url="https://www.chenjin5.com/search?title={query}">沉金书屋</button>
+        <button type="button" data-search-url="https://www.nmod.net/search/{query}">NMOD</button>
+        <button type="button" data-search-url="https://welib.org/search?page=1&q={query}">WeLib</button>
+        <button type="button" data-search-url="https://sci-hub.ru/match/{query}">Sci-Hub</button>
+      </div>
+    </section>
+    <section class="search-category">
+      <h2>软件搜索</h2>
+      <div class="search-actions">
+        <button type="button" data-search-url="https://www.apkmirror.com/?post_type=app_release&searchtype=apk&bundles%5B%5D=apkm_bundles&bundles%5B%5D=apk_files&s={query}">安卓软件搜索</button>
+        <button type="button" data-search-url="https://store.steampowered.com/search?term={query}">Steam搜索</button>
+        <button type="button" data-search-url="https://apps.microsoft.com/search?query={query}&hl=zh-CN&gl=CN">微软商店搜索</button>
+        <button type="button" data-search-url="https://apps.apple.com/us/iphone/search?term={query}">苹果商店搜索</button>
+        <button type="button" data-search-url="https://www.iamwawa.cn/search.html?q={query}">在线工具搜索</button>
+        <button type="button" data-search-url="https://qxtool.com/search.php?q={query}">在线工具搜索2</button>
+      </div>
+    </section>
+    <section class="search-category">
+      <h2>分类 4</h2>
+      <div class="placeholder-item">待添加</div>
+    </section>
+    <section class="search-category">
+      <h2>分类 5</h2>
+      <div class="placeholder-item">待添加</div>
+    </section>
+    <section class="search-category">
+      <h2>常用工具</h2>
+      <div class="search-actions">
+        <button type="button" data-search-url="https://web.archive.org/web/20260000000000*/{query}" data-query-encode="uri">网页的备份</button>
+        <button type="button" data-search-url="https://archive.org/search?query={query}&tab=all">档案的备份</button>
+        <button type="button" data-search-url="https://downsub.com/?url={query}">油管字幕下载</button>
+        <button type="button" data-youtube-comments>油管评论分析</button>
+      </div>
+    </section>
+    <section class="search-category scrollable-category">
+      <h2>日常搜索</h2>
+      <div class="search-actions">
+        <button type="button" data-search-pan-sites>网盘集群搜索</button>
+        <button type="button" data-search-url="https://search.douban.com/movie/subject_search?search_text={query}&cat=1002">豆瓣电影</button>
+        <button type="button" data-search-url="https://search.douban.com/book/subject_search?search_text={query}&cat=1001">豆瓣读书</button>
+        <button type="button" data-search-url="https://www.douban.com/group/search?cat=1019&q={query}">豆瓣小组</button>
+        <button type="button" data-search-url="https://www.imdb.com/find/?q={query}&ref_=hm_nv_srb_sm">IMDb</button>
+        <button type="button" data-search-url="https://www.xn--wcv59z.com/search?q={query}&type=&mode=1">电影搜索</button>
+      </div>
+    </section>
+    <section class="search-category scrollable-category exchange-search">
+      <h2>汇率换算</h2>
+      <div class="search-actions">
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20USD%20TO%20CNY&hl=zh_CN">USD TO CNY</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20CNY%20TO%20USD&hl=zh_CN">CNY TO USD</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20EUR%20TO%20CNY&hl=zh_CN">EUR TO CNY</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20CNY%20TO%20EUR&hl=zh_CN">CNY TO EUR</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20GBP%20TO%20CNY&hl=zh_CN">GBP TO CNY</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20CNY%20TO%20GBP&hl=zh_CN">CNY TO GBP</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20JPY%20TO%20CNY&hl=zh_CN">JPY TO CNY</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20CNY%20TO%20JPY&hl=zh_CN">CNY TO JPY</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20HKD%20TO%20CNY&hl=zh_CN">HKD TO CNY</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20CNY%20TO%20HKD&hl=zh_CN">CNY TO HKD</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20SGD%20TO%20CNY&hl=zh_CN">SGD TO CNY</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20CNY%20TO%20SGD&hl=zh_CN">CNY TO SGD</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20THB%20TO%20CNY&hl=zh_CN">THB TO CNY</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20CNY%20TO%20THB&hl=zh_CN">CNY TO THB</button>
+      </div>
+    </section>
+    <section class="search-category scrollable-category">
+      <h2>友情高效搜索</h2>
+      <div class="search-actions">
+        <button type="button" data-search-url="https://inteltechniques.com/tools/Username.html">搜索工具</button>
+<button type="button" data-search-url="https://www.exploit-db.com/google-hacking-database">谷歌语法分享</button>
+<button type="button" data-search-url="https://dorkme.com/">谷歌达人</button>
+<button type="button" data-search-url="https://dorks.faisalahmed.me/">生成搜索语法</button>
+<button type="button" data-search-url="https://betterredditsearch.web.app/">Reddit搜索</button>
+<button type="button" data-search-url="https://cse.google.com/cse?q=+&cx=006368593537057042503:efxu7xprihg#gsc.tab=0&gsc.q=%20%E4%B8%AD%E5%9B%BD&gsc.sort=date&gsc.ref=more%3Abots" title="工具基于 Google 自定义搜索引擎，可对 Telegram、Telegraph、贴纸、语音聊天、联系人、消息、机器人和视频中进行搜索">Teledago</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="category-zone left-category" aria-label="左侧分类">
+    <section class="search-category">
+      <h2>分类 13</h2>
+      <div class="placeholder-item">待添加</div>
+    </section>
+  </div>
+
+  <div class="category-zone right-category" aria-label="右侧分类">
+    <section class="search-category ai-search">
+      <h2>AI搜索</h2>
+      <div class="search-actions">
+        <button type="button" data-search-url="https://chatgpt.com/?q={query}">ChatGPT</button>
+        <button type="button" data-search-url="https://www.perplexity.ai/search?q={query}">Perplexit</button>
+        <button type="button" data-search-url="https://claude.ai/new?q={query}">Claude</button>
+        <button type="button" data-search-url="https://grok.com/?q={query}">Grok</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="category-zone bottom-categories" aria-label="下方分类">
+    <section class="search-category">
+      <h2>视频平台</h2>
+      <div class="search-actions">
+        <button type="button" data-search-video-sites>全部搜索</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Ated.com&hl=zh_CN">TED</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Ayoutube.com&hl=zh_CN">YouTube</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Abilibili.com&hl=zh_CN">Bilibili</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Ayouku.com&hl=zh_CN">Youku</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Adouyin.com&hl=zh_CN">Douyin</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Aimdb.com&hl=zh_CN">IMDb</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Adouban.com&hl=zh_CN">Douban</button>
+      </div>
+    </section>
+    <section class="search-category">
+      <h2>谷歌</h2>
+      <div class="search-actions">
+        <button type="button" data-search-url="https://www.google.com/search?q={query}&hl=zh_CN">谷歌搜索</button>
+        <button type="button" data-search-url="https://www.google.com/search?udm=2&q={query}&hl=zh_CN">谷歌图片</button>
+        <button type="button" data-search-url="https://www.google.com/search?udm=7&q={query}&hl=zh_CN">谷歌视频</button>
+        <button type="button" data-search-url="https://translate.google.com/?sl=auto&tl=zh-CN&text={query}&op=translate">谷歌翻译</button>
+        <button type="button" data-search-url="https://www.youtube.com/results?search_query={query}">油管搜索</button>
+      </div>
+    </section>
+    <section class="search-category">
+      <h2>百度</h2>
+      <div class="search-actions">
+        <button type="button" data-search-url="https://www.baidu.com/s?ie=utf-8&wd={query}">百度搜索</button>
+        <button type="button" data-search-url="https://image.baidu.com/search/index?tn=baiduimage&ie=utf-8&word={query}">百度图片</button>
+        <button type="button" data-search-url="https://www.baidu.com/sf/vsearch?pd=video&wd={query}&tn=vsearch&ie=utf-8">百度视频</button>
+      </div>
+    </section>
+    <section class="search-category">
+      <h2>搜狗</h2>
+      <div class="search-actions">
+        <button type="button" data-search-url="https://www.sogou.com/web?query={query}&ie=utf8">搜狗搜索</button>
+        <button type="button" data-search-url="https://pic.sogou.com/pics?ie=utf8&query={query}">搜狗图片</button>
+        <button type="button" data-search-url="https://v.sogou.com/v?ie=utf8&query={query}">搜狗视频</button>
+        <button type="button" data-search-url="https://weixin.sogou.com/weixin?type=2&query={query}&ie=utf8">搜狗微信</button>
+      </div>
+    </section>
+    <section class="search-category">
+      <h2>必应</h2>
+      <div class="search-actions">
+        <button type="button" data-search-url="https://www.bing.com/search?q={query}">必应搜索</button>
+        <button type="button" data-search-url="https://www.bing.com/images/search?q={query}">必应图片</button>
+        <button type="button" data-search-url="https://www.bing.com/videos/search?q={query}">必应视频</button>
+      </div>
+    </section>
+    <section class="search-category">
+      <h2>Yandex</h2>
+      <div class="search-actions">
+        <button type="button" data-search-url="https://yandex.com/search?text={query}">Yandex搜索</button>
+        <button type="button" data-search-url="https://yandex.com/images/search?text={query}">Yandex图片</button>
+        <button type="button" data-search-url="https://yandex.com/video/search?text={query}">Yandex视频</button>
+      </div>
+    </section>
+    <section class="search-category">
+      <h2>DuckDuckGo</h2>
+      <div class="search-actions">
+        <button type="button" data-search-url="https://duckduckgo.com/?ia=web&q={query}">Duck搜索</button>
+        <button type="button" data-search-url="https://duckduckgo.com/?iax=images&ia=images&q={query}">Duck图片</button>
+        <button type="button" data-search-url="https://duckduckgo.com/?iax=videos&ia=videos&q={query}">Duck视频</button>
+      </div>
+    </section>
+    <section class="search-category">
+      <h2>聚合</h2>
+      <div class="search-actions">
+        <button type="button" data-search-all>全部搜索</button>
+        <button type="button" data-search-all-images>图片搜索</button>
+        <button type="button" data-search-all-videos>视频搜索</button>
+      </div>
+    </section>
+    <section class="search-category common-platform scrollable-category">
+      <h2>常用平台</h2>
+      <div class="search-actions">
+        <button type="button" data-search-common-sites>全部搜索</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Azhihu.com&hl=zh_CN">知乎</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Agithub.com&hl=zh_CN">GitHub</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Ax.com&hl=zh_CN">X</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Atelegra.ph&hl=zh_CN">Telegraph</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Areddit.com&hl=zh_CN">Reddit</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Aarchive.org&hl=zh_CN">Archive</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Awikihow.com&hl=zh_CN">wikiHow</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Aquora.com&hl=zh_CN">Quora</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Awikipedia.org&hl=zh_CN">Wikipedia</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Alinux.do&hl=zh_CN">Linux.do</button>
+        <button type="button" data-search-url="https://www.google.com/search?q={query}%20site%3Av2ex.com&hl=zh_CN">V2EX</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    let width = 0;
+    let height = 0;
+    let fontSize = 18;
+    let columns = 0;
+    let drops = [];
+    const chars = "01アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ<>/*+-=#%&{}[]";
+    const BLUE = "#51B6F9";
+
+
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchInput");
+    const searchButtons = document.querySelectorAll("[data-search-url]");
+    const searchAllButton = document.querySelector("[data-search-all]");
+    const searchAllImagesButton = document.querySelector("[data-search-all-images]");
+    const searchAllVideosButton = document.querySelector("[data-search-all-videos]");
+    const searchVideoSitesButton = document.querySelector("[data-search-video-sites]");
+    const searchCommonSitesButton = document.querySelector("[data-search-common-sites]");
+    const searchBookSitesButton = document.querySelector("[data-search-book-sites]");
+    const searchPanSitesButton = document.querySelector("[data-search-pan-sites]");
+    const youtubeCommentsButton = document.querySelector("[data-youtube-comments]");
+    const allSearchUrls = [
+      "https://www.google.com/search?q={query}&hl=zh_CN",
+      "https://www.baidu.com/s?ie=utf-8&wd={query}",
+      "https://www.sogou.com/web?query={query}&ie=utf8",
+      "https://www.bing.com/search?q={query}",
+      "https://yandex.com/search?text={query}",
+      "https://duckduckgo.com/?ia=web&q={query}"
+    ];
+    const allImageSearchUrls = [
+      "https://www.google.com/search?udm=2&q={query}&hl=zh_CN",
+      "https://image.baidu.com/search/index?tn=baiduimage&ie=utf-8&word={query}",
+      "https://pic.sogou.com/pics?ie=utf8&query={query}",
+      "https://www.bing.com/images/search?q={query}",
+      "https://yandex.com/images/search?text={query}",
+      "https://duckduckgo.com/?iax=images&ia=images&q={query}"
+    ];
+    const allVideoSearchUrls = [
+      "https://www.google.com/search?udm=7&q={query}&hl=zh_CN",
+      "https://www.baidu.com/sf/vsearch?pd=video&wd={query}&tn=vsearch&ie=utf-8",
+      "https://v.sogou.com/v?ie=utf8&query={query}",
+      "https://www.bing.com/videos/search?q={query}",
+      "https://yandex.com/video/search?text={query}",
+      "https://duckduckgo.com/?iax=videos&ia=videos&q={query}"
+    ];
+    const videoSiteSearchUrls = [
+      "https://www.google.com/search?q={query}%20site%3Ated.com&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Ayoutube.com&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Abilibili.com&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Ayouku.com&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Adouyin.com&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Aimdb.com&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Adouban.com&hl=zh_CN"
+    ];
+    const commonSiteSearchUrls = [
+      "https://www.google.com/search?q={query}%20site%3Azhihu.com&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Agithub.com&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Ax.com&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Atelegra.ph&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Areddit.com&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Aarchive.org&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Awikihow.com&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Aquora.com&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Awikipedia.org&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Alinux.do&hl=zh_CN",
+      "https://www.google.com/search?q={query}%20site%3Av2ex.com&hl=zh_CN"
+    ];
+    const bookSiteSearchUrls = [
+      "https://zh.1lib.sk/s/{query}",
+      "https://zh.annas-archive.gl/search?q={query}",
+      "https://www.shukui.net/so/search.php?q={query}",
+      "https://liber3.eth.limo/#/search?q={query}",
+      "https://archive.org/search?tab=texts&query={query}",
+      "https://ebookfoundation.github.io/free-programming-books-search/?search={query}&submit=Search",
+      "https://www.chenjin5.com/search?title={query}",
+      "https://www.nmod.net/search/{query}",
+      "https://welib.org/search?page=1&q={query}",
+      "https://sci-hub.ru/match/{query}"
+    ];
+    const panSiteSearchUrls = [
+      "https://quarkpanpan.com/?q={query}",
+      "https://www.kuakeso.net/s/{query}",
+      "https://www.feizhupan.com/#/main/search?keyword={query}&restype=1",
+      "https://panku8.com/s?q={query}",
+      "https://panso.vip/search?q={query}",
+      "https://www.jikeyunsou.com/plus/search.php?kwtype=0&searchtype=titlekeyword&keyword={query}",
+      "https://www.pansearch.me/search?keyword={query}",
+      "https://akongwu.com/?cat=&s={query}",
+      "https://mao.souldebug.com/s/{query}",
+      "https://www.tvso.uk/s?keyword={query}",
+      "https://www.fanxinzhui.com/list?k={query}",
+      "https://www.wnsearch.top/s/{query}",
+      "https://hunhepan.com/search?enabled=true&q={query}",
+      "https://miaosou.fun/info?searchKey={query}",
+      "https://pan.xiaozi.cc/resource?q=%22{query}%22",
+      "https://www.panlegepan.com/search?keyword={query}",
+      "https://pan.l9.lc/?search={query}"
+    ];
+
+    function encodeKeyword(keyword, mode, wrapMode) {
+      const value = wrapMode === "curly-quotes" ? "”" + keyword + "“" : keyword;
+      return mode === "uri" ? encodeURI(value) : encodeURIComponent(value);
+    }
+
+    function openSearch(urlTemplate, encodeMode, wrapMode) {
+      if (!urlTemplate.includes("{query}")) {
+        window.open(urlTemplate, "_blank");
+        return;
+      }
+      const keyword = searchInput.value.trim();
+      if (!keyword) return;
+      const query = encodeKeyword(keyword, encodeMode, wrapMode);
+      window.open(urlTemplate.replace("{query}", query), "_blank");
+    }
+
+    function openMultipleSearches(urlTemplates) {
+      const keyword = searchInput.value.trim();
+      if (!keyword) return;
+      const query = encodeURIComponent(keyword);
+      urlTemplates.forEach(function(urlTemplate) {
+        window.open(urlTemplate.replace("{query}", query), "_blank");
+      });
+    }
+
+    function openAllSearches() {
+      openMultipleSearches(allSearchUrls);
+    }
+
+    function getYoutubeVideoId(value) {
+      try {
+        const url = new URL(value);
+        if (url.hostname.includes("youtube.com")) {
+          return url.searchParams.get("v");
+        }
+        if (url.hostname.includes("youtu.be")) {
+          return url.pathname.split("/").filter(Boolean)[0];
+        }
+      } catch (error) {
+        return value.trim();
+      }
+      return "";
+    }
+
+    function openYoutubeComments() {
+      const keyword = searchInput.value.trim();
+      if (!keyword) return;
+      const videoId = getYoutubeVideoId(keyword);
+      if (!videoId) return;
+      window.open("https://next.hadzy.com/videos/" + encodeURIComponent(videoId) + "/comments?size=20&sortBy=likeCount&direction=desc&searchTerms=&author=", "_blank");
+    }
+
+    searchForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+      openSearch("https://www.google.com/search?q={query}&hl=zh_CN");
+    });
+
+    searchButtons.forEach(function(button) {
+      button.addEventListener("click", function() {
+        openSearch(button.dataset.searchUrl, button.dataset.queryEncode, button.dataset.queryWrap);
+      });
+    });
+
+    searchAllButton.addEventListener("click", openAllSearches);
+    searchAllImagesButton.addEventListener("click", function() {
+      openMultipleSearches(allImageSearchUrls);
+    });
+    searchAllVideosButton.addEventListener("click", function() {
+      openMultipleSearches(allVideoSearchUrls);
+    });
+    searchVideoSitesButton.addEventListener("click", function() {
+      openMultipleSearches(videoSiteSearchUrls);
+    });
+    searchCommonSitesButton.addEventListener("click", function() {
+      openMultipleSearches(commonSiteSearchUrls);
+    });
+    searchBookSitesButton.addEventListener("click", function() {
+      openMultipleSearches(bookSiteSearchUrls);
+    });
+    searchPanSitesButton.addEventListener("click", function() {
+      openMultipleSearches(panSiteSearchUrls);
+    });
+    youtubeCommentsButton.addEventListener("click", openYoutubeComments);
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      columns = Math.floor(width / fontSize);
+      drops = new Array(columns).fill(0).map(() => Math.random() * -50);
+    }
+
+    function draw() {
+      ctx.fillStyle = "rgba(2, 5, 20, 0.10)";
+      ctx.fillRect(0, 0, width, height);
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+        const glow = Math.random();
+
+        if (glow > 0.97) {
+          ctx.fillStyle = "rgba(210, 242, 255, 0.95)";
+          ctx.shadowBlur = 18;
+          ctx.shadowColor = BLUE;
+        } else {
+          ctx.fillStyle = glow > 0.85 ? "rgba(120, 210, 255, 0.9)" : "rgba(81, 182, 249, 0.72)";
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = "rgba(81,182,249,0.45)";
+        }
+
+        ctx.fillText(text, x, y);
+
+        if (y > height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+    draw();
+  </script>
+</body>
+</html>
