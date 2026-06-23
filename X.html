@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=1280, initial-scale=1.0" />
   <title>Matrix Blue Background</title>
   <style>
     :root{
@@ -15,7 +15,8 @@
       width:100%;
       height:100%;
       min-height:100%;
-      overflow-x:hidden;
+      min-width:1280px;
+      overflow-x:auto;
       overflow-y:auto;
       background:var(--bg);
       font-family:Arial, "Microsoft YaHei", sans-serif;
@@ -214,48 +215,9 @@
         font-size:13px;
       }
     }
-    @media (max-width:980px){
-      body{
-        min-height:1180px;
-      }
-      .category-zone{
-        position:relative;
-        top:auto;
-        right:auto;
-        bottom:auto;
-        left:auto;
-        width:calc(100% - 28px);
-        transform:none;
-        margin:0 auto;
-      }
-      .top-categories,
-      .bottom-categories{
-        display:grid;
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:18px 16px;
-      }
-      .top-categories{
-        padding-top:32px;
-      }
-      .left-category{
-        margin-top:calc(50vh + 80px);
-      }
-      .right-category,
-      .bottom-categories{
-        margin-top:22px;
-      }
-      .search-category h2{
-        margin-bottom:10px;
-      }
-      .scrollable-category .search-actions{
-        max-height:none;
-        overflow-y:visible;
-        padding-right:0;
-      }
-    }
     @media (max-width:520px){
       .search-wrapper{
-        width:calc(100% - 24px);
+        width:620px;
         padding:14px;
         border-radius:18px;
       }
@@ -317,7 +279,7 @@
         <button type="button" data-search-url="https://sci-hub.ru/match/{query}">Sci-Hub</button>
       </div>
     </section>
-    <section class="search-category">
+    <section class="search-category scrollable-category">
       <h2>软件搜索</h2>
       <div class="search-actions">
         <button type="button" data-search-url="https://www.apkmirror.com/?post_type=app_release&searchtype=apk&bundles%5B%5D=apkm_bundles&bundles%5B%5D=apk_files&s={query}">安卓软件搜索</button>
@@ -326,23 +288,47 @@
         <button type="button" data-search-url="https://apps.apple.com/us/iphone/search?term={query}">苹果商店搜索</button>
         <button type="button" data-search-url="https://www.iamwawa.cn/search.html?q={query}">在线工具搜索</button>
         <button type="button" data-search-url="https://qxtool.com/search.php?q={query}">在线工具搜索2</button>
+        <button type="button" data-search-url="https://addons.mozilla.org/zh-CN/firefox/search/?q={query}">火狐扩展搜索</button>
+        <button type="button" data-search-url="https://chromewebstore.google.com/search/{query}">谷歌扩展搜索</button>
+        <button type="button" data-search-url="https://www.fileeagle.com/software/search?q={query}">全平台软件搜索</button>
+        <button type="button" data-search-url="https://portableapps.com/search/node/{query}">便携软件搜索</button>
+        <button type="button" data-search-url="https://lizhi.shop/products?word={query}">购买软件搜索</button>
+        <button type="button" data-search-url="https://setapp.com/search?q={query}">Mac探索</button>
+        <button type="button" data-search-url="https://www.machub.cn/?s={query}&type=post">Mac软件搜索</button>
+        <button type="button" data-search-url="https://greasyfork.org/zh-CN/scripts?q={query}">篡改猴脚本搜索</button>
       </div>
     </section>
     <section class="search-category">
       <h2>分类 4</h2>
       <div class="placeholder-item">待添加</div>
     </section>
-    <section class="search-category">
-      <h2>分类 5</h2>
-      <div class="placeholder-item">待添加</div>
+    <section class="search-category scrollable-category">
+      <h2>常用搜索</h2>
+      <div class="search-actions">
+        <button type="button" data-search-url="https://zh.wikipedia.org/wiki/{query}">维基百科搜索</button>
+        <button type="button" data-search-url="https://www.openstreetmap.org/search?query={query}">OpenStreetMap</button>
+        <button type="button" data-search-url="https://www.google.com/maps/place/{query}">谷歌地图</button>
+        <button type="button" data-search-url="https://search.bilibili.com/all?keyword={query}">bilibili搜索</button>
+        <button type="button" data-search-url="https://github.com/search?q={query}&type=repositories">GitHub搜索</button>
+        <button type="button" data-search-url="https://www.reddit.com/search/?q={query}">Reddit搜索</button>
+        <button type="button" data-search-url="https://fast.v2ex.com/go/{query}">V2EX搜索</button>
+        <button type="button" data-search-url="https://www.ebay.com/sch/i.html?_nkw={query}">eBay搜索</button>
+        <button type="button" data-search-url="https://www.audible.com/search?keywords={query}">有声书搜索</button>
+        <button type="button" data-search-url="https://www.amazon.com/s?k={query}">亚马逊搜索</button>
+        <button type="button" data-search-url="https://x.com/search?q={query}&src=typed_query&f=top">推特热门搜索</button>
+        <button type="button" data-search-url="https://x.com/search?q={query}&src=typed_query&f=top" data-query-wrap="double-quotes">推特精确搜索</button>
+        <button type="button" data-search-url="https://x.com/search?q={query}%20-%E5%81%B7%E6%8B%8D%20-%E8%A1%A3%E6%9C%8D%20-%E7%BA%A6%E7%82%AE%20-%E5%A4%96%E5%9B%B4%20-%E4%B8%8A%E9%97%A8%20-%E5%8F%8D%E5%B7%AE%20-%E6%8C%89%E6%91%A9%20-spa%20-%E5%B1%8E%20-%E5%B1%81%E8%82%A1%20-%E8%B5%84%E6%BA%90%20-%E8%90%9D%E8%8E%89%20-%E6%89%A9%E5%88%97%20-%E5%85%84%E5%BC%9F%20-%E7%82%B9%E5%87%BB%E4%BA%86%E8%A7%A3%20-%E7%82%B9%E5%A4%B4%E5%83%8F%20-%E5%A5%B3%E5%A4%A7%20-%E7%AE%80%E4%BB%8B%20-%E8%81%94%E9%82%A6%20-%E4%B8%AA%E4%BA%BA%E8%AF%97%E8%AF%97%20-%E7%82%B9%E5%87%BB%E5%92%A8%E8%AF%A2%20-%E6%80%A7%E7%98%BE%20-%E5%9B%BA%E6%90%AD%20-%E4%BD%93%E8%82%B2%20-%E5%90%8C%E5%9F%8E%20-%E4%BA%A4%E5%8F%8B%20-%E6%83%B3%E6%89%BE%E4%B8%80%E4%B8%AA%E5%9B%BA%20-%E7%94%B7%E5%A4%A7%E5%BC%9F%E5%BC%9F%20-%E6%9C%89%E4%B8%87%E8%BE%BE%E5%B9%BF%E5%9C%BA%E7%9A%84&f=live&src=typed_query">推特排除搜索</button>
+      </div>
     </section>
-    <section class="search-category">
+    <section class="search-category scrollable-category">
       <h2>常用工具</h2>
       <div class="search-actions">
         <button type="button" data-search-url="https://web.archive.org/web/20260000000000*/{query}" data-query-encode="uri">网页的备份</button>
         <button type="button" data-search-url="https://archive.org/search?query={query}&tab=all">档案的备份</button>
         <button type="button" data-search-url="https://downsub.com/?url={query}">油管字幕下载</button>
         <button type="button" data-youtube-comments>油管评论分析</button>
+        <button type="button" data-search-ip-sites>IP搜索</button>
+        <button type="button" data-search-url="https://www.itdog.cn/ping/{query}" data-query-format="hostname">网站延迟测试</button>
       </div>
     </section>
     <section class="search-category scrollable-category">
@@ -353,7 +339,13 @@
         <button type="button" data-search-url="https://search.douban.com/book/subject_search?search_text={query}&cat=1001">豆瓣读书</button>
         <button type="button" data-search-url="https://www.douban.com/group/search?cat=1019&q={query}">豆瓣小组</button>
         <button type="button" data-search-url="https://www.imdb.com/find/?q={query}&ref_=hm_nv_srb_sm">IMDb</button>
+        <button type="button" data-search-url="https://www.rottentomatoes.com/search?search={query}">烂番茄</button>
+        <button type="button" data-search-url="https://letterboxd.com/search/{query}/">信标</button>
         <button type="button" data-search-url="https://www.xn--wcv59z.com/search?q={query}&type=&mode=1">电影搜索</button>
+        <button type="button" data-search-url="https://www.btbtla.com/search/{query}">BT搜索</button>
+        <button type="button" data-search-url="https://www.justwatch.com/us/search?q={query}">流媒体搜索</button>
+        <button type="button" data-search-url="https://33tc.net/?subtitleKeyword={query}">台词搜索</button>
+        <button type="button" data-search-url="https://youglish.com/pronounce/{query}/english">词读音搜索</button>
       </div>
     </section>
     <section class="search-category scrollable-category exchange-search">
@@ -428,6 +420,7 @@
         <button type="button" data-search-url="https://www.google.com/search?udm=2&q={query}&hl=zh_CN">谷歌图片</button>
         <button type="button" data-search-url="https://www.google.com/search?udm=7&q={query}&hl=zh_CN">谷歌视频</button>
         <button type="button" data-search-url="https://translate.google.com/?sl=auto&tl=zh-CN&text={query}&op=translate">谷歌翻译</button>
+        <button type="button" data-search-url="https://scholar.google.com/scholar?lr=&q={query}&hl=zh-CN&as_sdt=0,5">谷歌学术</button>
         <button type="button" data-search-url="https://www.youtube.com/results?search_query={query}">油管搜索</button>
       </div>
     </section>
@@ -437,6 +430,7 @@
         <button type="button" data-search-url="https://www.baidu.com/s?ie=utf-8&wd={query}">百度搜索</button>
         <button type="button" data-search-url="https://image.baidu.com/search/index?tn=baiduimage&ie=utf-8&word={query}">百度图片</button>
         <button type="button" data-search-url="https://www.baidu.com/sf/vsearch?pd=video&wd={query}&tn=vsearch&ie=utf-8">百度视频</button>
+        <button type="button" data-search-url="https://baike.baidu.com/item/{query}">百度百科</button>
       </div>
     </section>
     <section class="search-category">
@@ -445,6 +439,7 @@
         <button type="button" data-search-url="https://www.sogou.com/web?query={query}&ie=utf8">搜狗搜索</button>
         <button type="button" data-search-url="https://pic.sogou.com/pics?ie=utf8&query={query}">搜狗图片</button>
         <button type="button" data-search-url="https://v.sogou.com/v?ie=utf8&query={query}">搜狗视频</button>
+        <button type="button" data-search-url="https://fanyi.sogou.com/text?keyword={query}">搜狗翻译</button>
         <button type="button" data-search-url="https://weixin.sogou.com/weixin?type=2&query={query}&ie=utf8">搜狗微信</button>
       </div>
     </section>
@@ -454,6 +449,7 @@
         <button type="button" data-search-url="https://www.bing.com/search?q={query}">必应搜索</button>
         <button type="button" data-search-url="https://www.bing.com/images/search?q={query}">必应图片</button>
         <button type="button" data-search-url="https://www.bing.com/videos/search?q={query}">必应视频</button>
+        <button type="button" data-search-url="https://www.bing.com/translator?mkt=zh-CN&from=en&to=zh-Hans&text={query}">必应翻译</button>
       </div>
     </section>
     <section class="search-category">
@@ -462,6 +458,7 @@
         <button type="button" data-search-url="https://yandex.com/search?text={query}">Yandex搜索</button>
         <button type="button" data-search-url="https://yandex.com/images/search?text={query}">Yandex图片</button>
         <button type="button" data-search-url="https://yandex.com/video/search?text={query}">Yandex视频</button>
+        <button type="button" data-search-url="https://translate.yandex.com/?text={query}&source_lang=en&target_lang=zh">Yandex翻译</button>
       </div>
     </section>
     <section class="search-category">
@@ -523,6 +520,7 @@
     const searchBookSitesButton = document.querySelector("[data-search-book-sites]");
     const searchPanSitesButton = document.querySelector("[data-search-pan-sites]");
     const youtubeCommentsButton = document.querySelector("[data-youtube-comments]");
+    const searchIpSitesButton = document.querySelector("[data-search-ip-sites]");
     const allSearchUrls = [
       "https://www.google.com/search?q={query}&hl=zh_CN",
       "https://www.baidu.com/s?ie=utf-8&wd={query}",
@@ -600,20 +598,45 @@
       "https://www.panlegepan.com/search?keyword={query}",
       "https://pan.l9.lc/?search={query}"
     ];
+    const ipSiteSearchUrls = [
+      "https://whatismyipaddress.com/ip/{query}",
+      "https://ipleak.net/?q={query}",
+      "https://scamalytics.com/ip/{query}",
+      "https://www.abuseipdb.com/check/{query}",
+      "https://ippure.com/?ip={query}",
+      "https://ipip0.net/{query}",
+      "https://ip8.com/ipdetails/{query}"
+    ];
 
-    function encodeKeyword(keyword, mode, wrapMode) {
-      const value = wrapMode === "curly-quotes" ? "”" + keyword + "“" : keyword;
+    function getHostname(value) {
+      try {
+        return new URL(value).hostname;
+      } catch (error) {
+        return value.replace(/^https?:\/\//i, "").split("/")[0];
+      }
+    }
+
+    function encodeKeyword(keyword, mode, wrapMode, formatMode) {
+      let value = keyword;
+      if (wrapMode === "curly-quotes") {
+        value = "”" + keyword + "“";
+      } else if (wrapMode === "double-quotes") {
+        value = '"' + keyword + '"';
+      }
+      if (formatMode === "hostname") {
+        value = getHostname(value);
+      }
       return mode === "uri" ? encodeURI(value) : encodeURIComponent(value);
     }
 
-    function openSearch(urlTemplate, encodeMode, wrapMode) {
+    function openSearch(urlTemplate, encodeMode, wrapMode, formatMode) {
       if (!urlTemplate.includes("{query}")) {
         window.open(urlTemplate, "_blank");
         return;
       }
       const keyword = searchInput.value.trim();
       if (!keyword) return;
-      const query = encodeKeyword(keyword, encodeMode, wrapMode);
+      const query = encodeKeyword(keyword, encodeMode, wrapMode, formatMode);
       window.open(urlTemplate.replace("{query}", query), "_blank");
     }
 
@@ -660,7 +683,7 @@
 
     searchButtons.forEach(function(button) {
       button.addEventListener("click", function() {
-        openSearch(button.dataset.searchUrl, button.dataset.queryEncode, button.dataset.queryWrap);
+        openSearch(button.dataset.searchUrl, button.dataset.queryEncode, button.dataset.queryWrap, button.dataset.queryFormat);
       });
     });
 
@@ -684,6 +707,9 @@
       openMultipleSearches(panSiteSearchUrls);
     });
     youtubeCommentsButton.addEventListener("click", openYoutubeComments);
+    searchIpSitesButton.addEventListener("click", function() {
+      openMultipleSearches(ipSiteSearchUrls);
+    });
 
     function resize() {
       width = window.innerWidth;
