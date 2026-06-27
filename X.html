@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=1280, initial-scale=1.0" />
-  <title>Matrix Blue Background</title>
+  <title>极限搜索</title>
   <style>
     :root{
       --bg:#020514;
@@ -329,6 +329,8 @@
         <button type="button" data-youtube-comments>油管评论分析</button>
         <button type="button" data-search-ip-sites>IP搜索</button>
         <button type="button" data-search-url="https://www.itdog.cn/ping/{query}" data-query-format="hostname">网站延迟测试</button>
+        <button type="button" data-search-anime-image>动漫识图</button>
+        <button type="button" data-search-general-image>通用识图</button>
       </div>
     </section>
     <section class="search-category scrollable-category">
@@ -521,6 +523,8 @@
     const searchPanSitesButton = document.querySelector("[data-search-pan-sites]");
     const youtubeCommentsButton = document.querySelector("[data-youtube-comments]");
     const searchIpSitesButton = document.querySelector("[data-search-ip-sites]");
+    const searchAnimeImageButton = document.querySelector("[data-search-anime-image]");
+    const searchGeneralImageButton = document.querySelector("[data-search-general-image]");
     const allSearchUrls = [
       "https://www.google.com/search?q={query}&hl=zh_CN",
       "https://www.baidu.com/s?ie=utf-8&wd={query}",
@@ -606,6 +610,20 @@
       "https://ippure.com/?ip={query}",
       "https://ipip0.net/{query}",
       "https://ip8.com/ipdetails/{query}"
+    ];
+    const animeImageSearchUrls = [
+      "https://saucenao.com/search.php?url={query}",
+      "https://iqdb.org/?url={query}",
+      "https://3d.iqdb.org/?url={query}",
+      "https://trace.moe/?url={query}"
+    ];
+    const generalImageSearchUrls = [
+      "https://lens.google.com/uploadbyurl?url={query}",
+      "https://www.bing.com/images/searchbyimage?cbir=sbi&imgurl={query}",
+      "https://yandex.com/images/search?rpt=imageview&url={query}",
+      "https://tineye.com/search?url={query}",
+      "https://graph.baidu.com/pcpage/index?tpl_from=pc&queryImageUrl={query}&uptype=urlsearch",
+      "https://pic.sogou.com/ris?flag=1&drag=0&query={query}"
     ];
 
     function getHostname(value) {
@@ -709,6 +727,12 @@
     youtubeCommentsButton.addEventListener("click", openYoutubeComments);
     searchIpSitesButton.addEventListener("click", function() {
       openMultipleSearches(ipSiteSearchUrls);
+    });
+    searchAnimeImageButton.addEventListener("click", function() {
+      openMultipleSearches(animeImageSearchUrls);
+    });
+    searchGeneralImageButton.addEventListener("click", function() {
+      openMultipleSearches(generalImageSearchUrls);
     });
 
     function resize() {
