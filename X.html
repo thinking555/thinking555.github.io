@@ -194,6 +194,35 @@
       column-gap:16px;
       row-gap:4px;
     }
+    .title-tooltip{
+      position:fixed;
+      left:50%;
+      bottom:15px;
+      z-index:6;
+      width:max-content;
+      max-width:calc(100% - 40px);
+      min-height:30px;
+      padding:6px 12px;
+      border:1px solid rgba(216,245,255,.68);
+      border-radius:8px;
+      color:#D8F5FF;
+      font-size:15px;
+      line-height:1.25;
+      text-align:center;
+      background:rgba(2, 8, 28, .82);
+      box-shadow:0 0 16px rgba(81,182,249,.3), inset 0 0 12px rgba(81,182,249,.08);
+      text-shadow:0 0 8px rgba(81,182,249,.4);
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+      transform:translate(-50%, 10px);
+      transition:opacity .18s ease, transform .18s ease, visibility .18s ease;
+    }
+    .title-tooltip.is-visible{
+      opacity:1;
+      visibility:visible;
+      transform:translate(-50%, 0);
+    }
     @media (max-width:1160px){
       .left-category,
       .right-category{
@@ -211,7 +240,8 @@
         width:calc(100% - 32px);
       }
       .search-actions button,
-      .placeholder-item{
+      .placeholder-item,
+      .title-tooltip{
         font-size:13px;
       }
     }
@@ -226,7 +256,8 @@
         min-height:24px;
         font-size:13px;
       }
-      .placeholder-item{
+      .placeholder-item,
+      .title-tooltip{
         min-height:24px;
         font-size:13px;
       }
@@ -237,6 +268,7 @@
 <body>
   <canvas id="matrix"></canvas>
   <div class="overlay"></div>
+  <div class="title-tooltip" id="titleTooltip" aria-hidden="true"></div>
 
   <div class="search-wrapper">
     <form class="search-box" id="searchForm">
@@ -310,6 +342,12 @@
         <button type="button" data-search-url="https://www.google.com/maps/place/{query}">谷歌地图</button>
         <button type="button" data-search-url="https://search.bilibili.com/all?keyword={query}">bilibili搜索</button>
         <button type="button" data-search-url="https://github.com/search?q={query}&type=repositories">GitHub搜索</button>
+        <button type="button" data-search-url="https://github.com/search?q={query}+in%3Aname&type=repositories" data-query-encode="plus">GH搜索名称</button>
+        <button type="button" data-search-url="https://github.com/search?q={query}+in%3Adescription&type=repositories" data-query-encode="plus">GH搜索描述</button>
+        <button type="button" data-search-url="https://github.com/search?q={query}+in%3Areadme&type=repositories" data-query-encode="plus">GH搜索说明</button>
+        <button type="button" data-search-url="https://github.com/search?q={query}+in%3Atopics&type=repositories" data-query-encode="plus">GH搜索标签</button>
+        <button type="button" data-search-url="https://github.com/search?q={query}+in%3Aname%2Creadme&type=repositories" data-query-encode="plus">GH名称+说明</button>
+        <button type="button" data-search-url="https://github.com/search?q={query}+in%3Aname%2Creadme+stars%3A1...20&type=repositories" data-query-encode="plus">GH限收藏数1-20</button>
         <button type="button" data-search-url="https://www.reddit.com/search/?q={query}">Reddit搜索</button>
         <button type="button" data-search-url="https://fast.v2ex.com/go/{query}">V2EX搜索</button>
         <button type="button" data-search-url="https://www.ebay.com/sch/i.html?_nkw={query}">eBay搜索</button>
@@ -378,6 +416,7 @@
 <button type="button" data-search-url="https://dorks.faisalahmed.me/">生成搜索语法</button>
 <button type="button" data-search-url="https://betterredditsearch.web.app/">Reddit搜索</button>
 <button type="button" data-search-url="https://cse.google.com/cse?q=+&cx=006368593537057042503:efxu7xprihg#gsc.tab=0&gsc.q=%20%E4%B8%AD%E5%9B%BD&gsc.sort=date&gsc.ref=more%3Abots" title="工具基于 Google 自定义搜索引擎，可对 Telegram、Telegraph、贴纸、语音聊天、联系人、消息、机器人和视频中进行搜索">Teledago</button>
+<button type="button" data-search-url="https://thinking555.github.io/github-search.html">GitHub 搜索指引</button>
       </div>
     </section>
   </div>
@@ -513,7 +552,9 @@
 
     const searchForm = document.getElementById("searchForm");
     const searchInput = document.getElementById("searchInput");
+    const titleTooltip = document.getElementById("titleTooltip");
     const searchButtons = document.querySelectorAll("[data-search-url]");
+    const tooltipTargets = document.querySelectorAll(".search-actions button");
     const searchAllButton = document.querySelector("[data-search-all]");
     const searchAllImagesButton = document.querySelector("[data-search-all-images]");
     const searchAllVideosButton = document.querySelector("[data-search-all-videos]");
@@ -525,6 +566,94 @@
     const searchIpSitesButton = document.querySelector("[data-search-ip-sites]");
     const searchAnimeImageButton = document.querySelector("[data-search-anime-image]");
     const searchGeneralImageButton = document.querySelector("[data-search-general-image]");
+    const tooltipTextMap = {
+      "文字内容搜索|博客搜索": "搜索 Save Web 收录的网页、博客和文章内容",
+      "文字内容搜索|飞搜": "在飞搜中搜索中文网页和内容结果",
+      "文字内容搜索|得到电子书": "在得到中搜索电子书和知识内容",
+      "文字内容搜索|油管字幕搜索": "搜索 YouTube 字幕文本，适合查找视频中出现过的话",
+      "文字内容搜索|Blogspot": "用 Google 限定搜索 Blogspot 博客内容",
+      "文字内容搜索|Substack": "用 Google 限定搜索 Substack 文章和通讯内容",
+      "文字内容搜索|Pagecord": "用 Google 限定搜索 Pagecord 页面内容",
+      "文字内容搜索|Tumblr": "用 Google 限定搜索 Tumblr 博客内容",
+      "文字内容搜索|WordPress": "用 Google 限定搜索 WordPress 站点内容",
+      "文字内容搜索|Medium": "用 Google 限定搜索 Medium 文章内容",
+      "文字内容搜索|简书": "用 Google 限定搜索简书文章内容",
+      "文字内容搜索|博客园": "用 Google 限定搜索博客园技术文章",
+      "文字内容搜索|LinkedIn": "用 Google 限定搜索 LinkedIn 页面内容",
+      "软件搜索|安卓软件搜索": "在 APKMirror 搜索安卓应用安装包",
+      "软件搜索|Steam搜索": "在 Steam 商店搜索游戏和软件",
+      "软件搜索|微软商店搜索": "在 Microsoft Store 搜索 Windows 应用",
+      "软件搜索|苹果商店搜索": "在 Apple App Store 搜索 iPhone 应用",
+      "软件搜索|在线工具搜索": "在网页在线工具站点搜索相关工具",
+      "软件搜索|在线工具搜索2": "在 QXTool 搜索网页在线工具",
+      "软件搜索|火狐扩展搜索": "在 Firefox Add-ons 搜索浏览器扩展",
+      "软件搜索|谷歌扩展搜索": "在 Chrome Web Store 搜索浏览器扩展",
+      "软件搜索|全平台软件搜索": "在 FileEagle 搜索多平台软件",
+      "软件搜索|便携软件搜索": "在 PortableApps 搜索便携软件",
+      "软件搜索|购买软件搜索": "在数码荔枝搜索付费软件",
+      "软件搜索|Mac探索": "在 Setapp 搜索 Mac 应用",
+      "软件搜索|Mac软件搜索": "在 MacHub 搜索 Mac 软件资源",
+      "软件搜索|篡改猴脚本搜索": "在 Greasy Fork 搜索用户脚本",
+      "常用搜索|维基百科搜索": "打开中文维基百科对应词条",
+      "常用搜索|OpenStreetMap": "在 OpenStreetMap 搜索地点和地图结果",
+      "常用搜索|谷歌地图": "在 Google 地图搜索地点",
+      "常用搜索|bilibili搜索": "在哔哩哔哩搜索视频和内容",
+      "常用搜索|GitHub搜索": "在 GitHub 仓库中搜索关键词",
+      "常用搜索|GH搜索名称": "在 GitHub 仓库名称中搜索关键词",
+      "常用搜索|GH搜索描述": "在 GitHub 仓库描述中搜索关键词",
+      "常用搜索|GH搜索说明": "在 GitHub README 说明中搜索关键词",
+      "常用搜索|GH搜索标签": "在 GitHub 仓库 Topics 标签中搜索关键词",
+      "常用搜索|GH名称+说明": "在 GitHub 仓库名称和 README 中搜索关键词",
+      "常用搜索|GH限收藏数1-20": "在 GitHub 名称和 README 中搜索，并限制 stars 为 1 到 20",
+      "常用搜索|Reddit搜索": "在 Reddit 搜索帖子和社区内容",
+      "常用搜索|V2EX搜索": "打开 V2EX 对应节点或关键词入口",
+      "常用搜索|eBay搜索": "在 eBay 搜索商品",
+      "常用搜索|有声书搜索": "在 Audible 搜索有声书",
+      "常用搜索|亚马逊搜索": "在 Amazon 搜索商品",
+      "常用搜索|推特热门搜索": "在 X/Twitter 搜索热门结果",
+      "常用搜索|推特精确搜索": "在 X/Twitter 用英文双引号进行精确搜索",
+      "常用搜索|推特排除搜索": "在 X/Twitter 实时搜索，并自动排除常见干扰词",
+      "常用工具|网页的备份": "搜索框输入要查找的网页链接，在 Wayback Machine 搜索网页历史备份",
+      "常用工具|档案的备份": "在 Internet Archive 搜索归档资源",
+      "常用工具|油管字幕下载": "搜索框输入 YouTube 视频链接，转往下载 YouTube 字幕",
+      "常用工具|油管评论分析": "搜索框输入 YouTube 视频链接，打开评论分析页面",
+      "常用工具|IP搜索": "搜索框输入IP地址，同时打开多个 IP 查询、信誉和风险检测网站",
+      "常用工具|网站延迟测试": "提取域名并打开 ITDOG 网站延迟测试",
+      "常用工具|动漫识图": "同时打开动漫、插画、二次元识图网站",
+      "常用工具|通用识图": "同时打开通用图片反查和中文识图网站",
+      "日常搜索|网盘集群搜索": "同时打开多个网盘资源搜索网站",
+      "日常搜索|豆瓣电影": "在豆瓣电影中搜索影视条目",
+      "日常搜索|豆瓣读书": "在豆瓣读书中搜索书籍条目",
+      "日常搜索|豆瓣小组": "在豆瓣小组中搜索讨论内容",
+      "日常搜索|IMDb": "在 IMDb 搜索影视人物和作品",
+      "日常搜索|烂番茄": "在 Rotten Tomatoes 搜索影视评分和条目",
+      "日常搜索|信标": "在 Letterboxd 搜索电影和影评内容",
+      "日常搜索|电影搜索": "在电影搜索站点查找影视资源",
+      "日常搜索|BT搜索": "搜索 BT P2P资源",
+      "日常搜索|流媒体搜索": "在 JustWatch 搜索流媒体可观看来源",
+      "日常搜索|台词搜索": "搜索影视字幕和台词内容",
+      "日常搜索|词读音搜索": "在 YouGlish 搜索英文单词读音示例",
+      "汇率换算|USD TO CNY": "用 Google 搜索美元兑换人民币",
+      "汇率换算|CNY TO USD": "用 Google 搜索人民币兑换美元",
+      "汇率换算|EUR TO CNY": "用 Google 搜索欧元兑换人民币",
+      "汇率换算|CNY TO EUR": "用 Google 搜索人民币兑换欧元",
+      "汇率换算|GBP TO CNY": "用 Google 搜索英镑兑换人民币",
+      "汇率换算|CNY TO GBP": "用 Google 搜索人民币兑换英镑",
+      "汇率换算|JPY TO CNY": "用 Google 搜索日元兑换人民币",
+      "汇率换算|CNY TO JPY": "用 Google 搜索人民币兑换日元",
+      "汇率换算|HKD TO CNY": "用 Google 搜索港币兑换人民币",
+      "汇率换算|CNY TO HKD": "用 Google 搜索人民币兑换港币",
+      "汇率换算|SGD TO CNY": "用 Google 搜索新加坡元兑换人民币",
+      "汇率换算|CNY TO SGD": "用 Google 搜索人民币兑换新加坡元",
+      "汇率换算|THB TO CNY": "用 Google 搜索泰铢兑换人民币",
+      "汇率换算|CNY TO THB": "用 Google 搜索人民币兑换泰铢",
+      "友情高效搜索|搜索工具": "打开 IntelTechniques 搜索工具集合",
+      "友情高效搜索|谷歌语法分享": "打开 Exploit-DB Google Hacking Database",
+      "友情高效搜索|谷歌达人": "打开 DorkMe 生成和探索 Google dork",
+      "友情高效搜索|生成搜索语法": "打开搜索语法生成工具",
+      "友情高效搜索|Reddit搜索": "打开 Better Reddit Search 高级搜索工具",
+      "友情高效搜索|GitHub 搜索指引": "打开本地 GitHub 搜索语法和技巧指引"
+    };
     const allSearchUrls = [
       "https://www.google.com/search?q={query}&hl=zh_CN",
       "https://www.baidu.com/s?ie=utf-8&wd={query}",
@@ -644,6 +773,9 @@
       if (formatMode === "hostname") {
         value = getHostname(value);
       }
+      if (mode === "plus") {
+        return encodeURIComponent(value).replace(/%20/g, "+");
+      }
       return mode === "uri" ? encodeURI(value) : encodeURIComponent(value);
     }
 
@@ -693,6 +825,42 @@
       if (!videoId) return;
       window.open("https://next.hadzy.com/videos/" + encodeURIComponent(videoId) + "/comments?size=20&sortBy=likeCount&direction=desc&searchTerms=&author=", "_blank");
     }
+
+    function showTitleTooltip(text) {
+      if (!text) return;
+      titleTooltip.textContent = text;
+      titleTooltip.classList.add("is-visible");
+      titleTooltip.setAttribute("aria-hidden", "false");
+    }
+
+    function hideTitleTooltip() {
+      titleTooltip.classList.remove("is-visible");
+      titleTooltip.setAttribute("aria-hidden", "true");
+    }
+
+    function getTooltipText(target) {
+      const existingTitle = target.getAttribute("title");
+      if (existingTitle) return existingTitle;
+      const category = target.closest(".search-category");
+      const categoryName = category ? category.querySelector("h2")?.textContent.trim() : "";
+      const label = target.textContent.trim();
+      return tooltipTextMap[categoryName + "|" + label] || "";
+    }
+
+    tooltipTargets.forEach(function(target) {
+      const tooltipText = getTooltipText(target);
+      if (!tooltipText) return;
+      target.dataset.tooltip = tooltipText;
+      target.removeAttribute("title");
+      target.addEventListener("mouseenter", function() {
+        showTitleTooltip(target.dataset.tooltip);
+      });
+      target.addEventListener("mouseleave", hideTitleTooltip);
+      target.addEventListener("focus", function() {
+        showTitleTooltip(target.dataset.tooltip);
+      });
+      target.addEventListener("blur", hideTitleTooltip);
+    });
 
     searchForm.addEventListener("submit", function(event) {
       event.preventDefault();
