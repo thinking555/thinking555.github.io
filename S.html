@@ -2,12 +2,19 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=1280, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>极限搜索</title>
   <style>
     :root{
-      --bg:#020514;
-      --blue:#51B6F9;
+      --bg:linear-gradient(180deg, #ffffff 0%, #f4fbf6 48%, #ffffff 100%);
+      --surface:#ffffff;
+      --surface-soft:#f4fbf6;
+      --green:#0b7a32;
+      --green-dark:#075f27;
+      --green-soft:rgba(11,122,50,.08);
+      --green-line:rgba(11,122,50,.22);
+      --green-line-strong:rgba(11,122,50,.42);
+      --green-shadow:rgba(11,122,50,.16);
     }
     *{box-sizing:border-box}
     html,body{
@@ -18,6 +25,7 @@
       min-width:1280px;
       overflow-x:auto;
       overflow-y:auto;
+      background:var(--surface);
       background:var(--bg);
       font-family:Arial, "Microsoft YaHei", sans-serif;
     }
@@ -26,26 +34,22 @@
       inset:0;
       width:100%;
       height:100%;
-      display:block;
+      display:none;
     }
     body::before{
       content:"";
       position:fixed;
       inset:0;
       pointer-events:none;
-      background:
-        radial-gradient(circle at 50% 30%, rgba(81,182,249,.12), transparent 30%),
-        radial-gradient(circle at 80% 18%, rgba(81,182,249,.09), transparent 20%),
-        linear-gradient(to bottom, rgba(255,255,255,.035) 1px, transparent 1px);
-      background-size:auto, auto, 100% 4px;
-      opacity:.55;
+      background:none;
+      opacity:0;
       z-index:1;
     }
     .overlay{
       position:fixed;
       inset:0;
       pointer-events:none;
-      background:linear-gradient(180deg, rgba(2,5,20,.12), rgba(2,5,20,.78));
+      background:linear-gradient(180deg, rgba(244,251,246,.12), rgba(244,251,246,.7));
       z-index:1;
     }
     .search-wrapper{
@@ -56,11 +60,11 @@
       z-index:3;
       width:min(620px, calc(100% - 40px));
       padding:18px;
-      border:1px solid rgba(81,182,249,.42);
+      border:1px solid var(--green-line);
       border-radius:22px;
-      background:rgba(2, 8, 28, .58);
+      background:rgba(255, 255, 255, .82);
       backdrop-filter:blur(14px);
-      box-shadow:0 0 28px rgba(81,182,249,.24), inset 0 0 20px rgba(81,182,249,.08);
+      box-shadow:0 0 28px var(--green-shadow), inset 0 0 20px rgba(11,122,50,.04);
     }
     .search-box{
       width:100%;
@@ -68,21 +72,21 @@
     .search-box input{
       width:100%;
       height:54px;
-      border:1px solid rgba(81,182,249,.55);
+      border:1px solid var(--green-line-strong);
       border-radius:16px;
       outline:none;
       padding:0 18px;
-      color:#D8F5FF;
+      color:var(--green);
       font-size:17px;
-      background:rgba(0, 15, 40, .72);
-      box-shadow:inset 0 0 16px rgba(81,182,249,.14);
+      background:rgba(255, 255, 255, .92);
+      box-shadow:inset 0 0 16px rgba(11,122,50,.05);
     }
     .search-box input::placeholder{
-      color:rgba(216,245,255,.58);
+      color:rgba(11,122,50,.52);
     }
     .search-box input:focus{
-      border-color:rgba(210,242,255,.95);
-      box-shadow:0 0 22px rgba(81,182,249,.34), inset 0 0 16px rgba(81,182,249,.18);
+      border-color:rgba(11,122,50,.78);
+      box-shadow:0 0 18px rgba(11,122,50,.18), inset 0 0 16px rgba(11,122,50,.06);
     }
     .category-zone{
       position:fixed;
@@ -121,12 +125,12 @@
     }
     .search-category h2{
       margin:0 0 14px;
-      color:#D8F5FF;
+      color:var(--green);
       font-size:14px;
       font-weight:600;
       letter-spacing:0;
       text-align:center;
-      text-shadow:0 0 12px rgba(81,182,249,.45);
+      text-shadow:0 0 10px rgba(11,122,50,.18);
     }
     .search-actions{
       display:flex;
@@ -141,20 +145,21 @@
       border:0;
       border-radius:0;
       padding:0;
-      color:#D8F5FF;
+      color:var(--green);
       font-size:15px;
       line-height:1.2;
       text-align:left;
       background:transparent;
       cursor:pointer;
-      text-shadow:0 0 10px rgba(81,182,249,.34);
-      transition:color .18s ease, text-shadow .18s ease, transform .18s ease;
+      text-shadow:0 0 8px rgba(11,122,50,.14);
+      transition:background .18s ease, color .18s ease, text-shadow .18s ease, transform .18s ease;
       word-break:break-word;
     }
     .search-actions button:hover,
     .search-actions button:focus-visible{
-      color:#FFFFFF;
-      text-shadow:0 0 16px rgba(81,182,249,.78);
+      color:var(--green-dark);
+      background:var(--green-soft);
+      text-shadow:0 0 14px rgba(11,122,50,.32);
       outline:none;
       transform:translateY(-1px);
     }
@@ -165,27 +170,27 @@
       display:flex;
       align-items:center;
       min-height:24px;
-      color:rgba(216,245,255,.42);
+      color:rgba(11,122,50,.45);
       font-size:14px;
       line-height:1.2;
-      text-shadow:0 0 10px rgba(81,182,249,.18);
+      text-shadow:0 0 8px rgba(11,122,50,.12);
     }
     .scrollable-category .search-actions{
       max-height:220px;
       overflow-y:auto;
       padding-right:6px;
       scrollbar-width:thin;
-      scrollbar-color:rgba(81,182,249,.48) rgba(81,182,249,.08);
+      scrollbar-color:rgba(11,122,50,.36) rgba(11,122,50,.08);
     }
     .scrollable-category .search-actions::-webkit-scrollbar{
       width:6px;
     }
     .scrollable-category .search-actions::-webkit-scrollbar-track{
-      background:rgba(81,182,249,.08);
+      background:rgba(11,122,50,.08);
       border-radius:999px;
     }
     .scrollable-category .search-actions::-webkit-scrollbar-thumb{
-      background:rgba(81,182,249,.48);
+      background:rgba(11,122,50,.36);
       border-radius:999px;
     }
     .ai-search .search-actions{
@@ -203,15 +208,15 @@
       max-width:calc(100% - 40px);
       min-height:30px;
       padding:6px 12px;
-      border:1px solid rgba(216,245,255,.68);
+      border:1px solid var(--green-line-strong);
       border-radius:8px;
-      color:#D8F5FF;
+      color:var(--green-dark);
       font-size:15px;
       line-height:1.25;
       text-align:center;
-      background:rgba(2, 8, 28, .82);
-      box-shadow:0 0 16px rgba(81,182,249,.3), inset 0 0 12px rgba(81,182,249,.08);
-      text-shadow:0 0 8px rgba(81,182,249,.4);
+      background:rgba(255, 255, 255, .96);
+      box-shadow:0 0 16px var(--green-shadow), inset 0 0 12px rgba(11,122,50,.04);
+      text-shadow:0 0 8px rgba(11,122,50,.18);
       opacity:0;
       visibility:hidden;
       pointer-events:none;
@@ -222,6 +227,9 @@
       opacity:1;
       visibility:visible;
       transform:translate(-50%, 0);
+    }
+    .mobile-category-nav{
+      display:none;
     }
     @media (max-width:1160px){
       .left-category,
@@ -245,21 +253,129 @@
         font-size:13px;
       }
     }
-    @media (max-width:520px){
+    @media (max-width:768px){
+      html,body{
+        height:auto;
+        min-width:0;
+        overflow-x:hidden;
+      }
+      body{
+        min-height:100vh;
+        padding:18px 68px 116px 14px;
+      }
       .search-wrapper{
-        width:620px;
-        padding:14px;
+        position:fixed;
+        left:12px;
+        right:12px;
+        top:auto;
+        bottom:12px;
+        width:auto;
+        padding:10px;
         border-radius:18px;
+        transform:none;
+        z-index:8;
       }
       .search-box input{height:50px;font-size:15px;padding:0 14px}
+      .category-zone{
+        position:relative;
+        left:auto;
+        right:auto;
+        top:auto;
+        bottom:auto;
+        width:100%;
+        transform:none;
+        margin:0 0 12px;
+      }
+      .top-categories,
+      .bottom-categories{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:12px;
+        width:100%;
+      }
+      .left-category,
+      .right-category{
+        width:100%;
+      }
+      .search-category{
+        padding:14px;
+        border:1px solid var(--green-line);
+        border-radius:12px;
+        background:rgba(255,255,255,.78);
+        box-shadow:0 10px 24px rgba(11,122,50,.08);
+        scroll-margin-top:18px;
+      }
+      .search-category h2{
+        margin-bottom:10px;
+        text-align:left;
+      }
       .search-actions button{
-        min-height:24px;
+        min-height:32px;
+        border-radius:8px;
+        padding:5px 8px;
         font-size:13px;
+      }
+      .scrollable-category .search-actions{
+        max-height:none;
+        overflow:visible;
+        padding-right:0;
       }
       .placeholder-item,
       .title-tooltip{
         min-height:24px;
         font-size:13px;
+      }
+      .title-tooltip{
+        bottom:92px;
+      }
+      .mobile-category-nav{
+        position:fixed;
+        top:12px;
+        right:8px;
+        bottom:94px;
+        z-index:9;
+        display:flex;
+        flex-direction:column;
+        gap:6px;
+        width:48px;
+        padding:6px;
+        border:1px solid var(--green-line);
+        border-radius:16px;
+        background:rgba(255,255,255,.9);
+        box-shadow:0 12px 28px rgba(11,122,50,.14);
+        overflow-y:auto;
+        overscroll-behavior:contain;
+        scrollbar-width:none;
+      }
+      .mobile-category-nav::-webkit-scrollbar{
+        display:none;
+      }
+      .mobile-category-nav button{
+        flex:0 0 auto;
+        width:100%;
+        min-height:32px;
+        border:1px solid var(--green-line);
+        border-radius:10px;
+        padding:0 3px;
+        color:var(--green);
+        font-size:11px;
+        font-weight:700;
+        line-height:1.1;
+        text-align:center;
+        background:var(--surface-soft);
+        cursor:pointer;
+      }
+      .mobile-category-nav button:focus-visible,
+      .mobile-category-nav button:hover{
+        color:var(--green-dark);
+        border-color:var(--green-line-strong);
+        background:var(--green-soft);
+        outline:none;
+      }
+      .mobile-category-nav button.is-active{
+        color:#fff;
+        border-color:var(--green);
+        background:var(--green);
       }
     }
 
@@ -555,7 +671,7 @@
     let columns = 0;
     let drops = [];
     const chars = "01アイウエオカキクケコサシスセソABCDEFGHIJKLMNOPQRSTUVWXYZ<>/*+-=#%&{}[]";
-    const BLUE = "#51B6F9";
+    const GREEN = "#0b7a32";
 
 
     const searchForm = document.getElementById("searchForm");
@@ -987,6 +1103,90 @@
       openMultipleSearches(secondaryUsernameSiteSearchUrls);
     });
 
+    function getCategoryShortcut(title) {
+      const text = title.trim();
+      const compact = text.replace(/\s+/g, "");
+      if (/^[A-Za-z]/.test(compact)) {
+        return compact.slice(0, 4);
+      }
+      if (compact.includes("文字")) return "文字";
+      if (compact.includes("书籍")) return "书籍";
+      if (compact.includes("软件")) return "软件";
+      if (compact.includes("侦探")) return "侦探";
+      if (compact.includes("常用搜索")) return "常搜";
+      if (compact.includes("常用工具")) return "工具";
+      if (compact.includes("日常")) return "日常";
+      if (compact.includes("汇率")) return "汇率";
+      if (compact.includes("友情")) return "友情";
+      if (compact.includes("添加")) return "添加";
+      if (compact.includes("视频")) return "视频";
+      if (compact.includes("谷歌")) return "谷歌";
+      if (compact.includes("百度")) return "百度";
+      if (compact.includes("搜狗")) return "搜狗";
+      if (compact.includes("必应")) return "必应";
+      if (compact.includes("聚合")) return "聚合";
+      if (compact.includes("平台")) return "平台";
+      return compact.slice(0, 2);
+    }
+
+    function setupMobileCategoryNav() {
+      const categories = Array.from(document.querySelectorAll(".search-category")).filter(function(category) {
+        const title = category.querySelector("h2");
+        return title && title.textContent.trim();
+      });
+      if (!categories.length) return;
+
+      let nav = document.querySelector(".mobile-category-nav");
+      if (!nav) {
+        nav = document.createElement("nav");
+        nav.className = "mobile-category-nav";
+        nav.setAttribute("aria-label", "手机端分类跳转");
+        document.body.appendChild(nav);
+      }
+      nav.textContent = "";
+
+      const buttons = categories.map(function(category, index) {
+        const title = category.querySelector("h2").textContent.trim();
+        if (!category.id) {
+          category.id = "xs-category-" + (index + 1);
+        }
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = getCategoryShortcut(title);
+        button.setAttribute("aria-label", "跳转到" + title);
+        button.addEventListener("click", function() {
+          category.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        nav.appendChild(button);
+        return { category: category, button: button };
+      });
+      const defaultCategory = buttons.find(function(item) {
+        return item.category.querySelector("h2").textContent.trim() === "常用搜索";
+      });
+
+      function updateActiveButton() {
+        if (window.innerWidth > 768) return;
+        let active = buttons[0];
+        buttons.forEach(function(item) {
+          if (item.category.getBoundingClientRect().top <= 80) {
+            active = item;
+          }
+        });
+        buttons.forEach(function(item) {
+          item.button.classList.toggle("is-active", item === active);
+        });
+      }
+
+      window.addEventListener("scroll", updateActiveButton, { passive: true });
+      window.addEventListener("resize", updateActiveButton);
+      if (defaultCategory && window.innerWidth <= 768 && !window.location.hash) {
+        defaultCategory.category.scrollIntoView({ behavior: "auto", block: "start" });
+      }
+      updateActiveButton();
+    }
+
+    setupMobileCategoryNav();
+
     function resize() {
       width = window.innerWidth;
       height = window.innerHeight;
@@ -1001,7 +1201,7 @@
     }
 
     function draw() {
-      ctx.fillStyle = "rgba(2, 5, 20, 0.10)";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.10)";
       ctx.fillRect(0, 0, width, height);
       ctx.font = fontSize + "px monospace";
 
@@ -1012,13 +1212,13 @@
         const glow = Math.random();
 
         if (glow > 0.97) {
-          ctx.fillStyle = "rgba(210, 242, 255, 0.95)";
+          ctx.fillStyle = "rgba(11, 122, 50, 0.95)";
           ctx.shadowBlur = 18;
-          ctx.shadowColor = BLUE;
+          ctx.shadowColor = GREEN;
         } else {
-          ctx.fillStyle = glow > 0.85 ? "rgba(120, 210, 255, 0.9)" : "rgba(81, 182, 249, 0.72)";
+          ctx.fillStyle = glow > 0.85 ? "rgba(11, 122, 50, 0.9)" : "rgba(25, 110, 55, 0.72)";
           ctx.shadowBlur = 8;
-          ctx.shadowColor = "rgba(81,182,249,0.45)";
+          ctx.shadowColor = "rgba(11,122,50,0.45)";
         }
 
         ctx.fillText(text, x, y);
