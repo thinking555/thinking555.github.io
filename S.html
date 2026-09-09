@@ -453,14 +453,14 @@
       <div class="search-actions">
         <button type="button" data-search-username-sites title="输入用户名，批量打开常见社交、社区、开发平台的用户主页">常用用户名查找</button>
         <button type="button" data-search-secondary-username-sites title="输入用户名，批量打开开发、创作、赞助、游戏等平台的用户主页">次用用户名查找</button>
-        <button type="button" data-search-url="https://www.imei.info/zh/?imei={query}" title="输入15位IMEI号码，查询设备识别信息">IMEI查询</button>
-        <button type="button" data-search-url="https://www.ip138.com/mobile.asp?mobile={query}&action=mobile" title="输入手机号码，查询手机归属地">手机归属地查询</button>
-        <button type="button" data-search-url="https://weibo.com/u/{query}" title="输入微博数字UID，打开对应微博用户页面">微博UID查询</button>
+        <button type="button" data-search-url="https://www.imei.info/zh/?imei={query}" data-search-batch title="输入15位IMEI号码，查询设备识别信息">IMEI查询</button>
+        <button type="button" data-search-url="https://www.ip138.com/mobile.asp?mobile={query}&action=mobile" data-search-batch title="输入手机号码，查询手机归属地">手机归属地查询</button>
+        <button type="button" data-search-url="https://weibo.com/u/{query}" data-search-batch title="输入微博数字UID，打开对应微博用户页面">微博UID查询</button>
         <button type="button" data-search-url="https://www.openstreetmap.org/search?query={query}" data-query-encode="plus" title="输入十进制坐标，格式：纬度 经度，例如 34.3416 108.9398（纬度在前，经度在后）">纬度经度查询</button>
         <button type="button" data-search-url="https://www.google.com/maps/place/{query}" data-query-encode="plus" title="输入十进制坐标，格式：纬度 经度，例如 34.3416 108.9398（纬度在前，经度在后）">纬度经度谷歌</button>
-        <button type="button" data-search-url="https://q.qlogo.cn/g?b=qq&nk={query}&s=640" title="输入QQ号，打开对应的QQ头像">QQ头像查看</button>
-        <button type="button" data-search-url="https://uapis.cn/api/v1/social/qq/userinfo?qq={query}" title="输入QQ号，查询QQ详细信息">QQ详细信息</button>
-        <button type="button" data-search-url="https://uapis.cn/api/v1/social/qq/groupinfo?group_id={query}" title="输入5–12位纯数字的QQ群号，查询QQ群详细信息">QQ群号信息</button>
+        <button type="button" data-search-url="https://q.qlogo.cn/g?b=qq&nk={query}&s=640" data-search-batch title="输入QQ号，打开对应的QQ头像">QQ头像查看</button>
+        <button type="button" data-search-url="https://uapis.cn/api/v1/social/qq/userinfo?qq={query}" data-search-batch title="输入QQ号，查询QQ详细信息">QQ详细信息</button>
+        <button type="button" data-search-url="https://uapis.cn/api/v1/social/qq/groupinfo?group_id={query}" data-search-batch title="输入5–12位纯数字的QQ群号，查询QQ群详细信息">QQ群号信息</button>
       </div>
     </section>
     <section class="search-category scrollable-category">
@@ -988,15 +988,18 @@
       return mode === "uri" ? encodeURI(value) : encodeURIComponent(value);
     }
 
-    function openSearch(urlTemplate, encodeMode, wrapMode, formatMode) {
+    function openSearch(urlTemplate, encodeMode, wrapMode, formatMode, batchMode) {
       if (!urlTemplate.includes("{query}")) {
         window.open(urlTemplate, "_blank");
         return;
       }
       const keyword = searchInput.value.trim();
       if (!keyword) return;
-      const query = encodeKeyword(keyword, encodeMode, wrapMode, formatMode);
-      window.open(urlTemplate.replace("{query}", query), "_blank");
+      const keywords = batchMode ? keyword.split(/\s+/).filter(Boolean) : [keyword];
+      keywords.forEach(function(item) {
+        const query = encodeKeyword(item, encodeMode, wrapMode, formatMode);
+        window.open(urlTemplate.replace("{query}", query), "_blank");
+      });
     }
 
     function openMultipleSearches(urlTemplates) {
@@ -1078,7 +1081,7 @@
 
     searchButtons.forEach(function(button) {
       button.addEventListener("click", function() {
-        openSearch(button.dataset.searchUrl, button.dataset.queryEncode, button.dataset.queryWrap, button.dataset.queryFormat);
+        openSearch(button.dataset.searchUrl, button.dataset.queryEncode, button.dataset.queryWrap, button.dataset.queryFormat, button.hasAttribute("data-search-batch"));
       });
     });
 
