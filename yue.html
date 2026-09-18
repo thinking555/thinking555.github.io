@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#102c2b">
+  <meta name="description" content="竹月——把收藏的笔记，读成自己的收获。将本地 Markdown 与 TXT 笔记整理成大字卡片，轻松阅读、安心保存。">
+  <title>竹月 · 把收藏的笔记，读成自己的收获</title>
+  <style>
+    :root{color-scheme:dark;--deep:#092525;--forest:#133a36;--forest2:#1b4b43;--cream:#f7f0d9;--muted:#c7d8c8;--moon:#ffe8ad;--jade:#cae6c4;--line:rgba(235,243,216,.17)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--deep);color:var(--cream);font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}button{font:inherit}::selection{background:#e1d49b;color:#173a31}
+    .site{overflow:hidden;min-height:100vh;background:linear-gradient(180deg,#102d30 0%,#123a36 35%,#092523 100%)}
+    .wrap{width:min(1160px,calc(100% - 48px));margin:auto}
+    .nav{position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;padding:26px 0;gap:16px}
+    .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-family:"Songti SC","Noto Serif SC","SimSun",serif;font-size:22px;letter-spacing:.18em;font-weight:700}
+    .brand-mark{display:grid;place-items:center;width:37px;height:37px;border:1px solid #d6dcad87;border-radius:13px;background:linear-gradient(140deg,#ecdeab30,#bce2b010)}
+    .brand-mark svg{width:26px;height:26px}.nav-links{display:flex;align-items:center;gap:31px;font-size:13px;color:#d1decf}.nav-links a{text-decoration:none;transition:color .2s}.nav-links a:hover{color:#ffe5a2}
+    .nav-download{padding:10px 18px!important;border:1px solid rgba(255,238,179,.38);border-radius:99px;color:#ffe7ad!important;background:rgba(255,238,179,.07)}
+    .hero{position:relative;isolation:isolate;min-height:790px;padding:89px 0 110px;display:flex;align-items:center}
+    .night{position:absolute;inset:-110px 0 0;overflow:hidden;pointer-events:none;z-index:-2;background:radial-gradient(ellipse at 70% 24%,rgba(243,226,165,.105),transparent 35%),linear-gradient(135deg,#102e32 0%,#173c3b 52%,#122d29 100%)}
+    .night:after{content:"";position:absolute;inset:0;background-image:radial-gradient(1px 1px at 13% 20%,#fff7d6cc 90%,transparent),radial-gradient(2px 2px at 34% 13%,#fff7d699 90%,transparent),radial-gradient(1px 1px at 47% 35%,#fff7d699 90%,transparent),radial-gradient(1px 1px at 84% 40%,#fff7d677 90%,transparent),radial-gradient(1px 1px at 94% 12%,#fff7d688 90%,transparent);opacity:.7}
+    .moon{position:absolute;top:82px;left:calc(50% + 146px);width:305px;height:305px;border-radius:50%;background:radial-gradient(circle at 42% 36%,#fff8df 0%,#fceec9 49%,#ecd6a1 100%);box-shadow:0 0 0 26px rgba(250,228,163,.025),0 0 0 75px rgba(250,228,163,.025),0 0 105px 26px rgba(250,222,157,.17),0 0 225px 100px rgba(250,222,157,.09);filter:drop-shadow(0 5px 14px #d5c48b22);animation:moon-breathe 9s ease-in-out infinite}
+    .moon:before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 22% 50%,#e3cd9933 0 7%,transparent 8%),radial-gradient(circle at 58% 70%,#e4cda633 0 9%,transparent 10%),radial-gradient(circle at 68% 22%,#dfc99b28 0 5%,transparent 6%)}
+    .bamboo{position:absolute;z-index:0;height:780px;opacity:.75;filter:drop-shadow(0 8px 8px #061e1b77)}.bamboo.left{left:-83px;bottom:-101px;width:305px}.bamboo.right{right:-42px;bottom:-86px;width:350px;transform:scaleX(-1);opacity:.55}.bamboo path,.bamboo line{stroke-linecap:round;stroke-linejoin:round}
+    .mist{position:absolute;left:-10%;bottom:0;width:120%;height:160px;background:linear-gradient(0deg,#0b2826,rgba(15,46,43,.88) 42%,transparent);filter:blur(11px)}
+    .hero-inner{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:36px;position:relative;z-index:2}
+    .hero-copy{position:relative;z-index:2;padding-bottom:34px}.eyebrow{display:inline-flex;align-items:center;gap:10px;color:#e9d9ad;font-size:12px;letter-spacing:.3em;font-weight:500}.eyebrow:before{content:"";width:25px;height:1px;background:#dfce9a}
+    h1,h2,h3,p{margin-top:0}.hero h1{margin:24px 0 22px;font-family:"Songti SC","Noto Serif SC","SimSun",serif;font-size:clamp(70px,8.1vw,115px);font-weight:600;letter-spacing:.15em;line-height:1.23;text-shadow:0 12px 36px #02191448}.hero h1 .light{color:#f5e7b5}.hero h1:after{content:"";display:block;width:76px;height:2px;background:linear-gradient(90deg,#efdca4,transparent);margin:28px 0 0 5px}
+    .hero-tagline{font-family:"Songti SC","Noto Serif SC",serif;font-size:clamp(22px,2.5vw,30px);line-height:1.6;letter-spacing:.09em;margin-bottom:17px}.hero-description{max-width:465px;font-size:15px;line-height:2.1;color:#d0ddcf;margin-bottom:31px}
+    .actions{display:flex;flex-wrap:wrap;gap:13px;align-items:center}.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:55px;border-radius:12px;padding:0 25px;font-size:15px;font-weight:650;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer}.btn:hover{transform:translateY(-3px)}.btn-primary{background:linear-gradient(135deg,#fbe9ba,#dfd6a7);color:#18372f;box-shadow:0 10px 36px #080e0b39}.btn-primary:hover{box-shadow:0 13px 37px #fbe9ba31}.btn-secondary{border:1px solid #b8cfb350;background:rgba(9,41,35,.38);color:#e2edda}.btn svg{width:19px;height:19px;flex-shrink:0}.meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:19px;font-size:12px;color:#b9ccbb}.meta .dot{width:3px;height:3px;border-radius:50%;background:#b9ccbb9e;margin:0 4px}
+    .scene{position:relative;display:grid;place-items:center;min-height:585px;perspective:1000px}.scene:before{content:"";position:absolute;width:390px;height:460px;border-radius:50%;background:radial-gradient(ellipse,#eadea71e,transparent 66%);filter:blur(22px);transform:translate(0,45px)}
+    .phone{position:relative;width:273px;height:555px;padding:10px;border:1px solid #d1d3a750;border-radius:39px;background:linear-gradient(145deg,#31504a,#0c2424 46%,#34544c);box-shadow:24px 35px 65px #031614a6,0 0 0 1px #ffffff12 inset, -10px -6px 47px #f5e8bb10;transform:rotate(5deg) translate(1px,16px);animation:float 7s ease-in-out infinite}
+    .phone:before{content:"";position:absolute;right:-3px;top:120px;width:3px;height:64px;background:#678077;border-radius:0 3px 3px 0}.phone-screen{height:100%;overflow:hidden;border-radius:30px;background:linear-gradient(155deg,#f9f5e7 0%,#eee9d5 100%);color:#27413a;padding:21px 21px 16px;display:flex;flex-direction:column}
+    .status{display:flex;justify-content:space-between;align-items:center;color:#537063;font-size:9px;font-weight:800;letter-spacing:.04em;padding:0 3px}.speaker{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:70px;height:13px;background:#18312e;border-radius:99px}.screen-head{display:flex;align-items:center;justify-content:space-between;margin:30px 0 31px;font-size:11px;color:#687d6d}.screen-head b{font-family:"Songti SC","Noto Serif SC",serif;font-size:19px;color:#315446;letter-spacing:.12em}.screen-head span{font-size:16px;color:#7c9d89}
+    .reading-label{display:flex;align-items:center;gap:8px;font-size:9px;color:#8a9c83;letter-spacing:.12em}.reading-label:before{content:"";display:block;width:18px;height:1px;background:#a7af8d}.reading-title{margin:28px 0 22px;font:600 29px/1.5 "Songti SC","Noto Serif SC","SimSun",serif;color:#324b3a;letter-spacing:.05em}.reading-text{font:16px/2.05 "Songti SC","Noto Serif SC","SimSun",serif;letter-spacing:.065em;color:#506653}.reading-text p{margin-bottom:16px}.screen-spacer{flex:1}.screen-rule{height:1px;background:#c8d0b6;margin-bottom:16px}.screen-footer{display:flex;justify-content:space-between;font-size:10px;color:#829681}.progress{height:3px;background:#d6ddca;border-radius:4px;margin-top:12px;overflow:hidden}.progress:after{content:"";display:block;width:35%;height:100%;background:#8dab88}.home-indicator{height:4px;width:80px;border-radius:7px;background:#9fac9d;margin:16px auto 0}
+    .float-note{position:absolute;z-index:3;right:4%;bottom:37px;display:flex;align-items:center;gap:10px;padding:13px 15px;border:1px solid #e7ebc34a;border-radius:12px;background:#213f38d6;backdrop-filter:blur(16px);box-shadow:0 12px 42px #071c1a55;font-size:12px;color:#eee9d3}.float-note svg{width:22px;height:22px;color:#e7d79e}.float-note strong{display:block;font-size:13px;margin-bottom:3px}.float-note span{color:#b9cdbb}
+    .section{position:relative;padding:112px 0}.section-intro{text-align:center;margin-bottom:49px}.section-kicker{display:block;font-size:11px;letter-spacing:.28em;color:#dfd09d;margin-bottom:17px}.section h2{font:600 clamp(31px,4vw,44px)/1.4 "Songti SC","Noto Serif SC","SimSun",serif;letter-spacing:.07em;margin-bottom:16px}.section-intro p{color:#b9cdbf;font-size:14px;line-height:1.9}.features{border-top:1px solid var(--line);background:linear-gradient(180deg,#102e2c,#0c2826)}.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.feature{min-height:238px;padding:30px 27px;border:1px solid #dfe9cf1b;border-radius:17px;background:linear-gradient(145deg,#ffffff0d,#ffffff04);transition:transform .2s,border-color .2s}.feature:hover{transform:translateY(-4px);border-color:#f2e1a54d}.feature-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:#b5d4ad12;border:1px solid #b5d4ad28;color:#e9dba7;margin-bottom:24px}.feature-icon svg{width:23px;height:23px}.feature h3{font-size:17px;font-weight:600;margin-bottom:11px;letter-spacing:.035em}.feature p{color:#b9cbc0;font-size:13px;line-height:1.9;margin:0}.note-strip{margin-top:22px;padding:22px 28px;border:1px solid #e7dbaa24;border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:22px;background:radial-gradient(circle at right,#e1d6a012,transparent 62%)}.note-strip strong{font:600 18px "Songti SC","Noto Serif SC",serif;letter-spacing:.04em}.note-strip p{margin:7px 0 0;font-size:12px;line-height:1.8;color:#b9cbc0}.note-strip .badge{white-space:nowrap;color:#e6d8a7;border:1px solid #e6d8a748;padding:10px 14px;border-radius:99px;font-size:12px}
+    .closing{border-top:1px solid var(--line);padding:100px 0 116px;text-align:center;background:radial-gradient(ellipse at 50% 10%,#f3df9a14,transparent 60%)}.closing-symbol{display:grid;place-items:center;width:65px;height:65px;border-radius:50%;margin:0 auto 24px;background:#eedfa51b;box-shadow:0 0 45px #eedfa513}.closing-symbol svg{width:38px;height:38px}.closing h2{font:600 clamp(28px,4vw,42px)/1.6 "Songti SC","Noto Serif SC",serif;letter-spacing:.08em;margin-bottom:13px}.closing p{font-size:14px;line-height:1.9;color:#bccfbd;margin-bottom:28px}.closing .btn{min-width:205px}.closing-small{font-size:11px!important;margin:17px 0 0!important;color:#91aa9d!important}
+    footer{border-top:1px solid var(--line);padding:28px 0 36px;color:#a2b8aa;font-size:12px}.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}footer a{text-decoration:none;color:#cbd7b9}footer a:hover{text-decoration:underline}.toast{position:fixed;z-index:20;bottom:24px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;padding:12px 20px;background:#edf0dd;color:#183b30;border-radius:9px;font-size:13px;box-shadow:0 10px 28px #0004;transition:opacity .2s,transform .2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @keyframes float{0%,100%{transform:rotate(5deg) translate(1px,16px)}50%{transform:rotate(4deg) translate(1px,3px)}}@keyframes moon-breathe{0%,100%{opacity:1}50%{opacity:.94}}
+    @media(max-width:930px){.moon{left:58%;top:126px;width:255px;height:255px}.hero{min-height:710px;padding:60px 0 75px}.hero-inner{gap:6px}.scene{min-height:530px}.phone{transform:rotate(4deg) scale(.88)}.float-note{right:-10px;bottom:56px}.bamboo.left{left:-135px}.bamboo.right{right:-140px}.feature{padding:26px 21px}}
+    @media(max-width:700px){.wrap{width:min(100% - 38px,500px)}.nav{padding:21px 0}.nav-links{gap:16px}.nav-links a:not(.nav-download){display:none}.nav-download{padding:9px 14px!important}.hero{padding:60px 0 67px;min-height:0}.hero-inner{grid-template-columns:1fr;gap:0}.hero-copy{padding-bottom:6px}.hero h1{font-size:78px;margin:22px 0 14px}.hero h1:after{margin-top:17px}.hero-tagline{font-size:23px;margin-bottom:13px}.hero-description{font-size:14px;max-width:430px;line-height:1.9;margin-bottom:25px}.moon{top:257px;left:auto;right:-83px;width:245px;height:245px;opacity:.78}.bamboo.left{height:600px;width:230px;left:-127px;bottom:115px;opacity:.46}.bamboo.right{height:600px;width:260px;right:-156px;bottom:-85px;opacity:.44}.scene{min-height:515px;margin-top:16px}.phone{animation:none;transform:rotate(4deg) scale(.91) translateY(-8px)}.float-note{right:1%;bottom:24px}.section{padding:82px 0}.section-intro{margin-bottom:31px}.feature-grid{grid-template-columns:1fr 1fr;gap:12px}.feature{min-height:220px;padding:22px 19px}.feature-icon{margin-bottom:17px}.feature h3{font-size:16px}.note-strip{flex-direction:column;align-items:flex-start}.closing{padding:81px 0 90px}.footer-inner{justify-content:center;text-align:center}}
+    @media(max-width:460px){.wrap{width:calc(100% - 34px)}.hero h1{font-size:69px}.hero-tagline{font-size:21px}.btn{min-height:51px;padding:0 18px;font-size:14px}.btn-secondary{padding:0 14px}.meta{font-size:11px}.feature-grid{grid-template-columns:1fr}.feature{min-height:0;padding:24px;display:grid;grid-template-columns:46px 1fr;column-gap:15px}.feature-icon{grid-row:span 2;margin:0}.feature h3{margin:0 0 7px}.feature p{grid-column:2}.scene{min-height:494px}.phone{transform:rotate(4deg) scale(.84) translateY(-24px)}.float-note{bottom:18px;right:0}.moon{right:-100px;top:305px;width:230px;height:230px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="site">
+  <header class="wrap nav">
+    <a class="brand" href="#top" aria-label="竹月 首页">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="19" cy="12" r="7" fill="#f7e2a6"/><path d="M8 27V5m-4 7h8M5 20h7m-4-8 8-5m-8 13 9-5" stroke="#b1d4af" stroke-width="1.7" stroke-linecap="round"/><path d="M16 7c5-5 8-4 9-2-4 4-6 4-9 2ZM17 15c5-2 8-1 8 1-3 2-6 2-8-1Z" fill="#b1d4af"/></svg></span>竹月
+    </a>
+    <nav class="nav-links" aria-label="页面导航"><a href="#features">功能介绍</a><a href="#privacy">本地与备份</a><a class="nav-download" href="https://raw.githubusercontent.com/thinking555/app/main/%E7%AB%B9%E6%9C%88.apk">下载应用 ↗</a></nav>
+  </header>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="night" aria-hidden="true"><div class="moon"></div>
+        <svg class="bamboo left" viewBox="0 0 300 780" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g stroke="#173c34" stroke-width="12"><path d="M59 790 82 -30M168 790 149 -45M245 790 280 25"/></g>
+          <g stroke="#3c6350" stroke-width="2.5"><path d="m63 625 35 1m-29-155 37 2M74 321l38 3M78 172l37 2m48 450 38-1m-41-166 39-3m-42-165 41-2m-32-171 38-3m18 537 41 1m-35-172 40 2m-35-162 40 1"/></g>
+          <g stroke="#294e3f" stroke-width="3"><path d="m77 175 90-88m-92 238 112-72m-120 221 94-68m-98 216 87-50m8-455-107-89m110 258 92-103m-90 271-130-85m138 247 96-93m-22-317-118-110m110 260 81-76m-86 181-112-103"/></g>
+          <g fill="#2b5141"><path d="M167 87Q124 67 110 21q46 14 57 66ZM155 97Q182 39 230 37q-21 40-75 60ZM187 252q-57-3-86-43 57-3 86 43ZM186 258q18-49 68-61-7 42-68 61ZM162 405q-55-8-81-55 49 0 81 55ZM161 414q30-46 85-48-24 36-85 48ZM145 570Q89 557 70 514q53 7 75 56ZM146 575q33-37 85-32-36 30-85 32ZM53 27q-41 1-56-31 43-5 56 31ZM241 179q-48-9-60-51 42 9 60 51ZM244 184q25-43 75-46-20 35-75 46ZM263 431q-50-10-66-57 47 11 66 57ZM266 434q20-42 60-41-13 34-60 41Z"/></g>
+          <g fill="#1c4438"><path d="M79 325Q35 294 33 245q46 31 46 80ZM77 330q51-43 94-29-40 34-94 29ZM71 473Q16 456 8 409q50 11 63 64ZM72 478q41-36 86-26-33 27-86 26ZM155 288q-45-25-52-72 48 22 52 72ZM164 624q-48-17-61-61 46 15 61 61ZM246 624q-45-32-41-79 43 27 41 79Z"/></g>
+        </svg>
+        <svg class="bamboo right" viewBox="0 0 300 780" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke="#1d473a" stroke-width="13"><path d="M43 792 69 -30M140 790 167 -22M259 791 239 -29"/></g><g stroke="#4b7156" stroke-width="2"><path d="m51 600 31 1m-28-163 34 1m-29-158 34 1m-28-150 32 1m58 485 35 1m-33-160 37 1m-29-160 37 2m-29-150 36 1m50 485 35-2m-37-162 35-1m-37-160 35-1"/></g><g stroke="#285240" stroke-width="3"><path d="m65 130 97-85m-104 237 102-82M52 441l104-77M44 604l112-84m11-367-100-65m90 224 92-96m-99 251-108-78m105 232 102-95m-8-401-94-83m102 241 91-80m-85 239-92-77"/></g><g fill="#315c47"><path d="M160 45Q104 28 94-19q51 14 66 64ZM160 52q32-50 77-45-23 37-77 45ZM158 199Q101 193 77 148q52 4 81 51ZM159 207q27-47 76-47-22 36-76 47ZM155 366Q101 357 80 317q51 2 75 49ZM156 374q40-47 88-38-31 37-88 38ZM157 521q-52-12-68-55 53 11 68 55ZM158 531q32-45 81-40-24 34-81 40ZM247 219Q202 202 190 155q48 18 57 64ZM248 229q22-43 68-44-20 36-68 44ZM251 442q-51-14-64-57 46 8 64 57ZM250 452q31-49 77-42-26 37-77 42Z"/></g><g fill="#20493b"><path d="M63 282Q16 268 4 220q48 16 59 62ZM64 290q38-37 85-29-34 31-85 29ZM54 441Q6 423-3 378q47 11 57 63ZM55 449q40-43 91-32-33 30-91 32ZM44 605Q-7 586-13 538q51 14 57 67ZM46 615q40-39 86-28-36 28-86 28ZM245 607q-50-13-70-58 51 12 70 58Z"/></g></svg>
+        <div class="mist"></div>
+      </div>
+      <div class="wrap hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow">把好文字，留在日常里</div>
+          <h1 id="hero-title">竹<span class="light">月</span></h1>
+          <p class="hero-tagline">把收藏的笔记，<br>读成自己的收获。</p>
+          <p class="hero-description">让文件夹里的 Markdown 和 TXT 笔记，变成一张张适合慢慢读的大字卡片。上下滑动，读完一篇；轻点卡片，随时回到原文。</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://raw.githubusercontent.com/thinking555/app/main/%E7%AB%B9%E6%9C%88.apk" aria-label="直接下载竹月 APK"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg>立即下载 · APK</a>
+            <a class="btn btn-secondary" href="#features">了解竹月 <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="meta"><span>Android 8.0 及以上</span><span class="dot"></span><span>本地保存</span><span class="dot"></span><span>免费获取安装包</span></div>
+        </div>
+        <div class="scene" aria-label="竹月阅读界面示意">
+          <div class="phone" aria-hidden="true"><div class="speaker"></div><div class="phone-screen">
+            <div class="status"><span>9:41</span><span>●●● ▰</span></div>
+            <div class="screen-head"><span>☰</span><b>竹月</b><span>☾</span></div>
+            <div class="reading-label">今日 · 读一点</div>
+            <div class="reading-title">好好读过的文字，<br>会在心里生根。</div>
+            <div class="reading-text"><p>有些句子，值得从收藏夹里走出来。</p><p>把它们读一遍，再读一遍。让片刻安静，成为每天的小小收获。</p></div>
+            <div class="screen-spacer"></div><div class="screen-rule"></div>
+            <div class="screen-footer"><span>向上滑动 · 继续阅读</span><span>03 / 12</span></div><div class="progress"></div><div class="home-indicator"></div>
+          </div></div>
+          <div class="float-note" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2.5 14.5 9l7 3-7 3-2.5 6.5L9.5 15l-7-3 7-3L12 2.5Z"/></svg><div><strong>每天读一点</strong><span>让收藏，慢慢变成收获</span></div></div>
+        </div>
+      </div>
+    </section>
+    <section id="features" class="section features" aria-labelledby="features-title"><div class="wrap">
+      <div class="section-intro"><span class="section-kicker">A QUIETER WAY TO READ</span><h2 id="features-title">收藏过的，都值得再读一遍</h2><p>不改变你的笔记习惯，只让阅读变得更轻松。</p></div>
+      <div class="feature-grid">
+        <article class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div><h3>大字卡片，轻松阅读</h3><p>上下滑动，沉浸地读完一篇；点击卡片，可查看全文、编辑原文。</p></article>
+        <article class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v11H3V6Z"/><path d="M7 12h10m-10 4h6"/></svg></div><h3>原来的文件夹，照样用</h3><p>支持 Markdown、TXT、嵌套文件夹及 Markdown 图片，不必重新整理收藏。</p></article>
+        <article class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8"/></svg></div><h3>阅读节奏，由你决定</h3><p>自选字体大小、界面颜色与本地音乐，把阅读调成喜欢的样子。</p></article>
+        <article class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="12" height="11" rx="2"/><path d="M9 10V7a3 3 0 0 1 6 0v3m-3 4v3"/></svg></div><h3>专注，也可以有回报</h3><p>设置应用限制，通过阅读获得使用时间，让注意力回到真正想看的内容。</p></article>
+        <article class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3 6 6.5 1-4.7 4.7L18 21l-6-3.2L6 21l1.2-7.3L2.5 9 9 8l3-6Z"/></svg></div><h3>每次翻开，都有新发现</h3><p>每轮阅读都会换个顺序；用成就记录，看见一点一点的坚持。</p></article>
+        <article class="feature"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V3m-4 4 4-4 4 4M4 14v6h16v-6"/><path d="M7 11h10"/></svg></div><h3>随时备份，轻松分享</h3><p>笔记、图片和附件按原路径导出为 ZIP；喜欢的笔记，也可一键分享为文字。</p></article>
+      </div>
+      <div class="note-strip" id="privacy"><div><strong>你的文字，留在你选择的文件夹里。</strong><p>笔记内容不会上传。需要备份时，可以将笔记、图片和附件按原路径导出。</p></div><span class="badge">本地保存 · 自主掌控</span></div>
+    </div></section>
+    <section class="closing" aria-labelledby="closing-title"><div class="wrap"><div class="closing-symbol" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><circle cx="23" cy="16" r="11" fill="#f5dfa6"/><path d="M7 35 12 4M12 19l12-9M10 28l13-7" stroke="#b1d0ad" stroke-width="2" stroke-linecap="round"/><path d="M24 10q-1-9-10-9 1 9 10 9ZM23 21q8-10 17-6-6 8-17 6Z" fill="#b1d0ad"/></svg></div><h2 id="closing-title">今晚月色正好，<br>读一点喜欢的文字。</h2><p>让笔记不只被保存，也被读。</p><a class="btn btn-primary" href="https://raw.githubusercontent.com/thinking555/app/main/%E7%AB%B9%E6%9C%88.apk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg>下载竹月 APK</a><p class="closing-small">适用于 Android 8.0 及以上版本 · APK 从 GitHub 获取</p></div></section>
+  </main>
+  <footer><div class="wrap footer-inner"><span>竹月 · 让每一次翻阅，都有回响。</span><span><a href="https://github.com/thinking555/app" target="_blank" rel="noopener noreferrer">查看 GitHub 项目 ↗</a>　·　<button id="copy-link" type="button" style="padding:0;border:0;background:none;color:#cbd7b9;cursor:pointer;text-decoration:underline;text-underline-offset:3px">复制下载链接</button></span></div></footer>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>
+  (() => {
+    const url = 'https://raw.githubusercontent.com/thinking555/app/main/%E7%AB%B9%E6%9C%88.apk';
+    const button = document.getElementById('copy-link');
+    const toast = document.getElementById('toast');
+    let timeout;
+    const notify = (message) => { toast.textContent = message; toast.classList.add('show'); clearTimeout(timeout); timeout = setTimeout(() => toast.classList.remove('show'), 2600); };
+    button.addEventListener('click', async () => {
+      try {
+        if (!navigator.clipboard || !window.isSecureContext) throw new Error('clipboard unavailable');
+        await navigator.clipboard.writeText(url);
+        notify('下载链接已复制');
+      } catch (_) {
+        const input = document.createElement('textarea');
+        input.value = url;
+        input.style.cssText = 'position:fixed;left:-9999px;top:0';
+        document.body.appendChild(input);input.select();
+        let copied = false;
+        try { copied = document.execCommand('copy'); } catch (_) {}
+        input.remove();
+        if (copied) notify('下载链接已复制');
+        else window.prompt('请复制下载链接：', url);
+      }
+    });
+  })();
+</script>
+</body>
+</html>
