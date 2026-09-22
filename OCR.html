@@ -759,6 +759,33 @@
       font-size: 0.78rem;
     }
 
+    .version-history {
+      max-width: 680px;
+      margin-top: 30px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .version-history h3 {
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .version-history p {
+      font-size: 0.9rem;
+    }
+
+    .version-history a {
+      color: var(--blue-dark);
+      font-weight: 750;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .version-history a:hover {
+      color: var(--blue);
+    }
+
     .release-list {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1138,8 +1165,8 @@
           <div class="hero-actions">
             <a
               class="button button-primary"
-              href="https://github.com/thinking555/app/releases/download/v1.0/OCR.apk"
-              aria-label="下载 OCR v1.0.0 Android APK"
+              href="https://github.com/thinking555/app/releases/download/v1.1/OCR-1.1.apk"
+              aria-label="直接下载 OCR v1.1 Android APK"
             >
               立即下载 <span class="button-arrow" aria-hidden="true">↓</span>
             </a>
@@ -1315,19 +1342,19 @@
       <div class="download-card shell">
         <div>
           <p class="kicker">Android APK</p>
-          <h2>下载 OCR v1.0.0</h2>
+          <h2>下载 OCR v1.1</h2>
           <p>
             适用于 Android 8.0 及以上的 arm64-v8a 设备。安装 APK 时，系统可能要求你允许浏览器或文件管理器安装未知来源应用。
           </p>
 
           <ul class="version-pills" aria-label="版本要求">
-            <li>版本 v1.0.0</li>
+            <li>版本 v1.1</li>
             <li>Android 8.0+</li>
             <li>arm64-v8a</li>
             <li>无需注册</li>
           </ul>
 
-          <ul class="release-list" aria-label="本版本包含的功能">
+          <ul class="release-list" aria-label="OCR 主要功能">
             <li>双引擎离线文字识别</li>
             <li>Android 分享快捷入口</li>
             <li>EXIF 元数据查看</li>
@@ -1335,13 +1362,18 @@
             <li>QR 文件传输</li>
             <li>二维码 MP4 导出</li>
           </ul>
+
+          <div class="version-history" aria-labelledby="version-history-title">
+            <h3 id="version-history-title">历史版本</h3>
+            <p>需要旧版？<a href="https://github.com/thinking555/app/releases/download/v1.0/OCR.apk" aria-label="直接下载 OCR v1.0.0 历史版本 APK">下载 OCR v1.0.0 APK ↓</a></p>
+          </div>
         </div>
 
         <div class="download-action">
           <a
             class="button button-primary"
-            href="https://github.com/thinking555/app/releases/download/v1.0/OCR.apk"
-            aria-label="从 GitHub 下载 OCR v1.0.0 APK"
+            href="https://github.com/thinking555/app/releases/download/v1.1/OCR-1.1.apk"
+            aria-label="从 GitHub 直接下载 OCR v1.1 APK"
           >
             下载 APK <span class="button-arrow" aria-hidden="true">↓</span>
           </a>
