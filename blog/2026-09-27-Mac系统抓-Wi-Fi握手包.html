@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mac 系统抓 Wi-Fi 握手包。" />
+  <link rel="canonical" href="https://thinking555.github.io/blog/2026-09-27-Mac%E7%B3%BB%E7%BB%9F%E6%8A%93-Wi-Fi%E6%8F%A1%E6%89%8B%E5%8C%85.html" />
+  <title>Mac 系统抓 Wi-Fi 握手包</title>
+  <style>
+    :root{
+      --bg:#fafafa;
+      --card:#ffffff;
+      --text:#111111;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+      --soft:#f3f4f6;
+      --accent:#111111;
+      --code:#f7f7f8;
+    }
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#0f1115;
+        --card:#151922;
+        --text:#f5f5f5;
+        --muted:#9ca3af;
+        --line:#2a3140;
+        --soft:#1b2230;
+        --accent:#ffffff;
+        --code:#0d1320;
+      }
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.85;
+    }
+    a{color:inherit;text-decoration:none}
+    .topbar{
+      border-bottom:1px solid var(--line);
+      background:var(--bg);
+    }
+    .nav{
+      max-width:980px;
+      margin:0 auto;
+      padding:18px 20px;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 220px;
+      gap:40px;
+      align-items:center;
+    }
+    .brand{
+      font-size:18px;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    .nav-links{
+      display:flex;
+      gap:22px;
+      color:var(--muted);
+      font-size:14px;
+      justify-content:flex-start;
+    }
+    .layout{
+      max-width:980px;
+      margin:36px auto 60px;
+      padding:0 20px;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 220px;
+      gap:40px;
+    }
+
+    .article p a{
+      transition:color .15s ease;
+    }
+    .article p a:hover{
+      color:#e53935;
+    }
+
+    .article{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:42px 44px;
+    }
+    h1{
+      margin:0 0 14px;
+      font-size:34px;
+      line-height:1.35;
+      font-weight:700;
+      letter-spacing:-.4px;
+    }
+    .meta{
+      color:var(--muted);
+      font-size:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-bottom:28px;
+    }
+    .summary{
+      padding:16px 18px;
+      background:var(--soft);
+      border-radius:12px;
+      color:var(--text);
+      margin-bottom:34px;
+    }
+    h2{
+      font-size:24px;
+      margin:34px 0 12px;
+    }
+    h3{
+      font-size:18px;
+      margin:22px 0 8px;
+    }
+    p{margin:12px 0}
+    ul{padding-left:20px}
+    li{margin:8px 0}
+    code{
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      background:var(--soft);
+      border-radius:6px;
+      padding:2px 6px;
+      font-size:.92em;
+    }
+    pre{
+      margin:16px 0;
+      background:var(--code);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:18px;
+      overflow:auto;
+      font-size:14px;
+      line-height:1.7;
+    }
+    pre code{
+      background:none;
+      padding:0;
+    }
+    .share{
+      margin-top:40px;
+      padding-top:22px;
+      border-top:1px solid var(--line);
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+    }
+    .share-title{
+      color:var(--muted);
+      font-size:14px;
+      margin-right:2px;
+    }
+    .share-btn{
+      height:38px;
+      padding:0 14px;
+      border:1px solid var(--line);
+      background:transparent;
+      border-radius:10px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:var(--text);
+      cursor:pointer;
+      transition:.15s ease;
+      font-size:14px;
+    }
+    .share-btn:hover{
+      background:var(--soft);
+    }
+    .share-btn svg{
+      width:17px;height:17px;
+    }
+    .aside{
+      position:sticky;
+      top:24px;
+      align-self:start;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .toc{
+      border-left:1px solid var(--line);
+      padding-left:16px;
+    }
+    .toc-title{
+      color:var(--text);
+      font-weight:600;
+      margin-bottom:10px;
+    }
+    .toc a{
+      display:block;
+      padding:6px 0;
+    }
+    .toc a:hover{
+      color:var(--text);
+    }
+    .footer{
+      max-width:980px;
+      margin:0 auto 40px;
+      padding:0 20px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    @media(max-width:860px){
+      .nav{
+        display:flex;
+        justify-content:space-between;
+      }
+      .layout{
+        grid-template-columns:1fr;
+        gap:22px;
+      }
+      .aside{
+        position:static;
+        order:-1;
+      }
+      .toc{
+        border-left:none;
+        border-top:1px solid var(--line);
+        padding-left:0;
+        padding-top:14px;
+      }
+      .article{
+        padding:28px 22px;
+      }
+      h1{font-size:28px}
+      .nav-links{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="nav">
+      <div class="brand">Mgmg Blog</div>
+      <nav class="nav-links">
+        <a href="https://thinking555.github.io/blog">首页</a>
+        <a href="https://thinking555.github.io/me">关于</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="layout">
+    <article class="article">
+      <h1>Mac系统抓Wi-Fi握手包</h1>
+      <div class="meta">
+        <span>2026-09-27</span>
+        <span>阅读 2 分钟</span>
+      </div>
+
+      <h2 id="part1">1. 打开无线诊断</h2>
+      <p>按住 <code>Option</code> + 点击菜单栏 Wi-Fi 图标。</p>
+      <p>打开“无线诊断”。</p>
+      <p>在左上角“窗口”中打开“嗅探器”。</p>
+      <p>选择 Wi-Fi 的频道和频道宽度开始抓包。</p>
+
+      <h2 id="part2">2. 查看频道和频道宽度</h2>
+      <p>在手机打开 <a href="https://thinking555.github.io/about" target="_blank" rel="noopener noreferrer">扫个网络</a> App，能查看频道和频道宽度。</p>
+
+      <h2 id="part3">3. 抓取 4 次握手数据</h2>
+      <p>手机断开再重连要抓的 Wi-Fi，就能抓到 4 次握手数据。</p>
+
+      <h2 id="part4">4. 找到抓包文件</h2>
+      <p>在访达按下 <code>Command + Shift + G</code>。</p>
+      <p>前往文件夹：</p>
+      <pre><code>/var/tmp</code></pre>
+      <p><code>.pcap</code> 握手包就在里面。</p>
+
+      <h2 id="part5">5. 安全测试</h2>
+      <p>在手机打开安全测试（扫个网络的功能）就能尝试破解这个 Wi-Fi。</p>
+
+      <div class="share">
+        <span class="share-title">分享文章</span>
+
+        <button class="share-btn" onclick="shareTelegram()" title="分享到 Telegram">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M21.7 3.2 18.4 19c-.25 1.12-.9 1.4-1.83.87l-5.05-3.73-2.44 2.35c-.27.27-.5.5-1.02.5l.36-5.15 9.38-8.47c.41-.36-.09-.57-.63-.21L5.58 12.46.6 10.9c-1.08-.34-1.1-1.08.23-1.6L20.3 1.8c.9-.33 1.69.21 1.4 1.4Z"/>
+          </svg>
+          Telegram
+        </button>
+
+        <button class="share-btn" onclick="shareX()" title="分享到 X">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M18.901 2H21.99l-6.75 7.714L23.176 22h-6.214l-4.865-7.41L5.61 22H2.52l7.22-8.251L1.824 2h6.372l4.397 6.707L18.901 2Zm-1.09 18.126h1.712L7.277 3.779H5.44l12.37 16.347Z"/>
+          </svg>
+          X
+        </button>
+
+        <button class="share-btn" onclick="copyLink()" title="复制链接">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+          复制链接
+        </button>
+
+        <button class="share-btn" onclick="nativeShare()" title="系统分享">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="18" cy="5" r="3"/>
+            <circle cx="6" cy="12" r="3"/>
+            <circle cx="18" cy="19" r="3"/>
+            <path d="m8.6 10.5 6.8-4M8.6 13.5l6.8 4"/>
+          </svg>
+          分享
+        </button>
+      </div>
+    </article>
+
+    <aside class="aside">
+      <div class="toc">
+        <div class="toc-title">目录</div>
+        <a href="#part1">1. 打开无线诊断</a>
+        <a href="#part2">2. 查看频道和频道宽度</a>
+        <a href="#part3">3. 抓取 4 次握手数据</a>
+        <a href="#part4">4. 找到抓包文件</a>
+        <a href="#part5">5. 安全测试</a>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    © 2026 Mgmg Blog
+  </footer>
+
+  <script>
+    const canonicalUrl = document.querySelector('link[rel="canonical"]').href;
+
+    function shareTelegram(){
+      const url = encodeURIComponent(canonicalUrl);
+      const text = encodeURIComponent(document.title);
+      window.open(`https://t.me/share/url?url=${url}&text=${text}`, '_blank');
+    }
+
+    function shareX(){
+      const url = encodeURIComponent(canonicalUrl);
+      const text = encodeURIComponent(document.title);
+      window.open(`https://x.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+    }
+
+    async function copyLink(){
+      try{
+        await navigator.clipboard.writeText(canonicalUrl);
+        alert('链接已复制');
+      }catch(e){
+        prompt('复制下面的链接：', canonicalUrl);
+      }
+    }
+
+    async function nativeShare(){
+      if(navigator.share){
+        await navigator.share({
+          title: document.title,
+          text: '推荐这篇文章',
+          url: canonicalUrl
+        });
+      }else{
+        copyLink();
+      }
+    }
+  </script>
+</body>
+</html>

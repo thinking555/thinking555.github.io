@@ -30,6 +30,72 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Add article links to homepage
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+
+          const blogDir = path.join(process.cwd(), 'blog');
+          const homepagePath = path.join(process.cwd(), 'index.html');
+          const startMarker = '<!-- AUTO_ARTICLES_START -->';
+          const endMarker = '<!-- AUTO_ARTICLES_END -->';
+
+          function escapeHtml(value) {
+            return value.replace(/[&<>"']/g, (char) => ({
+              '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            })[char]);
+          }
+
+          function decodeHtmlEntities(value) {
+            return value.replace(/&(#x[0-9a-f]+|#\d+|amp|lt|gt|quot|apos|#39);/gi, (entity, code) => {
+              if (code[0] === '#') {
+                const isHex = code[1].toLowerCase() === 'x';
+                const number = Number.parseInt(code.slice(isHex ? 2 : 1), isHex ? 16 : 10);
+                return Number.isFinite(number) ? String.fromCodePoint(number) : entity;
+              }
+              return ({ amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", '#39': "'" })[code.toLowerCase()] || entity;
+            });
+          }
+
+          function articleTitle(filePath, fileName) {
+            const html = fs.readFileSync(filePath, 'utf8');
+            const match = html.match(/<title\b[^>]*>([\s\S]*?)<\/title\s*>/i);
+            const title = match && decodeHtmlEntities(match[1].replace(/<[^>]*>/g, '').trim());
+            return title || fileName.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.html$/i, '');
+          }
+
+          function datePrefix(fileName) {
+            const match = fileName.match(/^(\d{4})-(\d{2})-(\d{2})-.+\.html$/i);
+            if (!match) return null;
+            const year = Number(match[1]);
+            const month = Number(match[2]);
+            const day = Number(match[3]);
+            const date = new Date(Date.UTC(year, month - 1, day));
+            if (date.getUTCFullYear() !== year || date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) return null;
+            return `${match[1]}-${match[2]}-${match[3]}`;
+          }
+
+          const files = fs.existsSync(blogDir)
+            ? fs.readdirSync(blogDir, { withFileTypes: true })
+                .filter((entry) => entry.isFile() && entry.name.toLowerCase().endsWith('.html'))
+                .map((entry) => ({ name: entry.name, path: path.join(blogDir, entry.name), date: datePrefix(entry.name) }))
+                .sort((a, b) => (b.date || '').localeCompare(a.date || '') || b.name.localeCompare(a.name))
+            : [];
+
+          const links = files.map(({ name, path: filePath }) => {
+            const title = escapeHtml(articleTitle(filePath, name));
+            const encodedName = encodeURIComponent(name).replace(/[!'()*]/g, (char) => `%${char.charCodeAt(0).toString(16).toUpperCase()}`);
+            return `            <a class="link-item" href="/blog/${encodedName}" target="_blank">\n                <img src="https://www.google.com/s2/favicons?sz=64&domain=thinking555.github.io" alt="">\n                ${title}\n            </a>`;
+          }).join('\n\n');
+
+          const homepage = fs.readFileSync(homepagePath, 'utf8');
+          const markerPattern = new RegExp(`${startMarker}([\\s\\S]*?)${endMarker}`);
+          if (!markerPattern.test(homepage)) throw new Error('Article link markers are missing from index.html');
+          const updatedHomepage = homepage.replace(markerPattern, `${startMarker}${links ? `\n${links}\n            ` : '\n            '}${endMarker}`);
+          fs.writeFileSync(homepagePath, updatedHomepage);
+          console.log(`Added ${files.length} article link(s) to index.html`);
+          NODE
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
